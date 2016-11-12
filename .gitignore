@@ -12,6 +12,7 @@
 bin/
 gen/
 out/
+/local.properties
 
 # Gradle files
 .gradle/
@@ -35,6 +36,8 @@ captures/
 # Intellij
 *.iml
 .idea/workspace.xml
+/.idea/workspace.xml
+/.idea/libraries
 
 # Keystore files
 *.jks

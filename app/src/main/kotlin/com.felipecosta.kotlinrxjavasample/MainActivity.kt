@@ -7,10 +7,14 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.felipecosta.kotlinrxjavasample.rx.itemSelections
+import com.felipecosta.kotlinrxjavasample.samples.Sample1Fragment
+import com.felipecosta.kotlinrxjavasample.samples.Sample2Fragment
+import com.felipecosta.kotlinrxjavasample.samples.Sample3Fragment
+import com.felipecosta.kotlinrxjavasample.samples.Sample4Fragment
+import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
 
 class MainActivity : AppCompatActivity() {
@@ -44,10 +48,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bind() {
-        disposable = navigationView.itemSelections().
+
+        val itemSelectionObservable = navigationView.itemSelections().share()
+
+        val sample1FragmentObservable = itemSelectionObservable.
+                filter { it.itemId == R.id.nav_sample_1 }.
+                map { Sample1Fragment.newInstance() }
+
+        val sample2FragmentObservable = itemSelectionObservable.
+                filter { it.itemId == R.id.nav_sample_2 }.
+                map { Sample2Fragment.newInstance() }
+
+        val sample3FragmentObservable = itemSelectionObservable.
+                filter { it.itemId == R.id.nav_sample_3 }.
+                map { Sample3Fragment.newInstance() }
+
+        val sample4FragmentObservable = itemSelectionObservable.
+                filter { it.itemId == R.id.nav_sample_4 }.
+                map { Sample4Fragment.newInstance() }
+
+        val contentFragmentObservable = merge(listOf(sample1FragmentObservable,
+                sample2FragmentObservable,
+                sample3FragmentObservable,
+                sample4FragmentObservable))
+
+        disposable = contentFragmentObservable.
                 doOnNext { drawer.closeDrawer(GravityCompat.START) }.
-                //                doOnNext { it.isChecked = true }.
-                subscribe { Log.e(MainActivity::class.simpleName, ">>>> subscribe: $it") }
+                filter { !(supportFragmentManager.findFragmentById(R.id.main_content)?.javaClass?.equals(it.javaClass) ?: false) }.
+                subscribe { supportFragmentManager.beginTransaction().replace(R.id.main_content, it).commit() }
     }
 
     override fun onDestroy() {

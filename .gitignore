@@ -34,11 +34,19 @@ proguard/
 captures/
 
 # Intellij
-*.iml
-.idea
+.idea/*
+.idea/libraries/
 .idea/workspace.xml
-/.idea/workspace.xml
-/.idea/libraries
+.idea/tasks.xml
+.idea/.name
+.idea/compiler.xml
+.idea/copyright/profiles_settings.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+*.iml
 
 # Keystore files
 *.jks

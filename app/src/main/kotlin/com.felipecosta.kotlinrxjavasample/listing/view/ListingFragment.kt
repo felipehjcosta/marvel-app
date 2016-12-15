@@ -8,7 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.listing.viewmodel.ListingViewModel
+import com.felipecosta.kotlinrxjavasample.listing.datamodel.DummyContentListingDataModel
+import com.felipecosta.kotlinrxjavasample.listing.presentation.ListingViewModel
 import io.reactivex.disposables.Disposable
 
 class ListingFragment : Fragment() {
@@ -22,7 +23,7 @@ class ListingFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ListingViewModel()
+        viewModel = ListingViewModel(DummyContentListingDataModel())
     }
 
     override fun onDestroy() {

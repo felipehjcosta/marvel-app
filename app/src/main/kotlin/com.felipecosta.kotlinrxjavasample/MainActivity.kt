@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import com.felipecosta.kotlinrxjavasample.listing.view.ListingFragment
 import com.felipecosta.kotlinrxjavasample.rx.itemSelections
 import com.felipecosta.kotlinrxjavasample.samples.Sample1Fragment
 import com.felipecosta.kotlinrxjavasample.samples.Sample2Fragment
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         val sample1FragmentObservable = itemSelectionObservable.
                 filter { it.itemId == R.id.nav_sample_1 }.
-                map { Sample1Fragment.newInstance() }
+                map { ListingFragment.newInstance() }
 
         val sample2FragmentObservable = itemSelectionObservable.
                 filter { it.itemId == R.id.nav_sample_2 }.

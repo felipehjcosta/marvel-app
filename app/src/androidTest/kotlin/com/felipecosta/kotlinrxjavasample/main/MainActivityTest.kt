@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample
+package com.felipecosta.kotlinrxjavasample.main
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
@@ -11,6 +11,7 @@ import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItem
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.listing.view.MyItemRecyclerViewAdapter
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Rule

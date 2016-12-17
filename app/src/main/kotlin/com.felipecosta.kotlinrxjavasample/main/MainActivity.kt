@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample
+package com.felipecosta.kotlinrxjavasample.main
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.listing.view.ListingFragment
 import com.felipecosta.kotlinrxjavasample.rx.itemSelections
 import com.felipecosta.kotlinrxjavasample.samples.Sample1Fragment

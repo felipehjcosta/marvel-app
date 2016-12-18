@@ -7,13 +7,17 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.felipecosta.kotlinrxjavasample.DemoApplication
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.listing.datamodel.DummyContentListingDataModel
+import com.felipecosta.kotlinrxjavasample.listing.di.DaggerListingComponent
 import com.felipecosta.kotlinrxjavasample.listing.presentation.ListingViewModel
 import io.reactivex.disposables.Disposable
+import javax.inject.Inject
 
 class ListingFragment : Fragment() {
 
+
+    @Inject
     lateinit var viewModel: ListingViewModel
 
     lateinit var dispose: Disposable
@@ -23,7 +27,12 @@ class ListingFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ListingViewModel(DummyContentListingDataModel())
+        val applicationComponent = DemoApplication.get(context).component
+        val listingComponent = DaggerListingComponent.builder().
+                applicationComponent(applicationComponent).
+                build()
+
+        listingComponent.inject(this)
     }
 
     override fun onDestroy() {

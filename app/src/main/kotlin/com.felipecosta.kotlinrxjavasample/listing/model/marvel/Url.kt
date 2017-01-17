@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-class Urls : Serializable {
+class Url : Serializable {
 
     @SerializedName("type")
     var type: String? = null

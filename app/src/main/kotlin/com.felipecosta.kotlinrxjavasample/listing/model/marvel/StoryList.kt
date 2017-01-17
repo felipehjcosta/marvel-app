@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-class Events : Serializable {
+class StoryList : Serializable {
 
     @SerializedName("available")
     var available: Int? = null
@@ -16,7 +16,6 @@ class Events : Serializable {
     var collectionURI: String? = null
 
     @SerializedName("items")
-    var items: List<Items>? = null
-
+    var items: List<StorySummary>? = null
 
 }

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-class Items : Serializable {
+class ComicSummary : Serializable {
 
     @SerializedName("resourceURI")
     var resourceURI: String? = null

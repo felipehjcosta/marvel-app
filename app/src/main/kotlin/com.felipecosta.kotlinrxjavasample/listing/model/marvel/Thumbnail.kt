@@ -12,5 +12,4 @@ class Thumbnail : Serializable {
     @SerializedName("extension")
     var extension: String? = null
 
-
 }

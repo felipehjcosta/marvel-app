@@ -5,7 +5,7 @@ import java.io.Serializable
 import java.util.*
 
 
-class Results : Serializable {
+class Character : Serializable {
 
     @SerializedName("id")
     var id: Int? = null
@@ -23,21 +23,21 @@ class Results : Serializable {
     var resourceURI: String? = null
 
     @SerializedName("urls")
-    var urls: List<Urls>? = null
+    var urls: List<Url>? = null
 
     @SerializedName("thumbnail")
     var thumbnail: Thumbnail? = null
 
     @SerializedName("comics")
-    var comics: Comics? = null
+    var comics: ComicList? = null
 
     @SerializedName("stories")
-    var stories: Stories? = null
+    var stories: StoryList? = null
 
     @SerializedName("events")
-    var events: Events? = null
+    var events: EventList? = null
 
     @SerializedName("series")
-    var series: Series? = null
+    var series: SeriesList? = null
 
 }

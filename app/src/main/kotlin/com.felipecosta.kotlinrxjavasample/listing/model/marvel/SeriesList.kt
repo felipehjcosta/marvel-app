@@ -1,11 +1,10 @@
 package com.felipecosta.kotlinrxjavasample.listing.model.marvel
 
 import com.google.gson.annotations.SerializedName
-
 import java.io.Serializable
 
 
-class Comics : Serializable {
+class SeriesList : Serializable {
 
     @SerializedName("available")
     var available: Int? = null
@@ -17,6 +16,6 @@ class Comics : Serializable {
     var collectionURI: String? = null
 
     @SerializedName("items")
-    var items: List<Items>? = null
+    var items: List<ComicSummary>? = null
 
 }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-class MarvelResponse : Serializable {
+class CharacterDataWrapper : Serializable {
 
     @SerializedName("code")
     var code: Int? = null
@@ -23,7 +23,7 @@ class MarvelResponse : Serializable {
     var attributionHTML: String? = null
 
     @SerializedName("data")
-    var data: Data? = null
+    var characterDataContainer: CharacterDataContainer? = null
 
     @SerializedName("etag")
     var etag: String? = null

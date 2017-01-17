@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-class Data : Serializable {
+class CharacterDataContainer : Serializable {
 
     @SerializedName("offset")
     var offset: Int? = null
@@ -19,7 +19,7 @@ class Data : Serializable {
     var count: Int? = null
 
     @SerializedName("results")
-    var results: List<Results>? = null
+    var characters: List<Character>? = null
 
 
 }

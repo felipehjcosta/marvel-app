@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.felipecosta.kotlinrxjavasample.di.ApplicationComponent
 import com.felipecosta.kotlinrxjavasample.di.DaggerApplicationComponent
+import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 
 open class DemoApplication : Application() {
 
@@ -12,6 +14,12 @@ open class DemoApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         component = createComponent()
+        initImageLoader()
+    }
+
+    private fun initImageLoader() {
+        val config = ImageLoaderConfiguration.Builder(this).build()
+        ImageLoader.getInstance().init(config)
     }
 
     open protected fun createComponent(): ApplicationComponent {

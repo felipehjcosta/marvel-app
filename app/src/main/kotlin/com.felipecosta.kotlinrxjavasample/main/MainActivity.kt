@@ -1,21 +1,33 @@
 package com.felipecosta.kotlinrxjavasample.main
 
-import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
+import android.support.design.widget.NavigationView
+import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.detail.DetailActivity
+import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Character
+import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Thumbnail
 import com.felipecosta.kotlinrxjavasample.listing.view.ListingFragment
+import com.felipecosta.kotlinrxjavasample.rx.clicks
+import com.felipecosta.kotlinrxjavasample.rx.itemSelections
 import com.felipecosta.kotlinrxjavasample.samples.Sample2Fragment
 import com.felipecosta.kotlinrxjavasample.samples.Sample3Fragment
 import com.felipecosta.kotlinrxjavasample.samples.Sample4Fragment
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var drawer: DrawerLayout
+
     lateinit var toggle: ActionBarDrawerToggle
 
     lateinit var navigationView: NavigationView
@@ -88,9 +100,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleClick(view: Any?) {
-        val activityIntent = Intent(this, DetailActivity::class.java)
-        activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        this.startActivity(activityIntent)
+        DetailActivity.startDetail(this, getCharacter())
+    }
+
+    private fun getCharacter(): Character {
+        val char = Character()
+        char.id = 1011334
+        char.name = "3-D Man"
+        char.description = ""
+        char.modified = Date() // "2014-04-29T14:18:17-0400",
+        val thumbnail = Thumbnail()
+        thumbnail.path = "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784"
+        thumbnail.extension = "jpg"
+        char.thumbnail = thumbnail
+        char.resourceURI = "http://gateway.marvel.com/v1/public/characters/1011334"
+        return char
     }
 
     override fun onDestroy() {

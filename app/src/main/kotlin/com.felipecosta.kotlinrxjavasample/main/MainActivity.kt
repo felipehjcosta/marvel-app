@@ -105,15 +105,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun getCharacter(): Character {
         val char = Character()
-        char.id = 1011334
-        char.name = "3-D Man"
-        char.description = ""
-        char.modified = Date() // "2014-04-29T14:18:17-0400",
+        char.id = 1009718
+        char.name = "Wolverine"
+        char.description = "Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a premiere member of both the X-Men and the Avengers."
+        char.modified = Date() // "2014-06-10T16:13:25-0400",
         val thumbnail = Thumbnail()
-        thumbnail.path = "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784"
+        thumbnail.path = "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf"
         thumbnail.extension = "jpg"
         char.thumbnail = thumbnail
-        char.resourceURI = "http://gateway.marvel.com/v1/public/characters/1011334"
+        char.resourceURI = "http://gateway.marvel.com/v1/public/characters/1009718"
         return char
     }
 

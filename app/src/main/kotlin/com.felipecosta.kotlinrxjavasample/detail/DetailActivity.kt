@@ -12,7 +12,7 @@ import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Character
 
 class DetailActivity : AppCompatActivity() {
 
-    companion object Factory {
+    companion object {
         val CHARACTER_OBJECT: String? = "com.felipecosta.kotlinrxjavasample.CHARACTER_BUNDLE"
 
         fun startDetail(activity: Activity, character: Character?) {
@@ -40,6 +40,6 @@ class DetailActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        mCharacter = intent.extras.getParcelable<Character>(Factory.CHARACTER_OBJECT)
+        mCharacter = intent.extras.getParcelable<Character>(CHARACTER_OBJECT)
     }
 }

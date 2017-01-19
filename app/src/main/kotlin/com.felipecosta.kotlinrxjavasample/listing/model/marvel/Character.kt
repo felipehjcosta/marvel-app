@@ -1,11 +1,13 @@
 package com.felipecosta.kotlinrxjavasample.listing.model.marvel
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.*
 
 
-class Character : Serializable {
+class Character : Serializable, Parcelable {
 
     @SerializedName("id")
     var id: Int? = null
@@ -40,4 +42,19 @@ class Character : Serializable {
     @SerializedName("series")
     var series: SeriesList? = null
 
+    companion object {
+
+        @JvmField val CREATOR: Parcelable.Creator<Character> = object : Parcelable.Creator<Character> {
+            override fun createFromParcel(source: Parcel): Character = Character(source)
+            override fun newArray(size: Int): Array<Character?> = arrayOfNulls(size)
+        }
+    }
+
+    constructor()
+
+    constructor(source: Parcel) : this()
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel?, flags: Int) {}
 }

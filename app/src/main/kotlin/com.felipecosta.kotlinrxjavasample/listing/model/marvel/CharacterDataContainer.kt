@@ -21,5 +21,4 @@ class CharacterDataContainer : Serializable {
     @SerializedName("results")
     var characters: List<Character>? = null
 
-
 }

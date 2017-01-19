@@ -1,18 +1,12 @@
 package com.felipecosta.kotlinrxjavasample.main
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import com.felipecosta.kotlinrxjavasample.R
+import com.felipecosta.kotlinrxjavasample.detail.DetailActivity
 import com.felipecosta.kotlinrxjavasample.listing.view.ListingFragment
-import com.felipecosta.kotlinrxjavasample.rx.itemSelections
 import com.felipecosta.kotlinrxjavasample.samples.Sample2Fragment
 import com.felipecosta.kotlinrxjavasample.samples.Sample3Fragment
 import com.felipecosta.kotlinrxjavasample.samples.Sample4Fragment
@@ -82,6 +76,21 @@ class MainActivity : AppCompatActivity() {
                 doOnNext { drawer.closeDrawer(GravityCompat.START) }.
                 filter { !(supportFragmentManager.findFragmentById(R.id.main_content)?.javaClass?.equals(it.javaClass) ?: false) }.
                 subscribe { supportFragmentManager.beginTransaction().replace(R.id.main_content, it).commit() }
+
+        val fabClickObservable = fab.clicks()
+
+        fabClickObservable.
+                subscribe {
+                    view ->
+                    handleClick(view)
+                }
+
+    }
+
+    private fun handleClick(view: Any?) {
+        val activityIntent = Intent(this, DetailActivity::class.java)
+        activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        this.startActivity(activityIntent)
     }
 
     override fun onDestroy() {

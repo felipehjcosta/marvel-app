@@ -5,9 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Character
+import com.nostra13.universalimageloader.core.ImageLoader
 
 class DetailActivity : AppCompatActivity() {
 
@@ -27,6 +29,7 @@ class DetailActivity : AppCompatActivity() {
 
     lateinit var character: Character
     lateinit var toolbar: Toolbar
+    lateinit var backdrop: ImageView
     lateinit var description: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,10 +46,14 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        backdrop = findViewById(R.id.image_backdrop) as ImageView
         description = findViewById(R.id.text_description) as TextView
     }
 
     private fun loadInfo() {
+        val imageLoader = ImageLoader.getInstance()
+
+        imageLoader.displayImage(character.thumbnail?.path + "." + character.thumbnail?.extension, backdrop)
         description.text = character.description
     }
 

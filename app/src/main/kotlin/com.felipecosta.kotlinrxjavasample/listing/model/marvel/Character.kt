@@ -58,7 +58,7 @@ class Character : Serializable, Parcelable {
         this.name = `in`.readString()
         this.description = `in`.readString()
         val tmpModified = `in`.readLong()
-        this.modified = if (tmpModified.equals(-1)) null else Date(tmpModified)
+        this.modified = if (tmpModified == -1L) null else Date(tmpModified)
         this.resourceURI = `in`.readString()
         this.urls = `in`.createTypedArrayList(Url.CREATOR)
         this.thumbnail = `in`.readParcelable<Thumbnail>(Thumbnail::class.java.classLoader)

@@ -15,7 +15,7 @@ class EventList : Serializable, Parcelable {
     @SerializedName("collectionURI")
     var collectionURI: String = ""
     @SerializedName("items")
-    var items: List<EventSummary>? = null
+    var items: List<Summary>? = null
 
     override fun describeContents(): Int {
         return 0
@@ -34,7 +34,7 @@ class EventList : Serializable, Parcelable {
         this.available = `in`.readValue(Int::class.java.classLoader) as Int
         this.returned = `in`.readValue(Int::class.java.classLoader) as Int
         this.collectionURI = `in`.readString()
-        this.items = `in`.createTypedArrayList(EventSummary.CREATOR)
+        this.items = `in`.createTypedArrayList(Summary.CREATOR)
     }
 
     companion object {

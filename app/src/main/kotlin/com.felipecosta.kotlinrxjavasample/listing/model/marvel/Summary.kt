@@ -2,12 +2,10 @@ package com.felipecosta.kotlinrxjavasample.listing.model.marvel
 
 import android.os.Parcel
 import android.os.Parcelable
-
 import com.google.gson.annotations.SerializedName
-
 import java.io.Serializable
 
-class StorySummary : Serializable, Parcelable {
+class Summary : Serializable, Parcelable {
     @SerializedName("resourceURI")
     var resourceURI: String = ""
     @SerializedName("name")
@@ -25,8 +23,6 @@ class StorySummary : Serializable, Parcelable {
         dest.writeString(this.type)
     }
 
-    constructor() {}
-
     constructor(`in`: Parcel) {
         this.resourceURI = `in`.readString()
         this.name = `in`.readString()
@@ -35,9 +31,9 @@ class StorySummary : Serializable, Parcelable {
 
     companion object {
         @JvmField
-        val CREATOR: Parcelable.Creator<StorySummary> = object : Parcelable.Creator<StorySummary> {
-            override fun createFromParcel(source: Parcel): StorySummary = StorySummary(source)
-            override fun newArray(size: Int): Array<StorySummary?> = arrayOfNulls(size)
+        val CREATOR: Parcelable.Creator<Summary> = object : Parcelable.Creator<Summary> {
+            override fun createFromParcel(source: Parcel): Summary = Summary(source)
+            override fun newArray(size: Int): Array<Summary?> = arrayOfNulls(size)
         }
     }
 }

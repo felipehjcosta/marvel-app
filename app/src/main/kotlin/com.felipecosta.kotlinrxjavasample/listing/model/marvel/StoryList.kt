@@ -16,7 +16,7 @@ class StoryList : Serializable, Parcelable {
     @SerializedName("collectionURI")
     var collectionURI: String = ""
     @SerializedName("items")
-    var items: List<StorySummary>? = null
+    var items: List<Summary>? = null
 
     override fun describeContents(): Int {
         return 0
@@ -35,7 +35,7 @@ class StoryList : Serializable, Parcelable {
         this.available = `in`.readValue(Int::class.java.classLoader) as Int
         this.returned = `in`.readValue(Int::class.java.classLoader) as Int
         this.collectionURI = `in`.readString()
-        this.items = `in`.createTypedArrayList(StorySummary.CREATOR)
+        this.items = `in`.createTypedArrayList(Summary.CREATOR)
     }
 
     companion object {

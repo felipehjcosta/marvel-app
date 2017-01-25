@@ -19,6 +19,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "com.felipecosta.kotlinrxjavasample.runner.CustomTestRunner"
+
+        buildConfigField "String", "MARVEL_PRIVATE_KEY", "\"" + MARVEL_PRIVATE_KEY + "\""
+        buildConfigField "String", "MARVEL_PUBLIC_KEY", "\"" + MARVEL_PUBLIC_KEY + "\""
     }
 
     sourceSets {

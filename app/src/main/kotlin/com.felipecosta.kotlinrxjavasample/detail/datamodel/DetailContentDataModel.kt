@@ -11,8 +11,5 @@ class DetailContentDataModel : DetailDataModel {
         this.dataRepository = dataRepository
     }
 
-    override fun character(characterId: Int): Observable<Character> {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
+    override fun character(characterId: Int): Observable<Character> = dataRepository.getCharacter(characterId)
 }

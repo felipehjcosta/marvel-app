@@ -1,6 +1,6 @@
 package com.felipecosta.kotlinrxjavasample.data
 
-import com.felipecosta.kotlinrxjavasample.listing.model.marvel.CharacterDataWrapper
+import com.felipecosta.kotlinrxjavasample.data.pojo.CharacterDataWrapper
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

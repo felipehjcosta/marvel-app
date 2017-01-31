@@ -8,8 +8,7 @@ import android.support.v7.widget.Toolbar
 import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Character
-import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Thumbnail
+import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.nostra13.universalimageloader.core.ImageLoader
 import java.util.*
 

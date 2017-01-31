@@ -1,7 +1,7 @@
 package com.felipecosta.kotlinrxjavasample.data
 
 import com.felipecosta.kotlinrxjavasample.BuildConfig
-import com.felipecosta.kotlinrxjavasample.listing.model.marvel.CharacterDataWrapper
+import com.felipecosta.kotlinrxjavasample.data.pojo.CharacterDataWrapper
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.reactivex.Observable
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.listing.model.marvel
+package com.felipecosta.kotlinrxjavasample.data.pojo
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 
 import java.io.Serializable
 
-class SeriesList : Serializable, Parcelable {
+class EventList : Serializable, Parcelable {
     @SerializedName("available")
     var available: Int? = null
     @SerializedName("returned")
@@ -39,9 +39,9 @@ class SeriesList : Serializable, Parcelable {
 
     companion object {
         @JvmField
-        val CREATOR: Parcelable.Creator<SeriesList> = object : Parcelable.Creator<SeriesList> {
-            override fun createFromParcel(source: Parcel): SeriesList = SeriesList(source)
-            override fun newArray(size: Int): Array<SeriesList?> = arrayOfNulls(size)
+        val CREATOR: Parcelable.Creator<EventList> = object : Parcelable.Creator<EventList> {
+            override fun createFromParcel(source: Parcel): EventList = EventList(source)
+            override fun newArray(size: Int): Array<EventList?> = arrayOfNulls(size)
         }
     }
 }

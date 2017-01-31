@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.listing.model.marvel
+package com.felipecosta.kotlinrxjavasample.data.pojo
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

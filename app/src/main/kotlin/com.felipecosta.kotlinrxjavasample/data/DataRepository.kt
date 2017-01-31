@@ -1,6 +1,7 @@
 package com.felipecosta.kotlinrxjavasample.data
 
 import com.felipecosta.kotlinrxjavasample.BuildConfig
+import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.data.pojo.CharacterDataWrapper
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.reactivex.Observable
@@ -37,12 +38,15 @@ class DataRepository {
                 getHash())
     }
 
-    fun getCharacter(characterId: Int): Observable<CharacterDataWrapper> {
+    fun getCharacter(characterId: Int): Observable<Character> {
         return characterService.getCharacterWithId(
                 characterId,
                 timestamp.toString(),
                 BuildConfig.MARVEL_PUBLIC_KEY,
                 getHash())
+                .map { characterDataWrapper ->
+                    characterDataWrapper.characterDataContainer?.characters?.get(0)
+                }
     }
 
     fun md5(s: String): String {

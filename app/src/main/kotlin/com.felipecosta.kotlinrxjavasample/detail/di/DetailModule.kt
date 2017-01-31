@@ -10,5 +10,5 @@ import dagger.Provides
 class DetailModule {
     @DetailScope
     @Provides
-    fun provideDetailDataModel(detailDataModel: DetailDataModel) = DetailContentDataModel(DataRepository())
+    fun provideDetailDataModel(): DetailDataModel = DetailContentDataModel(DataRepository())
 }

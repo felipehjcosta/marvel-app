@@ -9,21 +9,37 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Character
+import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Thumbnail
 import com.nostra13.universalimageloader.core.ImageLoader
+import java.util.*
 
 class DetailActivity : AppCompatActivity() {
 
     companion object {
         val CHARACTER_OBJECT: String? = "com.felipecosta.kotlinrxjavasample.CHARACTER_BUNDLE"
 
-        fun startDetail(activity: Activity, character: Character?) {
+        fun startDetail(activity: Activity) {
             val bundle = Bundle()
-            bundle.putParcelable(CHARACTER_OBJECT, character)
+            bundle.putParcelable(CHARACTER_OBJECT, getCharacter())
 
             val activityIntent = Intent(activity, DetailActivity::class.java)
             activityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activityIntent.putExtras(bundle)
             activity.startActivity(activityIntent)
+        }
+
+        private fun getCharacter(): Character {
+            val char = Character()
+            char.id = 1009718
+            char.name = "Wolverine"
+            char.description = "Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a premiere member of both the X-Men and the Avengers."
+            char.modified = Date() // "2014-06-10T16:13:25-0400",
+            val thumbnail = Thumbnail()
+            thumbnail.path = "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf"
+            thumbnail.extension = "jpg"
+            char.thumbnail = thumbnail
+            char.resourceURI = "http://gateway.marvel.com/v1/public/characters/1009718"
+            return char
         }
     }
 

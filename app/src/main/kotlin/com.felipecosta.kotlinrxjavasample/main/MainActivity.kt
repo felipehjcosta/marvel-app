@@ -12,8 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.detail.view.DetailActivity
-import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Character
-import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Thumbnail
 import com.felipecosta.kotlinrxjavasample.listing.view.ListingFragment
 import com.felipecosta.kotlinrxjavasample.rx.clicks
 import com.felipecosta.kotlinrxjavasample.rx.itemSelections
@@ -22,7 +20,6 @@ import com.felipecosta.kotlinrxjavasample.samples.Sample3Fragment
 import com.felipecosta.kotlinrxjavasample.samples.Sample4Fragment
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -100,21 +97,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleClick(view: Any?) {
-        DetailActivity.startDetail(this, getCharacter())
-    }
-
-    private fun getCharacter(): Character {
-        val char = Character()
-        char.id = 1009718
-        char.name = "Wolverine"
-        char.description = "Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a premiere member of both the X-Men and the Avengers."
-        char.modified = Date() // "2014-06-10T16:13:25-0400",
-        val thumbnail = Thumbnail()
-        thumbnail.path = "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf"
-        thumbnail.extension = "jpg"
-        char.thumbnail = thumbnail
-        char.resourceURI = "http://gateway.marvel.com/v1/public/characters/1009718"
-        return char
+        DetailActivity.startDetail(this)
     }
 
     override fun onDestroy() {

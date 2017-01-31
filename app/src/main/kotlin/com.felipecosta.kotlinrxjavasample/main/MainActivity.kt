@@ -11,7 +11,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.detail.DetailActivity
+import com.felipecosta.kotlinrxjavasample.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Character
 import com.felipecosta.kotlinrxjavasample.listing.model.marvel.Thumbnail
 import com.felipecosta.kotlinrxjavasample.listing.view.ListingFragment

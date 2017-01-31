@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.detail
+package com.felipecosta.kotlinrxjavasample.detail.view
 
 import android.app.Activity
 import android.content.Intent

@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
+import com.felipecosta.kotlinrxjavasample.data.pojo.Thumbnail
 import com.nostra13.universalimageloader.core.ImageLoader
 import java.util.*
 

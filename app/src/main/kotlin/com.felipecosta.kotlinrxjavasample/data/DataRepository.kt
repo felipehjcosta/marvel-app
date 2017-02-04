@@ -30,12 +30,15 @@ class DataRepository {
         return md5(timestamp.toString() + BuildConfig.MARVEL_PRIVATE_KEY + BuildConfig.MARVEL_PUBLIC_KEY)
     }
 
-    fun getCharacterList(offset: Int, limit: Int): Observable<CharacterDataWrapper> {
+    fun getCharacterList(offset: Int, limit: Int): Observable<List<Character>> {
         return characterService.listCharacters(limit,
                 offset,
                 timestamp.toString(),
                 BuildConfig.MARVEL_PUBLIC_KEY,
                 getHash())
+                .map { characterDataWrapper ->
+                    characterDataWrapper.characterDataContainer?.characters
+                }
     }
 
     fun getCharacter(characterId: Int): Observable<Character> {

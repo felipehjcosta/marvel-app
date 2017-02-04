@@ -1,8 +1,8 @@
 package com.felipecosta.kotlinrxjavasample.listing.datamodel
 
-import com.felipecosta.kotlinrxjavasample.listing.model.DummyContent
+import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import io.reactivex.Observable
 
 interface ListingDataModel {
-    fun items(): Observable<List<DummyContent.DummyItem>>
+    fun items(): Observable<List<Character>>
 }

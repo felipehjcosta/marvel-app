@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.DemoApplication
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.listing.di.DaggerListingComponent
-import com.felipecosta.kotlinrxjavasample.listing.presentation.ListingViewModel
+import com.felipecosta.kotlinrxjavasample.listing.presentation.CharacterListViewModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -18,7 +18,7 @@ class ListingFragment : Fragment() {
 
 
     @Inject
-    lateinit var viewModel: ListingViewModel
+    lateinit var viewModel: CharacterListViewModel
 
     lateinit var compositeDisposable: CompositeDisposable
 
@@ -65,7 +65,7 @@ class ListingFragment : Fragment() {
         compositeDisposable = CompositeDisposable()
 
         var disposable = viewModel.items.
-                map(::MyItemRecyclerViewAdapter).
+                map(::CharacterItemRecyclerViewAdapter).
                 subscribe { adapter ->
                     recyclerView?.adapter = adapter
                 }

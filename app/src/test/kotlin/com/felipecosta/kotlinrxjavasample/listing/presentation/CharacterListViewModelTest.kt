@@ -2,17 +2,16 @@ package com.felipecosta.kotlinrxjavasample.listing.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
-import com.felipecosta.kotlinrxjavasample.utils.mock
 import io.reactivex.observers.TestObserver
 import io.reactivex.subjects.PublishSubject
 import org.junit.Before
 import org.junit.Test
 
-class ListingViewModelTest {
+class CharacterListViewModelTest {
 
     lateinit var commandActionSubject: PublishSubject<List<Character>>
 
-    lateinit var viewModel: ListingViewModel
+    lateinit var viewModel: CharacterListViewModel
 
     @Before
     fun setUp() {
@@ -21,22 +20,25 @@ class ListingViewModelTest {
 
         val asyncCommand: AsyncCommand<List<Character>> = AsyncCommand({ commandActionSubject })
 
-        viewModel = ListingViewModel(asyncCommand)
+        viewModel = CharacterListViewModel(asyncCommand)
     }
 
     @Test
     fun whenCallItemsThenReturnItems() {
 
-        val mockedCharacter: Character = mock()
-        val itemsObserver = TestObserver.create<List<Character>>()
+        val characterName = "Wolverine"
+        val character = Character()
+        character.name = characterName
+
+        val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
 
         viewModel.items.subscribe(itemsObserver)
 
         val disposable = viewModel.listCommand.execute().subscribe()
 
-        commandActionSubject.onNext(listOf(mockedCharacter))
+        commandActionSubject.onNext(listOf(character))
 
-        itemsObserver.assertValues(listOf(mockedCharacter))
+        itemsObserver.assertValue { it[0].name == characterName }
 
         disposable.dispose()
     }

@@ -12,7 +12,7 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.listing.view.MyItemRecyclerViewAdapter
+import com.felipecosta.kotlinrxjavasample.listing.view.CharacterItemRecyclerViewAdapter
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Rule
 import org.junit.Test
@@ -27,7 +27,7 @@ class MainActivityTest {
     @Test
     fun whenMainActivityFirstAppearsThenFirstListItemIsShowing() {
         onView(withId(R.id.recycler_view)).
-                perform(actionOnItem<MyItemRecyclerViewAdapter.ViewHolder>(hasDescendant(withText("Item 1")),
+                perform(actionOnItem<CharacterItemRecyclerViewAdapter.ViewHolder>(hasDescendant(withText("Wolverine")),
                         scrollTo())).
                 check(matches(isDisplayed()))
     }

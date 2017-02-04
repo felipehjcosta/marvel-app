@@ -12,7 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.detail.view.DetailActivity
-import com.felipecosta.kotlinrxjavasample.listing.view.ListingFragment
+import com.felipecosta.kotlinrxjavasample.modules.listing.view.ListingFragment
 import com.felipecosta.kotlinrxjavasample.rx.clicks
 import com.felipecosta.kotlinrxjavasample.rx.itemSelections
 import com.felipecosta.kotlinrxjavasample.samples.Sample2Fragment

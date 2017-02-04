@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.listing.view
+package com.felipecosta.kotlinrxjavasample.modules.listing.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.DemoApplication
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.listing.di.DaggerListingComponent
-import com.felipecosta.kotlinrxjavasample.listing.presentation.CharacterListViewModel
+import com.felipecosta.kotlinrxjavasample.modules.listing.di.DaggerListingComponent
+import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 

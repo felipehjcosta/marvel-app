@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.listing.view
+package com.felipecosta.kotlinrxjavasample.modules.listing.view
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.listing.presentation.CharacterItemViewModel
+import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
 
 class CharacterItemRecyclerViewAdapter(private val characterItemViewModels: List<CharacterItemViewModel>) : RecyclerView.Adapter<CharacterItemRecyclerViewAdapter.ViewHolder>() {
 

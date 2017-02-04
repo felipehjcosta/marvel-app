@@ -1,7 +1,7 @@
-package com.felipecosta.kotlinrxjavasample.listing.di
+package com.felipecosta.kotlinrxjavasample.modules.listing.di
 
 import com.felipecosta.kotlinrxjavasample.di.ApplicationComponent
-import com.felipecosta.kotlinrxjavasample.listing.view.ListingFragment
+import com.felipecosta.kotlinrxjavasample.modules.listing.view.ListingFragment
 import dagger.Component
 
 @ListingScope

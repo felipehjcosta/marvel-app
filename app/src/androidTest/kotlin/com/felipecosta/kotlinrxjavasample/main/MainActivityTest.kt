@@ -12,7 +12,7 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.listing.view.CharacterItemRecyclerViewAdapter
+import com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterItemRecyclerViewAdapter
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Rule
 import org.junit.Test

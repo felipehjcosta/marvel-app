@@ -1,9 +1,9 @@
-package com.felipecosta.kotlinrxjavasample.listing.di
+package com.felipecosta.kotlinrxjavasample.modules.listing.di
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.data.pojo.Thumbnail
-import com.felipecosta.kotlinrxjavasample.listing.datamodel.ListingDataModel
-import com.felipecosta.kotlinrxjavasample.listing.presentation.CharacterListViewModel
+import com.felipecosta.kotlinrxjavasample.modules.listing.datamodel.ListingDataModel
+import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
 import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
 import dagger.Module
 import dagger.Provides

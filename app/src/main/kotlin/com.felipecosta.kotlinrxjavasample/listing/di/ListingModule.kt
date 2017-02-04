@@ -3,6 +3,7 @@ package com.felipecosta.kotlinrxjavasample.listing.di
 import com.felipecosta.kotlinrxjavasample.listing.datamodel.DummyContentListingDataModel
 import com.felipecosta.kotlinrxjavasample.listing.datamodel.ListingDataModel
 import com.felipecosta.kotlinrxjavasample.listing.presentation.ListingViewModel
+import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
 import dagger.Module
 import dagger.Provides
 
@@ -15,6 +16,6 @@ class ListingModule {
 
     @ListingScope
     @Provides
-    fun provideListingViewModel(listingDataModel: ListingDataModel)= ListingViewModel(listingDataModel)
+    fun provideListingViewModel(listingDataModel: ListingDataModel) = ListingViewModel(AsyncCommand { listingDataModel.items() })
 
 }

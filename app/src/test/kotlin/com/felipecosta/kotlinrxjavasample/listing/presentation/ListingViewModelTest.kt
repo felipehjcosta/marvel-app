@@ -1,33 +1,40 @@
 package com.felipecosta.kotlinrxjavasample.listing.presentation
 
-import com.felipecosta.kotlinrxjavasample.listing.datamodel.ListingDataModel
 import com.felipecosta.kotlinrxjavasample.listing.model.DummyContent
-import com.felipecosta.kotlinrxjavasample.utils.mock
-import com.felipecosta.kotlinrxjavasample.utils.whenever
-import io.reactivex.Observable
+import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
 import io.reactivex.observers.TestObserver
+import io.reactivex.subjects.PublishSubject
 import org.junit.Before
 import org.junit.Test
 
 class ListingViewModelTest {
 
-    lateinit var viewModel: ListingViewModel
+    lateinit var commandActionSubject: PublishSubject<List<DummyContent.DummyItem>>
 
-    val dataModel: ListingDataModel = mock()
+    lateinit var viewModel: ListingViewModel
 
     @Before
     fun setUp() {
-        viewModel = ListingViewModel(dataModel)
+
+        commandActionSubject = PublishSubject.create()
+
+        val asyncCommand: AsyncCommand<List<DummyContent.DummyItem>> = AsyncCommand({ commandActionSubject })
+
+        viewModel = ListingViewModel(asyncCommand)
     }
 
     @Test
     fun whenCallItemsThenReturnItems() {
-        whenever(dataModel.items()).thenReturn(Observable.just(DummyContent.ITEMS))
+        val itemsObserver = TestObserver.create<List<DummyContent.DummyItem>>()
 
-        val testObserver = TestObserver.create<List<DummyContent.DummyItem>>()
+        viewModel.items.subscribe(itemsObserver)
 
-        viewModel.items().subscribe(testObserver)
+        val disposable = viewModel.listCommand.execute().subscribe()
 
-        testObserver.assertValues(DummyContent.ITEMS)
+        commandActionSubject.onNext(DummyContent.ITEMS)
+
+        itemsObserver.assertValues(DummyContent.ITEMS)
+
+        disposable.dispose()
     }
 }

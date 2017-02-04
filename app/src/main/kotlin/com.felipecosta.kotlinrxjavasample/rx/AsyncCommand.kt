@@ -17,7 +17,6 @@ class AsyncCommand<Result : Any>(private val action: () -> Observable<Result>) :
 
     private val inputObservable: Observable<Result>
 
-
     init {
         this.inputRelay = BehaviorRelay.create()
         this.executingRelay = BehaviorRelay.create()

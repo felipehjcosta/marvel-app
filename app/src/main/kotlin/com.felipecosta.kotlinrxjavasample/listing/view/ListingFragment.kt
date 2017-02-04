@@ -11,7 +11,7 @@ import com.felipecosta.kotlinrxjavasample.DemoApplication
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.listing.di.DaggerListingComponent
 import com.felipecosta.kotlinrxjavasample.listing.presentation.ListingViewModel
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class ListingFragment : Fragment() {
@@ -20,7 +20,7 @@ class ListingFragment : Fragment() {
     @Inject
     lateinit var viewModel: ListingViewModel
 
-    lateinit var dispose: Disposable
+    lateinit var compositeDisposable: CompositeDisposable
 
     private var recyclerView: RecyclerView? = null
 
@@ -62,11 +62,19 @@ class ListingFragment : Fragment() {
     }
 
     private fun bind() {
-        dispose = viewModel.items().
+        compositeDisposable = CompositeDisposable()
+
+        var disposable = viewModel.items.
                 map(::MyItemRecyclerViewAdapter).
                 subscribe { adapter ->
                     recyclerView?.adapter = adapter
                 }
+
+        compositeDisposable.add(disposable)
+
+        disposable = viewModel.listCommand.execute().subscribe()
+
+        compositeDisposable.addAll(disposable)
     }
 
     override fun onPause() {
@@ -75,7 +83,7 @@ class ListingFragment : Fragment() {
     }
 
     private fun unbind() {
-        dispose.dispose()
+        compositeDisposable.dispose()
     }
 
     companion object {

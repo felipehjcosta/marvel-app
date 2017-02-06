@@ -1,40 +1,39 @@
 package com.felipecosta.kotlinrxjavasample.modules.listing.di
 
+import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.data.pojo.Thumbnail
+import com.felipecosta.kotlinrxjavasample.di.IOScheduler
+import com.felipecosta.kotlinrxjavasample.di.MainScheduler
+import com.felipecosta.kotlinrxjavasample.modules.listing.datamodel.ListingContentDataModel
 import com.felipecosta.kotlinrxjavasample.modules.listing.datamodel.ListingDataModel
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
 import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
 import dagger.Module
 import dagger.Provides
-import io.reactivex.Observable
-import java.util.*
+import io.reactivex.Scheduler
 
 @Module
 class ListingModule {
 
     @ListingScope
     @Provides
-    fun provideListingDataModel(): ListingDataModel = object : ListingDataModel {
-        override fun items(): Observable<List<Character>> {
-            return Observable.fromCallable {
-                val char = Character()
-                char.id = 1009718
-                char.name = "Wolverine"
-                char.description = "Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a premiere member of both the X-Men and the Avengers."
-                char.modified = Date() // "2014-06-10T16:13:25-0400",
-                val thumbnail = Thumbnail()
-                thumbnail.path = "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf"
-                thumbnail.extension = "jpg"
-                char.thumbnail = thumbnail
-                char.resourceURI = "http://gateway.marvel.com/v1/public/characters/1009718"
-                listOf(char)
-            }
-        }
+    fun provideListingDataModel(dataRepository: DataRepository): ListingDataModel {
+        return ListingContentDataModel(dataRepository)
     }
 
     @ListingScope
     @Provides
-    fun provideListingViewModel(listingDataModel: ListingDataModel) = CharacterListViewModel(AsyncCommand { listingDataModel.items() })
+    fun provideAsyncCommand(listingDataModel: ListingDataModel,
+                            @IOScheduler ioScheduler: Scheduler,
+                            @MainScheduler mainScheduler: Scheduler):
+            AsyncCommand<List<Character>> = AsyncCommand {
+        listingDataModel.items().
+                subscribeOn(ioScheduler)
+                .observeOn(mainScheduler)
+    }
+
+    @ListingScope
+    @Provides
+    fun provideListingViewModel(asyncCommand: AsyncCommand<List<Character>>) = CharacterListViewModel(asyncCommand)
 
 }

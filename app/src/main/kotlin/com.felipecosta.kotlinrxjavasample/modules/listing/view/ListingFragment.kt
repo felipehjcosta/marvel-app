@@ -7,15 +7,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.felipecosta.kotlinrxjavasample.DemoApplication
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.modules.listing.di.DaggerListingComponent
+import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
+import com.felipecosta.kotlinrxjavasample.modules.listing.di.ListingComponent
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class ListingFragment : Fragment() {
-
 
     @Inject
     lateinit var viewModel: CharacterListViewModel
@@ -27,12 +26,11 @@ class ListingFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val applicationComponent = DemoApplication.get(context).component
-        val listingComponent = DaggerListingComponent.builder().
-                applicationComponent(applicationComponent).
-                build()
+        (activity.application as HasSubcomponentBuilders).
+                getSubcomponentBuilder<ListingComponent>(ListingComponent::class).
+                build().
+                inject(this)
 
-        listingComponent.inject(this)
     }
 
     override fun onDestroy() {

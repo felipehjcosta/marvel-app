@@ -7,11 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.ImageView
 import android.widget.TextView
-import com.felipecosta.kotlinrxjavasample.DemoApplication
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.detail.datamodel.DetailDataModel
-import com.felipecosta.kotlinrxjavasample.detail.di.DaggerDetailComponent
+import com.felipecosta.kotlinrxjavasample.detail.di.DetailComponent
+import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
 import com.nostra13.universalimageloader.core.ImageLoader
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -35,12 +35,12 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val applicationComponent = DemoApplication.get(this).component
-        val detailComponent = DaggerDetailComponent.builder().
-                applicationComponent(applicationComponent).
-                build()
 
-        detailComponent.inject(this)
+        val application = application
+        if (application is HasSubcomponentBuilders) {
+            val subComponent = application.getSubcomponentBuilder<DetailComponent>(DetailComponent::class).build()
+            subComponent.inject(this)
+        }
         initView()
     }
 

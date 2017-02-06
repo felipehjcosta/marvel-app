@@ -9,14 +9,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.security.NoSuchAlgorithmException
 import java.util.*
 
-class NetworkDataRepository :DataRepository{
+class NetworkDataRepository : DataRepository {
 
     val PORT = "80"
     val BASE_URL = "http://gateway.marvel.com" + ":" + PORT
     val timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L
-    var characterService: CharacterService
+    val characterService: CharacterService
 
-    constructor() {
+    init {
         val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -40,7 +40,7 @@ class NetworkDataRepository :DataRepository{
                 }
     }
 
-   override fun getCharacter(characterId: Int): Observable<Character> {
+    override fun getCharacter(characterId: Int): Observable<Character> {
         return characterService.getCharacterWithId(
                 characterId,
                 timestamp.toString(),

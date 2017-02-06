@@ -1,19 +1,23 @@
 package com.felipecosta.kotlinrxjavasample
 
 import android.app.Application
-import android.content.Context
 import com.felipecosta.kotlinrxjavasample.di.ApplicationComponent
 import com.felipecosta.kotlinrxjavasample.di.DaggerApplicationComponent
+import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
+import com.felipecosta.kotlinrxjavasample.di.SubcomponentBuilder
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
+import javax.inject.Provider
+import kotlin.reflect.KClass
 
-open class DemoApplication : Application() {
+open class DemoApplication : Application(), HasSubcomponentBuilders {
 
-    lateinit var component: ApplicationComponent
+    lateinit var subcomponentBuilders: Map<Class<*>, Provider<SubcomponentBuilder<*>>>
 
     override fun onCreate() {
         super.onCreate()
-        component = createComponent()
+        val component = createComponent()
+        subcomponentBuilders = component.subcomponentBuidlers()
         initImageLoader()
     }
 
@@ -23,14 +27,11 @@ open class DemoApplication : Application() {
     }
 
     open protected fun createComponent(): ApplicationComponent {
-        return DaggerApplicationComponent.builder().build()
+        return DaggerApplicationComponent.create()
     }
 
-    companion object {
-
-        fun get(context: Context): DemoApplication {
-            return context.applicationContext as DemoApplication
-        }
-
+    override fun <A> getSubcomponentBuilder(componentClass: KClass<*>): SubcomponentBuilder<A> {
+        return subcomponentBuilders[componentClass.java]?.get() as SubcomponentBuilder<A>
     }
+
 }

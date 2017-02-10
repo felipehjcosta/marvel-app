@@ -13,7 +13,7 @@ import dagger.Provides
 import io.reactivex.Scheduler
 
 @Module
-class DetailModule(val characterId: Int = 1009718) {
+class DetailModule(val characterId: Int) {
     @DetailScope
     @Provides
     fun provideDetailDataModel(dataRepository: DataRepository): DetailDataModel = DetailContentDataModel(dataRepository)

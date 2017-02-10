@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
@@ -47,7 +46,7 @@ class DetailActivity : AppCompatActivity() {
         val application = application
         if (application is HasSubcomponentBuilders) {
             val subComponent = application.getSubcomponentBuilder(DetailComponent.Builder::class).
-                    detailModule(DetailModule()).
+                    detailModule(DetailModule(intent.extras.getInt(CHARACTER_ID))).
                     build()
             subComponent.inject(this)
         }
@@ -56,7 +55,6 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("TEST", intent.extras.getInt(CHARACTER_ID).toString())
         bind()
     }
 

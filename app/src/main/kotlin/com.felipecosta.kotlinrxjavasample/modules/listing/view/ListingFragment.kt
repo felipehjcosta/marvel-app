@@ -27,7 +27,7 @@ class ListingFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         (activity.application as HasSubcomponentBuilders).
-                getSubcomponentBuilder<ListingComponent>(ListingComponent::class).
+                getSubcomponentBuilder(ListingComponent.Builder::class).
                 build().
                 inject(this)
 

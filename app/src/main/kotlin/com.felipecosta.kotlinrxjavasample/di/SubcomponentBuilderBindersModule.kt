@@ -7,15 +7,15 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module(subcomponents = arrayOf(ListingComponent::class, DetailComponent::class))
-abstract class ApplicationBinders {
+abstract class SubcomponentBuilderBindersModule {
 
     @Binds
     @IntoMap
-    @SubcomponentKey(ListingComponent::class)
+    @SubcomponentKey(ListingComponent.Builder::class)
     abstract fun listingComponentBuilder(impl: ListingComponent.Builder): SubcomponentBuilder<*>
 
     @Binds
     @IntoMap
-    @SubcomponentKey(DetailComponent::class)
+    @SubcomponentKey(DetailComponent.Builder::class)
     abstract fun detailComponentBuilder(impl: DetailComponent.Builder): SubcomponentBuilder<*>
 }

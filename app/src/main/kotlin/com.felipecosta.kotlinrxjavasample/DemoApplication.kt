@@ -30,8 +30,7 @@ open class DemoApplication : Application(), HasSubcomponentBuilders {
         return DaggerApplicationComponent.create()
     }
 
-    override fun <A> getSubcomponentBuilder(componentClass: KClass<*>): SubcomponentBuilder<A> {
-        return subcomponentBuilders[componentClass.java]?.get() as SubcomponentBuilder<A>
+    override fun <A : SubcomponentBuilder<*>> getSubcomponentBuilder(componentClass: KClass<A>): A {
+        return componentClass.java.cast(subcomponentBuilders[componentClass.java]?.get())
     }
-
 }

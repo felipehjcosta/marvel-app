@@ -7,7 +7,7 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(AppModule::class, ApplicationBinders::class))
+@Component(modules = arrayOf(AppModule::class, SubcomponentBuilderBindersModule::class))
 interface ApplicationComponent {
     fun inject(demoApplication: DemoApplication)
 

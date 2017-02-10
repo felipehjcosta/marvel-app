@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.detail.di.DetailComponent
+import com.felipecosta.kotlinrxjavasample.detail.di.DetailModule
 import com.felipecosta.kotlinrxjavasample.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
 import com.nostra13.universalimageloader.core.ImageLoader
@@ -20,7 +21,7 @@ class DetailActivity : AppCompatActivity() {
 
     companion object {
         fun startDetail(activity: Activity, characterId: Int) {
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putInt(CHARACTER_ID, characterId)
 
             val activityIntent = Intent(activity, DetailActivity::class.java)
@@ -45,7 +46,9 @@ class DetailActivity : AppCompatActivity() {
 
         val application = application
         if (application is HasSubcomponentBuilders) {
-            val subComponent = application.getSubcomponentBuilder<DetailComponent>(DetailComponent::class).build()
+            val subComponent = application.getSubcomponentBuilder(DetailComponent.Builder::class).
+                    detailModule(DetailModule()).
+                    build()
             subComponent.inject(this)
         }
         initView()

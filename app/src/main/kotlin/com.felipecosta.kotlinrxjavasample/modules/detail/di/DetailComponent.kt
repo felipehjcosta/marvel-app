@@ -10,5 +10,7 @@ interface DetailComponent {
     fun inject(detailActivity: DetailActivity)
 
     @Subcomponent.Builder
-    interface Builder : SubcomponentBuilder<DetailComponent>
+    interface Builder : SubcomponentBuilder<DetailComponent> {
+        fun detailModule(detailModule: DetailModule): Builder
+    }
 }

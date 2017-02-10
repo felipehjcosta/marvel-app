@@ -4,10 +4,13 @@ import com.felipecosta.kotlinrxjavasample.BuildConfig
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.reactivex.Observable
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.security.NoSuchAlgorithmException
 import java.util.*
+
 
 class NetworkDataRepository : DataRepository {
 
@@ -17,12 +20,23 @@ class NetworkDataRepository : DataRepository {
     val characterService: CharacterService
 
     init {
+        val httpClient = OkHttpClient.Builder()
+        setLoggingInterceptorsForDebug(httpClient)
         val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
                 .build()
         characterService = retrofit.create(CharacterService::class.java)
+    }
+
+    private fun setLoggingInterceptorsForDebug(httpClient: OkHttpClient.Builder) {
+        if (BuildConfig.DEBUG) {
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            httpClient.addInterceptor(logging)
+        }
     }
 
     fun getHash(): String {

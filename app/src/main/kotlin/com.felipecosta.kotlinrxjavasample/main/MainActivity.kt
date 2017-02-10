@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleClick(view: Any?) {
-        DetailActivity.startDetail(this)
+        DetailActivity.startDetail(this, 1009718)
     }
 
     override fun onDestroy() {

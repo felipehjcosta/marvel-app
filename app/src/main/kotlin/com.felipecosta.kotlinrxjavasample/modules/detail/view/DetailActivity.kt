@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
@@ -18,11 +19,18 @@ import javax.inject.Inject
 class DetailActivity : AppCompatActivity() {
 
     companion object {
-        fun startDetail(activity: Activity) {
+        fun startDetail(activity: Activity, characterId: Int) {
+            var bundle = Bundle()
+            bundle.putInt(CHARACTER_ID, characterId)
+
             val activityIntent = Intent(activity, DetailActivity::class.java)
             activityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activityIntent.putExtras(bundle)
+
             activity.startActivity(activityIntent)
         }
+
+        val CHARACTER_ID: String = "com.felipecosta.kotlinrxjavasample.detail.view.CHARACTER_ID"
     }
 
     @Inject
@@ -45,6 +53,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        Log.d("TEST", intent.extras.getInt(CHARACTER_ID).toString())
         bind()
     }
 

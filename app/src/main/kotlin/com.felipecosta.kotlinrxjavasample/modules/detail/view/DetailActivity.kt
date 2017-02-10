@@ -58,13 +58,6 @@ class DetailActivity : AppCompatActivity() {
         bind()
     }
 
-    private fun bind() {
-        viewModel.name.subscribe { toolbarLayout.title = it }
-        viewModel.description.subscribe { description.text = it }
-        viewModel.thumbnailUrl.subscribe { imageLoader.displayImage(it, backdrop) }
-        viewModel.characterCommand.execute().subscribe()
-    }
-
     private fun initView() {
         setContentView(R.layout.activity_detail)
         val toolbar = findViewById(R.id.toolbar) as Toolbar
@@ -76,6 +69,13 @@ class DetailActivity : AppCompatActivity() {
         description = findViewById(R.id.text_description) as TextView
 
         imageLoader = ImageLoader.getInstance()
+    }
+
+    private fun bind() {
+        viewModel.name.subscribe { toolbarLayout.title = it }
+        viewModel.description.subscribe { description.text = it }
+        viewModel.thumbnailUrl.subscribe { imageLoader.displayImage(it, backdrop) }
+        viewModel.characterCommand.execute().subscribe()
     }
 
 }

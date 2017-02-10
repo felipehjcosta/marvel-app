@@ -36,6 +36,7 @@ class DetailActivity : AppCompatActivity() {
     lateinit var toolbarLayout: CollapsingToolbarLayout
     lateinit var backdrop: ImageView
     lateinit var description: TextView
+    lateinit var imageLoader: ImageLoader
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,15 +62,15 @@ class DetailActivity : AppCompatActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        toolbarLayout = findViewById(R.id.toolbar_layout) as CollapsingToolbarLayout
 
         backdrop = findViewById(R.id.image_backdrop) as ImageView
         description = findViewById(R.id.text_description) as TextView
 
-        toolbarLayout = findViewById(R.id.toolbar_layout) as CollapsingToolbarLayout
+        imageLoader = ImageLoader.getInstance()
     }
 
     private fun loadInfo(character: Character) {
-        val imageLoader = ImageLoader.getInstance()
         toolbarLayout.title = character.name
         imageLoader.displayImage(character.thumbnail?.path + "." + character.thumbnail?.extension, backdrop)
         description.text = character.description

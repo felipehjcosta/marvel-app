@@ -3,6 +3,7 @@ package com.felipecosta.kotlinrxjavasample.detail.view
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.ImageView
@@ -32,7 +33,7 @@ class DetailActivity : AppCompatActivity() {
     lateinit var dataModel: DetailDataModel
     @Inject
     lateinit var viewModel: CharacterDetailViewModel
-    lateinit var toolbar: Toolbar
+    lateinit var toolbarLayout: CollapsingToolbarLayout
     lateinit var backdrop: ImageView
     lateinit var description: TextView
 
@@ -57,17 +58,19 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initView() {
         setContentView(R.layout.activity_detail)
-        toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         backdrop = findViewById(R.id.image_backdrop) as ImageView
         description = findViewById(R.id.text_description) as TextView
+
+        toolbarLayout = findViewById(R.id.toolbar_layout) as CollapsingToolbarLayout
     }
 
     private fun loadInfo(character: Character) {
         val imageLoader = ImageLoader.getInstance()
-        toolbar.title = character.name
+        toolbarLayout.title = character.name
         imageLoader.displayImage(character.thumbnail?.path + "." + character.thumbnail?.extension, backdrop)
         description.text = character.description
     }

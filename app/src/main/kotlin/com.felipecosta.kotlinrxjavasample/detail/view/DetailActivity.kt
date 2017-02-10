@@ -11,6 +11,7 @@ import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.detail.datamodel.DetailDataModel
 import com.felipecosta.kotlinrxjavasample.detail.di.DetailComponent
+import com.felipecosta.kotlinrxjavasample.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
 import com.nostra13.universalimageloader.core.ImageLoader
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -29,6 +30,8 @@ class DetailActivity : AppCompatActivity() {
 
     @Inject
     lateinit var dataModel: DetailDataModel
+    @Inject
+    lateinit var viewModel: CharacterDetailViewModel
     lateinit var toolbar: Toolbar
     lateinit var backdrop: ImageView
     lateinit var description: TextView

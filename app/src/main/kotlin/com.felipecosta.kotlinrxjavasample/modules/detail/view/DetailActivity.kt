@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
@@ -77,6 +78,16 @@ class DetailActivity : AppCompatActivity() {
         viewModel.description.subscribe { description.text = it }
         viewModel.thumbnailUrl.subscribe { imageLoader.displayImage(it, backdrop) }
         viewModel.characterCommand.execute().subscribe()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
 }

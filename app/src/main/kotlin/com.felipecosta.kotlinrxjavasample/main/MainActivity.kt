@@ -13,11 +13,11 @@ import android.view.MenuItem
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.modules.listing.view.ListingFragment
-import com.felipecosta.kotlinrxjavasample.rx.clicks
-import com.felipecosta.kotlinrxjavasample.rx.itemSelections
 import com.felipecosta.kotlinrxjavasample.samples.Sample2Fragment
 import com.felipecosta.kotlinrxjavasample.samples.Sample3Fragment
 import com.felipecosta.kotlinrxjavasample.samples.Sample4Fragment
+import com.jakewharton.rxbinding2.support.design.widget.itemSelections
+import com.jakewharton.rxbinding2.view.clicks
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
 

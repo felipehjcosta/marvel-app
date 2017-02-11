@@ -8,10 +8,9 @@ import io.reactivex.Observable
 class CharacterListViewModel(private val asyncListCommand: AsyncCommand<List<Character>>) {
 
     val items: Observable<List<CharacterItemViewModel>>
-        get() = asyncListCommand.execution.map { it.map { CharacterItemViewModel(it.name) } }
+        get() = asyncListCommand.execution.map { it.map { CharacterItemViewModel(it.id ?: -1, it.name) } }
 
     val listCommand: Command
         get() = asyncListCommand
-
 
 }

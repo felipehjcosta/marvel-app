@@ -1,5 +1,5 @@
 package com.felipecosta.kotlinrxjavasample.modules.listing.presentation
 
-class CharacterItemViewModel(val name: String) {
+class CharacterItemViewModel(val id: Int, val name: String) {
 
 }

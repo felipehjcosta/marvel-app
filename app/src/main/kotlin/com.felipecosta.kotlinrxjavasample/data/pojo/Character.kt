@@ -12,24 +12,34 @@ import java.util.*
 class Character : Serializable, Parcelable {
     @SerializedName("id")
     var id: Int? = null
+
     @SerializedName("name")
     var name: String = ""
+
     @SerializedName("description")
     var description: String = ""
+
     @SerializedName("modified")
     var modified: Date? = null
+
     @SerializedName("resourceURI")
     var resourceURI: String = ""
+
     @SerializedName("urls")
     var urls: List<Url> = ArrayList()
+
     @SerializedName("thumbnail")
     var thumbnail: Thumbnail? = null
+
     @SerializedName("comics")
     var comics: ComicList? = null
+
     @SerializedName("stories")
     var stories: StoryList? = null
+
     @SerializedName("events")
     var events: EventList? = null
+
     @SerializedName("series")
     var series: SeriesList? = null
 
@@ -51,7 +61,8 @@ class Character : Serializable, Parcelable {
         dest.writeParcelable(this.series, flags)
     }
 
-    constructor() {}
+    constructor() {
+    }
 
     constructor(`in`: Parcel) {
         this.id = `in`.readValue(Int::class.java.classLoader) as Int

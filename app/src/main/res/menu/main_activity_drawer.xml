@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_sample_1"
             android:checked="true"
+            app:showAsAction="always"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="Sample 1" />
         <item
             android:id="@+id/nav_sample_2"
+            android:icon="@drawable/ic_menu_camera"
+            app:showAsAction="always"
             android:title="Sample 2" />
         <item
             android:id="@+id/nav_sample_3"
+            android:icon="@drawable/ic_menu_manage"
+            app:showAsAction="always"
             android:title="Sample 3" />
-        <item
-            android:id="@+id/nav_sample_4"
-            android:title="Sample 4" />
     </group>
 
 </menu>

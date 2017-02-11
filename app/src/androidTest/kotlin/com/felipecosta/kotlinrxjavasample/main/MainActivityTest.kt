@@ -6,9 +6,6 @@ import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.scrollTo
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.contrib.DrawerActions.open
-import android.support.test.espresso.contrib.DrawerMatchers.isClosed
-import android.support.test.espresso.contrib.DrawerMatchers.isOpen
 import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItem
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
@@ -42,6 +39,7 @@ class MainActivityTest {
         val mockDemoApplication = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as MockDemoApplication
 
         mockDemoApplication.applicationComponent.inject(this)
+        Mockito.reset(dataRepository)
     }
 
     @Test
@@ -65,14 +63,8 @@ class MainActivityTest {
     fun whenSelectSample2ThenSecondSampleIsShowing() {
         activityRule.launchActivity(Intent())
 
-        onView(withId(R.id.drawer_layout)).perform(open())
-
-        onView(withId(R.id.drawer_layout)).check(matches(isOpen()))
-
-        onView(allOf(withText("Sample 2"), isDescendantOfA(withId(R.id.drawer_layout)))).
+        onView(allOf(withText("Sample 2"), isDescendantOfA(withId(R.id.nav_view)), isCompletelyDisplayed())).
                 perform(click())
-
-        onView(withId(R.id.drawer_layout)).check(matches(isClosed()))
 
         onView(allOf(withText("Sample 2"), isDescendantOfA(withId(R.id.main_content)))).
                 check(matches(isDisplayed()))

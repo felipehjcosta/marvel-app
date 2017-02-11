@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
+import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.ListingComponent
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -50,10 +50,7 @@ class ListingFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = CharacterItemRecyclerViewAdapter()
         recyclerView.adapter = adapter
-    }
 
-    override fun onResume() {
-        super.onResume()
         bind()
     }
 
@@ -78,8 +75,8 @@ class ListingFragment : Fragment() {
         compositeDisposable.addAll(disposable)
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroyView() {
+        super.onDestroyView()
         unbind()
     }
 

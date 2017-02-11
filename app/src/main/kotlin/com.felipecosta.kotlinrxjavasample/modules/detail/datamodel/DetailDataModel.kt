@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.detail.datamodel
+package com.felipecosta.kotlinrxjavasample.modules.detail.datamodel
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import io.reactivex.Observable

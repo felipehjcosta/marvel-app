@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.detail.presentation
+package com.felipecosta.kotlinrxjavasample.modules.detail.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand

@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.detail.di
+package com.felipecosta.kotlinrxjavasample.modules.detail.di
 
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy

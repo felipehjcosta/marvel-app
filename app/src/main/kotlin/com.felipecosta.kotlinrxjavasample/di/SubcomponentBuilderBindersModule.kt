@@ -1,6 +1,6 @@
 package com.felipecosta.kotlinrxjavasample.di
 
-import com.felipecosta.kotlinrxjavasample.detail.di.DetailComponent
+import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailComponent
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.ListingComponent
 import dagger.Binds
 import dagger.Module

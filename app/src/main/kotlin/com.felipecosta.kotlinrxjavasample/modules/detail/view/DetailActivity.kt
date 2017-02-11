@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.detail.view
+package com.felipecosta.kotlinrxjavasample.modules.detail.view
 
 import android.app.Activity
 import android.content.Intent
@@ -9,12 +9,13 @@ import android.support.v7.widget.Toolbar
 import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.detail.di.DetailComponent
-import com.felipecosta.kotlinrxjavasample.detail.di.DetailModule
-import com.felipecosta.kotlinrxjavasample.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
+import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailComponent
+import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailModule
+import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
 import com.nostra13.universalimageloader.core.ImageLoader
 import javax.inject.Inject
+
 
 class DetailActivity : AppCompatActivity() {
 
@@ -30,7 +31,7 @@ class DetailActivity : AppCompatActivity() {
             activity.startActivity(activityIntent)
         }
 
-        val CHARACTER_ID: String = "com.felipecosta.kotlinrxjavasample.detail.view.CHARACTER_ID"
+        val CHARACTER_ID: String = "com.felipecosta.kotlinrxjavasample.modules.detail.view.CHARACTER_ID"
     }
 
     @Inject

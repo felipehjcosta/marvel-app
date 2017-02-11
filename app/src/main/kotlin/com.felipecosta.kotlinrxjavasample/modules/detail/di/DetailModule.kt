@@ -1,10 +1,10 @@
-package com.felipecosta.kotlinrxjavasample.detail.di
+package com.felipecosta.kotlinrxjavasample.modules.detail.di
 
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.detail.datamodel.DetailContentDataModel
-import com.felipecosta.kotlinrxjavasample.detail.datamodel.DetailDataModel
-import com.felipecosta.kotlinrxjavasample.detail.presentation.CharacterDetailViewModel
+import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailContentDataModel
+import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
+import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.di.IOScheduler
 import com.felipecosta.kotlinrxjavasample.di.MainScheduler
 import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand

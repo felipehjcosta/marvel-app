@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.R
+import com.felipecosta.kotlinrxjavasample.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.ListingComponent
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
@@ -21,7 +22,7 @@ class ListingFragment : Fragment() {
 
     lateinit var compositeDisposable: CompositeDisposable
 
-    private var recyclerView: RecyclerView? = null
+    lateinit var adapter: CharacterItemRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,13 +46,10 @@ class ListingFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = view!!.findViewById(R.id.recycler_view) as RecyclerView
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        recyclerView = null
+        val recyclerView = view!!.findViewById(R.id.recycler_view) as RecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter = CharacterItemRecyclerViewAdapter()
+        recyclerView.adapter = adapter
     }
 
     override fun onResume() {
@@ -62,13 +60,18 @@ class ListingFragment : Fragment() {
     private fun bind() {
         compositeDisposable = CompositeDisposable()
 
-        var disposable = viewModel.items.
-                map(::CharacterItemRecyclerViewAdapter).
-                subscribe { adapter ->
-                    recyclerView?.adapter = adapter
-                }
+        var disposable = viewModel.items
+                .doOnNext { adapter.replaceItems(it) }
+                .subscribe()
 
         compositeDisposable.add(disposable)
+
+        disposable = adapter.onItemSelected
+                .subscribe {
+                    DetailActivity.startDetail(activity, it)
+                }
+
+        compositeDisposable.addAll(disposable)
 
         disposable = viewModel.listCommand.execute().subscribe()
 

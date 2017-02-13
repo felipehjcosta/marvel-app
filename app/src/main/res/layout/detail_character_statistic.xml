@@ -4,111 +4,115 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:orientation="horizontal"
     android:background="@color/colorPrimary"
+    android:orientation="horizontal"
     tools:showIn="@layout/content_details">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="6dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:layout_margin="6dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/statistic_comics"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:text="0"
             android:textColor="@android:color/white"
-            android:text="0" />
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="@string/statistic_comics" />
+            android:text="@string/statistic_comics"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <View
         android:layout_width="1px"
         android:layout_height="match_parent"
-        android:background="@color/separator_color"/>
+        android:background="@color/separator_color" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="6dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:layout_margin="6dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/statistic_series"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:text="0"
             android:textColor="@android:color/white"
-            android:text="0" />
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="@string/statistic_series" />
+            android:text="@string/statistic_series"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <View
         android:layout_width="1px"
         android:layout_height="match_parent"
-        android:background="@color/separator_color"/>
+        android:background="@color/separator_color" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="6dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:layout_margin="6dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/statistic_stories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:text="0"
             android:textColor="@android:color/white"
-            android:text="0" />
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="@string/statistic_stories" />
+            android:text="@string/statistic_stories"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <View
         android:layout_width="1px"
         android:layout_height="match_parent"
-        android:background="@color/separator_color"/>
+        android:background="@color/separator_color" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="6dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:layout_margin="6dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/statistic_events"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:text="0"
             android:textColor="@android:color/white"
-            android:text="0" />
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="@string/statistic_events" />
+            android:text="@string/statistic_events"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
 </LinearLayout>

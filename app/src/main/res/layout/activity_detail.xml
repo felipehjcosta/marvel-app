@@ -43,6 +43,8 @@
 
     <include layout="@layout/content_details" />
 
+    <include layout="@layout/detail_character_statistic" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

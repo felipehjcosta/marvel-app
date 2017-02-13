@@ -41,6 +41,10 @@ class DetailActivity : AppCompatActivity() {
     lateinit var backdrop: ImageView
     lateinit var description: TextView
     lateinit var imageLoader: ImageLoader
+    lateinit var statisticComics: TextView
+    lateinit var statisticEvents: TextView
+    lateinit var statisticSeries: TextView
+    lateinit var statisticStories: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +75,11 @@ class DetailActivity : AppCompatActivity() {
         description = findViewById(R.id.text_description) as TextView
 
         imageLoader = ImageLoader.getInstance()
+
+        statisticComics = findViewById(R.id.statistic_comics) as TextView
+        statisticEvents = findViewById(R.id.statistic_events) as TextView
+        statisticSeries = findViewById(R.id.statistic_series) as TextView
+        statisticStories = findViewById(R.id.statistic_stories) as TextView
     }
 
     private fun bind() {

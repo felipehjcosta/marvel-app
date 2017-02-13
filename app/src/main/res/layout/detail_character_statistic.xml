@@ -21,14 +21,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textColor="@android:color/white"
+            android:textColor="@color/text_inverse"
             android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/statistic_comics"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/text_inverse" />
     </LinearLayout>
 
     <View
@@ -49,14 +49,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textColor="@android:color/white"
+            android:textColor="@color/text_inverse"
             android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/statistic_events"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/text_inverse" />
     </LinearLayout>
 
     <View
@@ -77,14 +77,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textColor="@android:color/white"
+            android:textColor="@color/text_inverse"
             android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/statistic_series"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/text_inverse" />
     </LinearLayout>
 
     <View
@@ -105,14 +105,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textColor="@android:color/white"
+            android:textColor="@color/text_inverse"
             android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/statistic_stories"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/text_inverse" />
     </LinearLayout>
 
 

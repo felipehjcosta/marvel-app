@@ -18,17 +18,17 @@ class CharacterDetailViewModel(private val asyncCharacterCommand: AsyncCommand<C
     val thumbnailUrl: Observable<String>
         get() = characterObservable.map { it.thumbnail?.path + "." + it.thumbnail?.extension }
 
-    val comicsCount: Observable<String>
-        get() = characterObservable.map { it.comics?.items?.count().toString() }
+    val comicsCount: Observable<Int>
+        get() = characterObservable.map { it.comics?.items?.count() }
 
-    val eventsCount: Observable<String>
-        get() = characterObservable.map { it.events?.items?.count().toString() }
+    val eventsCount: Observable<Int>
+        get() = characterObservable.map { it.events?.items?.count() }
 
-    val seriesCount: Observable<String>
-        get() = characterObservable.map { it.series?.items?.count().toString() }
+    val seriesCount: Observable<Int>
+        get() = characterObservable.map { it.series?.items?.count() }
 
-    val storiesCount: Observable<String>
-        get() = characterObservable.map { it.stories?.items?.count().toString() }
+    val storiesCount: Observable<Int>
+        get() = characterObservable.map { it.stories?.items?.count() }
 
     val characterCommand: Command
         get() = asyncCharacterCommand

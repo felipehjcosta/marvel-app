@@ -86,6 +86,12 @@ class DetailActivity : AppCompatActivity() {
         viewModel.name.subscribe { toolbarLayout.title = it }
         viewModel.description.subscribe { description.text = it }
         viewModel.thumbnailUrl.subscribe { imageLoader.displayImage(it, backdrop) }
+
+        viewModel.comicsCount.subscribe { statisticComics.text = it.toString() }
+        viewModel.eventsCount.subscribe { statisticEvents.text = it.toString() }
+        viewModel.seriesCount.subscribe { statisticSeries.text = it.toString() }
+        viewModel.storiesCount.subscribe { statisticStories.text = it.toString() }
+
         viewModel.characterCommand.execute().subscribe()
     }
 

@@ -8,6 +8,7 @@ import io.reactivex.Observable
 import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.junit.Test
+import org.mockito.ArgumentMatchers.*
 
 class ListingContentDataModelTest {
 
@@ -22,11 +23,11 @@ class ListingContentDataModelTest {
     @Test
     fun whenCallItemsThenReturnItems() {
         val character: Character = Character()
-        whenever(listingContentDataModel.items()).thenReturn(Observable.just(listOf(character)))
+        whenever(dataRepository.getCharacterList(eq(0), eq(20))).thenReturn(Observable.just(listOf(character)))
 
         val itemsObserver = TestObserver.create<List<Character>>()
 
-        listingContentDataModel.items().subscribe(itemsObserver)
+        listingContentDataModel.loadItems().subscribe(itemsObserver)
 
         itemsObserver.assertValues(listOf(character))
     }

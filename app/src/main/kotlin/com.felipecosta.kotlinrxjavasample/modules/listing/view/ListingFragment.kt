@@ -70,7 +70,7 @@ class ListingFragment : Fragment() {
 
         compositeDisposable.addAll(disposable)
 
-        disposable = viewModel.listCommand.execute().subscribe()
+        disposable = viewModel.loadItemsCommand.execute().subscribe()
 
         compositeDisposable.addAll(disposable)
     }

@@ -12,7 +12,11 @@ import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
 import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.ListingComponent
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
+import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
+import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 class ListingFragment : Fragment() {
@@ -34,10 +38,6 @@ class ListingFragment : Fragment() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.listing_fragment, container, false)
@@ -47,14 +47,15 @@ class ListingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = view!!.findViewById(R.id.recycler_view) as RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        val linearLayoutManger = LinearLayoutManager(context)
+        recyclerView.layoutManager = linearLayoutManger
         adapter = CharacterItemRecyclerViewAdapter()
         recyclerView.adapter = adapter
 
-        bind()
+        bind(recyclerView, linearLayoutManger)
     }
 
-    private fun bind() {
+    private fun bind(recyclerView: RecyclerView, linearLayoutManger: LinearLayoutManager) {
         compositeDisposable = CompositeDisposable()
 
         var disposable = viewModel.items
@@ -71,6 +72,28 @@ class ListingFragment : Fragment() {
         compositeDisposable.addAll(disposable)
 
         disposable = viewModel.loadItemsCommand.execute().subscribe()
+
+        compositeDisposable.addAll(disposable)
+
+        disposable = viewModel.newItems
+                .doOnNext { adapter.addItems(it) }
+                .subscribe()
+
+        compositeDisposable.add(disposable)
+
+        val loadMoreCommand = viewModel.loadMoreItemsCommand
+
+        disposable = Observable.combineLatest(recyclerView.scrollEvents(), Observable.just(linearLayoutManger),
+                BiFunction { recyclerViewScrollEvent: RecyclerViewScrollEvent, layoutManager: LinearLayoutManager -> layoutManager })
+                .map {
+                    val visibleItemCount = it.childCount
+                    val totalItemCount = it.itemCount
+                    val pastVisibleItems = it.findFirstVisibleItemPosition()
+                    (visibleItemCount + pastVisibleItems) >= totalItemCount
+                }
+                .filter { it == true }
+                .concatMap { loadMoreCommand.execute() }
+                .subscribe()
 
         compositeDisposable.addAll(disposable)
     }

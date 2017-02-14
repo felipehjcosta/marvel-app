@@ -42,6 +42,12 @@ class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyc
         notifyDataSetChanged()
     }
 
+    fun addItems(newItems: List<CharacterItemViewModel>) {
+        val positionStart = characterItemViewModels.size
+        characterItemViewModels.addAll(newItems)
+        notifyItemRangeInserted(positionStart, characterItemViewModels.size)
+    }
+
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val mContentView: TextView
 

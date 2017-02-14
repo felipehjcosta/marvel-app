@@ -6,6 +6,7 @@ import com.felipecosta.kotlinrxjavasample.utils.mock
 import com.felipecosta.kotlinrxjavasample.utils.whenever
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.TestObserver
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
@@ -31,7 +32,7 @@ class CharacterListViewModelTest {
     }
 
     @Test
-    fun whenSubscribedToItemsWhenExecuteLoadItemsCommandThenReturnItems() {
+    fun subscribedToItemsWhenExecuteLoadItemsCommandThenReturnItems() {
 
         val characterName = "Wolverine"
         val character = Character()
@@ -51,7 +52,7 @@ class CharacterListViewModelTest {
     }
 
     @Test
-    fun whenSubscribedToShowLoadingWhenExecuteLoadItemsCommandThenReturnItems() {
+    fun subscribedToShowLoadingWhenExecuteLoadItemsCommandThenReturnItems() {
 
         val characterName = "Wolverine"
         val character = Character()
@@ -71,7 +72,7 @@ class CharacterListViewModelTest {
     }
 
     @Test
-    fun whenSubscribedToShowItemsLoadErrorWhenExecuteLoadItemsCommandThenReturnItems() {
+    fun subscribedToShowItemsLoadErrorWhenExecuteLoadItemsCommandThenReturnItems() {
 
         val loadItemsException = IOException()
 
@@ -86,6 +87,58 @@ class CharacterListViewModelTest {
         itemsObserver.assertValues(true)
 
         disposable.dispose()
+    }
+
+    @Test
+    fun subscribedToNewItemsWhenExecuteLoadMoreItemsCommandThenReturnItems() {
+
+        val characterName = "Wolverine"
+        val character = Character()
+        character.name = characterName
+
+        whenever(dataModel.loadItems()).thenReturn(Observable.just(listOf(character)))
+
+        val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
+
+        viewModel.newItems.subscribe(itemsObserver)
+
+        val disposable = viewModel.loadMoreItemsCommand.execute().subscribe()
+
+        itemsObserver.assertValue { it[0].name == characterName }
+
+        disposable.dispose()
+    }
+
+    @Test
+    fun subscribedToItemsAndNewItemsWhenExecuteLoadMoreAfterLoadCommandThenReturnItemsAndNewItems() {
+
+        val characterName1 = "Wolverine"
+        val character = Character()
+        character.name = characterName1
+
+        whenever(dataModel.loadItems()).thenReturn(Observable.just(listOf(character)))
+        val characterName2 = "Spiner-Man"
+        val character2 = Character()
+        character2.name = characterName2
+
+        whenever(dataModel.loadItems(offset = 1)).thenReturn(Observable.just(listOf(character2)))
+
+        val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
+
+        viewModel.items.subscribe(itemsObserver)
+
+        val newItemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
+        viewModel.newItems.subscribe(newItemsObserver)
+
+        val disposables = CompositeDisposable()
+
+        disposables.add(viewModel.loadItemsCommand.execute().subscribe())
+        disposables.add(viewModel.loadMoreItemsCommand.execute().subscribe())
+
+        itemsObserver.assertValueAt(0) { it[0].name == characterName1 }
+        newItemsObserver.assertValueAt(0) { it[0].name == characterName2 }
+
+        disposables.dispose()
     }
 
 }

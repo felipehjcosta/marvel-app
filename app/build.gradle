@@ -72,6 +72,7 @@ dependencies {
     compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
     compile 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0-SNAPSHOT'
     compile 'com.jakewharton.rxbinding2:rxbinding-design-kotlin:2.0.0-SNAPSHOT'
+    compile 'com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:2.0.0-SNAPSHOT'
 
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'

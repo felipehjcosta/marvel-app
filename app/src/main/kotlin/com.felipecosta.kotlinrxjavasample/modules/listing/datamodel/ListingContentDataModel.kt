@@ -6,5 +6,6 @@ import io.reactivex.Observable
 
 class ListingContentDataModel(private val dataRepository: DataRepository) : ListingDataModel {
 
-    override fun items(): Observable<List<Character>> = dataRepository.getCharacterList(0, 10)
+    override fun loadItems(offset: Int, limit: Int):
+            Observable<List<Character>> = dataRepository.getCharacterList(offset, limit)
 }

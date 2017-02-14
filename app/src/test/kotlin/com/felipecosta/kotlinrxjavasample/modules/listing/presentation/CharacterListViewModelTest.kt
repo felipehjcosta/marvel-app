@@ -1,45 +1,91 @@
 package com.felipecosta.kotlinrxjavasample.modules.listing.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
+import com.felipecosta.kotlinrxjavasample.modules.listing.datamodel.ListingDataModel
+import com.felipecosta.kotlinrxjavasample.utils.mock
+import com.felipecosta.kotlinrxjavasample.utils.whenever
+import io.reactivex.Observable
+import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.observers.TestObserver
-import io.reactivex.subjects.PublishSubject
+import io.reactivex.plugins.RxJavaPlugins
+import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Test
+import java.io.IOException
 
 class CharacterListViewModelTest {
 
-    lateinit var commandActionSubject: PublishSubject<List<Character>>
+    var dataModel: ListingDataModel = mock()
 
     lateinit var viewModel: CharacterListViewModel
 
     @Before
     fun setUp() {
+        viewModel = CharacterListViewModel(dataModel)
 
-        commandActionSubject = PublishSubject.create()
+        RxJavaPlugins.reset()
+        RxJavaPlugins.setInitNewThreadSchedulerHandler { Schedulers.trampoline() }
 
-        val asyncCommand: AsyncCommand<List<Character>> = AsyncCommand({ commandActionSubject })
-
-        viewModel = CharacterListViewModel(asyncCommand)
+        RxAndroidPlugins.reset()
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
     }
 
     @Test
-    fun whenCallItemsThenReturnItems() {
+    fun whenSubscribedToItemsWhenExecuteLoadItemsCommandThenReturnItems() {
 
         val characterName = "Wolverine"
         val character = Character()
         character.name = characterName
 
+        whenever(dataModel.loadItems()).thenReturn(Observable.just(listOf(character)))
+
         val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
 
         viewModel.items.subscribe(itemsObserver)
 
-        val disposable = viewModel.listCommand.execute().subscribe()
-
-        commandActionSubject.onNext(listOf(character))
+        val disposable = viewModel.loadItemsCommand.execute().subscribe()
 
         itemsObserver.assertValue { it[0].name == characterName }
 
         disposable.dispose()
     }
+
+    @Test
+    fun whenSubscribedToShowLoadingWhenExecuteLoadItemsCommandThenReturnItems() {
+
+        val characterName = "Wolverine"
+        val character = Character()
+        character.name = characterName
+
+        whenever(dataModel.loadItems()).thenReturn(Observable.just(listOf(character)))
+
+        val itemsObserver = TestObserver.create<Boolean>()
+
+        viewModel.showLoading.subscribe(itemsObserver)
+
+        val disposable = viewModel.loadItemsCommand.execute().subscribe()
+
+        itemsObserver.assertValues(true, false)
+
+        disposable.dispose()
+    }
+
+    @Test
+    fun whenSubscribedToShowItemsLoadErrorWhenExecuteLoadItemsCommandThenReturnItems() {
+
+        val loadItemsException = IOException()
+
+        whenever(dataModel.loadItems()).thenReturn(Observable.error(loadItemsException))
+
+        val itemsObserver = TestObserver.create<Boolean>()
+
+        viewModel.showLoadItemsError.subscribe(itemsObserver)
+
+        val disposable = viewModel.loadItemsCommand.execute().subscribe()
+
+        itemsObserver.assertValues(true)
+
+        disposable.dispose()
+    }
+
 }

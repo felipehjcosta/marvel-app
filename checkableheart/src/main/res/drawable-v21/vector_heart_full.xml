@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportHeight="56"
+    android:viewportWidth="56">
+
+    <path
+        android:fillColor="@color/facelift_favorite_heart"
+        android:pathData="@string/heart_empty_path_56dp" />
+
+    <group
+        android:name="filled"
+        android:pivotX="28"
+        android:pivotY="28"
+        android:scaleX="0"
+        android:scaleY="0">
+
+        <!--<clip-path-->
+        <!--android:name="clip"-->
+        <!--android:pathData="@string/heart_clip_hidden" />-->
+
+        <path
+            android:fillColor="@color/facelift_favorite_heart"
+            android:pathData="@string/heart_full_path_56dp" />
+
+    </group>
+
+</vector>

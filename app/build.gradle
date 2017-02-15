@@ -46,6 +46,7 @@ android {
 repositories {
     jcenter()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "https://jitpack.io" }
 }
 
 kapt {
@@ -80,6 +81,8 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     compile 'com.google.code.gson:gson:2.8.0'
+
+    compile 'com.github.varunest:sparkbutton:1.0.4'
 
 //    compile('com.jakewharton.rxbinding:rxbinding-kotlin:0.4.0') {
 //        exclude group: 'io.reactivex'

@@ -26,8 +26,8 @@
                 android:id="@+id/image_backdrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
                 tools:src="@drawable/default_image" />
 
             <android.support.v7.widget.Toolbar
@@ -45,14 +45,18 @@
 
     <include layout="@layout/detail_character_statistic" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.varunest.sparkbutton.SparkButton
+        android:id="@+id/spark_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/circle"
         android:layout_margin="@dimen/fab_margin"
-        android:tint="@color/colorPrimaryDark"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_favorite" />
+        app:sparkbutton_activeImage="@drawable/heart"
+        app:sparkbutton_iconSize="40dp"
+        app:sparkbutton_inActiveImage="@drawable/heart_outline"
+        app:sparkbutton_primaryColor="@color/colorPrimary"
+        app:sparkbutton_secondaryColor="@color/colorPrimaryDark" />
 
 </android.support.design.widget.CoordinatorLayout>

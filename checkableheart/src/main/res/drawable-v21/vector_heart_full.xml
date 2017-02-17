@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="100dp"
-    android:height="100dp"
+    android:width="56dp"
+    android:height="56dp"
     android:viewportHeight="56"
     android:viewportWidth="56">
 
     <path
-        android:fillColor="@color/facelift_favorite_heart"
+        android:fillColor="@color/heart_fab_red"
         android:pathData="@string/heart_empty_path_56dp" />
 
     <group
@@ -21,7 +21,7 @@
         <!--android:pathData="@string/heart_clip_hidden" />-->
 
         <path
-            android:fillColor="@color/facelift_favorite_heart"
+            android:fillColor="@color/heart_fab_red"
             android:pathData="@string/heart_full_path_56dp" />
 
     </group>

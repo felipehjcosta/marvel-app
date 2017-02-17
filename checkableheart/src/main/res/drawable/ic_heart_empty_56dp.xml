@@ -17,13 +17,13 @@
   -->
 
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="48dp"
-    android:height="48dp"
+    android:width="56dp"
+    android:height="56dp"
     android:viewportWidth="56"
     android:viewportHeight="56">
 
     <path
         android:pathData="@string/heart_empty_path_56dp"
-        android:fillColor="@color/facelift_favorite_heart" />
+        android:fillColor="@color/heart_fab_red" />
 
 </vector>

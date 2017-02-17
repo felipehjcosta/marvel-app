@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="facelift_favorite_heart">#FF2200</color>
+    <color name="heart_fab_red">#FF2200</color>
+    <color name="heart_fab_background">#DEDEDE</color>
 </resources>

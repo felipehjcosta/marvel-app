@@ -1,15 +1,20 @@
 package com.example.checkableheart.ui;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.Checkable;
-import android.widget.ImageButton;
+
+import com.example.checkableheart.R;
 
 /**
- * A {@link Checkable} {@link ImageButton} which can be offset vertically.
+ * A {@link Checkable} {@link FloatingActionButton} which can be offset vertically.
  */
-public class HeartFab extends FloatingActionButton implements Checkable {
+public class HeartFab extends FloatingActionButton implements Checkable, View.OnClickListener {
 
     private static final int[] CHECKED_STATE_SET = {android.R.attr.state_checked};
 
@@ -18,10 +23,20 @@ public class HeartFab extends FloatingActionButton implements Checkable {
 
     public HeartFab(Context context) {
         super(context, null);
+        init();
     }
 
     public HeartFab(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
+    }
+
+    private void init() {
+        setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.heart_fab_background)));
+        setImageResource(R.drawable.asl_fab_heart);
+        setScaleType(ScaleType.CENTER);
+        setSize(SIZE_NORMAL);
+        setOnClickListener(this);
     }
 
     public void setOffset(int offset) {
@@ -57,5 +72,10 @@ public class HeartFab extends FloatingActionButton implements Checkable {
             mergeDrawableStates(drawableState, CHECKED_STATE_SET);
         }
         return drawableState;
+    }
+
+    @Override
+    public void onClick(View view) {
+        toggle();
     }
 }

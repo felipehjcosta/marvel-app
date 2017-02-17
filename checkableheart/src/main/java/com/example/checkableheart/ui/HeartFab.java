@@ -60,9 +60,10 @@ public class HeartFab extends FloatingActionButton implements Checkable, View.On
         if (this.isChecked != isChecked) {
             this.isChecked = isChecked;
             refreshDrawableState();
-        }
-        if (checkedChangeListener != null) {
-            checkedChangeListener.onCheckedChanged(this, this.isChecked);
+
+            if (checkedChangeListener != null) {
+                checkedChangeListener.onCheckedChanged(this, this.isChecked);
+            }
         }
     }
 

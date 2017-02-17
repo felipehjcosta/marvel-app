@@ -2,7 +2,6 @@ package com.example.checkableheart.ui;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -10,8 +9,10 @@ import android.view.View;
 import android.widget.Checkable;
 
 import com.example.checkableheart.R;
-
 /**
+ * Animations based in Nick Butcher's repository https://github.com/nickbutcher/plaid
+ *
+ *
  * A {@link Checkable} {@link FloatingActionButton} which can be offset vertically.
  */
 public class HeartFab extends FloatingActionButton implements Checkable, View.OnClickListener {
@@ -20,6 +21,7 @@ public class HeartFab extends FloatingActionButton implements Checkable, View.On
 
     private boolean isChecked = false;
     private int minOffset;
+    private OnCheckedChangeListener checkedChangeListener;
 
     public HeartFab(Context context) {
         super(context, null);
@@ -59,6 +61,9 @@ public class HeartFab extends FloatingActionButton implements Checkable, View.On
             this.isChecked = isChecked;
             refreshDrawableState();
         }
+        if (checkedChangeListener != null) {
+            checkedChangeListener.onCheckedChanged(this, this.isChecked);
+        }
     }
 
     public void toggle() {
@@ -77,5 +82,13 @@ public class HeartFab extends FloatingActionButton implements Checkable, View.On
     @Override
     public void onClick(View view) {
         toggle();
+    }
+
+    public void setOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
+        this.checkedChangeListener = onCheckedChangeListener;
+    }
+
+    public interface OnCheckedChangeListener {
+        void onCheckedChanged(HeartFab heartFab, boolean checked);
     }
 }

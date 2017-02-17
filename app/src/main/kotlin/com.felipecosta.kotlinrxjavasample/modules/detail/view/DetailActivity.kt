@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.checkableheart.ui.HeartFab
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
 import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailComponent
@@ -45,14 +46,18 @@ class DetailActivity : AppCompatActivity() {
     lateinit var statisticEvents: TextView
     lateinit var statisticSeries: TextView
     lateinit var statisticStories: TextView
+    lateinit var favoriteFab: HeartFab
+
+    var characterId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        characterId = intent.extras.getInt(CHARACTER_ID)
         val application = application
         if (application is HasSubcomponentBuilders) {
             val subComponent = application.getSubcomponentBuilder(DetailComponent.Builder::class).
-                    detailModule(DetailModule(intent.extras.getInt(CHARACTER_ID))).
+                    detailModule(DetailModule(characterId)).
                     build()
             subComponent.inject(this)
         }
@@ -80,6 +85,8 @@ class DetailActivity : AppCompatActivity() {
         statisticEvents = findViewById(R.id.statistic_events) as TextView
         statisticSeries = findViewById(R.id.statistic_series) as TextView
         statisticStories = findViewById(R.id.statistic_stories) as TextView
+
+        favoriteFab = findViewById(R.id.favorite_button) as HeartFab
     }
 
     private fun bind() {

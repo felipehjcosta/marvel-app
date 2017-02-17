@@ -7,4 +7,6 @@ interface DataRepository {
     fun getCharacterList(offset: Int, limit: Int): Observable<List<Character>>
 
     fun getCharacter(characterId: Int): Observable<Character>
+
+    fun favoriteCharacter(characterId: Int): Observable<Boolean>
 }

@@ -10,4 +10,6 @@
     <string name="statistic_series">SERIES</string>
     <string name="statistic_stories">STORIES</string>
     <string name="statistic_events">EVENTS</string>
+    <string name="preference_file_key">kotlin-rxjava-android</string>
+    <string name="saved_favorite_characters">saved_favorite_character</string>
 </resources>

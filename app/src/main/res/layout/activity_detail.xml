@@ -45,18 +45,12 @@
 
     <include layout="@layout/detail_character_statistic" />
 
-    <com.varunest.sparkbutton.SparkButton
-        android:id="@+id/spark_button"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/circle"
+    <com.example.checkableheart.ui.HeartFab
+        android:id="@+id/favorite_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:sparkbutton_activeImage="@drawable/heart"
-        app:sparkbutton_iconSize="40dp"
-        app:sparkbutton_inActiveImage="@drawable/heart_outline"
-        app:sparkbutton_primaryColor="@color/colorPrimary"
-        app:sparkbutton_secondaryColor="@color/colorPrimaryDark" />
+        app:layout_anchorGravity="bottom|end" />
 
 </android.support.design.widget.CoordinatorLayout>

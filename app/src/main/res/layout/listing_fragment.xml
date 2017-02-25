@@ -5,21 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/listing_recycler_view"
-        android:name="com.felipecosta.kotlinrxjavasample.modules.listing.ListingFragment"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/listing_swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        app:layoutManager="LinearLayoutManager"
-        tools:context="com.felipecosta.kotlinrxjavasample.modules.listing.view.ListingFragment"
-        tools:listitem="@layout/listing_fragment_item" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listing_recycler_view"
+            android:name="com.felipecosta.kotlinrxjavasample.modules.listing.ListingFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:visibility="gone"
+            app:layoutManager="LinearLayoutManager"
+            tools:context="com.felipecosta.kotlinrxjavasample.modules.listing.view.ListingFragment"
+            tools:listitem="@layout/listing_fragment_item"
+            tools:visibility="visible" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.v4.widget.ContentLoadingProgressBar
         android:id="@+id/listing_loading"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
 </FrameLayout>

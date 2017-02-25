@@ -2,6 +2,7 @@ package com.felipecosta.kotlinrxjavasample.modules.listing.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.ContentLoadingProgressBar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -54,11 +55,14 @@ class ListingFragment : Fragment() {
         adapter = CharacterItemRecyclerViewAdapter()
         recyclerView.adapter = adapter
 
-        bind(recyclerView, linearLayoutManger)
+        val loading: ContentLoadingProgressBar = view.findBy(R.id.listing_loading)
+
+        bind(recyclerView, linearLayoutManger, loading)
     }
 
     private fun bind(recyclerView: RecyclerView,
-                     linearLayoutManger: LinearLayoutManager) {
+                     linearLayoutManger: LinearLayoutManager,
+                     contentLoadingProgressBar: ContentLoadingProgressBar) {
         compositeDisposable = CompositeDisposable()
 
         compositeDisposable += viewModel.items
@@ -69,6 +73,12 @@ class ListingFragment : Fragment() {
                 .subscribe {
                     DetailActivity.startDetail(activity, it)
                 }
+
+        compositeDisposable += viewModel.showLoading.map { if (it) View.VISIBLE else View.GONE }.
+                subscribe { contentLoadingProgressBar.visibility = it }
+
+        compositeDisposable += viewModel.showLoading.map { if (it) View.GONE else View.VISIBLE }.
+                subscribe { recyclerView.visibility = it }
 
         compositeDisposable += viewModel.loadItemsCommand.execute().subscribe()
 

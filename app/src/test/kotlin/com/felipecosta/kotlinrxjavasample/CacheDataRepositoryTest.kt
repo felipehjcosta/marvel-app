@@ -1,6 +1,7 @@
 package com.felipecosta.kotlinrxjavasample
 
 import android.support.v4.util.LruCache
+import com.felipecosta.kotlinrxjavasample.data.CacheDataRepository
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.utils.mock
@@ -11,7 +12,7 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.*
 
-class MemoryDataRepositoryTest {
+class CacheDataRepositoryTest {
 
     val dataRepository: DataRepository = mock()
 
@@ -19,11 +20,11 @@ class MemoryDataRepositoryTest {
 
     val character: Character = mock()
 
-    lateinit var memoryDataRepository: MemoryDataRepository
+    lateinit var cacheDataRepository: CacheDataRepository
 
     @Before
     fun setUp() {
-        memoryDataRepository = MemoryDataRepository(dataRepository, memoryCache)
+        cacheDataRepository = CacheDataRepository(dataRepository, memoryCache)
     }
 
     @Test
@@ -34,7 +35,7 @@ class MemoryDataRepositoryTest {
 
         val characterListObserver = TestObserver.create<List<Character>>()
 
-        memoryDataRepository.getCharacterList(0, 1).subscribe(characterListObserver)
+        cacheDataRepository.getCharacterList(0, 1).subscribe(characterListObserver)
 
         verify(memoryCache).put(eq(42), eq(character))
 
@@ -49,7 +50,7 @@ class MemoryDataRepositoryTest {
 
         val characterObserver = TestObserver.create<Character>()
 
-        memoryDataRepository.getCharacter(42).subscribe(characterObserver)
+        cacheDataRepository.getCharacter(42).subscribe(characterObserver)
 
         characterObserver.assertValue { it == character }
 
@@ -64,7 +65,7 @@ class MemoryDataRepositoryTest {
 
         val characterObserver = TestObserver.create<Character>()
 
-        memoryDataRepository.getCharacter(42).subscribe(characterObserver)
+        cacheDataRepository.getCharacter(42).subscribe(characterObserver)
 
         verifyZeroInteractions(dataRepository)
 
@@ -79,8 +80,9 @@ class MemoryDataRepositoryTest {
 
         val characterObserver = TestObserver.create<Character>()
 
-        memoryDataRepository.getCharacter(42).subscribe(characterObserver)
+        cacheDataRepository.getCharacter(42).subscribe(characterObserver)
 
+        characterObserver.assertNoErrors()
         characterObserver.assertValue { it == character }
 
         characterObserver.dispose()
@@ -94,7 +96,7 @@ class MemoryDataRepositoryTest {
 
         val characterListObserver = TestObserver.create<List<Character>>()
 
-        memoryDataRepository.getCharacterList(0, 1).subscribe(characterListObserver)
+        cacheDataRepository.getCharacterList(0, 1).subscribe(characterListObserver)
 
         characterListObserver.dispose()
 
@@ -107,10 +109,34 @@ class MemoryDataRepositoryTest {
 
         val characterObserver = TestObserver.create<Character>()
 
-        memoryDataRepository.getCharacter(42).subscribe(characterObserver)
+        cacheDataRepository.getCharacter(42).subscribe(characterObserver)
 
         characterObserver.dispose()
 
         verify(memoryCache).evictAll()
     }
+
+    @Test
+    fun givenLoadCharactersAndTheSameCharacterWhenDisposeThenClearCache() {
+        whenever(character.id).thenReturn(42)
+
+        whenever(dataRepository.getCharacterList(0, 1)).thenReturn(just(listOf(character)))
+
+        whenever(memoryCache.get(42)).thenReturn(character)
+
+        val characterListObserver = TestObserver.create<List<Character>>()
+
+        cacheDataRepository.getCharacterList(0, 1).subscribe(characterListObserver)
+
+        val characterObserver = TestObserver.create<Character>()
+
+        cacheDataRepository.getCharacter(42).subscribe(characterObserver)
+
+        characterListObserver.dispose()
+
+        characterObserver.dispose()
+
+        verify(memoryCache).evictAll()
+    }
+
 }

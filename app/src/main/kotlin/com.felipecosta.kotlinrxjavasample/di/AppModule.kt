@@ -1,7 +1,7 @@
 package com.felipecosta.kotlinrxjavasample.di
 
 import android.support.v4.util.LruCache
-import com.felipecosta.kotlinrxjavasample.MemoryDataRepository
+import com.felipecosta.kotlinrxjavasample.data.CacheDataRepository
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.NetworkDataRepository
 import dagger.Module
@@ -26,5 +26,5 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providesDataRepository(): DataRepository = MemoryDataRepository(NetworkDataRepository(), LruCache(20))
+    fun providesDataRepository(): DataRepository = CacheDataRepository(NetworkDataRepository(), LruCache(30))
 }

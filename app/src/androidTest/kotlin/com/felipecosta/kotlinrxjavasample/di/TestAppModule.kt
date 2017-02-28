@@ -13,16 +13,6 @@ import javax.inject.Singleton
 class TestAppModule {
 
     @Singleton
-    @IOScheduler
-    @Provides
-    fun providesIOScheduler(): Scheduler = Schedulers.trampoline()
-
-    @Singleton
-    @MainScheduler
-    @Provides
-    fun providesMainScheduler(): Scheduler = AndroidSchedulers.mainThread()
-
-    @Singleton
     @Provides
     fun providesDataRepository(): DataRepository = Mockito.mock(DataRepository::class.java)
 }

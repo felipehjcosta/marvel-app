@@ -21,9 +21,7 @@ class ListingModule {
 
     @ListingScope
     @Provides
-    fun provideListingViewModel(listingDataModel: ListingDataModel,
-                                @IOScheduler ioScheduler: Scheduler,
-                                @MainScheduler mainScheduler: Scheduler):
+    fun provideListingViewModel(listingDataModel: ListingDataModel):
             CharacterListViewModel = CharacterListViewModel(listingDataModel)
 
 }

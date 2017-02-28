@@ -17,16 +17,6 @@ import javax.inject.Singleton
 class AppModule(private val application: Application) {
 
     @Singleton
-    @IOScheduler
-    @Provides
-    fun providesIOScheduler(): Scheduler = Schedulers.newThread()
-
-    @Singleton
-    @MainScheduler
-    @Provides
-    fun providesMainScheduler(): Scheduler = AndroidSchedulers.mainThread()
-
-    @Singleton
     @Provides
     fun providesDiskCache(): SimpleDiskCache {
         val fileCache = File(application.filesDir, "disk_cache")

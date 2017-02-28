@@ -16,6 +16,9 @@ import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterItemRecyclerViewAdapter
 import io.reactivex.Observable
+import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.plugins.RxJavaPlugins
+import io.reactivex.schedulers.Schedulers
 import io.victoralbertos.device_animation_test_rule.DeviceAnimationTestRule
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Before
@@ -43,6 +46,11 @@ class MainActivityTest {
 
     @Before
     fun setUp() {
+
+        RxJavaPlugins.reset()
+        RxJavaPlugins.setInitNewThreadSchedulerHandler { Schedulers.trampoline() }
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
+
         val mockDemoApplication = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as MockDemoApplication
 
         mockDemoApplication.applicationComponent.inject(this)

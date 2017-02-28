@@ -16,8 +16,10 @@ import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterItemRecyclerViewAdapter
 import io.reactivex.Observable
+import io.victoralbertos.device_animation_test_rule.DeviceAnimationTestRule
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Before
+import org.junit.ClassRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,8 +27,13 @@ import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mockito
 import javax.inject.Inject
 
+
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
+
+    companion object {
+        @ClassRule @JvmField val deviceAnimationTestRule = DeviceAnimationTestRule()
+    }
 
     @Rule @JvmField
     val activityRule = ActivityTestRule<MainActivity>(MainActivity::class.java, false, false)
@@ -53,7 +60,7 @@ class MainActivityTest {
 
         activityRule.launchActivity(Intent())
 
-        onView(withId(R.id.recycler_view)).
+        onView(withId(R.id.listing_recycler_view)).
                 perform(actionOnItem<CharacterItemRecyclerViewAdapter.ViewHolder>(hasDescendant(withText("Spider-Man")),
                         scrollTo())).
                 check(matches(isDisplayed()))

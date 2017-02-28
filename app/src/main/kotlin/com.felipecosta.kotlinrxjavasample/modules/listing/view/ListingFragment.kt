@@ -100,13 +100,16 @@ class ListingFragment : Fragment() {
         val loadMoreCommand = viewModel.loadMoreItemsCommand
 
         compositeDisposable += Observable.combineLatest(recyclerView.scrollEvents(), Observable.just(linearLayoutManger),
-                BiFunction { recyclerViewScrollEvent: RecyclerViewScrollEvent, layoutManager: LinearLayoutManager -> layoutManager })
-                .map {
-                    val visibleItemCount = it.childCount
-                    val totalItemCount = it.itemCount
-                    val pastVisibleItems = it.findFirstVisibleItemPosition()
-                    (visibleItemCount + pastVisibleItems) >= totalItemCount
-                }
+                BiFunction { event: RecyclerViewScrollEvent, layoutManager: LinearLayoutManager ->
+                    if (event.dy() > 0) {
+                        val totalItemCount = layoutManager.itemCount
+                        val firstVisibleItem = layoutManager.findLastVisibleItemPosition()
+                        val visibleThreshold = 5
+                        (totalItemCount) < (firstVisibleItem + visibleThreshold)
+                    } else {
+                        false
+                    }
+                })
                 .filter { it == true }
                 .concatMap { loadMoreCommand.execute() }
                 .subscribe()

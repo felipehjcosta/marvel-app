@@ -61,6 +61,21 @@ class Character : Serializable, Parcelable {
         dest.writeParcelable(this.series, flags)
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other?.javaClass != javaClass) return false
+
+        other as Character
+
+        if (id != other.id) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id ?: 0
+    }
+
     constructor() {
     }
 

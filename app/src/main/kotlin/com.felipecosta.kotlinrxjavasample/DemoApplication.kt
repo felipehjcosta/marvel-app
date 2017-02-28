@@ -1,10 +1,7 @@
 package com.felipecosta.kotlinrxjavasample
 
 import android.app.Application
-import com.felipecosta.kotlinrxjavasample.di.ApplicationComponent
-import com.felipecosta.kotlinrxjavasample.di.DaggerApplicationComponent
-import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
-import com.felipecosta.kotlinrxjavasample.di.SubcomponentBuilder
+import com.felipecosta.kotlinrxjavasample.di.*
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import javax.inject.Provider
@@ -27,7 +24,7 @@ open class DemoApplication : Application(), HasSubcomponentBuilders {
     }
 
     open protected fun createComponent(): ApplicationComponent {
-        return DaggerApplicationComponent.create()
+        return DaggerApplicationComponent.builder().appModule(AppModule(this)).build()
     }
 
     override fun <A : SubcomponentBuilder<*>> getSubcomponentBuilder(componentClass: KClass<A>): A {

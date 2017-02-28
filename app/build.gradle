@@ -83,20 +83,10 @@ dependencies {
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     compile 'com.google.code.gson:gson:2.8.0'
 
+    compile 'com.jakewharton:disklrucache:2.0.2'
+
     compile project(':checkableheart')
 
-//    compile('com.jakewharton.rxbinding:rxbinding-kotlin:0.4.0') {
-//        exclude group: 'io.reactivex'
-//    }
-//    compile('com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:0.4.0') {
-//        exclude group: 'io.reactivex'
-//    }
-//    compile('com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:0.4.0') {
-//        exclude group: 'io.reactivex'
-//    }
-//    compile('com.jakewharton.rxbinding:rxbinding-design-kotlin:0.4.0') {
-//        exclude group: 'io.reactivex'
-//    }
 
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"

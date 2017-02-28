@@ -1,35 +1,41 @@
 package com.felipecosta.kotlinrxjavasample
 
-import android.support.v4.util.LruCache
 import com.felipecosta.kotlinrxjavasample.data.CacheDataRepository
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
+import com.felipecosta.kotlinrxjavasample.data.SimpleDiskCache
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.utils.mock
-import com.felipecosta.kotlinrxjavasample.utils.whenever
+import com.google.gson.Gson
+import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Observable.just
 import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito
+import java.io.InputStream
+import kotlin.test.assertEquals
 
 class CacheDataRepositoryTest {
 
     val dataRepository: DataRepository = mock()
 
-    val memoryCache: LruCache<Int, Character> = mock()
+    val cache: SimpleDiskCache = mock()
 
-    val character: Character = mock()
+    val entry: SimpleDiskCache.InputStreamEntry = mock()
+
+    val character = Character().apply { id = 42 }
+
+    val gson = Gson()
 
     lateinit var cacheDataRepository: CacheDataRepository
 
     @Before
     fun setUp() {
-        cacheDataRepository = CacheDataRepository(dataRepository, memoryCache)
+        cacheDataRepository = CacheDataRepository(dataRepository, cache)
     }
 
     @Test
     fun whenGetCharacterListThenAssertItsCached() {
-        whenever(character.id).thenReturn(42)
+        character.id = 42
 
         whenever(dataRepository.getCharacterList(0, 1)).thenReturn(just(listOf(character)))
 
@@ -37,74 +43,64 @@ class CacheDataRepositoryTest {
 
         cacheDataRepository.getCharacterList(0, 1).subscribe(characterListObserver)
 
-        verify(memoryCache).put(eq(42), eq(character))
-
         characterListObserver.dispose()
+
+        val argumentCaptor = argumentCaptor<InputStream>()
+
+        Mockito.verify(cache).put(eq("42"), argumentCaptor.capture())
+
+        assertEquals(gson.toJson(character), argumentCaptor.lastValue.use { it.reader().readText() })
     }
 
     @Test
     fun givenCachedWhenGetCharacterThenReturnsCached() {
-        whenever(character.id).thenReturn(42)
+        whenever(entry.inputStream).thenReturn(gson.toJson(character).byteInputStream())
 
-        whenever(memoryCache.get(42)).thenReturn(character)
+        whenever(cache.getInputStream("42")).thenReturn(entry)
+
+        whenever(cache.contains("42")).thenReturn(true)
 
         val characterObserver = TestObserver.create<Character>()
 
         cacheDataRepository.getCharacter(42).subscribe(characterObserver)
 
-        characterObserver.assertValue { it == character }
-
         characterObserver.dispose()
+
+        characterObserver.assertValue { it == character }
     }
 
     @Test
     fun givenCachedWhenGetCharacterThenNotInteractWithNetwork() {
-        whenever(character.id).thenReturn(42)
+        whenever(entry.inputStream).thenReturn(gson.toJson(character).byteInputStream())
 
-        whenever(memoryCache.get(42)).thenReturn(character)
+        whenever(cache.getInputStream("42")).thenReturn(entry)
+
+        whenever(cache.contains("42")).thenReturn(true)
 
         val characterObserver = TestObserver.create<Character>()
 
         cacheDataRepository.getCharacter(42).subscribe(characterObserver)
 
-        verifyZeroInteractions(dataRepository)
-
         characterObserver.dispose()
+
+        verifyZeroInteractions(dataRepository)
     }
 
     @Test
     fun givenNotCachedWhenGetCharacterThenReturnsANewCharacter() {
-        whenever(character.id).thenReturn(42)
-
         whenever(dataRepository.getCharacter(42)).thenReturn(just(character))
 
         val characterObserver = TestObserver.create<Character>()
 
         cacheDataRepository.getCharacter(42).subscribe(characterObserver)
 
-        characterObserver.assertNoErrors()
+        characterObserver.dispose()
+
         characterObserver.assertValue { it == character }
-
-        characterObserver.dispose()
     }
 
     @Test
-    fun whenDisposeFromGetCharacterListThenClearCache() {
-        whenever(character.id).thenReturn(42)
-
-        whenever(dataRepository.getCharacterList(0, 1)).thenReturn(just(listOf(character)))
-
-        val characterListObserver = TestObserver.create<List<Character>>()
-
-        cacheDataRepository.getCharacterList(0, 1).subscribe(characterListObserver)
-
-        characterListObserver.dispose()
-
-        verify(memoryCache).evictAll()
-    }
-
-    @Test
-    fun whenDisposeFromGetCharacterThenClearCache() {
+    fun givenNotCachedWhenGetCharacterThenCacheResult() {
         whenever(dataRepository.getCharacter(42)).thenReturn(just(character))
 
         val characterObserver = TestObserver.create<Character>()
@@ -113,30 +109,11 @@ class CacheDataRepositoryTest {
 
         characterObserver.dispose()
 
-        verify(memoryCache).evictAll()
-    }
+        val argumentCaptor = argumentCaptor<InputStream>()
 
-    @Test
-    fun givenLoadCharactersAndTheSameCharacterWhenDisposeThenClearCache() {
-        whenever(character.id).thenReturn(42)
+        Mockito.verify(cache).put(eq("42"), argumentCaptor.capture())
 
-        whenever(dataRepository.getCharacterList(0, 1)).thenReturn(just(listOf(character)))
-
-        whenever(memoryCache.get(42)).thenReturn(character)
-
-        val characterListObserver = TestObserver.create<List<Character>>()
-
-        cacheDataRepository.getCharacterList(0, 1).subscribe(characterListObserver)
-
-        val characterObserver = TestObserver.create<Character>()
-
-        cacheDataRepository.getCharacter(42).subscribe(characterObserver)
-
-        characterListObserver.dispose()
-
-        characterObserver.dispose()
-
-        verify(memoryCache).evictAll()
+        assertEquals(gson.toJson(character), argumentCaptor.lastValue.use { it.reader().readText() })
     }
 
 }

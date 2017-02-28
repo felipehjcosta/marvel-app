@@ -1,41 +1,41 @@
 package com.felipecosta.kotlinrxjavasample.data
 
-import android.support.v4.util.LruCache
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.rx.set
+import com.google.gson.Gson
 import com.jakewharton.rxrelay2.BehaviorRelay.*
 import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
+import java.io.InputStream
+
 
 class CacheDataRepository(private val dataRepository: DataRepository,
-                          private val memoryLruCache: LruCache<Int, Character>) : DataRepository {
-
-    private val lruCacheObservable = createDefault<LruCache<Int, Character>>(memoryLruCache)
-            .doOnDispose { memoryLruCache.evictAll() }
-            .replay(1)
-            .refCount()
+                          private val cache: SimpleDiskCache) : DataRepository {
 
     override fun getCharacterList(offset: Int, limit: Int): Observable<List<Character>> {
-        return combineLatest(dataRepository.getCharacterList(offset, limit), lruCacheObservable,
-                BiFunction { characterList, cache ->
-                    characterList.apply { forEach { cache[it.id] = it } }
-                })
+        return dataRepository.getCharacterList(offset, limit).
+                doOnNext { list -> list.forEach { saveInCache(it) } }
     }
 
     override fun getCharacter(characterId: Int): Observable<Character> {
-        return lruCacheObservable.flatMap { cache ->
-            val cachedCharacter = cache.get(characterId)
-            if (cachedCharacter != null) {
-                just(cachedCharacter)
-            } else {
-                combineLatest(just(cache), defer { dataRepository.getCharacter(characterId) },
-                        BiFunction { cache: LruCache<Int, Character>, character: Character ->
-                            cache[character.id] = character
-                            character
-                        })
-            }
-        }
+        val memoryObservable = just(cache)
+                .flatMap {
+                    if (it.contains(characterId.toString())) {
+                        it.getInputStream(characterId.toString())!!.use {
+                            just(readFromCache(it.inputStream))
+                        }
+                    } else {
+                        empty<Character>()
+                    }
+                }
+
+        val networkObservable = defer { dataRepository.getCharacter(characterId) }
+                .doOnNext { saveInCache(it) }
+
+        return concat(memoryObservable, networkObservable).take(1)
     }
+
+    private fun saveInCache(character: Character) = Gson().apply { cache.put(character.id.toString(), toJson(character).byteInputStream()) }
+
+    private fun readFromCache(inputStream: InputStream): Character = with(Gson()) { fromJson(inputStream.reader(), Character::class.java) }
 
     override fun favoriteCharacter(characterId: Int): Observable<Boolean> {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.

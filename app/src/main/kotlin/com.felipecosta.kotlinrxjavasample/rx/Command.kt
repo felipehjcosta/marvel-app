@@ -1,7 +1,7 @@
 package com.felipecosta.kotlinrxjavasample.rx
 
-import io.reactivex.Observable
+import io.reactivex.Completable
 
 interface Command {
-    fun execute(): Observable<out Any>
+    fun execute(): Completable
 }

@@ -90,7 +90,7 @@ class ListingFragment : Fragment() {
         compositeDisposable += viewModel.showLoading.subscribe { swipeRefresh.isRefreshing = it }
 
         compositeDisposable += swipeRefresh.refreshes()
-                .flatMap { viewModel.loadItemsCommand.execute() }
+                .flatMapCompletable { viewModel.loadItemsCommand.execute() }
                 .subscribe()
 
         compositeDisposable += viewModel.loadItemsCommand.execute().subscribe()
@@ -118,7 +118,7 @@ class ListingFragment : Fragment() {
                     if (showLoadingMore) false else shouldLoadNewItems
                 })
                 .filter { it == true }
-                .flatMap { loadMoreCommand.execute() }
+                .flatMapCompletable { loadMoreCommand.execute() }
                 .subscribe()
     }
 

@@ -113,6 +113,10 @@ class ListingFragment : Fragment() {
                     }
                 })
                 .debounce(400L, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                .withLatestFrom(viewModel.showLoadingMore.startWith(false), BiFunction {
+                    shouldLoadNewItems: Boolean, showLoadingMore: Boolean ->
+                    if (showLoadingMore) false else shouldLoadNewItems
+                })
                 .filter { it == true }
                 .flatMap { loadMoreCommand.execute() }
                 .subscribe()

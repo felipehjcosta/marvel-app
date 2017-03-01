@@ -22,8 +22,10 @@ import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -110,8 +112,9 @@ class ListingFragment : Fragment() {
                         false
                     }
                 })
+                .debounce(400L, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .filter { it == true }
-                .concatMap { loadMoreCommand.execute() }
+                .flatMap { loadMoreCommand.execute() }
                 .subscribe()
     }
 

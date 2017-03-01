@@ -19,7 +19,7 @@ class AppModule(private val application: Application) {
     @Singleton
     @Provides
     fun providesDiskCache(): SimpleDiskCache {
-        val fileCache = File(application.filesDir, "disk_cache")
+        val fileCache = File(application.cacheDir, "disk_cache")
         return SimpleDiskCache.open(fileCache, 1, Integer.MAX_VALUE.toLong())
     }
 

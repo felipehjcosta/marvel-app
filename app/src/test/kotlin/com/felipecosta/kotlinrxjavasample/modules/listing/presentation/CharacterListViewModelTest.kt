@@ -3,8 +3,7 @@ package com.felipecosta.kotlinrxjavasample.modules.listing.presentation
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.listing.datamodel.ListingDataModel
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
-import com.felipecosta.kotlinrxjavasample.utils.mock
-import com.felipecosta.kotlinrxjavasample.utils.whenever
+import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.disposables.CompositeDisposable
@@ -157,6 +156,37 @@ class CharacterListViewModelTest {
 
         itemsObserver.assertValueAt(0) { it[0].name == characterName1 }
         newItemsObserver.assertValueAt(0) { it[0].name == characterName2 }
+
+        disposables.dispose()
+    }
+
+    @Test
+    fun subscribedToItemsAndNewItemsWhenExecuteLoadMoreAfterLoadThenVerifyCorrectlyInteractionOnMock() {
+
+        val characterName1 = "Wolverine"
+        val character = Character()
+        character.name = characterName1
+
+        whenever(dataModel.loadItems()).thenReturn(Observable.just(listOf(character)))
+        val characterName2 = "Spiner-Man"
+        val character2 = Character()
+        character2.name = characterName2
+
+        whenever(dataModel.loadItems(offset = 1)).thenReturn(Observable.just(listOf(character2)))
+
+        val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
+
+        viewModel.items.subscribe(itemsObserver)
+
+        val newItemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
+        viewModel.newItems.subscribe(newItemsObserver)
+
+        val disposables = CompositeDisposable()
+
+        disposables += viewModel.loadItemsCommand.execute().subscribe()
+        disposables += viewModel.loadMoreItemsCommand.execute().subscribe()
+
+        verify(dataModel, times(2)).loadItems(any(), any())
 
         disposables.dispose()
     }

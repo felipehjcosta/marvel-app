@@ -26,6 +26,7 @@ class CharacterListViewModel(private val dataModel: ListingDataModel) {
 
         asyncLoadMoreCommand = AsyncCommand {
             currentItemsOffsetRelay
+                    .take(1)
                     .flatMap { dataModel.loadItems(offset = it) }
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())

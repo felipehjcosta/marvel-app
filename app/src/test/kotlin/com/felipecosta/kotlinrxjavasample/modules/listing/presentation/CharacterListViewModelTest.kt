@@ -2,6 +2,7 @@ package com.felipecosta.kotlinrxjavasample.modules.listing.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.listing.datamodel.ListingDataModel
+import com.felipecosta.kotlinrxjavasample.rx.plusAssign
 import com.felipecosta.kotlinrxjavasample.utils.mock
 import com.felipecosta.kotlinrxjavasample.utils.whenever
 import io.reactivex.Observable
@@ -110,6 +111,25 @@ class CharacterListViewModelTest {
     }
 
     @Test
+    fun subscribedToShowLoadingMoreWhenExecuteLoadMoreItemsCommandThenAssertNormalLoadingFlow() {
+        val characterName = "Wolverine"
+        val character = Character()
+        character.name = characterName
+
+        whenever(dataModel.loadItems()).thenReturn(Observable.just(listOf(character)))
+
+        val showLoadMoreObserver = TestObserver.create<Boolean>()
+
+        viewModel.showLoadingMore.subscribe(showLoadMoreObserver)
+
+        val disposable = viewModel.loadMoreItemsCommand.execute().subscribe()
+
+        disposable.dispose()
+
+        showLoadMoreObserver.assertValues(true, false)
+    }
+
+    @Test
     fun subscribedToItemsAndNewItemsWhenExecuteLoadMoreAfterLoadCommandThenReturnItemsAndNewItems() {
 
         val characterName1 = "Wolverine"
@@ -132,8 +152,8 @@ class CharacterListViewModelTest {
 
         val disposables = CompositeDisposable()
 
-        disposables.add(viewModel.loadItemsCommand.execute().subscribe())
-        disposables.add(viewModel.loadMoreItemsCommand.execute().subscribe())
+        disposables += viewModel.loadItemsCommand.execute().subscribe()
+        disposables += viewModel.loadMoreItemsCommand.execute().subscribe()
 
         itemsObserver.assertValueAt(0) { it[0].name == characterName1 }
         newItemsObserver.assertValueAt(0) { it[0].name == characterName2 }

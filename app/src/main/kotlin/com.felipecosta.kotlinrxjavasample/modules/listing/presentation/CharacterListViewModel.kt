@@ -56,4 +56,7 @@ class CharacterListViewModel(private val dataModel: ListingDataModel) {
     val showLoadItemsError: Observable<Boolean>
         get() = asyncLoadItemsCommand.errors.map { true }
 
+    val showLoadingMore: Observable<Boolean>
+        get() = asyncLoadMoreCommand.executing
+
 }

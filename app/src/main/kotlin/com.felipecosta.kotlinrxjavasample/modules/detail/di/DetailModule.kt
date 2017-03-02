@@ -34,5 +34,5 @@ class DetailModule(val characterId: Int, val context: Context) {
 
     @DetailScope
     @Provides
-    fun provideDetailViewModel(asyncCommand: AsyncCommand<Character>) = CharacterDetailViewModel(asyncCommand)
+    fun provideDetailViewModel(asyncCommand: AsyncCommand<Character>, favoriteRepository: FavoriteRepository) = CharacterDetailViewModel(asyncCommand, favoriteRepository)
 }

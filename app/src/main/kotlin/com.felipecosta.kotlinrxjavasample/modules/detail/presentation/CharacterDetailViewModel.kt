@@ -1,11 +1,12 @@
 package com.felipecosta.kotlinrxjavasample.modules.detail.presentation
 
+import com.felipecosta.kotlinrxjavasample.data.FavoriteRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
 import com.felipecosta.kotlinrxjavasample.rx.Command
 import io.reactivex.Observable
 
-class CharacterDetailViewModel(private val asyncCharacterCommand: AsyncCommand<Character>) {
+class CharacterDetailViewModel(private val asyncCharacterCommand: AsyncCommand<Character>, private val favoriteRepository: FavoriteRepository) {
 
     private val characterObservable: Observable<Character> = asyncCharacterCommand.execution.share()
 
@@ -29,6 +30,9 @@ class CharacterDetailViewModel(private val asyncCharacterCommand: AsyncCommand<C
 
     val storiesCount: Observable<Int>
         get() = characterObservable.map { it.stories?.items?.count() }
+
+    val isFavorite: Observable<Boolean>
+        get() = favoriteRepository.isFavorite()
 
     val characterCommand: Command
         get() = asyncCharacterCommand

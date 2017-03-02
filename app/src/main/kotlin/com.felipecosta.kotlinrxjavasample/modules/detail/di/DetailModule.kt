@@ -2,7 +2,7 @@ package com.felipecosta.kotlinrxjavasample.modules.detail.di
 
 import android.content.Context
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
-import com.felipecosta.kotlinrxjavasample.data.DiskDataRepository
+import com.felipecosta.kotlinrxjavasample.data.FavoriteRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailContentDataModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
@@ -30,7 +30,7 @@ class DetailModule(val characterId: Int, val context: Context) {
 
     @DetailScope
     @Provides
-    fun provideDiskDataRepository(): DiskDataRepository = DiskDataRepository(context, characterId)
+    fun provideDiskDataRepository(): FavoriteRepository = FavoriteRepository(context, characterId)
 
     @DetailScope
     @Provides

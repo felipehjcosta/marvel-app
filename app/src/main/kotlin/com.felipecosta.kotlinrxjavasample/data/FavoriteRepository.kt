@@ -7,7 +7,7 @@ import io.reactivex.Observable.*
 import io.reactivex.functions.BiFunction
 import java.util.*
 
-class DiskDataRepository(context: Context, val characterId: Int) : PreferencesRepository(context) {
+class FavoriteRepository(context: Context, val characterId: Int) : PreferencesRepository(context) {
 
     val favoriteKey = context.getString(R.string.saved_favorite_characters)!!
 

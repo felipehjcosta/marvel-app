@@ -37,4 +37,12 @@ class CharacterDetailViewModel(private val asyncCharacterCommand: AsyncCommand<C
     val characterCommand: Command
         get() = asyncCharacterCommand
 
+    fun removeFavorite() {
+        favoriteRepository.removeFavorite()
+    }
+
+    fun saveFavorite() {
+        favoriteRepository.saveFavorite()
+    }
+
 }

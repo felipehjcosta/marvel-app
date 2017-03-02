@@ -37,7 +37,4 @@ class CacheDataRepository(private val dataRepository: DataRepository,
 
     private fun readFromCache(inputStream: InputStream): Character = with(Gson()) { fromJson(inputStream.reader(), Character::class.java) }
 
-    override fun favoriteCharacter(characterId: Int): Observable<Boolean> {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }

@@ -65,10 +65,6 @@ class NetworkDataRepository : DataRepository {
                 }
     }
 
-    override fun favoriteCharacter(characterId: Int): Observable<Boolean> {
-        return Observable.just(false)
-    }
-
     fun md5(s: String): String {
         val MD5 = "MD5"
         try {

@@ -2,25 +2,46 @@ package com.felipecosta.kotlinrxjavasample.data
 
 import android.content.Context
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import io.reactivex.Observable
+import io.reactivex.Observable.*
+import io.reactivex.functions.BiFunction
+import java.util.*
 
-class DiskDataRepository(val context: Context) : DataRepository {
+class DiskDataRepository(context: Context, val characterId: Int) : PreferencesRepository(context) {
 
-    override fun getCharacterList(offset: Int, limit: Int): Observable<List<Character>> {
-        return Observable.just(null)
+    val favoriteKey = context.getString(R.string.saved_favorite_characters)!!
+
+    fun fetchFavorites(): Observable<List<Int>> {
+        return just(get(favoriteKey))
+                .map { it.replace("[", "").replace("]", "") }
+                .filter(String::isNotBlank)
+                .map { it.split(",") }
+                .flatMap { fromIterable(it) }
+                .map(String::trim)
+                .map(String::toInt)
+                .toList()
+                .toObservable()
     }
 
-    override fun getCharacter(characterId: Int): Observable<Character> {
-        return Observable.just(null)
+    fun isFavorite(): Observable<Boolean> {
+        return fetchFavorites()
+                .map { it.contains(characterId) }
     }
 
-    override fun favoriteCharacter(characterId: Int): Observable<Boolean> {
-        val sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putInt(context.getString(R.string.saved_favorite_characters), characterId)
-        editor.apply()
-        return Observable.just(true)
+    fun saveFavorite() {
+        zip<Int, MutableList<Int>, List<Int>>(
+                just(characterId),
+                fetchFavorites().map { it.toMutableList() },
+                BiFunction { t1, t2 -> t2.apply { add(t1) }.toList() })
+                .subscribe { put(favoriteKey, Arrays.toString(it.toIntArray())) }
+    }
+
+    fun removeFavorite() {
+        fetchFavorites().flatMap { fromIterable(it) }
+                .filter { it != characterId }
+                .toList()
+                .toObservable()
+                .subscribe { put(favoriteKey, it.toString()) }
     }
 
 }

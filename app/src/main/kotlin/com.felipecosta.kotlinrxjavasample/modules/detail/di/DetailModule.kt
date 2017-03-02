@@ -1,6 +1,8 @@
 package com.felipecosta.kotlinrxjavasample.modules.detail.di
 
+import android.content.Context
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
+import com.felipecosta.kotlinrxjavasample.data.DiskDataRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailContentDataModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
@@ -12,7 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 @Module
-class DetailModule(val characterId: Int) {
+class DetailModule(val characterId: Int, val context: Context) {
     @DetailScope
     @Provides
     fun provideDetailDataModel(dataRepository: DataRepository): DetailDataModel = DetailContentDataModel(dataRepository)
@@ -25,6 +27,10 @@ class DetailModule(val characterId: Int) {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
     }
+
+    @DetailScope
+    @Provides
+    fun provideDiskDataRepository(): DiskDataRepository = DiskDataRepository(context, characterId)
 
     @DetailScope
     @Provides

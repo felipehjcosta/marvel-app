@@ -15,6 +15,7 @@ import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
 import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailComponent
 import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailModule
 import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
+import com.felipecosta.kotlinrxjavasample.rx.checkedChanges
 import com.nostra13.universalimageloader.core.ImageLoader
 import javax.inject.Inject
 
@@ -57,7 +58,7 @@ class DetailActivity : AppCompatActivity() {
         val application = application
         if (application is HasSubcomponentBuilders) {
             val subComponent = application.getSubcomponentBuilder(DetailComponent.Builder::class).
-                    detailModule(DetailModule(characterId)).
+                    detailModule(DetailModule(characterId, this.applicationContext)).
                     build()
             subComponent.inject(this)
         }
@@ -98,8 +99,11 @@ class DetailActivity : AppCompatActivity() {
         viewModel.eventsCount.subscribe { statisticEvents.text = it.toString() }
         viewModel.seriesCount.subscribe { statisticSeries.text = it.toString() }
         viewModel.storiesCount.subscribe { statisticStories.text = it.toString() }
+        viewModel.isFavorite.subscribe { favoriteFab.isChecked = it }
 
         viewModel.characterCommand.execute().subscribe()
+
+        favoriteFab.checkedChanges().subscribe { if (it) viewModel.saveFavorite() else viewModel.removeFavorite() }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -1,6 +1,5 @@
 package com.felipecosta.kotlinrxjavasample.rx
 
-import com.jakewharton.rxrelay2.BehaviorRelay
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Completable
 import io.reactivex.Observable

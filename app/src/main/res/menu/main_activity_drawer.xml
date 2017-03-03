@@ -8,12 +8,12 @@
             android:checked="true"
             app:showAsAction="always"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Sample 1" />
+            android:title="Characters" />
         <item
             android:id="@+id/nav_sample_2"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/heart_outline"
             app:showAsAction="always"
-            android:title="Sample 2" />
+            android:title="Favorites" />
         <item
             android:id="@+id/nav_sample_3"
             android:icon="@drawable/ic_menu_manage"

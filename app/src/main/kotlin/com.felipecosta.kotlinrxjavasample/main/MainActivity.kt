@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.listing.view.ListingFragment
+import com.felipecosta.kotlinrxjavasample.samples.Sample1Fragment
 import com.felipecosta.kotlinrxjavasample.samples.Sample2Fragment
-import com.felipecosta.kotlinrxjavasample.samples.Sample3Fragment
 import com.jakewharton.rxbinding2.support.design.widget.itemSelections
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity() {
 
         val sample2FragmentObservable = itemSelectionObservable.
                 filter { it.itemId == R.id.nav_sample_2 }.
-                map { Sample2Fragment.newInstance() }
+                map { Sample1Fragment.newInstance() }
 
         val sample3FragmentObservable = itemSelectionObservable.
                 filter { it.itemId == R.id.nav_sample_3 }.
-                map { Sample3Fragment.newInstance() }
+                map { Sample2Fragment.newInstance() }
 
         val contentFragmentObservable = merge(listOf(sample1FragmentObservable,
                 sample2FragmentObservable,

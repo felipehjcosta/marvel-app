@@ -107,5 +107,7 @@ dependencies {
         exclude group: 'com.android.support'
     }
 
-    androidTestCompile 'com.github.VictorAlbertos:DeviceAnimationTestRule:0.0.2'
+    androidTestCompile('com.github.VictorAlbertos:DeviceAnimationTestRule:0.0.2') {
+        exclude group: 'com.android.support'
+    }
 }

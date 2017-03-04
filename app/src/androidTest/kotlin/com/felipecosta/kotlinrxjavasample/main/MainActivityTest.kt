@@ -75,13 +75,13 @@ class MainActivityTest {
     }
 
     @Test
-    fun whenSelectSample2ThenSecondSampleIsShowing() {
+    fun whenSelectSecondOptionThenSecondSampleIsShowing() {
         activityRule.launchActivity(Intent())
 
-        onView(allOf(withText("Sample 2"), isDescendantOfA(withId(R.id.nav_view)), isCompletelyDisplayed())).
+        onView(allOf(withText("Sample 1"), isDescendantOfA(withId(R.id.nav_view)), isCompletelyDisplayed())).
                 perform(click())
 
-        onView(allOf(withText("Sample 2"), isDescendantOfA(withId(R.id.main_content)))).
+        onView(allOf(withText("Sample 1"), isDescendantOfA(withId(R.id.main_content)))).
                 check(matches(isDisplayed()))
     }
 }

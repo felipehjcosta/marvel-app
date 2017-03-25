@@ -62,8 +62,8 @@ dependencies {
     compile 'com.android.support:support-v4:25.1.1'
     compile 'com.android.support:recyclerview-v7:25.1.1'
 
-    compile 'com.google.dagger:dagger:2.9'
-    kapt 'com.google.dagger:dagger-compiler:2.9'
+    compile 'com.google.dagger:dagger:2.10'
+    kapt 'com.google.dagger:dagger-compiler:2.10'
     provided 'javax.annotation:jsr250-api:1.0'
 
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
@@ -97,7 +97,7 @@ dependencies {
     testCompile "org.mockito:mockito-core:2.2.9"
 
     androidTestCompile 'com.linkedin.dexmaker:dexmaker-mockito:2.2.0'
-    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.9'
+    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.10'
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude group: 'com.android.support'

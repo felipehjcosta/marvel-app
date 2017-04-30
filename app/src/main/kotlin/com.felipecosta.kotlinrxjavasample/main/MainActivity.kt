@@ -5,9 +5,8 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import com.felipecosta.kotlinrxjavasample.R
+import com.felipecosta.kotlinrxjavasample.modules.favorite.view.FavoriteFragment
 import com.felipecosta.kotlinrxjavasample.modules.listing.view.ListingFragment
-import com.felipecosta.kotlinrxjavasample.samples.Sample1Fragment
-import com.felipecosta.kotlinrxjavasample.samples.Sample2Fragment
 import com.jakewharton.rxbinding2.support.design.widget.itemSelections
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
@@ -38,20 +37,15 @@ class MainActivity : AppCompatActivity() {
         val itemSelectionObservable = bottomNavigationView.itemSelections().share()
 
         val sample1FragmentObservable = itemSelectionObservable.
-                filter { it.itemId == R.id.nav_sample_1 }.
+                filter { it.itemId == R.id.nav_listing }.
                 map { ListingFragment.newInstance() }
 
         val sample2FragmentObservable = itemSelectionObservable.
-                filter { it.itemId == R.id.nav_sample_2 }.
-                map { Sample1Fragment.newInstance() }
-
-        val sample3FragmentObservable = itemSelectionObservable.
-                filter { it.itemId == R.id.nav_sample_3 }.
-                map { Sample2Fragment.newInstance() }
+                filter { it.itemId == R.id.nav_favorite }.
+                map { FavoriteFragment.newInstance() }
 
         val contentFragmentObservable = merge(listOf(sample1FragmentObservable,
-                sample2FragmentObservable,
-                sample3FragmentObservable))
+                sample2FragmentObservable))
 
         disposable = contentFragmentObservable.
                 filter { !(supportFragmentManager.findFragmentById(R.id.main_content)?.javaClass?.equals(it.javaClass) ?: false) }.

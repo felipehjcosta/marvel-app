@@ -81,7 +81,7 @@ class MainActivityTest {
         onView(allOf(withText("Favorites"), isDescendantOfA(withId(R.id.nav_view)), isCompletelyDisplayed())).
                 perform(click())
 
-        onView(allOf(withText("Sample 1"), isDescendantOfA(withId(R.id.main_content)))).
+        onView(allOf(withText("Favorites"), isDescendantOfA(withId(R.id.main_content)))).
                 check(matches(isDisplayed()))
     }
 }

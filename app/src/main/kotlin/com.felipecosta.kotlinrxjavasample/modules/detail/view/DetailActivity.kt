@@ -58,7 +58,7 @@ class DetailActivity : AppCompatActivity() {
         val application = application
         if (application is HasSubcomponentBuilders) {
             val subComponent = application.getSubcomponentBuilder(DetailComponent.Builder::class).
-                    detailModule(DetailModule(characterId, this.applicationContext)).
+                    detailModule(DetailModule(characterId)).
                     build()
             subComponent.inject(this)
         }

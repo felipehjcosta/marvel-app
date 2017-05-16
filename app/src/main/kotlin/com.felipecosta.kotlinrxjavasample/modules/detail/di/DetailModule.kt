@@ -1,8 +1,11 @@
 package com.felipecosta.kotlinrxjavasample.modules.detail.di
 
 import android.content.Context
+import android.content.SharedPreferences
+import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.FavoriteRepository
+import com.felipecosta.kotlinrxjavasample.data.SharedPreferencesStorage
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailContentDataModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
@@ -14,7 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 @Module
-class DetailModule(val characterId: Int, val context: Context) {
+class DetailModule(val characterId: Int) {
     @DetailScope
     @Provides
     fun provideDetailDataModel(dataRepository: DataRepository): DetailDataModel = DetailContentDataModel(dataRepository)
@@ -30,7 +33,12 @@ class DetailModule(val characterId: Int, val context: Context) {
 
     @DetailScope
     @Provides
-    fun provideDiskDataRepository(): FavoriteRepository = FavoriteRepository(context, characterId)
+    fun provideDiskDataRepository(context: Context, sharedPreferences: SharedPreferences): FavoriteRepository {
+        val key = context.getString(R.string.saved_favorite_characters)
+        val localStorage = SharedPreferencesStorage(key, sharedPreferences)
+
+        return FavoriteRepository(localStorage)
+    }
 
     @DetailScope
     @Provides

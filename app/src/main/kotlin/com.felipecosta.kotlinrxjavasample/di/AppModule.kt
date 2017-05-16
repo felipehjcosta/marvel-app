@@ -1,15 +1,15 @@
 package com.felipecosta.kotlinrxjavasample.di
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.data.CacheDataRepository
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.NetworkDataRepository
 import com.felipecosta.kotlinrxjavasample.data.SimpleDiskCache
 import dagger.Module
 import dagger.Provides
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import java.io.File
 import javax.inject.Singleton
 
@@ -28,4 +28,14 @@ class AppModule(private val application: Application) {
     fun providesDataRepository(cache: SimpleDiskCache): DataRepository {
         return CacheDataRepository(NetworkDataRepository(), cache)
     }
+
+    @Singleton
+    @Provides
+    fun providesApplicationContext(): Context = application
+
+    @Singleton
+    @Provides
+    fun providesSharedPreferences(context: Context): SharedPreferences = context
+            .getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
 }

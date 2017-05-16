@@ -1,6 +1,6 @@
 package com.felipecosta.kotlinrxjavasample.rx
 
-import com.felipecosta.kotlinrxjavasample.utils.mock
+import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Observable
 import io.reactivex.observers.TestObserver
 import org.junit.Test

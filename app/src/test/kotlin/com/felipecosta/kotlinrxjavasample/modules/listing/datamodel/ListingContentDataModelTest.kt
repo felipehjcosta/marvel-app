@@ -2,8 +2,8 @@ package com.felipecosta.kotlinrxjavasample.modules.listing.datamodel
 
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.utils.mock
-import com.felipecosta.kotlinrxjavasample.utils.whenever
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Observable
 import io.reactivex.observers.TestObserver
 import org.junit.Before

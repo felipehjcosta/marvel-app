@@ -1,18 +1,21 @@
 package com.felipecosta.kotlinrxjavasample.data
 
 import android.content.Context
-import com.felipecosta.kotlinrxjavasample.R
 import io.reactivex.Observable
 import io.reactivex.Observable.*
 import io.reactivex.functions.BiFunction
 import java.util.*
 
-class FavoriteRepository(context: Context, val characterId: Int) : PreferencesRepository(context) {
+class FavoriteRepository(private val localStorage: LocalStorage) {
 
-    val favoriteKey = context.getString(R.string.saved_favorite_characters)!!
+    constructor(context: Context, characterId: Int) : this(object : LocalStorage {
+        override var storageValue: String
+            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+            set(value) {}
+    })
 
     fun fetchFavorites(): Observable<List<Int>> {
-        return just(get(favoriteKey))
+        return fromCallable { localStorage.storageValue }
                 .map { it.replace("[", "").replace("]", "") }
                 .filter(String::isNotBlank)
                 .map { it.split(",") }
@@ -23,25 +26,25 @@ class FavoriteRepository(context: Context, val characterId: Int) : PreferencesRe
                 .toObservable()
     }
 
-    fun isFavorite(): Observable<Boolean> {
+    fun isFavorite(characterId: Int = 0): Observable<Boolean> {
         return fetchFavorites()
                 .map { it.contains(characterId) }
     }
 
-    fun saveFavorite() {
+    fun saveFavorite(characterId: Int = 0) {
         zip<Int, MutableList<Int>, List<Int>>(
-                just(characterId),
+                fromCallable { characterId },
                 fetchFavorites().map { it.toMutableList() },
                 BiFunction { t1, t2 -> t2.apply { add(t1) }.toList() })
-                .subscribe { put(favoriteKey, Arrays.toString(it.toIntArray())) }
+                .subscribe { localStorage.storageValue = Arrays.toString(it.toIntArray()) }
     }
 
-    fun removeFavorite() {
+    fun removeFavorite(characterId: Int = 0) {
         fetchFavorites().flatMap { fromIterable(it) }
                 .filter { it != characterId }
                 .toList()
                 .toObservable()
-                .subscribe { put(favoriteKey, it.toString()) }
+                .subscribe { localStorage.storageValue = it.toString() }
     }
 
 }

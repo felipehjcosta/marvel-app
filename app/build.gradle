@@ -57,10 +57,10 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.android.support:design:25.1.1'
-    compile 'com.android.support:support-v4:25.1.1'
-    compile 'com.android.support:recyclerview-v7:25.1.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
 
     compile 'com.google.dagger:dagger:2.10'
     kapt 'com.google.dagger:dagger-compiler:2.10'
@@ -101,13 +101,16 @@ dependencies {
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude group: 'com.android.support'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
     }
 
     androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2') {
         exclude group: 'com.android.support'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
     }
 
     androidTestCompile('com.github.VictorAlbertos:DeviceAnimationTestRule:0.0.2') {
         exclude group: 'com.android.support'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
     }
 }

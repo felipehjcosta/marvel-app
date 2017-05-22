@@ -11,9 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.checkableheart.ui.HeartFab
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
-import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailComponent
-import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailModule
 import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.rx.checkedChanges
 import com.nostra13.universalimageloader.core.ImageLoader
@@ -55,13 +52,6 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         characterId = intent.extras.getInt(CHARACTER_ID)
-        val application = application
-        if (application is HasSubcomponentBuilders) {
-            val subComponent = application.getSubcomponentBuilder(DetailComponent.Builder::class).
-                    detailModule(DetailModule(characterId)).
-                    build()
-            subComponent.inject(this)
-        }
         initView()
     }
 

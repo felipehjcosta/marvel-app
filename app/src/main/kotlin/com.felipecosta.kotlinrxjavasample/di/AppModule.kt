@@ -14,11 +14,11 @@ import java.io.File
 import javax.inject.Singleton
 
 @Module
-class AppModule(private val application: Application) {
+class AppModule {
 
     @Singleton
     @Provides
-    fun providesDiskCache(): SimpleDiskCache {
+    fun providesDiskCache(application: Application): SimpleDiskCache {
         val fileCache = File(application.cacheDir, "disk_cache")
         return SimpleDiskCache.open(fileCache, 1, Integer.MAX_VALUE.toLong())
     }
@@ -31,7 +31,7 @@ class AppModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun providesApplicationContext(): Context = application
+    fun providesApplicationContext(application: Application): Context = application
 
     @Singleton
     @Provides

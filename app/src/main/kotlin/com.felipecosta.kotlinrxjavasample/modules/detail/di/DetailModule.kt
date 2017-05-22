@@ -10,6 +10,7 @@ import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailContentDataModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
+import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
 import dagger.Module
 import dagger.Provides
@@ -17,14 +18,25 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 @Module
-class DetailModule(val characterId: Int) {
+class DetailModule {
+
+    @DetailScope
+    @Provides
+    fun providesCharacterId(detailActivity: DetailActivity) = with(detailActivity.intent) {
+        if (extras != null && extras.containsKey(DetailActivity.CHARACTER_ID)) {
+            extras.getInt(DetailActivity.CHARACTER_ID)
+        } else {
+            -1
+        }
+    }
+
     @DetailScope
     @Provides
     fun provideDetailDataModel(dataRepository: DataRepository): DetailDataModel = DetailContentDataModel(dataRepository)
 
     @DetailScope
     @Provides
-    fun provideAsyncCommand(detailContentDataModel: DetailDataModel): AsyncCommand<Character> = AsyncCommand {
+    fun provideAsyncCommand(detailContentDataModel: DetailDataModel, characterId: Int): AsyncCommand<Character> = AsyncCommand {
         detailContentDataModel
                 .character(characterId)
                 .subscribeOn(Schedulers.newThread())

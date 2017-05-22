@@ -12,9 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.di.HasSubcomponentBuilders
 import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
-import com.felipecosta.kotlinrxjavasample.modules.listing.di.ListingComponent
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
 import com.felipecosta.kotlinrxjavasample.rx.findBy
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
@@ -38,19 +36,9 @@ class ListingFragment : Fragment() {
 
     lateinit var adapter: CharacterItemRecyclerViewAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        (activity.application as HasSubcomponentBuilders).
-                getSubcomponentBuilder(ListingComponent.Builder::class).
-                build().
-                inject(this)
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.listing_fragment, container, false)
+        return inflater?.inflate(R.layout.listing_fragment, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

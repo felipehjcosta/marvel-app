@@ -1,20 +1,61 @@
 package com.felipecosta.kotlinrxjavasample
 
+import android.app.Activity
 import android.app.Application
-import com.felipecosta.kotlinrxjavasample.di.*
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
+import android.support.v4.app.FragmentManager
+import com.felipecosta.kotlinrxjavasample.di.ApplicationComponent
+import com.felipecosta.kotlinrxjavasample.di.DaggerApplicationComponent
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
-import javax.inject.Provider
-import kotlin.reflect.KClass
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.HasSupportFragmentInjector
+import javax.inject.Inject
 
-open class DemoApplication : Application(), HasSubcomponentBuilders {
+open class DemoApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
-    lateinit var subcomponentBuilders: Map<Class<*>, Provider<SubcomponentBuilder<*>>>
+    @Inject
+    lateinit var dispatchingActivityAndroidInjector: DispatchingAndroidInjector<Activity>
+
+    @Inject
+    lateinit var dispatchingFragmentAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate() {
         super.onCreate()
         val component = createComponent()
-        subcomponentBuilders = component.subcomponentBuidlers()
+        component.inject(this)
+
+        registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks by EmptyActivityLifecycleCallbacks {
+            override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+                if (activity is FragmentActivity) {
+                    try {
+                        AndroidInjection.inject(activity)
+                    } catch (e: IllegalArgumentException) {
+                        android.util.Log.i("DemoApplication", "Unable to inject activity: ${activity.javaClass.simpleName}", e)
+                    }
+
+                    activity.supportFragmentManager.registerFragmentLifecycleCallbacks(
+                            object : FragmentManager.FragmentLifecycleCallbacks() {
+                                override fun onFragmentCreated(fm: FragmentManager?,
+                                                               fragment: Fragment?,
+                                                               savedInstanceState: Bundle?) {
+                                    try {
+                                        AndroidSupportInjection.inject(fragment)
+                                    } catch (e: IllegalArgumentException) {
+                                        android.util.Log.i("DemoApplication", "Unable to inject fragment: ${fragment?.javaClass?.simpleName}", e)
+                                    }
+                                }
+                            }, true)
+                }
+            }
+        })
+
         initImageLoader()
     }
 
@@ -24,10 +65,33 @@ open class DemoApplication : Application(), HasSubcomponentBuilders {
     }
 
     open protected fun createComponent(): ApplicationComponent {
-        return DaggerApplicationComponent.builder().appModule(AppModule(this)).build()
+        return DaggerApplicationComponent.builder().application(this).build()
     }
 
-    override fun <A : SubcomponentBuilder<*>> getSubcomponentBuilder(componentClass: KClass<A>): A {
-        return componentClass.java.cast(subcomponentBuilders[componentClass.java]?.get())
+    override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityAndroidInjector
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingFragmentAndroidInjector
+
+    private object EmptyActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
+        override fun onActivityPaused(activity: Activity?) {
+        }
+
+        override fun onActivityResumed(activity: Activity?) {
+        }
+
+        override fun onActivityStarted(activity: Activity?) {
+        }
+
+        override fun onActivityDestroyed(activity: Activity?) {
+        }
+
+        override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
+        }
+
+        override fun onActivityStopped(activity: Activity?) {
+        }
+
+        override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+        }
     }
 }

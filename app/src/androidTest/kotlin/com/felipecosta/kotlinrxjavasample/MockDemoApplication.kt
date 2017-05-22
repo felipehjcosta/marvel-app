@@ -9,7 +9,6 @@ class MockDemoApplication : DemoApplication() {
 
     val applicationComponent: TestApplicationComponent = DaggerTestApplicationComponent.create()
 
-
     override fun createComponent(): ApplicationComponent {
         return applicationComponent
     }

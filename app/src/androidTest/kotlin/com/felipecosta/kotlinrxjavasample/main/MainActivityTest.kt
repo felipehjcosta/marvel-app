@@ -35,7 +35,7 @@ import javax.inject.Inject
 class MainActivityTest {
 
     companion object {
-        @ClassRule @JvmField val deviceAnimationTestRule = DeviceAnimationTestRule()
+        @get:ClassRule @JvmField val deviceAnimationTestRule = DeviceAnimationTestRule()
     }
 
     @Rule @JvmField

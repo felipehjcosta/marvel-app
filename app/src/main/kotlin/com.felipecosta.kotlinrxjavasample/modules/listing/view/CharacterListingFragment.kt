@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
-class ListingFragment : Fragment() {
+class CharacterListingFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: CharacterListViewModel
@@ -153,8 +153,8 @@ class ListingFragment : Fragment() {
 
     companion object {
 
-        fun newInstance(): ListingFragment {
-            return ListingFragment()
+        fun newInstance(): CharacterListingFragment {
+            return CharacterListingFragment()
         }
     }
 }

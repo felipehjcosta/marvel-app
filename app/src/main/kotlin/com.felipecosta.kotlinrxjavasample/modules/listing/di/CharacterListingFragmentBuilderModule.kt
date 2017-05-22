@@ -1,14 +1,14 @@
 package com.felipecosta.kotlinrxjavasample.modules.listing.di
 
-import com.felipecosta.kotlinrxjavasample.modules.listing.view.ListingFragment
+import com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterListingFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class ListingFragmentBuilderModule {
+abstract class CharacterListingFragmentBuilderModule {
 
     @ListingScope
     @ContributesAndroidInjector(modules = arrayOf(ListingModule::class))
-    abstract fun listingFragment(): ListingFragment
+    abstract fun characterListingFragment(): CharacterListingFragment
 
 }

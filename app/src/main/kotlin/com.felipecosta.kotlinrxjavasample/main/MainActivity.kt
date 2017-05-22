@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.favorite.view.FavoriteFragment
-import com.felipecosta.kotlinrxjavasample.modules.listing.view.ListingFragment
+import com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterListingFragment
 import com.jakewharton.rxbinding2.support.design.widget.itemSelections
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         val sample1FragmentObservable = itemSelectionObservable.
                 filter { it.itemId == R.id.nav_listing }.
-                map { ListingFragment.newInstance() }
+                map { CharacterListingFragment.newInstance() }
 
         val sample2FragmentObservable = itemSelectionObservable.
                 filter { it.itemId == R.id.nav_favorite }.

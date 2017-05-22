@@ -4,7 +4,7 @@ package com.felipecosta.kotlinrxjavasample.di
 import android.app.Application
 import com.felipecosta.kotlinrxjavasample.DemoApplication
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.DetailActivityBuilderModule
-import com.felipecosta.kotlinrxjavasample.modules.listing.di.ListingFragmentBuilderModule
+import com.felipecosta.kotlinrxjavasample.modules.listing.di.CharacterListingFragmentBuilderModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(AppModule::class,
         AndroidInjectionModule::class,
-        ListingFragmentBuilderModule::class,
+        CharacterListingFragmentBuilderModule::class,
         DetailActivityBuilderModule::class
 ))
 interface ApplicationComponent {

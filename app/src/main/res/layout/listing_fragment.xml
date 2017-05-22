@@ -19,7 +19,7 @@
             android:paddingRight="8dp"
             android:visibility="gone"
             app:layoutManager="LinearLayoutManager"
-            tools:context="com.felipecosta.kotlinrxjavasample.modules.listing.view.ListingFragment"
+            tools:context="com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterListingFragment"
             tools:listitem="@layout/listing_fragment_item"
             tools:visibility="visible" />
     </android.support.v4.widget.SwipeRefreshLayout>

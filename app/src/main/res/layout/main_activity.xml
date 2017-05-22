@@ -16,6 +16,7 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/nav_item_color_state"
         app:itemTextColor="@color/nav_item_color_state"

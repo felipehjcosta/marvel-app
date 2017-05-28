@@ -1,5 +1,6 @@
 package com.felipecosta.kotlinrxjavasample.modules.listing.view
 
+import android.animation.AnimatorInflater
 import android.graphics.drawable.ColorDrawable
 import android.support.v4.content.res.ResourcesCompat.getColor
 import android.support.v7.widget.RecyclerView
@@ -60,6 +61,12 @@ class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyc
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findBy(R.id.image)
         val contentView: TextView = view.findBy(R.id.title)
+
+        init {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, R.anim.card_view_elevation)
+            }
+        }
 
         override fun toString(): String {
             return super.toString() + " '" + contentView.text + "'"

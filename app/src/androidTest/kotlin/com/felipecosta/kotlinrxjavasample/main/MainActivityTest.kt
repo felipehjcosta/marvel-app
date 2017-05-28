@@ -34,10 +34,6 @@ import javax.inject.Inject
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
 
-    companion object {
-        @get:ClassRule @JvmField val deviceAnimationTestRule = DeviceAnimationTestRule()
-    }
-
     @Rule @JvmField
     val activityRule = ActivityTestRule<MainActivity>(MainActivity::class.java, false, false)
 

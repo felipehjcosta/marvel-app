@@ -3,11 +3,13 @@ buildscript {
 
     repositories {
         jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
+        classpath "gradle.plugin.pl.droidsonroids.gradle:plugin:1.0.4"
     }
 }
 
@@ -28,6 +30,8 @@ ext.okhttp_version = "3.6.0"
 ext.gson_version = "gson"
 
 allprojects {
+    apply plugin: "pl.droidsonroids.animation-disabler"
+
     repositories {
         jcenter()
         mavenCentral()
@@ -35,8 +39,3 @@ allprojects {
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 }
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-

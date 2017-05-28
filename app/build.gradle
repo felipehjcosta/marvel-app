@@ -127,9 +127,4 @@ dependencies {
         exclude group: 'com.android.support'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     }
-
-    androidTestCompile('com.github.VictorAlbertos:DeviceAnimationTestRule:0.0.2') {
-        exclude group: 'com.android.support'
-        exclude group: 'com.google.code.findbugs', module: 'jsr305'
-    }
 }

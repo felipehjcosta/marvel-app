@@ -25,16 +25,14 @@ class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyc
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.mContentView.text = characterItemViewModels[position].name
+        holder.contentView.text = characterItemViewModels[position].name
 
         holder.itemView.setOnClickListener {
             onItemSelectedRelay.accept(characterItemViewModels[holder.adapterPosition].id)
         }
     }
 
-    override fun getItemCount(): Int {
-        return characterItemViewModels.size
-    }
+    override fun getItemCount(): Int = characterItemViewModels.size
 
     fun replaceItems(newItems: List<CharacterItemViewModel>) {
         characterItemViewModels.clear()
@@ -49,14 +47,10 @@ class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyc
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val mContentView: TextView
-
-        init {
-            mContentView = view.findViewById(R.id.content) as TextView
-        }
+        val contentView: TextView = view.findViewById(R.id.content) as TextView
 
         override fun toString(): String {
-            return super.toString() + " '" + mContentView.text + "'"
+            return super.toString() + " '" + contentView.text + "'"
         }
     }
 }

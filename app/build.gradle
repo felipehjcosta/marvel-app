@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'jacoco-android'
 
 ext {
     travisBuild = System.getenv("TRAVIS") == "true"
@@ -41,6 +42,21 @@ android {
         // Skip pre-dexing when running on Travis CI or when disabled via -Dpre-dex=false.
         preDexLibraries = preDexEnabled && !travisBuild
     }
+}
+
+jacocoAndroidUnitTestReport {
+    excludes += [
+        '**/*Module.*', // Modules for Dagger.
+        '**/*Dagger*.*', // Dagger auto-generated code.
+        '**/*MembersInjector*.*', // Dagger auto-generated code.
+        '**/*_Provide*Factory*.*',
+        '**/*_Factory.*', //Dagger auto-generated code
+        '**/*$*$*.*'
+    ]
+
+    csv.enabled false
+    html.enabled true
+    xml.enabled true
 }
 
 repositories {

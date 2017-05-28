@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/listing_swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,8 +15,10 @@
             android:name="com.felipecosta.kotlinrxjavasample.modules.listing.ListingFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:clipToPadding="false"
+            android:padding="4dp"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="vertical"
             android:visibility="gone"
             app:layoutManager="LinearLayoutManager"
             tools:context="com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterListingFragment"

@@ -12,4 +12,6 @@
     <string name="statistic_events">EVENTS</string>
     <string name="preference_file_key">kotlin-rxjava-android</string>
     <string name="saved_favorite_characters">saved_favorite_character</string>
+    <string name="card_image">Card Image</string>
+    <string name="card_title">Card title</string>
 </resources>

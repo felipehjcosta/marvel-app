@@ -6,4 +6,5 @@
     <color name="separator_color">#55FFFFFF</color>
     <color name="detail_background">#222222</color>
     <color name="text_inverse">#DEDEDE</color>
+    <color name="image_default_color">#BDBDBD</color>
 </resources>

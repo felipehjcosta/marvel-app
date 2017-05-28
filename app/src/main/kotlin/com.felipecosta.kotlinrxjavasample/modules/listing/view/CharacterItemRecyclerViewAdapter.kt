@@ -1,13 +1,18 @@
 package com.felipecosta.kotlinrxjavasample.modules.listing.view
 
+import android.graphics.drawable.ColorDrawable
+import android.support.v4.content.res.ResourcesCompat.getColor
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
+import com.felipecosta.kotlinrxjavasample.rx.findBy
 import com.jakewharton.rxrelay2.PublishRelay
+import com.nostra13.universalimageloader.core.ImageLoader
 import io.reactivex.Observable
 
 class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyclerViewAdapter.ViewHolder>() {
@@ -25,10 +30,16 @@ class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyc
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.contentView.text = characterItemViewModels[position].name
+        holder.apply {
+            contentView.text = characterItemViewModels[position].name
 
-        holder.itemView.setOnClickListener {
-            onItemSelectedRelay.accept(characterItemViewModels[holder.adapterPosition].id)
+            val defaultImageColor = getColor(view.resources, R.color.image_default_color, null)
+            imageView.setImageDrawable(ColorDrawable(defaultImageColor))
+            ImageLoader.getInstance().displayImage(characterItemViewModels[position].image, imageView)
+
+            itemView.setOnClickListener {
+                onItemSelectedRelay.accept(characterItemViewModels[adapterPosition].id)
+            }
         }
     }
 
@@ -47,7 +58,8 @@ class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyc
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val contentView: TextView = view.findViewById(R.id.content) as TextView
+        val imageView: ImageView = view.findBy(R.id.image)
+        val contentView: TextView = view.findBy(R.id.title)
 
         override fun toString(): String {
             return super.toString() + " '" + contentView.text + "'"

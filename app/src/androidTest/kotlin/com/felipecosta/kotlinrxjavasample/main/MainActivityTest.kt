@@ -4,9 +4,7 @@ import android.content.Intent
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.action.ViewActions.scrollTo
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItem
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
@@ -14,7 +12,6 @@ import com.felipecosta.kotlinrxjavasample.MockDemoApplication
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterItemRecyclerViewAdapter
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
@@ -62,9 +59,7 @@ class MainActivityTest {
 
         activityRule.launchActivity(Intent())
 
-        onView(withId(R.id.listing_recycler_view)).
-                perform(actionOnItem<CharacterItemRecyclerViewAdapter.ViewHolder>(hasDescendant(withText("Spider-Man")),
-                        scrollTo())).
+        onView(allOf(withId(R.id.listing_recycler_view), hasDescendant(withText("Spider-Man")))).
                 check(matches(isDisplayed()))
     }
 

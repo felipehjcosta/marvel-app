@@ -33,8 +33,8 @@
     <integer name="heart_fill_delay">1500</integer>
     <integer name="heart_fill_time">@android:integer/config_mediumAnimTime</integer>
     <integer name="duration_immediate">1</integer>
-    <integer name="empty_progress_delay">1401
-    </integer> <!-- activity_done_time + duration_immediate -->
+    <integer name="empty_progress_delay">1401</integer>
+    <!-- activity_done_time + duration_immediate -->
     <integer name="empty_progress_time">@android:integer/config_mediumAnimTime</integer>
 
 

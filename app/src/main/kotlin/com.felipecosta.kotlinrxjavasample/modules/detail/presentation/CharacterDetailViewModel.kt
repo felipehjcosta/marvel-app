@@ -20,16 +20,16 @@ class CharacterDetailViewModel(private val asyncCharacterCommand: AsyncCommand<C
         get() = characterObservable.map { it.thumbnail?.path + "." + it.thumbnail?.extension }
 
     val comicsCount: Observable<Int>
-        get() = characterObservable.map { it.comics?.items?.count() }
+        get() = characterObservable.map { it.comics?.items?.count() ?: 0 }
 
     val eventsCount: Observable<Int>
-        get() = characterObservable.map { it.events?.items?.count() }
+        get() = characterObservable.map { it.events?.items?.count() ?: 0 }
 
     val seriesCount: Observable<Int>
-        get() = characterObservable.map { it.series?.items?.count() }
+        get() = characterObservable.map { it.series?.items?.count() ?: 0 }
 
     val storiesCount: Observable<Int>
-        get() = characterObservable.map { it.stories?.items?.count() }
+        get() = characterObservable.map { it.stories?.items?.count() ?: 0 }
 
     val isFavorite: Observable<Boolean>
         get() = favoriteRepository.isFavorite()

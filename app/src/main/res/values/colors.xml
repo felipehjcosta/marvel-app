@@ -7,4 +7,6 @@
     <color name="detail_background">#222222</color>
     <color name="text_inverse">#DEDEDE</color>
     <color name="image_default_color">#BDBDBD</color>
+
+    <color name="launch_background">#d91900</color>
 </resources>

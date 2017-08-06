@@ -1,8 +1,7 @@
 package com.felipecosta.kotlinrxjavasample.modules.listing.view
 
 import android.animation.AnimatorInflater
-import android.graphics.drawable.ColorDrawable
-import android.support.v4.content.res.ResourcesCompat.getColor
+import android.graphics.Bitmap
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater.from
 import android.view.View
@@ -13,7 +12,9 @@ import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
 import com.felipecosta.kotlinrxjavasample.rx.findBy
 import com.jakewharton.rxrelay2.PublishRelay
+import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer
 import io.reactivex.Observable
 
 class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyclerViewAdapter.ViewHolder>() {
@@ -34,9 +35,17 @@ class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyc
         holder.apply {
             contentView.text = characterItemViewModels[position].name
 
-            val defaultImageColor = getColor(view.resources, R.color.image_default_color, null)
-            imageView.setImageDrawable(ColorDrawable(defaultImageColor))
-            ImageLoader.getInstance().displayImage(characterItemViewModels[position].image, imageView)
+            val cornerRadius = itemView.resources.getDimensionPixelSize(R.dimen.image_default_color_radius)
+
+            val imageOptions = DisplayImageOptions.Builder()
+                    .displayer(RoundedBitmapDisplayer(cornerRadius))
+                    .showImageOnLoading(R.drawable.ic_rounded_image_default)
+                    .showImageForEmptyUri(R.drawable.ic_rounded_image_default)
+                    .showImageOnFail(R.drawable.ic_rounded_image_default)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build()
+
+            ImageLoader.getInstance().displayImage(characterItemViewModels[position].image, imageView, imageOptions)
 
             itemView.setOnClickListener {
                 onItemSelectedRelay.accept(characterItemViewModels[adapterPosition].id)

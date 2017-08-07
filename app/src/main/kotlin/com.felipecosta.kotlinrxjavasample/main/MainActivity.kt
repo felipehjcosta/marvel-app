@@ -26,9 +26,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
-        setSupportActionBar(toolbar)
-
         bottomNavigationView = findViewById(R.id.nav_view) as BottomNavigationView
     }
 

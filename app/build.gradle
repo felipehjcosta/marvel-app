@@ -21,6 +21,8 @@ android {
 
         testInstrumentationRunner "com.felipecosta.kotlinrxjavasample.runner.CustomTestRunner"
 
+        vectorDrawables.useSupportLibrary = true
+
         buildConfigField "String", "MARVEL_PRIVATE_KEY", "\"" + MARVEL_PRIVATE_KEY + "\""
         buildConfigField "String", "MARVEL_PUBLIC_KEY", "\"" + MARVEL_PUBLIC_KEY + "\""
     }
@@ -50,12 +52,12 @@ android {
 
 jacocoAndroidUnitTestReport {
     excludes += [
-        '**/*Module.*', // Modules for Dagger.
-        '**/*Dagger*.*', // Dagger auto-generated code.
-        '**/*MembersInjector*.*', // Dagger auto-generated code.
-        '**/*_Provide*Factory*.*',
-        '**/*_Factory.*', //Dagger auto-generated code
-        '**/*$*$*.*'
+            '**/*Module.*', // Modules for Dagger.
+            '**/*Dagger*.*', // Dagger auto-generated code.
+            '**/*MembersInjector*.*', // Dagger auto-generated code.
+            '**/*_Provide*Factory*.*',
+            '**/*_Factory.*', //Dagger auto-generated code
+            '**/*$*$*.*'
     ]
 
     csv.enabled false

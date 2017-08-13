@@ -5,11 +5,11 @@ import java.util.*
 
 class ComicList {
     @SerializedName("available")
-    var available: Int? = null
+    var available: Int = 0
     @SerializedName("returned")
-    var returned: Int? = null
+    var returned: Int = 0
     @SerializedName("collectionURI")
     var collectionURI: String = ""
     @SerializedName("items")
-    var items: List<Summary> = ArrayList()
+    var items: List<Summary> = emptyList()
 }

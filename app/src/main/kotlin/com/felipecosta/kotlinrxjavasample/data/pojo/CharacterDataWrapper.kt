@@ -2,30 +2,28 @@ package com.felipecosta.kotlinrxjavasample.data.pojo
 
 import com.google.gson.annotations.SerializedName
 
-import java.io.Serializable
 
-
-class CharacterDataWrapper : Serializable {
+class CharacterDataWrapper {
 
     @SerializedName("code")
-    var code: Int? = null
+    var code: Int = 0
 
     @SerializedName("status")
-    var status: String? = null
+    var status: String = ""
 
     @SerializedName("copyright")
-    var copyright: String? = null
+    var copyright: String = ""
 
     @SerializedName("attributionText")
-    var attributionText: String? = null
+    var attributionText: String = ""
 
     @SerializedName("attributionHTML")
-    var attributionHTML: String? = null
+    var attributionHTML: String = ""
 
     @SerializedName("data")
-    var characterDataContainer: CharacterDataContainer? = null
+    var characterDataContainer: CharacterDataContainer = CharacterDataContainer()
 
     @SerializedName("etag")
-    var etag: String? = null
+    var etag: String = ""
 
 }

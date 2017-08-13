@@ -1,24 +1,23 @@
 package com.felipecosta.kotlinrxjavasample.data.pojo
 
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
 
 
-class CharacterDataContainer : Serializable {
+class CharacterDataContainer {
 
     @SerializedName("offset")
-    var offset: Int? = null
+    var offset: Int = 0
 
     @SerializedName("limit")
-    var limit: Int? = null
+    var limit: Int = 0
 
     @SerializedName("total")
-    var total: Int? = null
+    var total: Int = 0
 
     @SerializedName("count")
-    var count: Int? = null
+    var count: Int = 0
 
     @SerializedName("results")
-    var characters: List<Character>? = null
+    var characters: List<Character> = emptyList()
 
 }

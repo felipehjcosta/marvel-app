@@ -7,4 +7,7 @@ class Thumbnail {
     var path: String = ""
     @SerializedName("extension")
     var extension: String = ""
+
+    val url: String
+        get() = "$path.$extension"
 }

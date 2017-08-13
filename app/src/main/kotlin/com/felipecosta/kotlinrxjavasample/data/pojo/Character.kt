@@ -1,12 +1,11 @@
 package com.felipecosta.kotlinrxjavasample.data.pojo
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 
 class Character {
     @SerializedName("id")
-    var id: Int? = null
+    var id: Int = -1
 
     @SerializedName("name")
     var name: String = ""
@@ -14,29 +13,26 @@ class Character {
     @SerializedName("description")
     var description: String = ""
 
-    @SerializedName("modified")
-    var modified: Date? = null
-
     @SerializedName("resourceURI")
     var resourceURI: String = ""
 
     @SerializedName("urls")
-    var urls: List<Url> = ArrayList()
+    var urls: List<Url> = emptyList()
 
     @SerializedName("thumbnail")
-    var thumbnail: Thumbnail? = null
+    var thumbnail: Thumbnail = Thumbnail()
 
     @SerializedName("comics")
-    var comics: ComicList? = null
+    var comics: ComicList = ComicList()
 
     @SerializedName("stories")
-    var stories: StoryList? = null
+    var stories: StoryList = StoryList()
 
     @SerializedName("events")
-    var events: EventList? = null
+    var events: EventList = EventList()
 
     @SerializedName("series")
-    var series: SeriesList? = null
+    var series: SeriesList = SeriesList()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -49,7 +45,5 @@ class Character {
         return true
     }
 
-    override fun hashCode(): Int {
-        return id ?: 0
-    }
+    override fun hashCode(): Int = id
 }

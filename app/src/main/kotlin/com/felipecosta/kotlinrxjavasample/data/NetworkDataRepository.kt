@@ -50,7 +50,7 @@ class NetworkDataRepository : DataRepository {
                 BuildConfig.MARVEL_PUBLIC_KEY,
                 getHash())
                 .map { characterDataWrapper ->
-                    characterDataWrapper.characterDataContainer?.characters!!
+                    characterDataWrapper.characterDataContainer.characters
                 }
     }
 
@@ -61,7 +61,7 @@ class NetworkDataRepository : DataRepository {
                 BuildConfig.MARVEL_PUBLIC_KEY,
                 getHash())
                 .map { characterDataWrapper ->
-                    characterDataWrapper.characterDataContainer?.characters?.get(0)!!
+                    characterDataWrapper.characterDataContainer.characters[0]
                 }
     }
 

@@ -37,13 +37,13 @@ class CharacterListViewModel(private val dataModel: ListingDataModel) {
         get() = asyncLoadItemsCommand.execution.map { it.size to it }
                 .doOnNext { currentItemsOffsetRelay.accept(it.first) }
                 .map { it.second }
-                .map { it.map { CharacterItemViewModel(it.id ?: -1, it.name, "${it.thumbnail?.path}.${it.thumbnail?.extension}") } }
+                .map { it.map { CharacterItemViewModel(it.id, it.name, it.thumbnail.url) } }
 
     val newItems: Observable<List<CharacterItemViewModel>>
         get() = asyncLoadMoreCommand.execution.map { currentItemsOffsetRelay.value + it.size to it }
                 .doOnNext { currentItemsOffsetRelay.accept(it.first) }
                 .map { it.second }
-                .map { it.map { CharacterItemViewModel(it.id ?: -1, it.name, "${it.thumbnail?.path}.${it.thumbnail?.extension}") } }
+                .map { it.map { CharacterItemViewModel(it.id, it.name, it.thumbnail.url) } }
 
     val loadItemsCommand: Command
         get() = asyncLoadItemsCommand

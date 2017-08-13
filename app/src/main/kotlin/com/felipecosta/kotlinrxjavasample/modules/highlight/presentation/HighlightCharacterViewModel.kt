@@ -23,9 +23,7 @@ class HighlightCharacterViewModel(dataModel: HighlightDataModel) {
     val items: Observable<List<CharacterItemViewModel>>
         get() = asyncLoadItemsCommand.execution.map {
             it.map {
-                CharacterItemViewModel(it.id ?: -1,
-                        it.name,
-                        "${it.thumbnail?.path}.${it.thumbnail?.extension}")
+                CharacterItemViewModel(it.id, it.name, it.thumbnail.url)
             }
         }
 }

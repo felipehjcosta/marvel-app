@@ -5,7 +5,7 @@ import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import io.reactivex.Observable
 import io.reactivex.Observable.just
 
-class HighlightDataModel(private val repository: DataRepository) {
+class HighlightedCharactersDataModel(private val repository: DataRepository) {
 
     fun getHighlightedCharacters(): Observable<List<Character>> = just(1009351, 1009610, 1009718, 1009368)
             .concatMap { repository.getCharacter(it) }

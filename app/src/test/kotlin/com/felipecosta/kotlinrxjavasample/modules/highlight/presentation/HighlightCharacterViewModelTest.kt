@@ -1,7 +1,7 @@
 package com.felipecosta.kotlinrxjavasample.modules.highlight.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.modules.highlight.datamodel.HighlightDataModel
+import com.felipecosta.kotlinrxjavasample.modules.highlight.datamodel.HighlightedCharactersDataModel
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
@@ -15,7 +15,7 @@ import org.junit.Test
 
 class HighlightCharacterViewModelTest {
 
-    val dataModel = mock<HighlightDataModel>()
+    val dataModel = mock<HighlightedCharactersDataModel>()
 
     val viewModel = HighlightCharacterViewModel(dataModel)
 

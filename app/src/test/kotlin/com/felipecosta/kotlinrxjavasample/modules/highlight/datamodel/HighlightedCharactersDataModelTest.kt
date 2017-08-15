@@ -8,11 +8,11 @@ import io.reactivex.Observable.just
 import io.reactivex.observers.TestObserver
 import org.junit.Test
 
-class HighlightDataModelTest {
+class HighlightedCharactersDataModelTest {
 
     val repository = mock<DataRepository>()
 
-    val dataModel = HighlightDataModel(repository)
+    val dataModel = HighlightedCharactersDataModel(repository)
 
     @Test
     fun getHighlightedCharacters() {

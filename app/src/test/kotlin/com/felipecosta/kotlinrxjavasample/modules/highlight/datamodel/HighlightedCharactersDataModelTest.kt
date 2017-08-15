@@ -15,29 +15,19 @@ class HighlightedCharactersDataModelTest {
     val dataModel = HighlightedCharactersDataModel(repository)
 
     @Test
-    fun getHighlightedCharacters() {
-        val hulk = Character().apply {
-            name = "Hulk"
-            whenever(repository.getCharacter(1009351)).thenReturn(just(this))
-        }
-        val spiderMan = Character().apply {
-            name = "Spider-Man"
-            whenever(repository.getCharacter(1009610)).thenReturn(just(this))
-        }
-        val wolverine = Character().apply {
-            name = "Wolverine"
-            whenever(repository.getCharacter(1009718)).thenReturn(just(this))
-        }
-        val ironMan = Character().apply {
-            name = "Iron-Man"
-            whenever(repository.getCharacter(1009368)).thenReturn(just(this))
-        }
+    fun whenGetHighlightedCharactersThenAssertPredefinedCharacters() {
+
+        val expected = listOf(1009351, 1009610, 1009718, 1009368).map {
+            Character().apply {
+                whenever(repository.getCharacter(it)).thenReturn(just(this))
+            }
+        }.toList()
 
         val itemsObserver = TestObserver.create<List<Character>>()
 
         dataModel.getHighlightedCharacters().subscribe(itemsObserver)
 
-        itemsObserver.assertValue { it == listOf(hulk, spiderMan, wolverine, ironMan) }
+        itemsObserver.assertValue(expected)
 
         itemsObserver.dispose()
     }

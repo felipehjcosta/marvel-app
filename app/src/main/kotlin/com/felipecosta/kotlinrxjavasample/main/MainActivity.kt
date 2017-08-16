@@ -3,10 +3,9 @@ package com.felipecosta.kotlinrxjavasample.main
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.favorite.view.FavoriteFragment
-import com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterListingFragment
+import com.felipecosta.kotlinrxjavasample.modules.highlight.view.WikiFragment
 import com.jakewharton.rxbinding2.support.design.widget.itemSelections
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         val sample1FragmentObservable = itemSelectionObservable.
                 filter { it.itemId == R.id.nav_listing }.
-                map { CharacterListingFragment.newInstance() }
+                map { WikiFragment.newInstance() }
 
         val sample2FragmentObservable = itemSelectionObservable.
                 filter { it.itemId == R.id.nav_favorite }.

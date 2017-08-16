@@ -13,11 +13,11 @@ import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Test
 
-class HighlightCharacterViewModelTest {
+class HighlightedCharactersViewModelTest {
 
     val dataModel = mock<HighlightedCharactersDataModel>()
 
-    val viewModel = HighlightCharacterViewModel(dataModel)
+    val viewModel = HighlightedCharactersViewModel(dataModel)
 
     @Before
     fun setUp() {

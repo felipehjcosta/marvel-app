@@ -9,7 +9,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class HighlightCharacterViewModel(dataModel: HighlightedCharactersDataModel) {
+class HighlightedCharactersViewModel(dataModel: HighlightedCharactersDataModel) {
 
     private val asyncLoadItemsCommand: AsyncCommand<List<Character>> = AsyncCommand {
         dataModel.getHighlightedCharacters()

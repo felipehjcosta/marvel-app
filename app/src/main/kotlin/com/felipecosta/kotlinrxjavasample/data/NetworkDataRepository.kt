@@ -3,41 +3,13 @@ package com.felipecosta.kotlinrxjavasample.data
 import com.felipecosta.kotlinrxjavasample.BuildConfig
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import io.reactivex.Observable
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import java.security.NoSuchAlgorithmException
 import java.util.*
 
 
-class NetworkDataRepository(baseURL: String? = null) : DataRepository {
+class NetworkDataRepository(private val characterService: CharacterService) : DataRepository {
 
-    val PORT = "80"
-    val BASE_URL = "http://gateway.marvel.com" + ":" + PORT
     val timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L
-    val characterService: CharacterService
-
-    init {
-        val httpClient = OkHttpClient.Builder()
-        setLoggingInterceptorsForDebug(httpClient)
-        val retrofit = Retrofit.Builder()
-                .baseUrl(baseURL)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
-                .build()
-        characterService = retrofit.create(CharacterService::class.java)
-    }
-
-    private fun setLoggingInterceptorsForDebug(httpClient: OkHttpClient.Builder) {
-        if (BuildConfig.DEBUG) {
-            val logging = HttpLoggingInterceptor()
-            logging.level = HttpLoggingInterceptor.Level.BODY
-            httpClient.addInterceptor(logging)
-        }
-    }
 
     fun getHash(): String {
         return md5(timestamp.toString() + BuildConfig.MARVEL_PRIVATE_KEY + BuildConfig.MARVEL_PUBLIC_KEY)

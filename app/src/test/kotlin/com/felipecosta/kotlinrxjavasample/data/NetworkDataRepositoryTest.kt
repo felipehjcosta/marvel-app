@@ -2,11 +2,14 @@ package com.felipecosta.kotlinrxjavasample.data
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import io.reactivex.observers.TestObserver
+import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
-import org.junit.Before
 import org.junit.Test
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class NetworkDataRepositoryTest {
@@ -15,19 +18,22 @@ class NetworkDataRepositoryTest {
 
     val baseUrl: String = "http://${mockWebServer.hostName}:${mockWebServer.port}"
 
-    val networkDataRepository = NetworkDataRepository(baseUrl)
+    val httpClient: OkHttpClient = OkHttpClient.Builder().build()
+    val service: CharacterService = Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(httpClient)
+            .build().create(CharacterService::class.java)
 
-    @Before
-    fun setUp() {
-    }
+    val networkDataRepository = NetworkDataRepository(service)
 
     @After
-    fun tearDown() {
-        mockWebServer.shutdown()
-    }
+    fun tearDown() = mockWebServer.shutdown()
+
 
     @Test
-    fun name() {
+    fun whenGetCharacterShouldDeliverCharacterObjectOnSuccess() {
 
         val body = javaClass.classLoader.getResourceAsStream("integrationTest/spider-man.json")?.use {
             it.reader().readText()
@@ -41,6 +47,25 @@ class NetworkDataRepositoryTest {
         itemObserver.awaitTerminalEvent()
 
         itemObserver.assertValue { it.id == 1009664 }
+
+        itemObserver.dispose()
+    }
+
+    @Test
+    fun whenGetCharacterListShouldDeliverCharacterObjectsOnSuccess() {
+
+        val body = javaClass.classLoader.getResourceAsStream("integrationTest/characters.json")?.use {
+            it.reader().readText()
+        }
+
+        mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody(body))
+
+        val itemObserver = TestObserver.create<List<Character>>()
+        networkDataRepository.getCharacterList(0, 2).subscribe(itemObserver)
+
+        itemObserver.awaitTerminalEvent()
+
+        itemObserver.assertValue { it.size == 2 }
 
         itemObserver.dispose()
     }

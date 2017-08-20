@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException
 import java.util.*
 
 
-class NetworkDataRepository : DataRepository {
+class NetworkDataRepository(baseURL: String? = null) : DataRepository {
 
     val PORT = "80"
     val BASE_URL = "http://gateway.marvel.com" + ":" + PORT
@@ -23,7 +23,7 @@ class NetworkDataRepository : DataRepository {
         val httpClient = OkHttpClient.Builder()
         setLoggingInterceptorsForDebug(httpClient)
         val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(baseURL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())

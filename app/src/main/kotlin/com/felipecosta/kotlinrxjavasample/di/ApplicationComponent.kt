@@ -3,7 +3,7 @@ package com.felipecosta.kotlinrxjavasample.di
 
 import android.app.Application
 import com.felipecosta.kotlinrxjavasample.DemoApplication
-import com.felipecosta.kotlinrxjavasample.modules.highlight.di.WikiFragmentBuilderModule
+import com.felipecosta.kotlinrxjavasample.modules.wiki.di.WikiFragmentBuilderModule
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.CharacterListingFragmentBuilderModule
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.DetailActivityBuilderModule
 import dagger.BindsInstance

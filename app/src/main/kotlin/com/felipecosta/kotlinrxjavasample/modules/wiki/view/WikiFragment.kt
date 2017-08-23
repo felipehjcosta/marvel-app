@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.modules.highlight.view
+package com.felipecosta.kotlinrxjavasample.modules.wiki.view
 
 
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.modules.highlight.presentation.HighlightedCharactersViewModel
-import com.felipecosta.kotlinrxjavasample.modules.highlight.presentation.OthersCharactersViewModel
+import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.HighlightedCharactersViewModel
+import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.OthersCharactersViewModel
 import javax.inject.Inject
 
 

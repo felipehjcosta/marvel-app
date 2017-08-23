@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.modules.highlight.datamodel
+package com.felipecosta.kotlinrxjavasample.modules.wiki.datamodel
 
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character

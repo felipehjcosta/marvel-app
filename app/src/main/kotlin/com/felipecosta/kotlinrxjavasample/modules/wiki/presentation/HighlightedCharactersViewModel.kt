@@ -1,7 +1,7 @@
-package com.felipecosta.kotlinrxjavasample.modules.highlight.presentation
+package com.felipecosta.kotlinrxjavasample.modules.wiki.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.modules.highlight.datamodel.OthersCharactersDataModel
+import com.felipecosta.kotlinrxjavasample.modules.wiki.datamodel.HighlightedCharactersDataModel
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
 import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
 import com.felipecosta.kotlinrxjavasample.rx.Command
@@ -9,10 +9,10 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class OthersCharactersViewModel(private val dataModel: OthersCharactersDataModel) {
+class HighlightedCharactersViewModel(dataModel: HighlightedCharactersDataModel) {
 
     private val asyncLoadItemsCommand: AsyncCommand<List<Character>> = AsyncCommand {
-        dataModel.getOthersCharacters()
+        dataModel.getHighlightedCharacters()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
     }

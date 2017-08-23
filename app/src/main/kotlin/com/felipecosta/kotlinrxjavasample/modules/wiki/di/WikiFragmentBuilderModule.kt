@@ -1,7 +1,7 @@
-package com.felipecosta.kotlinrxjavasample.modules.highlight.di
+package com.felipecosta.kotlinrxjavasample.modules.wiki.di
 
 import com.felipecosta.kotlinrxjavasample.modules.detail.di.WikiScope
-import com.felipecosta.kotlinrxjavasample.modules.highlight.view.WikiFragment
+import com.felipecosta.kotlinrxjavasample.modules.wiki.view.WikiFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

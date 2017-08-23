@@ -5,7 +5,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.favorite.view.FavoriteFragment
-import com.felipecosta.kotlinrxjavasample.modules.highlight.view.WikiFragment
+import com.felipecosta.kotlinrxjavasample.modules.wiki.view.WikiFragment
 import com.jakewharton.rxbinding2.support.design.widget.itemSelections
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable

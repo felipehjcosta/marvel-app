@@ -1,11 +1,11 @@
-package com.felipecosta.kotlinrxjavasample.modules.highlight.di
+package com.felipecosta.kotlinrxjavasample.modules.wiki.di
 
 import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.modules.detail.di.WikiScope
-import com.felipecosta.kotlinrxjavasample.modules.highlight.datamodel.HighlightedCharactersDataModel
-import com.felipecosta.kotlinrxjavasample.modules.highlight.datamodel.OthersCharactersDataModel
-import com.felipecosta.kotlinrxjavasample.modules.highlight.presentation.HighlightedCharactersViewModel
-import com.felipecosta.kotlinrxjavasample.modules.highlight.presentation.OthersCharactersViewModel
+import com.felipecosta.kotlinrxjavasample.modules.wiki.datamodel.HighlightedCharactersDataModel
+import com.felipecosta.kotlinrxjavasample.modules.wiki.datamodel.OthersCharactersDataModel
+import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.HighlightedCharactersViewModel
+import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.OthersCharactersViewModel
 import dagger.Module
 import dagger.Provides
 

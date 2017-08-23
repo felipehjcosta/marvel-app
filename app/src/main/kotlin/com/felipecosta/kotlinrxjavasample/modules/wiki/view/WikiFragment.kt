@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterItemRecyclerViewAdapter
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.HighlightedCharactersViewModel
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.OthersCharactersViewModel
 import com.felipecosta.kotlinrxjavasample.rx.findBy
@@ -28,7 +27,7 @@ class WikiFragment : Fragment() {
 
     lateinit var compositeDisposable: CompositeDisposable
 
-    lateinit var adapter: CharacterItemRecyclerViewAdapter
+    lateinit var adapter: OthersCharacterItemRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -42,7 +41,7 @@ class WikiFragment : Fragment() {
             val recyclerView: RecyclerView = it.findBy(R.id.others_characters_recycler_view)
 
             recyclerView.layoutManager = GridLayoutManager(context, 3)
-            adapter = CharacterItemRecyclerViewAdapter()
+            adapter = OthersCharacterItemRecyclerViewAdapter()
             recyclerView.adapter = adapter
 
             bind()

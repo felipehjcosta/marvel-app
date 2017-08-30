@@ -10,19 +10,16 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.felipecosta.kotlinrxjavasample.MockDemoApplication
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
+import okhttp3.mockwebserver.MockWebServer
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.anyInt
-import org.mockito.Mockito
 import javax.inject.Inject
 
 
@@ -33,7 +30,7 @@ class MainActivityTest {
     val activityRule = ActivityTestRule<MainActivity>(MainActivity::class.java, false, false)
 
     @Inject
-    lateinit var dataRepository: DataRepository
+    lateinit var mockWebServer: MockWebServer
 
     @Before
     fun setUp() {
@@ -45,7 +42,6 @@ class MainActivityTest {
         val mockDemoApplication = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as MockDemoApplication
 
         mockDemoApplication.applicationComponent.inject(this)
-        Mockito.reset(dataRepository)
     }
 
     @Test
@@ -53,9 +49,6 @@ class MainActivityTest {
         val characterName = "Spider-Man"
         val character = Character()
         character.name = characterName
-
-        Mockito.`when`(dataRepository.getCharacterList(anyInt(), anyInt())).
-                thenReturn(Observable.just(listOf(character)))
 
         activityRule.launchActivity(Intent())
 

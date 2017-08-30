@@ -3,16 +3,18 @@ package com.felipecosta.kotlinrxjavasample.di
 
 import android.app.Application
 import com.felipecosta.kotlinrxjavasample.DemoApplication
-import com.felipecosta.kotlinrxjavasample.modules.wiki.di.WikiFragmentBuilderModule
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.CharacterListingFragmentBuilderModule
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.DetailActivityBuilderModule
+import com.felipecosta.kotlinrxjavasample.modules.wiki.di.WikiFragmentBuilderModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(AppModule::class,
+@Component(modules = arrayOf(ApplicationModule::class,
+        NetworkModule::class,
+        AppModule::class,
         AndroidInjectionModule::class,
         CharacterListingFragmentBuilderModule::class,
         DetailActivityBuilderModule::class,

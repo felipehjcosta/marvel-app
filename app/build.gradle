@@ -122,6 +122,7 @@ dependencies {
     testCompile 'org.mockito:mockito-core:2.6.3'
 
     androidTestCompile 'org.mockito:mockito-android:2.6.3'
+    androidTestCompile "com.squareup.okhttp3:mockwebserver:$okhttp_version"
     kaptAndroidTest 'com.google.dagger:dagger-compiler:2.11-rc2'
     kaptAndroidTest 'com.google.dagger:dagger-android-processor:2.11-rc2'
 

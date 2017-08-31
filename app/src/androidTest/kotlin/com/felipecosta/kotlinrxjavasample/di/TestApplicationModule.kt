@@ -11,5 +11,5 @@ class TestApplicationModule {
 
     @Singleton
     @Provides
-    fun providesApplicationContext(): Context = InstrumentationRegistry.getContext().applicationContext
+    fun providesApplicationContext(): Context = InstrumentationRegistry.getTargetContext()
 }

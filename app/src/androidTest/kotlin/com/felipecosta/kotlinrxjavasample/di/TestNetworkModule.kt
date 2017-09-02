@@ -23,11 +23,12 @@ class TestNetworkModule {
             logging.level = HttpLoggingInterceptor.Level.BODY
             addInterceptor(logging)
         }
+
     }.build()
 
     @Provides
     @Singleton
-    fun providesMockWebServer(): MockWebServer = MockWebServer()
+    fun providesMockWebServer(): MockWebServer = MockWebServer().apply { start() }
 
     @Singleton
     @Provides

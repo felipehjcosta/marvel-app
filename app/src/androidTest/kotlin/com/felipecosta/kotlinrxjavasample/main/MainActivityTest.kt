@@ -2,6 +2,7 @@ package com.felipecosta.kotlinrxjavasample.main
 
 import android.content.Intent
 import android.support.test.InstrumentationRegistry
+import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
@@ -10,12 +11,15 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.felipecosta.kotlinrxjavasample.MockDemoApplication
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import io.reactivex.android.plugins.RxAndroidPlugins
+import com.felipecosta.kotlinrxjavasample.utils.RxEspressoScheduleHandler
+import com.felipecosta.kotlinrxjavasample.utils.readAsset
 import io.reactivex.plugins.RxJavaPlugins
-import io.reactivex.schedulers.Schedulers
+import okhttp3.mockwebserver.Dispatcher
+import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import okhttp3.mockwebserver.RecordedRequest
 import org.hamcrest.core.AllOf.allOf
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -32,34 +36,72 @@ class MainActivityTest {
     @Inject
     lateinit var mockWebServer: MockWebServer
 
-    @Before
-    fun setUp() {
+    val rxEspressoScheduleHandler = RxEspressoScheduleHandler()
 
-        RxJavaPlugins.reset()
-        RxJavaPlugins.setInitNewThreadSchedulerHandler { Schedulers.trampoline() }
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
-
+    init {
         val mockDemoApplication = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as MockDemoApplication
 
         mockDemoApplication.applicationComponent.inject(this)
     }
 
+    @Before
+    fun setUp() {
+
+        mockWebServer.setDispatcher(object : Dispatcher() {
+            override fun dispatch(request: RecordedRequest?): MockResponse {
+                return when (request!!.requestUrl.encodedPath()) {
+                    "/v1/public/characters/1009664" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1009664.json"))
+                    "/v1/public/characters/1009220" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1009220.json"))
+                    "/v1/public/characters/1010733" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1010733.json"))
+                    "/v1/public/characters/1009629" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1009629.json"))
+                    "/v1/public/characters/1009175" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1009175.json"))
+                    "/v1/public/characters/1009268" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1009268.json"))
+                    "/v1/public/characters/1009417" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1009417.json"))
+                    else -> MockResponse().setResponseCode(404)
+                }
+            }
+        })
+
+        RxJavaPlugins.setScheduleHandler(rxEspressoScheduleHandler)
+        Espresso.registerIdlingResources(rxEspressoScheduleHandler.idlingResource)
+    }
+
+    @After
+    fun tearDown() {
+        Espresso.unregisterIdlingResources(rxEspressoScheduleHandler.idlingResource)
+    }
+
     @Test
     fun whenMainActivityFirstAppearsThenFirstListItemIsShowing() {
-        val characterName = "Spider-Man"
-        val character = Character()
-        character.name = characterName
-
         activityRule.launchActivity(Intent())
-
-        onView(allOf(withId(R.id.listing_recycler_view), hasDescendant(withText("Spider-Man")))).
+        onView(allOf(withId(R.id.others_characters_recycler_view), hasDescendant(withText("Thor")))).
                 check(matches(isDisplayed()))
     }
 
     @Test
     fun whenSelectSecondOptionThenSecondSampleIsShowing() {
         activityRule.launchActivity(Intent())
-
         onView(allOf(withText("Favorites"), isDescendantOfA(withId(R.id.nav_view)), isCompletelyDisplayed())).
                 perform(click())
 

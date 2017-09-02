@@ -1,0 +1,345 @@
+{
+  "code": 200,
+  "status": "Ok",
+  "copyright": "© 2017 MARVEL",
+  "attributionText": "Data provided by Marvel. © 2017 MARVEL",
+  "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2017 MARVEL</a>",
+  "etag": "c226dc608105648256d218f47f9597a8bfb9e31e",
+  "data": {
+    "offset": 0,
+    "limit": 20,
+    "total": 1,
+    "count": 1,
+    "results": [
+      {
+        "id": 1010733,
+        "name": "Star-Lord (Peter Quill)",
+        "description": "Refusing to miss his opportunity, Peter Jason Quill stole a scoutship from Cape Canaveral, returned to Eve, and shot his way to the appointed spot, where his old rival Harrelson, NASA's choice to be Star-Lord, was awaiting selection, where Quill was transported away in his stead, and transformed into Star-Lord.",
+        "modified": "2014-07-14T20:45:53-0400",
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/a0/537bc55e8b1f5",
+          "extension": "jpg"
+        },
+        "resourceURI": "http://gateway.marvel.com/v1/public/characters/1010733",
+        "comics": {
+          "available": 46,
+          "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010733/comics",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/49943",
+              "name": "All-New X-Men (2012) #24 (Keown Variant)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/22433",
+              "name": "Annihilation Classic (Hardcover)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/17271",
+              "name": "Annihilation: Conquest (2007) #1"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/17405",
+              "name": "Annihilation: Conquest (2007) #2"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/17645",
+              "name": "Annihilation: Conquest (2007) #3"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/20686",
+              "name": "Annihilation: Conquest (2007) #4"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/20885",
+              "name": "Annihilation: Conquest (2007) #5"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/21016",
+              "name": "Annihilation: Conquest (2007) #6"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/16598",
+              "name": "Annihilation: Conquest - Starlord (2007) #3"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/16599",
+              "name": "Annihilation: Conquest - Starlord (2007) #4"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/43305",
+              "name": "Guardians of the Galaxy (2013) #1"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/25308",
+              "name": "Guardians of the Galaxy (2008) #20"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/62678",
+              "name": "GUARDIANS OF THE GALAXY: AWESOME MIX INFINITE COMIC (2016) #9"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/62683",
+              "name": "GUARDIANS OF THE GALAXY: AWESOME MIX INFINITE COMIC (2016) #10"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/50887",
+              "name": "Legendary Star-Lord (2014) #1"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/10252",
+              "name": "Marvel Premiere (1972) #61"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/19776",
+              "name": "Marvel Preview (1977) #4"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/19759",
+              "name": "Marvel Preview (1977) #10"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/19760",
+              "name": "Marvel Preview (1977) #11"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/19762",
+              "name": "Marvel Preview (1977) #13"
+            }
+          ],
+          "returned": 20
+        },
+        "series": {
+          "available": 24,
+          "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010733/series",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/16449",
+              "name": "All-New X-Men (2012 - Present)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/6056",
+              "name": "Annihilation Classic (2008)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/3061",
+              "name": "Annihilation: Conquest (2007)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2541",
+              "name": "Annihilation: Conquest - Starlord (2007)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/16410",
+              "name": "Guardians of the Galaxy (2013 - Present)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/4885",
+              "name": "Guardians of the Galaxy (2008 - 2010)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/22922",
+              "name": "GUARDIANS OF THE GALAXY: AWESOME MIX INFINITE COMIC (2016 - 2017)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/19044",
+              "name": "Legendary Star-Lord (2014 - Present)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2045",
+              "name": "Marvel Premiere (1972 - 1981)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/3718",
+              "name": "Marvel Preview (1977 - 1981)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2046",
+              "name": "Marvel Spotlight (1979 - 1981)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/19047",
+              "name": "Marvel Super Special (1977 - 1986)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/21699",
+              "name": "Marvel Universe Ultimate Spider-Man Vs. the Sinister Six (2016 - Present)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/1595",
+              "name": "Marvel Visionaries: Chris Claremont (2005)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/20619",
+              "name": "Star-Lord (2015 - Present)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/22652",
+              "name": "Star-Lord (2016 - Present)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/23048",
+              "name": "Star-Lord Annual (2017)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/22850",
+              "name": "Star-Lord: Grounded (2017)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/548",
+              "name": "Thanos (2003 - 2004)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/14615",
+              "name": "Thanos Imperative (2011)"
+            }
+          ],
+          "returned": 20
+        },
+        "stories": {
+          "available": 85,
+          "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010733/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/2444",
+              "name": "Cover #2444",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/20014",
+              "name": "Cover #20014",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/20015",
+              "name": "Planet Story",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/21017",
+              "name": "Cover #21017",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/21018",
+              "name": "The Saga of Star-Lord",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/21019",
+              "name": "Cover #21019",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/21020",
+              "name": "Tears for the World Called Heaven",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/33476",
+              "name": "Annihilation Conquest: Starlord (2007) #3",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/33478",
+              "name": "Annihilation Conquest: Starlord (2007) #4",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/36193",
+              "name": "Annihilation: Conquest (2007) #1",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/36194",
+              "name": "Annihilation: Conquest (2007) #1 - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/36493",
+              "name": "Annihilation: Conquest (2007) #2 ",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/36494",
+              "name": "Annihilation: Conquest (2007) #2 - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/36934",
+              "name": "Annihilation: Conquest (2007) #3 - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/41901",
+              "name": "ad (next issue)",
+              "type": ""
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/41904",
+              "name": "Cover #41904",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/41905",
+              "name": "pin-up",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/41906",
+              "name": "Second Launch!",
+              "type": "text article"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/41907",
+              "name": "Star-Lord",
+              "type": ""
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/41908",
+              "name": "1. Windhoelme",
+              "type": "interiorStory"
+            }
+          ],
+          "returned": 20
+        },
+        "events": {
+          "available": 4,
+          "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010733/events",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/293",
+              "name": "Annihilation: Conquest"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/311",
+              "name": "Marvel NOW!"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/295",
+              "name": "Realm of Kings"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/294",
+              "name": "The Thanos Imperative"
+            }
+          ],
+          "returned": 4
+        },
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/characters/56/star-lord?utm_campaign=apiRef&utm_source=9549585bdad28d04622dcd45ed0238aa"
+          },
+          {
+            "type": "wiki",
+            "url": "http://marvel.com/universe/Star-Lord_(Peter_Quill)?utm_campaign=apiRef&utm_source=9549585bdad28d04622dcd45ed0238aa"
+          },
+          {
+            "type": "comiclink",
+            "url": "http://marvel.com/comics/characters/1010733/star-lord_peter_quill?utm_campaign=apiRef&utm_source=9549585bdad28d04622dcd45ed0238aa"
+          }
+        ]
+      }
+    ]
+  }
+}

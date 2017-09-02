@@ -1,0 +1,409 @@
+{
+  "code": 200,
+  "status": "Ok",
+  "copyright": "© 2017 MARVEL",
+  "attributionText": "Data provided by Marvel. © 2017 MARVEL",
+  "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2017 MARVEL</a>",
+  "etag": "86e7c8fcc667b0e190b908febb52ae428b5890b6",
+  "data": {
+    "offset": 0,
+    "limit": 20,
+    "total": 1,
+    "count": 1,
+    "results": [
+      {
+        "id": 1009220,
+        "name": "Captain America",
+        "description": "Vowing to serve his country any way he could, young Steve Rogers took the super soldier serum to become America's one-man army. Fighting for the red, white and blue for over 60 years, Captain America is the living, breathing symbol of freedom and liberty.",
+        "modified": "2016-09-06T11:37:19-0400",
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087",
+          "extension": "jpg"
+        },
+        "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009220",
+        "comics": {
+          "available": 1814,
+          "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009220/comics",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/43488",
+              "name": "A+X (2012) #1"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/43501",
+              "name": "A+X (2012) #4"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/43508",
+              "name": "A+X (2012) #9"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/17741",
+              "name": "A-Next (1998) #11"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/42539",
+              "name": "Age of Apocalypse (2011) #2 (Avengers Art Appreciation Variant)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/30885",
+              "name": "Age of Heroes (Trade Paperback)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/30090",
+              "name": "Age of Heroes (2010) #1"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/30093",
+              "name": "Age of Heroes (2010) #4"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/38524",
+              "name": "Age of X: Universe (2011) #1"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/38523",
+              "name": "Age of X: Universe (2011) #2"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/56442",
+              "name": "All-New Wolverine (2015) #11"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/59597",
+              "name": "Avengers (2016) #2.1"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12555",
+              "name": "All-Winners Comics (1941) #1"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12566",
+              "name": "All-Winners Comics (1941) #2"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12568",
+              "name": "All-Winners Comics (1941) #3"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12569",
+              "name": "All-Winners Comics (1941) #4"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12570",
+              "name": "All-Winners Comics (1941) #5"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12571",
+              "name": "All-Winners Comics (1941) #6"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12572",
+              "name": "All-Winners Comics (1941) #7"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12573",
+              "name": "All-Winners Comics (1941) #8"
+            }
+          ],
+          "returned": 20
+        },
+        "series": {
+          "available": 483,
+          "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009220/series",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/16450",
+              "name": "A+X (2012 - Present)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/3620",
+              "name": "A-Next (1998 - 1999)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/15331",
+              "name": "Age of Apocalypse (2011 - 2013)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/9790",
+              "name": "Age of Heroes (2010)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/10235",
+              "name": "Age of Heroes (2011)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/13896",
+              "name": "Age of X: Universe (2011)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/20682",
+              "name": "All-New Wolverine (2015 - Present)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2114",
+              "name": "All-Winners Comics (1941 - 1947)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/9865",
+              "name": "All-Winners Squad: Band of Heroes (2011)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2116",
+              "name": "Alpha Flight (1983 - 1994)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/1983",
+              "name": "Alpha Flight Classic Vol. 1 (2007)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/20432",
+              "name": "Amazing Spider-Man (2015 - Present)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/454",
+              "name": "Amazing Spider-Man (1999 - 2013)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/1987",
+              "name": "Amazing Spider-Man (1963 - 1998)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/15540",
+              "name": "Amazing Spider-Man Annual (2012)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/9802",
+              "name": "Amazing Spider-Man Annual (2010)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2984",
+              "name": "Amazing Spider-Man Annual (1964 - 2009)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/1489",
+              "name": "Amazing Spider-Man Vol. 10: New Avengers (2005)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/14818",
+              "name": "Annihilators: Earthfall (2011)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/14696",
+              "name": "Art of Marvel Movies: The Art of Captain America - The First Avenger (2011 - Present)"
+            }
+          ],
+          "returned": 20
+        },
+        "stories": {
+          "available": 2742,
+          "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009220/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/670",
+              "name": "X-MEN (2004) #186",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/892",
+              "name": "Cover #892",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/960",
+              "name": "3 of ?",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1026",
+              "name": "Avengers (1998) #81",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1041",
+              "name": "Avengers (1998) #502",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1042",
+              "name": "Avengers (1998) #503",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1054",
+              "name": "Avengers (1998) #72",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1163",
+              "name": "Amazing Spider-Man (1999) #519",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1165",
+              "name": "Amazing Spider-Man (1999) #520",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1167",
+              "name": "Amazing Spider-Man (1999) #521",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1175",
+              "name": "Amazing Spider-Man (1999) #523",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1193",
+              "name": "Amazing Spider-Man (1999) #534",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1199",
+              "name": "Amazing Spider-Man (1999) #537",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1203",
+              "name": "Amazing Spider-Man (1999) #538",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1606",
+              "name": "WEAPON X (2002) #14",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1649",
+              "name": "Avengers (1998) #77",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1675",
+              "name": "Cover #1675",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1947",
+              "name": "Avengers (1998) #78",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/1949",
+              "name": "Avengers (1998) #79",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/2326",
+              "name": "Avengers (1998) #74",
+              "type": "cover"
+            }
+          ],
+          "returned": 20
+        },
+        "events": {
+          "available": 25,
+          "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009220/events",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/116",
+              "name": "Acts of Vengeance!"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/303",
+              "name": "Age of X"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/231",
+              "name": "Armor Wars"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/234",
+              "name": "Avengers Disassembled"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/310",
+              "name": "Avengers VS X-Men"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/296",
+              "name": "Chaos War"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/238",
+              "name": "Civil War"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/248",
+              "name": "Fall of the Mutants"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/302",
+              "name": "Fear Itself"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/251",
+              "name": "House of M"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/252",
+              "name": "Inferno"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/315",
+              "name": "Infinity"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/253",
+              "name": "Infinity Gauntlet"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/29",
+              "name": "Infinity War"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/317",
+              "name": "Inhumanity"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/151",
+              "name": "Maximum Carnage"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/37",
+              "name": "Maximum Security"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/154",
+              "name": "Onslaught"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/336",
+              "name": "Secret Empire"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/events/269",
+              "name": "Secret Invasion"
+            }
+          ],
+          "returned": 20
+        },
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/characters/8/captain_america?utm_campaign=apiRef&utm_source=9549585bdad28d04622dcd45ed0238aa"
+          },
+          {
+            "type": "wiki",
+            "url": "http://marvel.com/universe/Captain_America_(Steve_Rogers)?utm_campaign=apiRef&utm_source=9549585bdad28d04622dcd45ed0238aa"
+          },
+          {
+            "type": "comiclink",
+            "url": "http://marvel.com/comics/characters/1009220/captain_america?utm_campaign=apiRef&utm_source=9549585bdad28d04622dcd45ed0238aa"
+          }
+        ]
+      }
+    ]
+  }
+}

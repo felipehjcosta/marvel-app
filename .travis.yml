@@ -19,7 +19,7 @@ install:
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;android;m2repository'
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;google_play_services'
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;m2repository'
-  - echo y | $HOME/android-sdk/tools/bin/sdkmanager --licenses
+  - yes | $HOME/android-sdk/tools/bin/sdkmanager --licenses
 
 before_script:
   # Do not cache a few Gradle files/directories (see https://docs.travis-ci.com/user/languages/java/#Caching)

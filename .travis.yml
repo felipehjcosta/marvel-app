@@ -30,7 +30,7 @@ before_script:
 
   # Create and start an emulator for instrumentation tests.
   - echo no | android list targets
-  - echo no | android create avd -f -n test --package "system-images;android-19;default;armeabi-v7a" --abi armeabi-v7a
+  - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
   - emulator -avd test -no-skin -no-audio -no-window -gpu off &
   - android-wait-for-emulator
   - adb devices

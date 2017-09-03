@@ -3,33 +3,34 @@ language: android
 jdk:
   - oraclejdk8
 
-install:
-  # Download and unzip the Android SDK tools (if not already there thanks to the cache mechanism)
-  - if test ! -e $HOME/android-sdk-dl/tools_r25.2.5-linux.zip ; then curl https://dl.google.com/android/repository/tools_r25.2.5-linux.zip > $HOME/android-sdk-dl/tools_r25.2.5-linux.zip ; fi
-  - unzip -n $HOME/android-sdk-dl/tools_r25.2.5-linux.zip -d $HOME/android-sdk
+android:
+ components:
+   # Uncomment the lines below if you want to
+   # use the latest revision of Android SDK Tools
+   - platform-tools
+   - tools
 
-  # Install or update Android SDK components (will not do anything if already up to date thanks to the cache mechanism)
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager 'tools'
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager 'platform-tools'
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager 'build-tools;25.0.3'
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager 'platforms;android-25'
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager 'platforms;android-19'
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager 'emulator'
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager 'system-images;android-19;default;armeabi-v7a'
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager 'extras;android;m2repository'
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;google_play_services'
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;m2repository'
-  - yes | $HOME/android-sdk/tools/bin/sdkmanager --licenses
+   # The BuildTools version used by your project
+   - build-tools-25.0.3
+
+   # The SDK version used to compile your project
+   - android-25
+   - android-19
+
+   # Additional components
+   #- extra-google-google_play_services
+   - extra-google-m2repository
+   - extra-android-m2repository
+   - sys-img-armeabi-v7a-android-19
 
 before_script:
   # Do not cache a few Gradle files/directories (see https://docs.travis-ci.com/user/languages/java/#Caching)
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
-  - export ANDROID_SDK_ROOT=$HOME/android-sdk/
-
   # Create and start an emulator for instrumentation tests.
-  - echo no | $HOME/android-sdk/tools/bin/avdmanager create avd -f -n test -k "system-images;android-19;default;armeabi-v7a"
+  - android-update-sdk --components=sys-img-$ABI-$API --accept-licenses='android-sdk-license-[0-9a-f]{8}'
+  - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
   - emulator -avd test -no-skin -no-audio -no-window -gpu off &
   - android-wait-for-emulator
   - adb devices

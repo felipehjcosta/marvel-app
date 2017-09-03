@@ -9,7 +9,6 @@ install:
   - unzip -n $HOME/android-sdk-dl/tools_r25.2.5-linux.zip -d $HOME/android-sdk
 
   # Install or update Android SDK components (will not do anything if already up to date thanks to the cache mechanism)
-  - echo y | $HOME/android-sdk/tools/bin/sdkmanager --licenses
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'tools'
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'platform-tools'
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'build-tools;25.0.3'
@@ -20,6 +19,7 @@ install:
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;android;m2repository'
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;google_play_services'
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;m2repository'
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager --licenses
 
 before_script:
   # Do not cache a few Gradle files/directories (see https://docs.travis-ci.com/user/languages/java/#Caching)

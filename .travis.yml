@@ -20,14 +20,12 @@ install:
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;google_play_services'
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;m2repository'
 
-env:
-  - ANDROID_HOME=$HOME/android-sdk
-  - PATH=$PATH:$ANDROID_HOME/platform-tools/
-
 before_script:
   # Do not cache a few Gradle files/directories (see https://docs.travis-ci.com/user/languages/java/#Caching)
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+  - export PATH=$PATH:$HOME/android-sdk
 
   # Create and start an emulator for instrumentation tests.
   - echo no | $HOME/android-sdk/tools/bin/avdmanager create avd -f -n test -k "system-images;android-19;default;armeabi-v7a"

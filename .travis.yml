@@ -22,6 +22,7 @@ install:
 
 env:
   - ANDROID_HOME=$HOME/android-sdk
+  - PATH=$PATH:$ANDROID_HOME/platform-tools/
 
 before_script:
   # Do not cache a few Gradle files/directories (see https://docs.travis-ci.com/user/languages/java/#Caching)

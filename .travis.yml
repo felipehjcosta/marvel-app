@@ -9,6 +9,7 @@ install:
   - unzip -n $HOME/android-sdk-dl/tools_r25.2.5-linux.zip -d $HOME/android-sdk
 
   # Install or update Android SDK components (will not do anything if already up to date thanks to the cache mechanism)
+  - yes | sudo sdkmanager --licenses
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'tools'
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'platform-tools'
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'build-tools;25.0.3'

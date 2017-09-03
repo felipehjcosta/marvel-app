@@ -25,7 +25,7 @@ before_script:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
-  - export PATH=$PATH:$HOME/android-sdk
+  - export PATH=$PATH:$HOME/android-sdk/platform-tools/
 
   # Create and start an emulator for instrumentation tests.
   - echo no | $HOME/android-sdk/tools/bin/avdmanager create avd -f -n test -k "system-images;android-19;default;armeabi-v7a"

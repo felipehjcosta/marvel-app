@@ -4,7 +4,9 @@ package com.felipecosta.kotlinrxjavasample.modules.wiki.view
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +29,9 @@ class WikiFragment : Fragment() {
 
     lateinit var compositeDisposable: CompositeDisposable
 
-    lateinit var adapter: OthersCharacterItemRecyclerViewAdapter
+    lateinit var othersAdapter: OthersCharacterItemRecyclerViewAdapter
+
+    lateinit var highlightedAdapter: HighlightedCharacterItemRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -38,11 +42,20 @@ class WikiFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view?.let {
-            val recyclerView: RecyclerView = it.findBy(R.id.others_characters_recycler_view)
+            var recyclerView: RecyclerView = it.findBy(R.id.others_characters_recycler_view)
 
             recyclerView.layoutManager = GridLayoutManager(context, 3)
-            adapter = OthersCharacterItemRecyclerViewAdapter()
-            recyclerView.adapter = adapter
+            othersAdapter = OthersCharacterItemRecyclerViewAdapter()
+            recyclerView.adapter = othersAdapter
+
+
+            recyclerView = it.findBy(R.id.highlighted_characters_recycler_view)
+
+            recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            highlightedAdapter = HighlightedCharacterItemRecyclerViewAdapter()
+            recyclerView.adapter = highlightedAdapter
+
+            GravitySnapHelper(Gravity.START).attachToRecyclerView(recyclerView)
 
             bind()
         }
@@ -52,10 +65,16 @@ class WikiFragment : Fragment() {
         compositeDisposable = CompositeDisposable()
 
         compositeDisposable += othersCharactersViewModel.items
-                .doOnNext { adapter.replaceItems(it) }
+                .doOnNext { othersAdapter.replaceItems(it) }
                 .subscribe()
 
         compositeDisposable += othersCharactersViewModel.loadItemsCommand.execute().subscribe()
+
+        compositeDisposable += highlightedCharactersViewModel.items
+                .doOnNext { highlightedAdapter.replaceItems(it) }
+                .subscribe()
+
+        compositeDisposable += highlightedCharactersViewModel.loadItemsCommand.execute().subscribe()
     }
 
     override fun onDestroyView() {

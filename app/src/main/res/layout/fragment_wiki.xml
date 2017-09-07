@@ -5,10 +5,28 @@
     android:layout_height="match_parent"
     tools:context="com.felipecosta.kotlinrxjavasample.modules.wiki.view.WikiFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/others_characters_recycler_view"
-        app:layoutManager="GridLayoutManager"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/highlighted_characters_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="LinearLayoutManager" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/others_characters_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="GridLayoutManager" />
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>

@@ -2,8 +2,8 @@ package com.felipecosta.kotlinrxjavasample.modules.detail.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.FavoriteRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
-import com.felipecosta.kotlinrxjavasample.rx.Command
+import com.felipecosta.rxcommand.AsyncCommand
+import com.felipecosta.rxcommand.Command
 import io.reactivex.Observable
 
 class CharacterDetailViewModel(private val asyncCharacterCommand: AsyncCommand<Character>, private val favoriteRepository: FavoriteRepository) {

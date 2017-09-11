@@ -11,7 +11,7 @@ import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailContent
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
-import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
+import com.felipecosta.rxcommand.AsyncCommand
 import dagger.Module
 import dagger.Provides
 import io.reactivex.android.schedulers.AndroidSchedulers

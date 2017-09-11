@@ -2,8 +2,8 @@ package com.felipecosta.kotlinrxjavasample.modules.listing.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.listing.datamodel.ListingDataModel
-import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
-import com.felipecosta.kotlinrxjavasample.rx.Command
+import com.felipecosta.rxcommand.AsyncCommand
+import com.felipecosta.rxcommand.Command
 import com.jakewharton.rxrelay2.BehaviorRelay
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

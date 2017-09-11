@@ -3,8 +3,8 @@ package com.felipecosta.kotlinrxjavasample.modules.wiki.presentation
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.wiki.datamodel.HighlightedCharactersDataModel
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
-import com.felipecosta.kotlinrxjavasample.rx.AsyncCommand
-import com.felipecosta.kotlinrxjavasample.rx.Command
+import com.felipecosta.rxcommand.AsyncCommand
+import com.felipecosta.rxcommand.Command
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

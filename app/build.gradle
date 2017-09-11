@@ -100,6 +100,7 @@ dependencies {
     compile "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rxjava_jakewharton_version"
     compile "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$rxjava_jakewharton_version"
     compile "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rxjava_jakewharton_version"
+    compile 'com.fcostaa:rxcommand:1.0'
 
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$retrofit_version"

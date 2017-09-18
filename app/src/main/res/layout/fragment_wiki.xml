@@ -14,11 +14,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/highlighted_characters_recycler_view"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="LinearLayoutManager" />
+                android:layout_height="300dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/highlighted_characters_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/others_characters_recycler_view"

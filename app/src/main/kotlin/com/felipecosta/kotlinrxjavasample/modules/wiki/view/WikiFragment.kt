@@ -4,9 +4,7 @@ package com.felipecosta.kotlinrxjavasample.modules.wiki.view
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +13,7 @@ import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.HighlightedC
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.OthersCharactersViewModel
 import com.felipecosta.kotlinrxjavasample.rx.findBy
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
+import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -51,12 +50,25 @@ class WikiFragment : Fragment() {
 
             recyclerView = it.findBy(R.id.highlighted_characters_recycler_view)
 
-            recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             highlightedAdapter = HighlightedCharacterItemRecyclerViewAdapter()
+
+            val layoutManager = GalleryLayoutManager()
+            layoutManager.attach(recyclerView)
+
+            layoutManager.itemTransformer = object : GalleryLayoutManager.ItemTransformer {
+
+                override fun transformItem(layoutManager: GalleryLayoutManager, item: View, fraction: Float) {
+                    item.pivotX = item.width / 2f
+                    item.pivotY = item.height / 2.0f
+                    val scale = 1 - 0.3f * Math.abs(fraction)
+                    item.scaleX = scale
+                    item.scaleY = scale
+
+                    item.translationX = -item.width / 2f
+                }
+            }
+
             recyclerView.adapter = highlightedAdapter
-
-            GravitySnapHelper(Gravity.START).attachToRecyclerView(recyclerView)
-
             bind()
         }
     }
@@ -65,14 +77,12 @@ class WikiFragment : Fragment() {
         compositeDisposable = CompositeDisposable()
 
         compositeDisposable += othersCharactersViewModel.items
-                .doOnNext { othersAdapter.replaceItems(it) }
-                .subscribe()
+                .subscribe { othersAdapter.replaceItems(it) }
 
         compositeDisposable += othersCharactersViewModel.loadItemsCommand.execute().subscribe()
 
         compositeDisposable += highlightedCharactersViewModel.items
-                .doOnNext { highlightedAdapter.replaceItems(it) }
-                .subscribe()
+                .subscribe { highlightedAdapter.replaceItems(it) }
 
         compositeDisposable += highlightedCharactersViewModel.loadItemsCommand.execute().subscribe()
     }

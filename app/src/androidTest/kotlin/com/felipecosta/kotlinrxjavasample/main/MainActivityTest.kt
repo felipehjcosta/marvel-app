@@ -98,14 +98,4 @@ class MainActivityTest {
         onView(allOf(withId(R.id.others_characters_recycler_view), hasDescendant(withText("Thor")))).
                 check(matches(isDisplayed()))
     }
-
-    @Test
-    fun whenSelectSecondOptionThenSecondSampleIsShowing() {
-        activityRule.launchActivity(Intent())
-        onView(allOf(withText("Favorites"), isDescendantOfA(withId(R.id.nav_view)), isCompletelyDisplayed())).
-                perform(click())
-
-        onView(allOf(withText("Favorites"), isDescendantOfA(withId(R.id.main_content)))).
-                check(matches(isDisplayed()))
-    }
 }

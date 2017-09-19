@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#24262b</color>
-    <color name="colorPrimaryDark">#000</color>
+    <color name="colorPrimaryDark">#24262b</color>
     <color name="colorAccent">#F7F100</color>
     <color name="separator_color">#55FFFFFF</color>
     <color name="detail_background">#222222</color>
     <color name="text_inverse">#DEDEDE</color>
     <color name="image_default_color">#BDBDBD</color>
+    <color name="background">#000</color>
 
     <color name="launch_background">#d91900</color>
 </resources>

@@ -52,21 +52,10 @@ class WikiFragment : Fragment() {
 
             highlightedAdapter = HighlightedCharacterItemRecyclerViewAdapter()
 
-            val layoutManager = GalleryLayoutManager()
-            layoutManager.attach(recyclerView)
-
-            layoutManager.itemTransformer = object : GalleryLayoutManager.ItemTransformer {
-
-                override fun transformItem(layoutManager: GalleryLayoutManager, item: View, fraction: Float) {
-                    item.pivotX = item.width / 2f
-                    item.pivotY = item.height / 2.0f
-                    val scale = 1 - 0.3f * Math.abs(fraction)
-                    item.scaleX = scale
-                    item.scaleY = scale
-
-                    item.translationX = -item.width / 2f
-                }
+            val layoutManager = GalleryLayoutManager().apply {
+                itemTransformer = WikiGalleryItemTransformer()
             }
+            layoutManager.attach(recyclerView)
 
             recyclerView.adapter = highlightedAdapter
             bind()

@@ -4,7 +4,7 @@ import android.content.Intent
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.scrollTo
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
@@ -95,7 +95,8 @@ class MainActivityTest {
     @Test
     fun whenMainActivityFirstAppearsThenFirstListItemIsShowing() {
         activityRule.launchActivity(Intent())
-        onView(allOf(withId(R.id.others_characters_recycler_view), hasDescendant(withText("Thor")))).
-                check(matches(isDisplayed()))
+        onView(allOf(withId(R.id.others_characters_recycler_view), hasDescendant(withText("Thor"))))
+                .perform(scrollTo())
+                .check(matches(isDisplayed()))
     }
 }

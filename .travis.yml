@@ -21,7 +21,7 @@ android:
    #- extra-google-google_play_services
    - extra-google-m2repository
    - extra-android-m2repository
-   - sys-img-armeabi-v7a-android-19
+   - sys-img-armeabi-v7a-android-21
 
 before_script:
   # Do not cache a few Gradle files/directories (see https://docs.travis-ci.com/user/languages/java/#Caching)
@@ -30,7 +30,7 @@ before_script:
 
   # Create and start an emulator for instrumentation tests.
   - android-update-sdk --components=sys-img-$ABI-$API --accept-licenses='android-sdk-license-[0-9a-f]{8}'
-  - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
+  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
   - emulator -avd test -no-skin -no-audio -no-window -gpu off &
   - android-wait-for-emulator
   - adb devices

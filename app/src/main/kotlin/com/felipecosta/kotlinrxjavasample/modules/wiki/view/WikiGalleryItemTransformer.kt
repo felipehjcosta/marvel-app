@@ -14,7 +14,7 @@ import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 
 class WikiGalleryItemTransformer : GalleryLayoutManager.ItemTransformer {
 
-    override fun transformItem(layoutManager: GalleryLayoutManager, item: View, fraction: Float) {
+    override fun transformItem(layoutManager: GalleryLayoutManager, item: View, viewPosition: Int, fraction: Float) {
         item.pivotX = item.width / 2.0f
         item.pivotY = item.height / 2.0f
         val scale = 1.0f - 0.3f * Math.abs(fraction)

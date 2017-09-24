@@ -1,18 +1,27 @@
 package com.felipecosta.kotlinrxjavasample.modules.wiki.view
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
+import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
 import com.felipecosta.kotlinrxjavasample.util.makeCubicGradientScrimDrawable
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
+import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
 
-class WikiGalleryItemTransformer : GalleryLayoutManager.ItemTransformer {
+class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel>,
+                                  private val container: FrameLayout) :
+        GalleryLayoutManager.ItemTransformer, GalleryLayoutManager.OnItemSelectedListener {
 
     override fun transformItem(layoutManager: GalleryLayoutManager, item: View, viewPosition: Int, fraction: Float) {
         item.pivotX = item.width / 2.0f
@@ -43,5 +52,17 @@ class WikiGalleryItemTransformer : GalleryLayoutManager.ItemTransformer {
         val green = Color.green(color)
         val blue = Color.blue(color)
         return Color.argb(alpha, red, green, blue)
+    }
+
+    override fun onItemSelected(recyclerView: RecyclerView?, item: View, position: Int) {
+        container.background = ColorDrawable(Color.TRANSPARENT)
+
+        ImageLoader.getInstance().loadImage(items[position].image, object : SimpleImageLoadingListener() {
+            override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
+                super.onLoadingComplete(imageUri, view, loadedImage)
+                container.background = BitmapDrawable(container.resources, loadedImage)
+            }
+        })
+
     }
 }

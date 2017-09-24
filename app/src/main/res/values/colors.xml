@@ -10,4 +10,7 @@
     <color name="background">#000</color>
 
     <color name="launch_background">#d91900</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="black">#ff000000</color>
 </resources>

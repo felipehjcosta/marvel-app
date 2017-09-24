@@ -1,27 +1,21 @@
 package com.felipecosta.kotlinrxjavasample.modules.wiki.view
 
-import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
-import android.util.TypedValue
-import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
 import com.felipecosta.kotlinrxjavasample.util.FastBlur
-import com.felipecosta.kotlinrxjavasample.util.makeCubicGradientScrimDrawable
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
-
 
 class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel>,
                                   private val container: ViewGroup) :
@@ -35,27 +29,12 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
         item.scaleY = scale
         item.translationX = -item.width / 2.0f
 
-        val selectableItemBackground = selectableItemBackground(item.context)
+        val layerDrawable = (item as FrameLayout).foreground as LayerDrawable
 
-        val color = adjustColor(Color.BLACK, Math.abs(fraction))
-
-        val layers = arrayOf(makeCubicGradientScrimDrawable(color, 5, Gravity.BOTTOM), selectableItemBackground)
-
-        (item as FrameLayout).foreground = LayerDrawable(layers)
-    }
-
-    private fun selectableItemBackground(context: Context): Drawable {
-        val outValue = TypedValue()
-        context.theme.resolveAttribute(android.R.attr.selectableItemBackground, outValue, true)
-        return ContextCompat.getDrawable(context, outValue.resourceId)
-    }
-
-    private fun adjustColor(color: Int, alphaFactor: Float): Int {
-        val alpha = Math.round(Color.alpha(color) * alphaFactor)
-        val red = Color.red(color)
-        val green = Color.green(color)
-        val blue = Color.blue(color)
-        return Color.argb(alpha, red, green, blue)
+        val gradient = layerDrawable.getDrawable(0) as GradientDrawable
+        val alphaFraction = 1.0f - Math.abs(fraction)
+        val alpha = 255 - Math.round(255 * alphaFraction)
+        gradient.alpha = alpha
     }
 
     override fun onItemSelected(recyclerView: RecyclerView?, item: View, position: Int) {

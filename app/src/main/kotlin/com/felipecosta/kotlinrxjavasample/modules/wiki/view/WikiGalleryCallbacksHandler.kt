@@ -2,7 +2,9 @@ package com.felipecosta.kotlinrxjavasample.modules.wiki.view
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -16,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
+import com.felipecosta.kotlinrxjavasample.util.FastBlur
 import com.felipecosta.kotlinrxjavasample.util.makeCubicGradientScrimDrawable
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.nostra13.universalimageloader.core.DisplayImageOptions
@@ -67,9 +70,7 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
-                .postProcessor {
-                    Bitmap.createScaledBitmap(it, container.width, container.height, false)
-                }
+                .postProcessor { processBitmap(it) }
                 .build()
 
         ImageLoader.getInstance().loadImage(items[position].image, options, object : SimpleImageLoadingListener() {
@@ -79,5 +80,27 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
             }
         })
 
+    }
+
+    private fun processBitmap(bitmap: Bitmap): Bitmap = Bitmap.
+            createScaledBitmap(blur(bitmap), container.width, container.height, false)
+
+    private fun blur(bitmap: Bitmap): Bitmap {
+
+        val scaledWidth = bitmap.width / SCALE_FACTOR
+        val scaledHeight = bitmap.height / SCALE_FACTOR
+
+        val overlay = Bitmap.createBitmap(scaledWidth, scaledHeight, Bitmap.Config.ARGB_8888)
+        Canvas(overlay).apply {
+            scale(1.0f / SCALE_FACTOR, 1.0f / SCALE_FACTOR)
+            drawBitmap(bitmap, 0.0f, 0.0f, Paint(Paint.FILTER_BITMAP_FLAG))
+        }
+
+        return FastBlur.doBlur(overlay, BLUR_RADIUS, true)
+    }
+
+    companion object {
+        private const val SCALE_FACTOR = 4
+        private const val BLUR_RADIUS = 5
     }
 }

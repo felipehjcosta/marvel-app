@@ -1,8 +1,6 @@
 package com.felipecosta.kotlinrxjavasample.modules.wiki.view
 
 import android.graphics.*
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.support.v7.widget.RecyclerView
@@ -38,7 +36,7 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
     }
 
     override fun onItemSelected(recyclerView: RecyclerView?, item: View, position: Int) {
-        container.background = ColorDrawable(Color.TRANSPARENT)
+//        container.background = ColorDrawable(Color.TRANSPARENT)
 
         val options = DisplayImageOptions.Builder()
                 .showImageOnLoading(R.color.image_default_color)
@@ -53,7 +51,7 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
         ImageLoader.getInstance().loadImage(items[position].image, options, object : SimpleImageLoadingListener() {
             override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
                 super.onLoadingComplete(imageUri, view, loadedImage)
-                container.background = BitmapDrawable(container.resources, loadedImage)
+                container.background(loadedImage!!, true)
             }
         })
 

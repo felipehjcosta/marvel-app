@@ -40,6 +40,8 @@ class HighlightedCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<Highlig
                     .showImageForEmptyUri(R.color.image_default_color)
                     .showImageOnFail(R.color.image_default_color)
                     .bitmapConfig(Bitmap.Config.RGB_565)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
                     .build()
 
             ImageLoader.getInstance().displayImage(characterItemViewModels[position].image, imageView, imageOptions)

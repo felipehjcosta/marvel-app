@@ -20,7 +20,6 @@ import com.felipecosta.kotlinrxjavasample.util.makeCubicGradientScrimDrawable
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
-import com.nostra13.universalimageloader.core.assist.FailReason
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
 
 class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel>,
@@ -66,6 +65,8 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
                 .showImageForEmptyUri(R.color.image_default_color)
                 .showImageOnFail(R.color.image_default_color)
                 .bitmapConfig(Bitmap.Config.RGB_565)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
                 .postProcessor {
                     Bitmap.createScaledBitmap(it, container.width, container.height, false)
                 }

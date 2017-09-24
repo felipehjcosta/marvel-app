@@ -12,15 +12,19 @@ import android.support.v7.widget.RecyclerView
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
+import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
 import com.felipecosta.kotlinrxjavasample.util.makeCubicGradientScrimDrawable
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
+import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.assist.FailReason
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
 
 class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel>,
-                                  private val container: FrameLayout) :
+                                  private val container: ViewGroup) :
         GalleryLayoutManager.ItemTransformer, GalleryLayoutManager.OnItemSelectedListener {
 
     override fun transformItem(layoutManager: GalleryLayoutManager, item: View, viewPosition: Int, fraction: Float) {
@@ -57,7 +61,17 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
     override fun onItemSelected(recyclerView: RecyclerView?, item: View, position: Int) {
         container.background = ColorDrawable(Color.TRANSPARENT)
 
-        ImageLoader.getInstance().loadImage(items[position].image, object : SimpleImageLoadingListener() {
+        val options = DisplayImageOptions.Builder()
+                .showImageOnLoading(R.color.image_default_color)
+                .showImageForEmptyUri(R.color.image_default_color)
+                .showImageOnFail(R.color.image_default_color)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .postProcessor {
+                    Bitmap.createScaledBitmap(it, container.width, container.height, false)
+                }
+                .build()
+
+        ImageLoader.getInstance().loadImage(items[position].image, options, object : SimpleImageLoadingListener() {
             override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
                 super.onLoadingComplete(imageUri, view, loadedImage)
                 container.background = BitmapDrawable(container.resources, loadedImage)

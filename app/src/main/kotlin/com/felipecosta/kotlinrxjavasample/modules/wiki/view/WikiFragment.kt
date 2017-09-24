@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.HighlightedCharactersViewModel
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.OthersCharactersViewModel
@@ -71,7 +70,7 @@ class WikiFragment : Fragment() {
 
         compositeDisposable += highlightedCharactersViewModel.items
                 .doOnNext {
-                    val highlightedCharactersContainer: FrameLayout = view.findBy(R.id.highlighted_characters_container)
+                    val highlightedCharactersContainer: ViewGroup = view.findBy(R.id.highlighted_characters_container)
                     WikiGalleryCallbacksHandler(it, highlightedCharactersContainer).apply {
                         HighlightedCharactersLayoutManager.itemTransformer = this
                         HighlightedCharactersLayoutManager.onItemSelectedListener = this

@@ -1,10 +1,7 @@
 package com.felipecosta.kotlinrxjavasample.modules.wiki.view
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -24,6 +21,7 @@ import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
+
 
 class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel>,
                                   private val container: ViewGroup) :
@@ -83,7 +81,7 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
     }
 
     private fun processBitmap(bitmap: Bitmap): Bitmap = Bitmap.
-            createScaledBitmap(blur(bitmap), container.width, container.height, false)
+            createScaledBitmap(addGradient(blur(bitmap)), container.width, container.height, false)
 
     private fun blur(bitmap: Bitmap): Bitmap {
 
@@ -99,8 +97,22 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
         return FastBlur.doBlur(overlay, BLUR_RADIUS, true)
     }
 
+    fun addGradient(src: Bitmap, color1: Int = Color.TRANSPARENT, color2: Int = Color.BLACK): Bitmap {
+        val result = Bitmap.createBitmap(src.width, src.height, Bitmap.Config.ARGB_8888)
+        Canvas(result).apply {
+            drawBitmap(src, 0.0f, 0.0f, null)
+
+            val paint = Paint().apply {
+                shader = LinearGradient(0.0f, 0.0f, 0.0f, src.height.toFloat(), color1, color2, Shader.TileMode.CLAMP)
+            }
+
+            drawRect(0.0f, 0.0f, src.width.toFloat(), src.height.toFloat(), paint)
+        }
+        return result
+    }
+
     companion object {
         private const val SCALE_FACTOR = 4
-        private const val BLUR_RADIUS = 5
+        private const val BLUR_RADIUS = 4
     }
 }

@@ -128,12 +128,12 @@ dependencies {
     kaptAndroidTest 'com.google.dagger:dagger-compiler:2.11-rc2'
     kaptAndroidTest 'com.google.dagger:dagger-android-processor:2.11-rc2'
 
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
+    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1') {
         exclude group: 'com.android.support'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     }
 
-    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:3.0.1') {
         exclude group: 'com.android.support'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     }

@@ -2,8 +2,8 @@ package com.felipecosta.kotlinrxjavasample.main
 
 import android.content.Intent
 import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.IdlingRegistry
 import android.support.test.espresso.action.ViewActions.scrollTo
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
@@ -84,12 +84,12 @@ class MainActivityTest {
         })
 
         RxJavaPlugins.setScheduleHandler(rxEspressoScheduleHandler)
-        Espresso.registerIdlingResources(rxEspressoScheduleHandler.idlingResource)
+        IdlingRegistry.getInstance().register(rxEspressoScheduleHandler.idlingResource)
     }
 
     @After
     fun tearDown() {
-        Espresso.unregisterIdlingResources(rxEspressoScheduleHandler.idlingResource)
+        IdlingRegistry.getInstance().unregister(rxEspressoScheduleHandler.idlingResource)
     }
 
     @Test

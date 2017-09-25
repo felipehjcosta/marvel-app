@@ -10,4 +10,6 @@
     <dimen name="app_bar_height">340dp</dimen>
 
     <dimen name="image_default_color_radius">24dp</dimen>
+
+    <dimen name="gallery_item_padding_left">8dp</dimen>
 </resources>

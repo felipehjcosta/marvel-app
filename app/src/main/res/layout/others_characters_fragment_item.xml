@@ -5,9 +5,7 @@
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingLeft="4dp"
-    android:paddingRight="4dp">
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/image"
@@ -22,7 +20,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
+        android:padding="8dp"
         android:contentDescription="@string/card_title"
         android:gravity="center_horizontal"
         android:textAppearance="?attr/textAppearanceListItem"

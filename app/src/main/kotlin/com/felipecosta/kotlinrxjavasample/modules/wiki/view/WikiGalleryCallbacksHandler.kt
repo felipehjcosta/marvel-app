@@ -25,7 +25,7 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
         val scale = 1.0f - 0.3f * Math.abs(fraction)
         item.scaleX = scale
         item.scaleY = scale
-        item.translationX = -item.width / 2.0f
+        item.translationX = -item.width / 2.0f + item.resources.getDimensionPixelSize(R.dimen.gallery_item_padding_left)
 
         val layerDrawable = (item as FrameLayout).foreground as LayerDrawable
 
@@ -36,8 +36,6 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
     }
 
     override fun onItemSelected(recyclerView: RecyclerView?, item: View, position: Int) {
-//        container.background = ColorDrawable(Color.TRANSPARENT)
-
         val options = DisplayImageOptions.Builder()
                 .showImageOnLoading(R.color.image_default_color)
                 .showImageForEmptyUri(R.color.image_default_color)

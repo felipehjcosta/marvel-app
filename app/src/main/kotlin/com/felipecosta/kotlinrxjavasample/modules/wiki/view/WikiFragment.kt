@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.R
+import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.HighlightedCharactersViewModel
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.OthersCharactersViewModel
 import com.felipecosta.kotlinrxjavasample.rx.findBy
@@ -63,11 +64,6 @@ class WikiFragment : Fragment() {
     private fun bind() {
         compositeDisposable = CompositeDisposable()
 
-        compositeDisposable += othersCharactersViewModel.items
-                .subscribe { othersAdapter.replaceItems(it) }
-
-        compositeDisposable += othersCharactersViewModel.loadItemsCommand.execute().subscribe()
-
         compositeDisposable += highlightedCharactersViewModel.items
                 .doOnNext {
                     val highlightedCharactersContainer: ViewGroup = view.findBy(R.id.highlighted_characters_container)
@@ -78,7 +74,22 @@ class WikiFragment : Fragment() {
                 }
                 .subscribe { highlightedAdapter.replaceItems(it) }
 
+        compositeDisposable += highlightedAdapter.onItemSelected
+                .subscribe {
+                    DetailActivity.startDetail(activity, it)
+                }
+
         compositeDisposable += highlightedCharactersViewModel.loadItemsCommand.execute().subscribe()
+
+        compositeDisposable += othersCharactersViewModel.items
+                .subscribe { othersAdapter.replaceItems(it) }
+
+        compositeDisposable += othersAdapter.onItemSelected
+                .subscribe {
+                    DetailActivity.startDetail(activity, it)
+                }
+
+        compositeDisposable += othersCharactersViewModel.loadItemsCommand.execute().subscribe()
     }
 
     override fun onDestroyView() {

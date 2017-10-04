@@ -78,6 +78,22 @@ class MainActivityTest {
                             .setResponseCode(200)
                             .addHeader("Content-Type", "application/json")
                             .setBody(readAsset("1009417.json"))
+                    "/v1/public/characters/1009351" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1009351.json"))
+                    "/v1/public/characters/1009610" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1009610.json"))
+                    "/v1/public/characters/1009718" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1009718.json"))
+                    "/v1/public/characters/1009368" -> MockResponse()
+                            .setResponseCode(200)
+                            .addHeader("Content-Type", "application/json")
+                            .setBody(readAsset("1009368.json"))
                     else -> MockResponse().setResponseCode(404)
                 }
             }
@@ -85,6 +101,8 @@ class MainActivityTest {
 
         RxJavaPlugins.setScheduleHandler(rxEspressoScheduleHandler)
         IdlingRegistry.getInstance().register(rxEspressoScheduleHandler.idlingResource)
+
+        activityRule.launchActivity(Intent())
     }
 
     @After
@@ -93,8 +111,14 @@ class MainActivityTest {
     }
 
     @Test
-    fun whenMainActivityFirstAppearsThenFirstListItemIsShowing() {
-        activityRule.launchActivity(Intent())
+    fun whenLaunchedThenTheFirstHighlightedCharacterItemIsShown() {
+        onView(allOf(withId(R.id.highlighted_characters_recycler_view), hasDescendant(withText("Hulk"))))
+                .perform(scrollTo())
+                .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun whenLaunchedThenTheFirstOtherCharacterItemIsShown() {
         onView(allOf(withId(R.id.others_characters_recycler_view), hasDescendant(withText("Thor"))))
                 .perform(scrollTo())
                 .check(matches(isDisplayed()))

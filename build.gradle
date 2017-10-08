@@ -7,7 +7,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta6'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta7'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
         classpath "gradle.plugin.pl.droidsonroids.gradle:plugin:1.0.4"
@@ -15,7 +15,7 @@ buildscript {
 }
 
 ext.compile_sdk_version = 25
-ext.build_tools_version = "25.0.3"
+ext.build_tools_version = "26.0.2"
 ext.min_sdk_version = 21
 ext.target_sdk_version = 25
 

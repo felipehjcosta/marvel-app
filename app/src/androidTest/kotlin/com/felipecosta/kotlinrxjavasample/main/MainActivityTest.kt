@@ -3,7 +3,6 @@ package com.felipecosta.kotlinrxjavasample.main
 import android.content.Intent
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.IdlingRegistry
 import android.support.test.espresso.action.ViewActions.scrollTo
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
@@ -11,15 +10,12 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.felipecosta.kotlinrxjavasample.MockDemoApplication
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.utils.RxEspressoScheduleHandler
 import com.felipecosta.kotlinrxjavasample.utils.readAsset
-import io.reactivex.plugins.RxJavaPlugins
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
 import org.hamcrest.core.AllOf.allOf
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -35,8 +31,6 @@ class MainActivityTest {
 
     @Inject
     lateinit var mockWebServer: MockWebServer
-
-    val rxEspressoScheduleHandler = RxEspressoScheduleHandler()
 
     init {
         val mockDemoApplication = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as MockDemoApplication
@@ -98,16 +92,7 @@ class MainActivityTest {
                 }
             }
         })
-
-        RxJavaPlugins.setScheduleHandler(rxEspressoScheduleHandler)
-        IdlingRegistry.getInstance().register(rxEspressoScheduleHandler.idlingResource)
-
         activityRule.launchActivity(Intent())
-    }
-
-    @After
-    fun tearDown() {
-        IdlingRegistry.getInstance().unregister(rxEspressoScheduleHandler.idlingResource)
     }
 
     @Test

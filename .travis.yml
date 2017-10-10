@@ -37,7 +37,7 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - "./gradlew build cAT jacocoTestReport"
+  - "./gradlew clean build cAT jacocoTestReport"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

@@ -19,7 +19,7 @@ class CustomTestRunner : AndroidJUnitRunner() {
 
     override fun onStart() {
         TestButler.setup(InstrumentationRegistry.getTargetContext())
-        RxJavaPlugins.setInitIoSchedulerHandler(Rx2Idler.create("IO Thread Scheduler"))
+        RxJavaPlugins.setInitNewThreadSchedulerHandler(Rx2Idler.create("New Thread Scheduler"))
         super.onStart()
     }
 

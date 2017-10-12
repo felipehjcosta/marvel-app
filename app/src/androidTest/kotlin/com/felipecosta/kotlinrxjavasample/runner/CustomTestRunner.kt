@@ -8,7 +8,7 @@ import android.support.test.runner.AndroidJUnitRunner
 import com.felipecosta.kotlinrxjavasample.MockDemoApplication
 import com.linkedin.android.testbutler.TestButler
 import com.squareup.rx2.idler.Rx2Idler
-import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.plugins.RxJavaPlugins
 
 
 class CustomTestRunner : AndroidJUnitRunner() {
@@ -19,7 +19,7 @@ class CustomTestRunner : AndroidJUnitRunner() {
 
     override fun onStart() {
         TestButler.setup(InstrumentationRegistry.getTargetContext())
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler(Rx2Idler.create("Main Thread Scheduler"))
+        RxJavaPlugins.setInitIoSchedulerHandler(Rx2Idler.create("IO Thread Scheduler"))
         super.onStart()
     }
 

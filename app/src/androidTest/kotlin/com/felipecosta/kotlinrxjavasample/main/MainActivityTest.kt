@@ -98,7 +98,6 @@ class MainActivityTest {
 
     @Test
     fun whenLaunchedThenTheFirstHighlightedCharacterItemIsShown() {
-        Thread.sleep(500L)
         onView(allOf(withId(R.id.highlighted_characters_recycler_view), hasDescendant(withText("Hulk"))))
                 .perform(scrollTo())
                 .check(matches(isDisplayed()))
@@ -106,7 +105,6 @@ class MainActivityTest {
 
     @Test
     fun whenLaunchedThenTheFirstOtherCharacterItemIsShown() {
-        Thread.sleep(500L)
         onView(allOf(withId(R.id.others_characters_recycler_view), hasDescendant(withText("Thor"))))
                 .perform(scrollTo())
                 .check(matches(isDisplayed()))

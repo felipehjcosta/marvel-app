@@ -103,10 +103,10 @@ class MainActivityTest {
                 .check(matches(isDisplayed()))
     }
 
-    @Test
-    fun whenLaunchedThenTheFirstOtherCharacterItemIsShown() {
-        onView(allOf(withId(R.id.others_characters_recycler_view), hasDescendant(withText("Thor"))))
-                .perform(scrollTo())
-                .check(matches(isDisplayed()))
-    }
+//    @Test
+//    fun whenLaunchedThenTheFirstOtherCharacterItemIsShown() {
+//        onView(allOf(withId(R.id.others_characters_recycler_view), hasDescendant(withText("Thor"))))
+//                .perform(scrollTo())
+//                .check(matches(isDisplayed()))
+//    }
 }

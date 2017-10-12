@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco-android'
 
 ext {
@@ -73,6 +74,7 @@ repositories {
 
 kapt {
     generateStubs = true
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -85,8 +87,8 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$support_library_version"
     compile "com.android.support:cardview-v7:$support_library_version"
 
-    compile "com.google.dagger:dagger:$dagger_version"
-    compile "com.google.dagger:dagger-android-support:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     compileOnly "javax.annotation:jsr250-api:$javax_annotation_version"
@@ -126,8 +128,8 @@ dependencies {
     androidTestCompile 'org.mockito:mockito-android:2.6.3'
     androidTestCompile "com.squareup.okhttp3:mockwebserver:$okhttp_version"
     androidTestImplementation 'com.squareup.rx.idler:rx2-idler:0.9.0'
-    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.11-rc2'
-    kaptAndroidTest 'com.google.dagger:dagger-android-processor:2.11-rc2'
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
+    kaptAndroidTest "com.google.dagger:dagger-android-processor:$dagger_version"
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1') {
         exclude group: 'com.android.support'

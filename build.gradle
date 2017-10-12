@@ -20,7 +20,7 @@ ext.min_sdk_version = 21
 ext.target_sdk_version = 25
 
 ext.support_library_version = "25.4.0"
-ext.dagger_version = "2.11-rc2"
+ext.dagger_version = "2.12"
 ext.javax_annotation_version = "1.0"
 ext.universal_image_loader_version = "1.9.5"
 ext.rxjava_version = "2.1.1"

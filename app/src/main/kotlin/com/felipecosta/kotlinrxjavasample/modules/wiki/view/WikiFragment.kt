@@ -12,8 +12,8 @@ import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.HighlightedCharactersViewModel
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.OthersCharactersViewModel
-import com.felipecosta.kotlinrxjavasample.rx.findBy
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
+import com.felipecosta.kotlinrxjavasample.util.findBy
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -48,7 +48,6 @@ class WikiFragment : Fragment() {
             recyclerView.layoutManager = GridLayoutManager(context, 3)
             othersAdapter = OthersCharacterItemRecyclerViewAdapter()
             recyclerView.adapter = othersAdapter
-
 
             recyclerView = it.findBy(R.id.highlighted_characters_recycler_view)
             highlightedAdapter = HighlightedCharacterItemRecyclerViewAdapter()

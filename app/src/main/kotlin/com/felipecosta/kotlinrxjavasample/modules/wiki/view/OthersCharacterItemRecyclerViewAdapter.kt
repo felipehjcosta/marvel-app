@@ -11,7 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
-import com.felipecosta.kotlinrxjavasample.rx.findBy
+import com.felipecosta.kotlinrxjavasample.util.bindView
 import com.jakewharton.rxrelay2.PublishRelay
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
@@ -71,8 +71,8 @@ class OthersCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<OthersCharac
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val imageView: ImageView = view.findBy(R.id.image)
-        val contentView: TextView = view.findBy(R.id.title)
+        val imageView: ImageView by bindView(R.id.image)
+        val contentView: TextView by bindView(R.id.title)
 
         init {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

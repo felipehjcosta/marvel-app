@@ -14,8 +14,8 @@ import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
-import com.felipecosta.kotlinrxjavasample.rx.findBy
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
+import com.felipecosta.kotlinrxjavasample.util.findBy
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents

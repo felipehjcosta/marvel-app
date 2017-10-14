@@ -6,26 +6,21 @@ import android.support.v7.app.AppCompatActivity
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.favorite.view.FavoriteFragment
 import com.felipecosta.kotlinrxjavasample.modules.wiki.view.WikiFragment
+import com.felipecosta.kotlinrxjavasample.util.bindView
 import com.jakewharton.rxbinding2.support.design.widget.itemSelections
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var bottomNavigationView: BottomNavigationView
+    val bottomNavigationView: BottomNavigationView by bindView(R.id.nav_view)
 
     lateinit var disposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-
-        setupViews()
         bind()
-    }
-
-    private fun setupViews() {
-        bottomNavigationView = findViewById(R.id.nav_view) as BottomNavigationView
     }
 
     private fun bind() {

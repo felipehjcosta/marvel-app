@@ -13,6 +13,7 @@ import com.example.checkableheart.ui.HeartFab
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.rx.checkedChanges
+import com.felipecosta.kotlinrxjavasample.util.bindView
 import com.nostra13.universalimageloader.core.ImageLoader
 import javax.inject.Inject
 
@@ -36,15 +37,16 @@ class DetailActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModel: CharacterDetailViewModel
-    lateinit var toolbarLayout: CollapsingToolbarLayout
-    lateinit var backdrop: ImageView
-    lateinit var description: TextView
+
+    val toolbarLayout: CollapsingToolbarLayout by bindView(R.id.toolbar_layout)
+    val backdrop: ImageView by bindView(R.id.image_backdrop)
+    val description: TextView by bindView(R.id.text_description)
+    val statisticComics: TextView by bindView(R.id.statistic_comics)
+    val statisticEvents: TextView by bindView(R.id.statistic_events)
+    val statisticSeries: TextView by bindView(R.id.statistic_series)
+    val statisticStories: TextView by bindView(R.id.statistic_stories)
+    val favoriteFab: HeartFab by bindView(R.id.favorite_button)
     lateinit var imageLoader: ImageLoader
-    lateinit var statisticComics: TextView
-    lateinit var statisticEvents: TextView
-    lateinit var statisticSeries: TextView
-    lateinit var statisticStories: TextView
-    lateinit var favoriteFab: HeartFab
 
     var characterId: Int = 0
 
@@ -62,22 +64,11 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initView() {
         setContentView(R.layout.activity_detail)
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar: Toolbar by bindView(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        toolbarLayout = findViewById(R.id.toolbar_layout) as CollapsingToolbarLayout
-
-        backdrop = findViewById(R.id.image_backdrop) as ImageView
-        description = findViewById(R.id.text_description) as TextView
 
         imageLoader = ImageLoader.getInstance()
-
-        statisticComics = findViewById(R.id.statistic_comics) as TextView
-        statisticEvents = findViewById(R.id.statistic_events) as TextView
-        statisticSeries = findViewById(R.id.statistic_series) as TextView
-        statisticStories = findViewById(R.id.statistic_stories) as TextView
-
-        favoriteFab = findViewById(R.id.favorite_button) as HeartFab
     }
 
     private fun bind() {

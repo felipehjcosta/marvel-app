@@ -2,8 +2,8 @@ package com.felipecosta.kotlinrxjavasample.modules.listing.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.kotlinrxjavasample.modules.listing.datamodel.ListingDataModel
-import com.felipecosta.rxcommand.AsyncCommand
-import com.felipecosta.rxcommand.Command
+import com.felipecosta.rxaction.RxAction
+import com.felipecosta.rxaction.RxCommand
 import com.jakewharton.rxrelay2.BehaviorRelay
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -11,20 +11,20 @@ import io.reactivex.schedulers.Schedulers
 
 class CharacterListViewModel(private val dataModel: ListingDataModel) {
 
-    private val asyncLoadItemsCommand: AsyncCommand<List<Character>>
+    private val asyncLoadItemsCommand: RxAction<Any, List<Character>>
 
-    private val asyncLoadMoreCommand: AsyncCommand<List<Character>>
+    private val asyncLoadMoreCommand: RxAction<Any, List<Character>>
 
     private val currentItemsOffsetRelay = BehaviorRelay.createDefault(0)
 
     init {
-        asyncLoadItemsCommand = AsyncCommand {
+        asyncLoadItemsCommand = RxAction {
             dataModel.loadItems()
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
         }
 
-        asyncLoadMoreCommand = AsyncCommand {
+        asyncLoadMoreCommand = RxAction {
             currentItemsOffsetRelay
                     .take(1)
                     .flatMap { dataModel.loadItems(offset = it) }
@@ -34,21 +34,21 @@ class CharacterListViewModel(private val dataModel: ListingDataModel) {
     }
 
     val items: Observable<List<CharacterItemViewModel>>
-        get() = asyncLoadItemsCommand.execution.map { it.size to it }
+        get() = asyncLoadItemsCommand.elements.map { it.size to it }
                 .doOnNext { currentItemsOffsetRelay.accept(it.first) }
                 .map { it.second }
                 .map { it.map { CharacterItemViewModel(it.id, it.name, it.thumbnail.url) } }
 
     val newItems: Observable<List<CharacterItemViewModel>>
-        get() = asyncLoadMoreCommand.execution.map { currentItemsOffsetRelay.value + it.size to it }
+        get() = asyncLoadMoreCommand.elements.map { currentItemsOffsetRelay.value + it.size to it }
                 .doOnNext { currentItemsOffsetRelay.accept(it.first) }
                 .map { it.second }
                 .map { it.map { CharacterItemViewModel(it.id, it.name, it.thumbnail.url) } }
 
-    val loadItemsCommand: Command
+    val loadItemsCommand: RxCommand<Any>
         get() = asyncLoadItemsCommand
 
-    val loadMoreItemsCommand: Command
+    val loadMoreItemsCommand: RxCommand<Any>
         get() = asyncLoadMoreCommand
 
     val showLoading: Observable<Boolean>

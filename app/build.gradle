@@ -103,7 +103,7 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$rxjava_jakewharton_version"
     implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rxjava_jakewharton_version"
     
-    implementation 'com.fcostaa:rxcommand:1.0'
+    implementation 'com.github.felipehjcosta:rxaction:1.1.0'
     implementation 'com.github.felipehjcosta:gallerylayoutmanager:1.1.0'
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"

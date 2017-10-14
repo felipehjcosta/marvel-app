@@ -11,7 +11,7 @@ import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailContent
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
-import com.felipecosta.rxcommand.AsyncCommand
+import com.felipecosta.rxaction.RxAction
 import dagger.Module
 import dagger.Provides
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -36,7 +36,7 @@ class DetailModule {
 
     @DetailScope
     @Provides
-    fun provideAsyncCommand(detailContentDataModel: DetailDataModel, characterId: Int): AsyncCommand<Character> = AsyncCommand {
+    fun provideAsyncCommand(detailContentDataModel: DetailDataModel, characterId: Int): RxAction<Any, Character> = RxAction {
         detailContentDataModel
                 .character(characterId)
                 .subscribeOn(Schedulers.newThread())
@@ -54,5 +54,5 @@ class DetailModule {
 
     @DetailScope
     @Provides
-    fun provideDetailViewModel(asyncCommand: AsyncCommand<Character>, favoriteRepository: FavoriteRepository) = CharacterDetailViewModel(asyncCommand, favoriteRepository)
+    fun provideDetailViewModel(asyncCommand: RxAction<Any, Character>, favoriteRepository: FavoriteRepository) = CharacterDetailViewModel(asyncCommand, favoriteRepository)
 }

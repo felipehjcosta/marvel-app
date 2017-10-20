@@ -35,7 +35,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.felipecosta.kotlinrxjavasample.main.MainActivity" />
         </activity>
-        <activity android:name=".modules.listing.view.CharacterListingActivity" />
+        <activity
+            android:name=".modules.listing.view.CharacterListingActivity"
+            android:label="@string/title_activity_listing"
+            android:parentActivityName=".main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.felipecosta.kotlinrxjavasample.main.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

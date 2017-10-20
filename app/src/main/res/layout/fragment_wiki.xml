@@ -14,7 +14,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:elevation="4dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="Wiki Heros" />
+        app:title="@string/wiki_heroes" />
 
     <ScrollView
         android:layout_width="match_parent"

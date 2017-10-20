@@ -43,6 +43,8 @@ class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyc
                     .showImageForEmptyUri(R.drawable.ic_rounded_image_default)
                     .showImageOnFail(R.drawable.ic_rounded_image_default)
                     .bitmapConfig(Bitmap.Config.RGB_565)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
                     .build()
 
             ImageLoader.getInstance().displayImage(characterItemViewModels[position].image, imageView, imageOptions)

@@ -4,10 +4,12 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.res.ResourcesCompat.*
 import android.support.v4.widget.ContentLoadingProgressBar
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
+import com.felipecosta.kotlinrxjavasample.util.bindView
 import com.felipecosta.kotlinrxjavasample.util.findBy
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
@@ -52,6 +55,12 @@ class CharacterListingFragment : Fragment() {
 
         val loading: ContentLoadingProgressBar = view.findBy(R.id.listing_loading)
         val swipeRefresh: SwipeRefreshLayout = view.findBy(R.id.listing_swipe_refresh)
+
+        val toolbar: Toolbar by bindView(R.id.toolbar)
+        toolbar.navigationIcon = getDrawable(resources, android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material, null)
+        toolbar.setNavigationOnClickListener {
+            activity.onBackPressed()
+        }
 
         bind(recyclerView, linearLayoutManger, loading, swipeRefresh)
     }

@@ -5,14 +5,17 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
+import com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterListingActivity
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.HighlightedCharactersViewModel
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.OthersCharactersViewModel
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
+import com.felipecosta.kotlinrxjavasample.util.bindView
 import com.felipecosta.kotlinrxjavasample.util.findBy
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import io.reactivex.disposables.CompositeDisposable
@@ -32,7 +35,10 @@ class WikiFragment : Fragment() {
     lateinit var othersAdapter: OthersCharacterItemRecyclerViewAdapter
 
     lateinit var highlightedAdapter: HighlightedCharacterItemRecyclerViewAdapter
+
     lateinit var HighlightedCharactersLayoutManager: GalleryLayoutManager
+
+    val toolbar: Toolbar by bindView(R.id.highlighted_characters_toolbar)
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -56,6 +62,17 @@ class WikiFragment : Fragment() {
             HighlightedCharactersLayoutManager.attach(recyclerView)
 
             recyclerView.adapter = highlightedAdapter
+
+            toolbar.inflateMenu(R.menu.wiki_toolbar_menu)
+            toolbar.setOnMenuItemClickListener { item ->
+                if (item.itemId == R.id.wiki_menu_search) {
+                    CharacterListingActivity.start(context)
+                    true
+                } else {
+                    false
+                }
+            }
+
             bind()
         }
     }

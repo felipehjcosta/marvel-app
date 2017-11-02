@@ -1,9 +1,7 @@
-package com.felipecosta.kotlinrxjavasample.modules.detail.di
+package com.felipecosta.kotlinrxjavasample.modules.wiki.di
 
-import java.lang.annotation.Retention
-import java.lang.annotation.RetentionPolicy
 import javax.inject.Scope
 
 @Scope
-@Retention(RetentionPolicy.RUNTIME)
+@kotlin.annotation.Retention
 annotation class WikiScope

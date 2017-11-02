@@ -38,10 +38,9 @@ class NetworkDataRepository(private val characterService: CharacterService) : Da
     }
 
     fun md5(s: String): String {
-        val MD5 = "MD5"
         try {
             // Create MD5 Hash
-            val digest = java.security.MessageDigest.getInstance(MD5)
+            val digest = java.security.MessageDigest.getInstance("MD5")
             digest.update(s.toByteArray())
             val messageDigest = digest.digest()
 

@@ -8,12 +8,6 @@ import java.util.*
 
 class FavoriteRepository(private val localStorage: LocalStorage) {
 
-    constructor(context: Context, characterId: Int) : this(object : LocalStorage {
-        override var storageValue: String
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-            set(value) {}
-    })
-
     fun fetchFavorites(): Observable<List<Int>> {
         return fromCallable { localStorage.storageValue }
                 .map { it.replace("[", "").replace("]", "") }

@@ -36,7 +36,7 @@ class WikiFragment : Fragment() {
 
     lateinit var highlightedAdapter: HighlightedCharacterItemRecyclerViewAdapter
 
-    lateinit var HighlightedCharactersLayoutManager: GalleryLayoutManager
+    lateinit var highlightedCharactersLayoutManager: GalleryLayoutManager
 
     val toolbar: Toolbar by bindView(R.id.highlighted_characters_toolbar)
 
@@ -58,8 +58,8 @@ class WikiFragment : Fragment() {
             recyclerView = it.findBy(R.id.highlighted_characters_recycler_view)
             highlightedAdapter = HighlightedCharacterItemRecyclerViewAdapter()
 
-            HighlightedCharactersLayoutManager = GalleryLayoutManager()
-            HighlightedCharactersLayoutManager.attach(recyclerView)
+            highlightedCharactersLayoutManager = GalleryLayoutManager()
+            highlightedCharactersLayoutManager.attach(recyclerView)
 
             recyclerView.adapter = highlightedAdapter
 
@@ -84,8 +84,8 @@ class WikiFragment : Fragment() {
                 .doOnNext {
                     val highlightedCharactersContainer: ViewGroup = view.findBy(R.id.highlighted_characters_container)
                     WikiGalleryCallbacksHandler(it, highlightedCharactersContainer).apply {
-                        HighlightedCharactersLayoutManager.itemTransformer = this
-                        HighlightedCharactersLayoutManager.onItemSelectedListener = this
+                        highlightedCharactersLayoutManager.itemTransformer = this
+                        highlightedCharactersLayoutManager.onItemSelectedListener = this
                     }
                 }
                 .subscribe { highlightedAdapter.replaceItems(it) }

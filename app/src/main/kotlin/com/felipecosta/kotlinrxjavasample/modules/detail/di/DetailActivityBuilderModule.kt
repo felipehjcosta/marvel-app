@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.modules.listing.di
+package com.felipecosta.kotlinrxjavasample.modules.detail.di
 
 import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailModule
 import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailScope

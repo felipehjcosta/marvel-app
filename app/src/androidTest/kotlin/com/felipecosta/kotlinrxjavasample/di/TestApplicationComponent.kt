@@ -2,7 +2,7 @@ package com.felipecosta.kotlinrxjavasample.di
 
 import com.felipecosta.kotlinrxjavasample.main.MainActivityTest
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.CharacterListingFragmentBuilderModule
-import com.felipecosta.kotlinrxjavasample.modules.listing.di.DetailActivityBuilderModule
+import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailActivityBuilderModule
 import com.felipecosta.kotlinrxjavasample.modules.wiki.di.WikiFragmentBuilderModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule

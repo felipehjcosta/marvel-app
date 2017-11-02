@@ -4,7 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.res.ResourcesCompat.*
+import android.support.v4.content.res.ResourcesCompat.getDrawable
 import android.support.v4.widget.ContentLoadingProgressBar
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
@@ -18,7 +18,6 @@ import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
 import com.felipecosta.kotlinrxjavasample.util.bindView
-import com.felipecosta.kotlinrxjavasample.util.findBy
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
@@ -47,14 +46,14 @@ class CharacterListingFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView = view.findBy(R.id.listing_recycler_view)
+        val recyclerView: RecyclerView by bindView(R.id.listing_recycler_view)
         val linearLayoutManger = LinearLayoutManager(context)
         recyclerView.layoutManager = linearLayoutManger
         adapter = CharacterItemRecyclerViewAdapter()
         recyclerView.adapter = adapter
 
-        val loading: ContentLoadingProgressBar = view.findBy(R.id.listing_loading)
-        val swipeRefresh: SwipeRefreshLayout = view.findBy(R.id.listing_swipe_refresh)
+        val loading: ContentLoadingProgressBar by bindView(R.id.listing_loading)
+        val swipeRefresh: SwipeRefreshLayout by bindView(R.id.listing_swipe_refresh)
 
         val toolbar: Toolbar by bindView(R.id.toolbar)
         toolbar.navigationIcon = getDrawable(resources, android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material, null)
@@ -110,8 +109,7 @@ class CharacterListingFragment : Fragment() {
                     }
                 })
                 .debounce(400L, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-                .withLatestFrom(viewModel.showLoadingMore.startWith(false), BiFunction {
-                    shouldLoadNewItems: Boolean, showLoadingMore: Boolean ->
+                .withLatestFrom(viewModel.showLoadingMore.startWith(false), BiFunction { shouldLoadNewItems: Boolean, showLoadingMore: Boolean ->
                     if (showLoadingMore) false else shouldLoadNewItems
                 })
                 .filter { it == true }

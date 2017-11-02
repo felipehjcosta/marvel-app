@@ -14,12 +14,12 @@ buildscript {
     }
 }
 
-ext.compile_sdk_version = 25
+ext.compile_sdk_version = 26
 ext.build_tools_version = "26.0.2"
 ext.min_sdk_version = 21
-ext.target_sdk_version = 25
+ext.target_sdk_version = 26
 
-ext.support_library_version = "25.4.0"
+ext.support_library_version = "26.1.0"
 ext.dagger_version = "2.12"
 ext.javax_annotation_version = "1.0"
 ext.universal_image_loader_version = "1.9.5"

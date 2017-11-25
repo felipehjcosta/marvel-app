@@ -8,8 +8,11 @@ import com.jakewharton.rxrelay2.BehaviorRelay
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class CharacterListViewModel(private val dataModel: ListingDataModel) {
+class CharacterListViewModel @Inject constructor(
+        private val dataModel: ListingDataModel
+) {
 
     private val asyncLoadItemsCommand: RxAction<Any, List<Character>>
 

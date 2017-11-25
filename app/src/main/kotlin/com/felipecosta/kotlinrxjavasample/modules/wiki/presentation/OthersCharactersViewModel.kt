@@ -8,8 +8,11 @@ import com.felipecosta.rxaction.RxCommand
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class OthersCharactersViewModel(private val dataModel: OthersCharactersDataModel) {
+class OthersCharactersViewModel @Inject constructor(
+        private val dataModel: OthersCharactersDataModel
+) {
 
     private val asyncLoadItemsCommand: RxAction<Any, List<Character>> = RxAction {
         dataModel.getOthersCharacters()

@@ -33,8 +33,7 @@ ext.gson_version = "gson"
 allprojects {
     repositories {
         jcenter()
-        mavenCentral()
-        maven { url 'https://maven.google.com' }
+        google()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 }

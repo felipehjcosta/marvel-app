@@ -87,14 +87,12 @@ class DetailActivity : AppCompatActivity() {
         favoriteFab.checkedChanges().subscribe { if (it) viewModel.saveFavorite() else viewModel.removeFavorite() }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        android.R.id.home -> {
+            onBackPressed()
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
 
 }

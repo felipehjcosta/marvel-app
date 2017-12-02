@@ -32,7 +32,7 @@ class DetailActivity : AppCompatActivity() {
             activity.startActivity(activityIntent)
         }
 
-        val CHARACTER_ID: String = "com.felipecosta.kotlinrxjavasample.modules.detail.view.CHARACTER_ID"
+        const val CHARACTER_ID: String = "com.felipecosta.kotlinrxjavasample.modules.detail.view.CHARACTER_ID"
     }
 
     @Inject

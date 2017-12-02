@@ -38,15 +38,15 @@ class DetailActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: CharacterDetailViewModel
 
-    val toolbarLayout: CollapsingToolbarLayout by bindView(R.id.toolbar_layout)
-    val backdrop: ImageView by bindView(R.id.image_backdrop)
-    val description: TextView by bindView(R.id.text_description)
-    val statisticComics: TextView by bindView(R.id.statistic_comics)
-    val statisticEvents: TextView by bindView(R.id.statistic_events)
-    val statisticSeries: TextView by bindView(R.id.statistic_series)
-    val statisticStories: TextView by bindView(R.id.statistic_stories)
-    val favoriteFab: HeartFab by bindView(R.id.favorite_button)
-    lateinit var imageLoader: ImageLoader
+    private val toolbarLayout: CollapsingToolbarLayout by bindView(R.id.toolbar_layout)
+    private val backdrop: ImageView by bindView(R.id.image_backdrop)
+    private val description: TextView by bindView(R.id.text_description)
+    private val statisticComics: TextView by bindView(R.id.statistic_comics)
+    private val statisticEvents: TextView by bindView(R.id.statistic_events)
+    private val statisticSeries: TextView by bindView(R.id.statistic_series)
+    private val statisticStories: TextView by bindView(R.id.statistic_stories)
+    private val favoriteFab: HeartFab by bindView(R.id.favorite_button)
+    private lateinit var imageLoader: ImageLoader
 
     var characterId: Int = 0
 

@@ -13,8 +13,10 @@ import com.example.checkableheart.ui.HeartFab
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.rx.checkedChanges
+import com.felipecosta.kotlinrxjavasample.rx.plusAssign
 import com.felipecosta.kotlinrxjavasample.util.bindView
 import com.nostra13.universalimageloader.core.ImageLoader
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 
@@ -38,6 +40,8 @@ class DetailActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: CharacterDetailViewModel
 
+    private lateinit var compositeDisposable: CompositeDisposable
+
     private val toolbarLayout: CollapsingToolbarLayout by bindView(R.id.toolbar_layout)
     private val backdrop: ImageView by bindView(R.id.image_backdrop)
     private val description: TextView by bindView(R.id.text_description)
@@ -57,11 +61,6 @@ class DetailActivity : AppCompatActivity() {
         initView()
     }
 
-    override fun onResume() {
-        super.onResume()
-        bind()
-    }
-
     private fun initView() {
         setContentView(R.layout.activity_detail)
         val toolbar: Toolbar by bindView(R.id.toolbar)
@@ -71,20 +70,36 @@ class DetailActivity : AppCompatActivity() {
         imageLoader = ImageLoader.getInstance()
     }
 
+    override fun onResume() {
+        super.onResume()
+        bind()
+    }
+
     private fun bind() {
-        viewModel.name.subscribe { toolbarLayout.title = it }
-        viewModel.description.subscribe { description.text = it }
-        viewModel.thumbnailUrl.subscribe { imageLoader.displayImage(it, backdrop) }
+        compositeDisposable = CompositeDisposable()
+        compositeDisposable += viewModel.name.subscribe { toolbarLayout.title = it }
+        compositeDisposable += viewModel.description.subscribe { description.text = it }
+        compositeDisposable += viewModel.thumbnailUrl.subscribe { imageLoader.displayImage(it, backdrop) }
 
-        viewModel.comicsCount.subscribe { statisticComics.text = it.toString() }
-        viewModel.eventsCount.subscribe { statisticEvents.text = it.toString() }
-        viewModel.seriesCount.subscribe { statisticSeries.text = it.toString() }
-        viewModel.storiesCount.subscribe { statisticStories.text = it.toString() }
-        viewModel.isFavorite.subscribe { favoriteFab.isChecked = it }
+        compositeDisposable += viewModel.comicsCount.subscribe { statisticComics.text = it.toString() }
+        compositeDisposable += viewModel.eventsCount.subscribe { statisticEvents.text = it.toString() }
+        compositeDisposable += viewModel.seriesCount.subscribe { statisticSeries.text = it.toString() }
+        compositeDisposable += viewModel.storiesCount.subscribe { statisticStories.text = it.toString() }
+        compositeDisposable += viewModel.isFavorite.subscribe { favoriteFab.isChecked = it }
 
-        viewModel.characterCommand.execute().subscribe()
+        compositeDisposable += viewModel.characterCommand.execute().subscribe()
 
-        favoriteFab.checkedChanges().subscribe { if (it) viewModel.saveFavorite() else viewModel.removeFavorite() }
+        compositeDisposable += favoriteFab.checkedChanges()
+                .subscribe { if (it) viewModel.saveFavorite() else viewModel.removeFavorite() }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unbind()
+    }
+
+    private fun unbind() {
+        compositeDisposable.dispose()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {

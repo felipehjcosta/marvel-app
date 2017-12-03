@@ -1,6 +1,5 @@
 package com.felipecosta.kotlinrxjavasample.data
 
-import android.content.Context
 import io.reactivex.Observable
 import io.reactivex.Observable.*
 import io.reactivex.functions.BiFunction

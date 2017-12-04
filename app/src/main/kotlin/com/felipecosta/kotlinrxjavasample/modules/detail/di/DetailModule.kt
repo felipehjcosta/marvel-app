@@ -3,13 +3,10 @@ package com.felipecosta.kotlinrxjavasample.modules.detail.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.data.FavoriteRepository
 import com.felipecosta.kotlinrxjavasample.data.SharedPreferencesStorage
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailContentDataModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
-import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.rxaction.RxAction
 import dagger.Module
@@ -30,9 +27,6 @@ class DetailModule {
         }
     }
 
-    @DetailScope
-    @Provides
-    fun provideDetailDataModel(dataRepository: DataRepository): DetailDataModel = DetailContentDataModel(dataRepository)
 
     @DetailScope
     @Provides
@@ -51,8 +45,4 @@ class DetailModule {
 
         return FavoriteRepository(localStorage)
     }
-
-    @DetailScope
-    @Provides
-    fun provideDetailViewModel(asyncCommand: RxAction<Any, Character>, favoriteRepository: FavoriteRepository) = CharacterDetailViewModel(asyncCommand, favoriteRepository)
 }

@@ -5,8 +5,12 @@ import com.felipecosta.kotlinrxjavasample.data.pojo.Character
 import com.felipecosta.rxaction.RxAction
 import com.felipecosta.rxaction.RxCommand
 import io.reactivex.Observable
+import javax.inject.Inject
 
-class CharacterDetailViewModel(private val asyncCharacterCommand: RxAction<Any, Character>, private val favoriteRepository: FavoriteRepository) {
+class CharacterDetailViewModel @Inject constructor(
+        private val asyncCharacterCommand: RxAction<Any, Character>,
+        private val favoriteRepository: FavoriteRepository
+) {
 
     private val characterObservable: Observable<Character> = asyncCharacterCommand.elements.share()
 

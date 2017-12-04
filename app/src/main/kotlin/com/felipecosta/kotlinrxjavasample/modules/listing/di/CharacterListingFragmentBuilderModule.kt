@@ -8,7 +8,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class CharacterListingFragmentBuilderModule {
 
     @ListingScope
-    @ContributesAndroidInjector(modules = arrayOf(ListingModule::class))
+    @ContributesAndroidInjector(modules = [ListingModule::class])
     abstract fun characterListingFragment(): CharacterListingFragment
 
 }

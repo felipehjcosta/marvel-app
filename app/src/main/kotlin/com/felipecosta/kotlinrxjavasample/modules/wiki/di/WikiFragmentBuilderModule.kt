@@ -8,6 +8,6 @@ import dagger.android.ContributesAndroidInjector
 abstract class WikiFragmentBuilderModule {
 
     @WikiScope
-    @ContributesAndroidInjector(modules = arrayOf(WikiModule::class))
+    @ContributesAndroidInjector(modules = [WikiModule::class])
     abstract fun wikiFragment(): WikiFragment
 }

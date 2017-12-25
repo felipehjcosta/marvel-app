@@ -1,5 +1,6 @@
 package com.felipecosta.kotlinrxjavasample.data
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Observable.*
 import io.reactivex.functions.BiFunction
@@ -24,20 +25,21 @@ class FavoriteRepository(private val localStorage: LocalStorage) {
                 .map { it.contains(characterId) }
     }
 
-    fun saveFavorite(characterId: Int = 0) {
-        zip<Int, MutableList<Int>, List<Int>>(
+    fun saveFavorite(characterId: Int = 0): Completable {
+        return zip<Int, MutableList<Int>, List<Int>>(
                 fromCallable { characterId },
                 fetchFavorites().map { it.toMutableList() },
-                BiFunction { t1, t2 -> t2.apply { add(t1) }.toList() })
-                .subscribe { localStorage.storageValue = Arrays.toString(it.toIntArray()) }
+                BiFunction { newValue, favorites -> favorites.apply { add(newValue) } })
+                .doOnNext { localStorage.storageValue = Arrays.toString(it.toIntArray()) }
+                .ignoreElements()
     }
 
-    fun removeFavorite(characterId: Int = 0) {
-        fetchFavorites().flatMap { fromIterable(it) }
+    fun removeFavorite(characterId: Int = 0): Completable {
+        return fetchFavorites().flatMap { fromIterable(it) }
                 .filter { it != characterId }
                 .toList()
-                .toObservable()
-                .subscribe { localStorage.storageValue = it.toString() }
+                .doOnSuccess { localStorage.storageValue = it.toString() }
+                .toCompletable()
     }
 
 }

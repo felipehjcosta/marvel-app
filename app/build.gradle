@@ -50,6 +50,13 @@ android {
         // Skip pre-dexing when running on Travis CI or when disabled via -Dpre-dex=false.
         preDexLibraries = preDexEnabled && !travisBuild
     }
+
+    testOptions {
+        junitPlatform {
+            jupiterVersion "5.0.2"
+            vintageVersion "4.12.2"
+        }
+    }
 }
 
 jacocoAndroidUnitTestReport {
@@ -103,7 +110,7 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rxjava_jakewharton_version"
     implementation "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$rxjava_jakewharton_version"
     implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rxjava_jakewharton_version"
-    
+
     implementation 'com.github.felipehjcosta:rxaction:1.1.0'
     implementation 'com.github.felipehjcosta:gallerylayoutmanager:1.1.0'
 

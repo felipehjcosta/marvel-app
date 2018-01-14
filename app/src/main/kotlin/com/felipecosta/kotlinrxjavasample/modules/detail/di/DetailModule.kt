@@ -30,15 +30,6 @@ class DetailModule {
 
     @DetailScope
     @Provides
-    fun provideAsyncCommand(detailContentDataModel: DetailDataModel, characterId: Int): RxAction<Any, Character> = RxAction {
-        detailContentDataModel
-                .character(characterId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-    }
-
-    @DetailScope
-    @Provides
     fun provideDiskDataRepository(context: Context, sharedPreferences: SharedPreferences): FavoriteRepository {
         val key = context.getString(R.string.saved_favorite_characters)
         val localStorage = SharedPreferencesStorage(key, sharedPreferences)

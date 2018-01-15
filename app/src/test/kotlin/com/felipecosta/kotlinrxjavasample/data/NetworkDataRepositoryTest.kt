@@ -1,6 +1,7 @@
 package com.felipecosta.kotlinrxjavasample.data
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
+import com.felipecosta.kotlinrxjavasample.readResourceFile
 import io.reactivex.observers.TestObserver
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
@@ -14,30 +15,27 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NetworkDataRepositoryTest {
 
-    val mockWebServer = MockWebServer()
+    private val mockWebServer = MockWebServer()
 
-    val baseUrl: String = "http://${mockWebServer.hostName}:${mockWebServer.port}"
+    private val baseUrl: String = "http://${mockWebServer.hostName}:${mockWebServer.port}"
 
-    val httpClient: OkHttpClient = OkHttpClient.Builder().build()
-    val service: CharacterService = Retrofit.Builder()
+    private val httpClient: OkHttpClient = OkHttpClient.Builder().build()
+    private val service: CharacterService = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient)
             .build().create(CharacterService::class.java)
 
-    val networkDataRepository = NetworkDataRepository(service)
+    private val networkDataRepository = NetworkDataRepository(service)
 
     @After
     fun tearDown() = mockWebServer.shutdown()
 
-
     @Test
     fun whenGetCharacterShouldDeliverCharacterObjectOnSuccess() {
 
-        val body = javaClass.classLoader.getResourceAsStream("integrationTest/spider-man.json")?.use {
-            it.reader().readText()
-        }
+        val body = readResourceFile("integrationTest/spider-man.json")
 
         mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody(body))
 
@@ -54,9 +52,7 @@ class NetworkDataRepositoryTest {
     @Test
     fun whenGetCharacterListShouldDeliverCharacterObjectsOnSuccess() {
 
-        val body = javaClass.classLoader.getResourceAsStream("integrationTest/characters.json")?.use {
-            it.reader().readText()
-        }
+        val body = readResourceFile("integrationTest/characters.json")
 
         mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody(body))
 

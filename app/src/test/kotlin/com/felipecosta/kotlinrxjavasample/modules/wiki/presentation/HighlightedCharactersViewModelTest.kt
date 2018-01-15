@@ -1,10 +1,10 @@
 package com.felipecosta.kotlinrxjavasample.modules.wiki.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.modules.wiki.datamodel.HighlightedCharactersDataModel
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.whenever
+import com.felipecosta.kotlinrxjavasample.modules.wiki.datamodel.HighlightedCharactersDataModel
+import io.mockk.every
+import io.mockk.mockk
 import io.reactivex.Observable.just
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.observers.TestObserver
@@ -15,9 +15,9 @@ import org.junit.Test
 
 class HighlightedCharactersViewModelTest {
 
-    val dataModel = mock<HighlightedCharactersDataModel>()
+    private val dataModel = mockk<HighlightedCharactersDataModel>()
 
-    val viewModel = HighlightedCharactersViewModel(dataModel)
+    private val viewModel = HighlightedCharactersViewModel(dataModel)
 
     @Before
     fun setUp() {
@@ -34,7 +34,7 @@ class HighlightedCharactersViewModelTest {
         val characterName = "Wolverine"
         val character = Character().apply { name = characterName }
 
-        whenever(dataModel.getHighlightedCharacters()).thenReturn(just(listOf(character)))
+        every { dataModel.getHighlightedCharacters() } returns just(listOf(character))
 
         val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
 

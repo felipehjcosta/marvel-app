@@ -52,12 +52,8 @@ class DetailActivity : AppCompatActivity() {
     private val favoriteFab: HeartFab by bindView(R.id.favorite_button)
     private lateinit var imageLoader: ImageLoader
 
-    var characterId: Int = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        characterId = intent.extras.getInt(CHARACTER_ID)
         initView()
     }
 

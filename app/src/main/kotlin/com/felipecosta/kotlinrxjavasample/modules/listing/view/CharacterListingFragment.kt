@@ -81,7 +81,7 @@ class CharacterListingFragment : Fragment() {
 
         compositeDisposable += viewModel.showLoading
                 .map { if (it) recyclerView to contentLoadingProgressBar else contentLoadingProgressBar to recyclerView }
-                .subscribe { crossfade(it.first, it.second) }
+                .subscribe { crossFade(it.first, it.second) }
 
         compositeDisposable += viewModel.showLoading.subscribe { swipeRefresh.isRefreshing = it }
 
@@ -126,7 +126,7 @@ class CharacterListingFragment : Fragment() {
         compositeDisposable.dispose()
     }
 
-    private fun crossfade(fromView: View, toView: View) {
+    private fun crossFade(fromView: View, toView: View) {
 
         fromView.visibility = View.VISIBLE
 

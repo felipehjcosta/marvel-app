@@ -1,5 +1,6 @@
 package com.felipecosta.kotlinrxjavasample.modules.listing.view
 
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
@@ -7,6 +8,7 @@ import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.Character
 import com.felipecosta.kotlinrxjavasample.util.bindView
 import io.mockk.every
 import io.mockk.mockk
+import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject.createDefault
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,6 +16,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFragment
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = TestStubApplication::class)
@@ -38,5 +41,20 @@ class CharacterListingFragmentTest {
 
         val recyclerView: RecyclerView by fragment.bindView(R.id.listing_recycler_view)
         assertEquals(1, recyclerView.adapter.itemCount)
+    }
+
+    @Test
+    fun givenShowLoadingEmittedWhenStartFragmentItShouldShowSwipeRefresh() {
+        val fragment = CharacterListingFragment()
+        fragment.viewModel = mockViewModel
+        createDefault(items).apply {
+            every { mockViewModel.showLoading } returns Observable.just(true)
+        }
+
+        startFragment(fragment)
+
+        val swipeRefresh: SwipeRefreshLayout by fragment.bindView(R.id.listing_swipe_refresh)
+
+        assertTrue { swipeRefresh.isRefreshing }
     }
 }

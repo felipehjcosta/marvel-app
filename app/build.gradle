@@ -60,6 +60,9 @@ android {
             includeAndroidResources = true
         }
     }
+    packagingOptions {
+        exclude 'META-INF/app_debug.kotlin_module'
+    }
 }
 
 jacocoAndroidUnitTestReport {
@@ -138,6 +141,7 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
     }
     testImplementation "org.robolectric:robolectric:3.6.1"
+    testImplementation "org.robolectric:shadows-supportv4:3.6.1"
 
     testImplementation junit5()
     // (Optional) For running tests inside Android Studio 3.x (see below for details)

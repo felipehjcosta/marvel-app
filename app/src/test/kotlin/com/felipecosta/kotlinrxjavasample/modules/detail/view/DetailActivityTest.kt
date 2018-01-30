@@ -5,6 +5,7 @@ import android.support.design.widget.CollapsingToolbarLayout
 import android.view.View
 import android.widget.TextView
 import com.felipecosta.kotlinrxjavasample.R
+import com.felipecosta.kotlinrxjavasample.TestStubApplication
 import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
 import io.mockk.every
 import io.mockk.mockk
@@ -16,12 +17,14 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.android.controller.ActivityController
+import org.robolectric.annotation.Config
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 
 @RunWith(RobolectricTestRunner::class)
+@Config(application = TestStubApplication::class)
 class DetailActivityTest {
 
     private val name = "Thor"

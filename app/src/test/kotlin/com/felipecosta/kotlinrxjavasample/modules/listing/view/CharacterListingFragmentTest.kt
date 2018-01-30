@@ -3,6 +3,7 @@ package com.felipecosta.kotlinrxjavasample.modules.listing.view
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import com.felipecosta.kotlinrxjavasample.R
+import com.felipecosta.kotlinrxjavasample.TestStubApplication
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterItemViewModel
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
 import com.felipecosta.kotlinrxjavasample.util.bindView

@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.modules.listing.view
+package com.felipecosta.kotlinrxjavasample
 
 import android.app.Application
 

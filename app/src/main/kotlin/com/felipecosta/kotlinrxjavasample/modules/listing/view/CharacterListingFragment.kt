@@ -22,10 +22,10 @@ import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
-import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
 
 
@@ -34,9 +34,9 @@ class CharacterListingFragment : Fragment() {
     @Inject
     lateinit var viewModel: CharacterListViewModel
 
-    lateinit var compositeDisposable: CompositeDisposable
+    private lateinit var compositeDisposable: CompositeDisposable
 
-    lateinit var adapter: CharacterItemRecyclerViewAdapter
+    private lateinit var adapter: CharacterItemRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -108,10 +108,11 @@ class CharacterListingFragment : Fragment() {
                         false
                     }
                 })
-                .debounce(400L, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-                .withLatestFrom(viewModel.showLoadingMore.startWith(false), BiFunction { shouldLoadNewItems: Boolean, showLoadingMore: Boolean ->
-                    if (showLoadingMore) false else shouldLoadNewItems
-                })
+                .debounce(DEBOUNCE_SCROLL_TIMEOUT, MILLISECONDS, mainThread())
+                .withLatestFrom(viewModel.showLoadingMore.startWith(false),
+                        BiFunction { shouldLoadNewItems: Boolean, showLoadingMore: Boolean ->
+                            if (showLoadingMore) false else shouldLoadNewItems
+                        })
                 .filter { it == true }
                 .flatMapCompletable { loadMoreCommand.execute() }
                 .subscribe()
@@ -159,6 +160,8 @@ class CharacterListingFragment : Fragment() {
     }
 
     companion object {
+
+        private const val DEBOUNCE_SCROLL_TIMEOUT = 400L
 
         fun newInstance(): CharacterListingFragment {
             return CharacterListingFragment()

@@ -15,10 +15,14 @@ import io.reactivex.subjects.BehaviorSubject.createDefault
 import io.reactivex.subjects.CompletableSubject
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFragment
+import org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startVisibleFragment
+import java.util.concurrent.TimeUnit
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
@@ -26,8 +30,6 @@ import kotlin.test.assertTrue
 class CharacterListingFragmentTest {
 
     private val mockViewModel = mockk<CharacterListViewModel>(relaxed = true)
-
-    private val mockLoadItemsCommand = mockk<RxCommand<Any>>(relaxed = true)
 
     private val items = listOf(CharacterItemViewModel(
             1,
@@ -63,6 +65,8 @@ class CharacterListingFragmentTest {
 
     @Test
     fun whenStartFragmentItShouldExecuteLoadItemsCommand() {
+        val mockLoadItemsCommand = mockk<RxCommand<Any>>(relaxed = true)
+
         val commandExecuteCompletable = CompletableSubject.create().apply {
             every { mockLoadItemsCommand.execute(any()) } returns this
         }
@@ -70,6 +74,39 @@ class CharacterListingFragmentTest {
 
         startFragment(fragment)
 
+        assertTrue { commandExecuteCompletable.hasObservers() }
+    }
+
+    @Test
+    fun givenItemsWhenDispatchScrollEventItShouldLoadMoreItems() {
+        var count = 10
+
+        val items = generateSequence { (count--).takeIf { it > 0 } }
+                .map { mockk<CharacterItemViewModel>(relaxed = true) }
+                .toList()
+
+        createDefault(items).apply {
+            every { mockViewModel.items } returns this
+        }
+
+        val mockLoadMoreItemsCommand = mockk<RxCommand<Any>>(relaxed = true)
+
+        val commandExecuteCompletable = CompletableSubject.create().apply {
+            every { mockLoadMoreItemsCommand.execute(any()) } returns this
+        }
+        every { mockViewModel.loadMoreItemsCommand } returns mockLoadMoreItemsCommand
+
+        every { mockViewModel.showLoadingMore } returns Observable.just(false)
+
+        startVisibleFragment(fragment)
+
+        assertFalse { commandExecuteCompletable.hasObservers() }
+
+        val recyclerView: RecyclerView by fragment.bindView(R.id.listing_recycler_view)
+        recyclerView.scrollBy(0, 1000)
+
+        Robolectric.getForegroundThreadScheduler().advanceBy(500L, TimeUnit.MILLISECONDS)
+        Robolectric.flushForegroundThreadScheduler()
         assertTrue { commandExecuteCompletable.hasObservers() }
     }
 }

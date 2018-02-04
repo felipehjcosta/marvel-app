@@ -30,15 +30,15 @@ class WikiFragment : Fragment() {
     @Inject
     lateinit var othersCharactersViewModel: OthersCharactersViewModel
 
-    lateinit var compositeDisposable: CompositeDisposable
+    private lateinit var compositeDisposable: CompositeDisposable
 
-    lateinit var othersAdapter: OthersCharacterItemRecyclerViewAdapter
+    private lateinit var othersAdapter: OthersCharacterItemRecyclerViewAdapter
 
-    lateinit var highlightedAdapter: HighlightedCharacterItemRecyclerViewAdapter
+    private lateinit var highlightedAdapter: HighlightedCharacterItemRecyclerViewAdapter
 
-    lateinit var highlightedCharactersLayoutManager: GalleryLayoutManager
+    private lateinit var highlightedCharactersLayoutManager: GalleryLayoutManager
 
-    val toolbar: Toolbar by bindView(R.id.highlighted_characters_toolbar)
+    private val toolbar: Toolbar by bindView(R.id.highlighted_characters_toolbar)
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

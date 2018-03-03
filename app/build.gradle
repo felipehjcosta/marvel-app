@@ -100,7 +100,7 @@ dependencies {
     implementation "com.android.support:support-v4:$support_library_version"
     implementation "com.android.support:recyclerview-v7:$support_library_version"
     implementation "com.android.support:cardview-v7:$support_library_version"
-    implementation 'androidx.core:core-ktx:0.1'
+    implementation "androidx.core:core-ktx:$androidx_version"
 
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"

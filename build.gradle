@@ -29,6 +29,7 @@ ext.rxjava_jakewharton_version = "2.0.0"
 ext.retrofit_version = "2.3.0"
 ext.okhttp_version = "3.8.1"
 ext.gson_version = "gson"
+ext.androidx_version = "0.2"
 
 allprojects {
     repositories {

@@ -12,6 +12,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.CompletableSubject
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -24,6 +25,7 @@ import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = TestStubApplication::class)
+@Ignore
 class WikiFragmentTest {
 
     private val mockHighlightedCharactersViewModel = mockk<HighlightedCharactersViewModel>(relaxed = true)

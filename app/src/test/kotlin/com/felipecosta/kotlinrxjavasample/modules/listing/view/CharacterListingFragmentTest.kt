@@ -13,6 +13,7 @@ import io.mockk.mockk
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject.createDefault
 import io.reactivex.subjects.CompletableSubject
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
@@ -28,6 +29,7 @@ import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = TestStubApplication::class)
+@Ignore
 class CharacterListingFragmentTest {
 
     private val mockViewModel = mockk<CharacterListViewModel>(relaxed = true)

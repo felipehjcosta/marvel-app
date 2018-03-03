@@ -12,6 +12,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.Observable.just
 import io.reactivex.subjects.BehaviorSubject.createDefault
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
@@ -25,6 +26,7 @@ import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = TestStubApplication::class)
+@Ignore
 class DetailActivityTest {
 
     private val name = "Thor"

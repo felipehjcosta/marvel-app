@@ -40,12 +40,12 @@ class WikiFragment : Fragment() {
 
     private val toolbar: Toolbar by bindView(R.id.highlighted_characters_toolbar)
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_wiki, container, false)
+        return inflater.inflate(R.layout.fragment_wiki, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         view?.let {
@@ -66,7 +66,7 @@ class WikiFragment : Fragment() {
             toolbar.inflateMenu(R.menu.wiki_toolbar_menu)
             toolbar.setOnMenuItemClickListener { item ->
                 if (item.itemId == R.id.wiki_menu_search) {
-                    CharacterListingActivity.start(context)
+                    context?.let { CharacterListingActivity.start(it) }
                     true
                 } else {
                     false
@@ -91,8 +91,8 @@ class WikiFragment : Fragment() {
                 .subscribe { highlightedAdapter.replaceItems(it) }
 
         compositeDisposable += highlightedAdapter.onItemSelected
-                .subscribe {
-                    DetailActivity.startDetail(activity, it)
+                .subscribe { itemSelectedId ->
+                    activity?.let { DetailActivity.startDetail(it, itemSelectedId) }
                 }
 
         compositeDisposable += highlightedCharactersViewModel.loadItemsCommand.execute().subscribe()
@@ -101,8 +101,8 @@ class WikiFragment : Fragment() {
                 .subscribe { othersAdapter.replaceItems(it) }
 
         compositeDisposable += othersAdapter.onItemSelected
-                .subscribe {
-                    DetailActivity.startDetail(activity, it)
+                .subscribe { itemSelectedId ->
+                    activity?.let { DetailActivity.startDetail(it, itemSelectedId) }
                 }
 
         compositeDisposable += othersCharactersViewModel.loadItemsCommand.execute().subscribe()

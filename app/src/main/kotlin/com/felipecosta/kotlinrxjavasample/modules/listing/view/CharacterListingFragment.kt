@@ -38,12 +38,12 @@ class CharacterListingFragment : Fragment() {
 
     private lateinit var adapter: CharacterItemRecyclerViewAdapter
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.listing_fragment, container, false)
+        return inflater.inflate(R.layout.listing_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView: RecyclerView by bindView(R.id.listing_recycler_view)
@@ -58,7 +58,7 @@ class CharacterListingFragment : Fragment() {
         val toolbar: Toolbar by bindView(R.id.toolbar)
         toolbar.navigationIcon = getDrawable(resources, android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material, null)
         toolbar.setNavigationOnClickListener {
-            activity.onBackPressed()
+            activity?.onBackPressed()
         }
 
         bind(recyclerView, linearLayoutManger, loading, swipeRefresh)
@@ -75,8 +75,8 @@ class CharacterListingFragment : Fragment() {
                 .subscribe()
 
         compositeDisposable += adapter.onItemSelected
-                .subscribe {
-                    DetailActivity.startDetail(activity, it)
+                .subscribe { itemSelectedId ->
+                    activity?.let { DetailActivity.startDetail(it, itemSelectedId) }
                 }
 
         compositeDisposable += viewModel.showLoading

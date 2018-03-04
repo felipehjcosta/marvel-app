@@ -9,8 +9,8 @@ import com.felipecosta.kotlinrxjavasample.R
 
 class FavoriteFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.favorite_fragment, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.favorite_fragment, container, false)
     }
 
     companion object {

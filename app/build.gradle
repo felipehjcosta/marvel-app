@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'de.mannodermaus.android-junit5'
 apply plugin: 'jacoco-android'
+apply plugin: "com.vanniktech.dependency.graph.generator"
 
 ext {
     travisBuild = System.getenv("TRAVIS") == "true"

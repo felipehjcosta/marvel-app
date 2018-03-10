@@ -1,1 +1,4 @@
 /build
+
+# Dependency graph generator output
+*dependency-graph.png

@@ -145,9 +145,9 @@ dependencies {
     testImplementation "org.robolectric:robolectric:3.7.1"
     testImplementation "org.robolectric:shadows-supportv4:3.7.1"
 
-    testImplementation junit5()
+    testImplementation junit5.unitTests()
     // (Optional) For running tests inside Android Studio 3.x (see below for details)
-    testCompileOnly junit5EmbeddedRuntime()
+    testCompileOnly junit5.unitTestsRuntime()
 
 
     androidTestImplementation 'org.mockito:mockito-android:2.6.3'

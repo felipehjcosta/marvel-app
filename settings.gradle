@@ -1,1 +1,1 @@
-include ':app-base', ':checkableheart'
+include ':app-base', ':checkableheart', ':app-apk'

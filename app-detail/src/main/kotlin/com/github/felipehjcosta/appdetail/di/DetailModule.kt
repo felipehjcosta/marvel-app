@@ -1,18 +1,13 @@
-package com.felipecosta.kotlinrxjavasample.modules.detail.di
+package com.github.felipehjcosta.appdetail.di
 
 import android.content.Context
 import android.content.SharedPreferences
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.data.FavoriteRepository
 import com.felipecosta.kotlinrxjavasample.data.SharedPreferencesStorage
-import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
-import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
-import com.felipecosta.rxaction.RxAction
+import com.github.felipehjcosta.appdetail.view.DetailActivity
 import dagger.Module
 import dagger.Provides
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 @Module
 class DetailModule {

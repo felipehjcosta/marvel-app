@@ -1,10 +1,10 @@
-package com.felipecosta.kotlinrxjavasample.modules.detail.presentation
+package com.github.felipehjcosta.appdetail.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.FavoriteRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.Character
-import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
 import com.felipecosta.rxaction.RxAction
 import com.felipecosta.rxaction.RxCommand
+import com.github.felipehjcosta.appdetail.datamodel.DetailDataModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

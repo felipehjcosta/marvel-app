@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.modules.detail.di
+package com.github.felipehjcosta.appdetail.di
 
 import javax.inject.Scope
 

@@ -1,6 +1,6 @@
-package com.felipecosta.kotlinrxjavasample.modules.detail.di
+package com.github.felipehjcosta.appdetail.di
 
-import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
+import com.github.felipehjcosta.appdetail.view.DetailActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

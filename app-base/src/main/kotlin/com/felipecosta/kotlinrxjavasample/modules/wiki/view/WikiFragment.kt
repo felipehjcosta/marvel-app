@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.modules.detail.view.DetailActivity
 import com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterListingActivity
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.HighlightedCharactersViewModel
 import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.OthersCharactersViewModel
@@ -92,7 +91,7 @@ class WikiFragment : Fragment() {
 
         compositeDisposable += highlightedAdapter.onItemSelected
                 .subscribe { itemSelectedId ->
-                    activity?.let { DetailActivity.startDetail(it, itemSelectedId) }
+                    //                    activity?.let { DetailActivity.startDetail(it, itemSelectedId) }
                 }
 
         compositeDisposable += highlightedCharactersViewModel.loadItemsCommand.execute().subscribe()
@@ -102,7 +101,7 @@ class WikiFragment : Fragment() {
 
         compositeDisposable += othersAdapter.onItemSelected
                 .subscribe { itemSelectedId ->
-                    activity?.let { DetailActivity.startDetail(it, itemSelectedId) }
+                    //                    activity?.let { DetailActivity.startDetail(it, itemSelectedId) }
                 }
 
         compositeDisposable += othersCharactersViewModel.loadItemsCommand.execute().subscribe()

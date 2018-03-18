@@ -1,4 +1,4 @@
-package com.felipecosta.kotlinrxjavasample.modules.detail.view
+package com.github.felipehjcosta.appdetail.view
 
 import android.app.Activity
 import android.content.Intent
@@ -11,11 +11,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.os.bundleOf
 import com.example.checkableheart.ui.HeartFab
-import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
 import com.felipecosta.kotlinrxjavasample.rx.checkedChanges
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
 import com.felipecosta.kotlinrxjavasample.util.bindView
+import com.github.felipehjcosta.appdetail.R
+import com.github.felipehjcosta.appdetail.presentation.CharacterDetailViewModel
 import com.nostra13.universalimageloader.core.ImageLoader
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject

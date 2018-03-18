@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import com.felipecosta.kotlinrxjavasample.di.ApplicationComponent
 import com.felipecosta.kotlinrxjavasample.di.DaggerApplicationComponent
+import com.felipecosta.kotlinrxjavasample.util.EmptyActivityLifecycleCallbacks
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import dagger.android.AndroidInjection
@@ -31,7 +32,7 @@ open class DemoApplication : Application(), HasActivityInjector, HasSupportFragm
         val component = createComponent()
         component.inject(this)
 
-        registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks by EmptyActivityLifecycleCallbacks {
+        registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks by EmptyActivityLifecycleCallbacks() {
             override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
                 if (activity is FragmentActivity) {
                     try {
@@ -71,27 +72,4 @@ open class DemoApplication : Application(), HasActivityInjector, HasSupportFragm
     override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityAndroidInjector
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingFragmentAndroidInjector
-
-    private object EmptyActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
-        override fun onActivityPaused(activity: Activity?) {
-        }
-
-        override fun onActivityResumed(activity: Activity?) {
-        }
-
-        override fun onActivityStarted(activity: Activity?) {
-        }
-
-        override fun onActivityDestroyed(activity: Activity?) {
-        }
-
-        override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
-        }
-
-        override fun onActivityStopped(activity: Activity?) {
-        }
-
-        override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-        }
-    }
 }

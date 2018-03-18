@@ -1,0 +1,49 @@
+package com.felipecosta.kotlinrxjavasample.util
+
+import android.app.Activity
+import android.app.Application
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
+import android.support.v4.app.FragmentManager
+import com.felipecosta.kotlinrxjavasample.DemoApplication
+import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
+
+object AppInjector {
+
+    internal fun init(demoApplication: DemoApplication) {
+        demoApplication.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks by EmptyActivityLifecycleCallbacks() {
+            override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+                handleActivity(activity)
+            }
+        })
+    }
+
+    private fun handleActivity(activity: Activity?) {
+        if (activity is FragmentActivity) {
+            try {
+                AndroidInjection.inject(activity)
+            } catch (e: IllegalArgumentException) {
+                android.util.Log.i("DemoApplication", "Unable to inject activity: ${activity.javaClass.simpleName}", e)
+            }
+
+            activity.supportFragmentManager.registerFragmentLifecycleCallbacks(
+                    object : FragmentManager.FragmentLifecycleCallbacks() {
+                        override fun onFragmentCreated(fm: FragmentManager?,
+                                                       fragment: Fragment?,
+                                                       savedInstanceState: Bundle?) {
+                            handleFragment(fragment)
+                        }
+                    }, true)
+        }
+    }
+
+    private fun handleFragment(fragment: Fragment?) {
+        try {
+            AndroidSupportInjection.inject(fragment)
+        } catch (e: IllegalArgumentException) {
+            android.util.Log.i("DemoApplication", "Unable to inject fragment: ${fragment?.javaClass?.simpleName}", e)
+        }
+    }
+}

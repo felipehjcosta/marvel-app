@@ -2,9 +2,6 @@ package com.felipecosta.kotlinrxjavasample.modules.listing.view
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.content.Intent
-import android.content.Intent.ACTION_VIEW
-import android.content.Intent.CATEGORY_BROWSABLE
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.res.ResourcesCompat.getDrawable
@@ -16,11 +13,11 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.net.toUri
 import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.modules.listing.presentation.CharacterListViewModel
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
 import com.felipecosta.kotlinrxjavasample.util.bindView
+import com.felipecosta.kotlinrxjavasample.util.navigateToDetail
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
@@ -79,14 +76,7 @@ class CharacterListingFragment : Fragment() {
 
         compositeDisposable += adapter.onItemSelected
                 .subscribe { itemSelectedId ->
-                    activity?.let {
-                        val uri = "https://marvelapp.instantappsample.com/detail/${itemSelectedId}".toUri()
-                        Intent(ACTION_VIEW, uri).apply {
-                            addCategory(CATEGORY_BROWSABLE)
-                            `package` = it.packageName
-                            startActivity(this)
-                        }
-                    }
+                    activity?.let { navigateToDetail(it, itemSelectedId) }
                 }
 
         compositeDisposable += viewModel.showLoading

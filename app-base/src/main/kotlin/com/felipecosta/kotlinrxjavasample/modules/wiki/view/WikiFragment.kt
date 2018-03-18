@@ -16,6 +16,7 @@ import com.felipecosta.kotlinrxjavasample.modules.wiki.presentation.OthersCharac
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
 import com.felipecosta.kotlinrxjavasample.util.bindView
 import com.felipecosta.kotlinrxjavasample.util.findBy
+import com.felipecosta.kotlinrxjavasample.util.navigateToDetail
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -91,7 +92,7 @@ class WikiFragment : Fragment() {
 
         compositeDisposable += highlightedAdapter.onItemSelected
                 .subscribe { itemSelectedId ->
-                    //                    activity?.let { DetailActivity.startDetail(it, itemSelectedId) }
+                    activity?.let { navigateToDetail(it, itemSelectedId) }
                 }
 
         compositeDisposable += highlightedCharactersViewModel.loadItemsCommand.execute().subscribe()
@@ -101,7 +102,7 @@ class WikiFragment : Fragment() {
 
         compositeDisposable += othersAdapter.onItemSelected
                 .subscribe { itemSelectedId ->
-                    //                    activity?.let { DetailActivity.startDetail(it, itemSelectedId) }
+                    activity?.let { navigateToDetail(it, itemSelectedId) }
                 }
 
         compositeDisposable += othersCharactersViewModel.loadItemsCommand.execute().subscribe()

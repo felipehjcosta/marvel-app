@@ -1,7 +1,5 @@
 package com.github.felipehjcosta.appdetail.view
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v7.app.AppCompatActivity
@@ -9,7 +7,6 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.os.bundleOf
 import com.example.checkableheart.ui.HeartFab
 import com.felipecosta.kotlinrxjavasample.rx.checkedChanges
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
@@ -22,20 +19,6 @@ import javax.inject.Inject
 
 
 class DetailActivity : AppCompatActivity() {
-
-    companion object {
-        fun startDetail(activity: Activity, characterId: Int) {
-            val bundle = bundleOf(CHARACTER_ID to characterId)
-
-            val activityIntent = Intent(activity, DetailActivity::class.java)
-            activityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            activityIntent.putExtras(bundle)
-
-            activity.startActivity(activityIntent)
-        }
-
-        const val CHARACTER_ID: String = "com.felipecosta.kotlinrxjavasample.modules.detail.view.CHARACTER_ID"
-    }
 
     @Inject
     lateinit var viewModel: CharacterDetailViewModel

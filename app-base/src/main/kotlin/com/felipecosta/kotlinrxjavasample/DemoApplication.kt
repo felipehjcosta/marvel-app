@@ -37,7 +37,7 @@ open class DemoApplication : Application(), HasActivityInjector, HasSupportFragm
         ImageLoader.getInstance().init(config)
     }
 
-    open protected fun createComponent(): ApplicationComponent {
+    protected open fun createComponent(): ApplicationComponent {
         return DaggerApplicationComponent.builder().application(this).build()
     }
 
@@ -45,5 +45,5 @@ open class DemoApplication : Application(), HasActivityInjector, HasSupportFragm
             AppInjector.decorator(dispatchingActivityAndroidInjector, component)
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> =
-                dispatchingFragmentAndroidInjector
+            dispatchingFragmentAndroidInjector
 }

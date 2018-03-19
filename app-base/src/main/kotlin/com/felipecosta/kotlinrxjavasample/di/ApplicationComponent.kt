@@ -2,8 +2,9 @@ package com.felipecosta.kotlinrxjavasample.di
 
 
 import android.app.Application
+import android.content.SharedPreferences
 import com.felipecosta.kotlinrxjavasample.DemoApplication
-import com.felipecosta.kotlinrxjavasample.modules.detail.di.DetailActivityBuilderModule
+import com.felipecosta.kotlinrxjavasample.data.DataRepository
 import com.felipecosta.kotlinrxjavasample.modules.listing.di.CharacterListingFragmentBuilderModule
 import com.felipecosta.kotlinrxjavasample.modules.wiki.di.WikiFragmentBuilderModule
 import dagger.BindsInstance
@@ -17,11 +18,10 @@ import javax.inject.Singleton
     AppModule::class,
     AndroidInjectionModule::class,
     CharacterListingFragmentBuilderModule::class,
-    DetailActivityBuilderModule::class,
     WikiFragmentBuilderModule::class
 ])
 interface ApplicationComponent {
-    fun inject(demoApplication: DemoApplication)
+    fun inject(application: DemoApplication)
 
     @Component.Builder
     interface Builder {
@@ -30,4 +30,8 @@ interface ApplicationComponent {
 
         fun build(): ApplicationComponent
     }
+
+    val dataRepository: DataRepository
+
+    val sharedPreferences: SharedPreferences
 }

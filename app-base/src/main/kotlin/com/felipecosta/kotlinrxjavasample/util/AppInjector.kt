@@ -7,10 +7,14 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import com.felipecosta.kotlinrxjavasample.DemoApplication
+import com.felipecosta.kotlinrxjavasample.di.ApplicationComponent
 import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjection
 
 object AppInjector {
+
+    private val map = mutableMapOf<Class<out Activity>, (ApplicationComponent) -> AndroidInjector.Builder<out Activity>>()
 
     internal fun init(demoApplication: DemoApplication) {
         demoApplication.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks by EmptyActivityLifecycleCallbacks() {
@@ -43,7 +47,15 @@ object AppInjector {
         try {
             AndroidSupportInjection.inject(fragment)
         } catch (e: IllegalArgumentException) {
-            android.util.Log.i("DemoApplication", "Unable to inject fragment: ${fragment?.javaClass?.simpleName}", e)
+            android.util.Log.i("AppInjector", "Unable to inject fragment: ${fragment?.javaClass?.simpleName}", e)
         }
+    }
+
+    fun <T : Activity> register(clazz: Class<T>, block: (ApplicationComponent) -> AndroidInjector.Builder<T>) {
+        map[clazz] = block
+    }
+
+    internal fun decorator(androidInjector: AndroidInjector<Activity>, component: ApplicationComponent): AndroidInjector<Activity> {
+        return InstantAppsActivityInjector(component, map, androidInjector)
     }
 }

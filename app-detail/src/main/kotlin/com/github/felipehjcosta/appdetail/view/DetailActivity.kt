@@ -12,6 +12,7 @@ import com.felipecosta.kotlinrxjavasample.rx.checkedChanges
 import com.felipecosta.kotlinrxjavasample.rx.plusAssign
 import com.felipecosta.kotlinrxjavasample.util.bindView
 import com.github.felipehjcosta.appdetail.R
+import com.github.felipehjcosta.appdetail.di.setupDependencyInjection
 import com.github.felipehjcosta.appdetail.presentation.CharacterDetailViewModel
 import com.nostra13.universalimageloader.core.ImageLoader
 import io.reactivex.disposables.CompositeDisposable
@@ -36,6 +37,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var imageLoader: ImageLoader
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setupDependencyInjection()
         super.onCreate(savedInstanceState)
         initView()
     }

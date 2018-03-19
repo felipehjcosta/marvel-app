@@ -22,13 +22,13 @@ open class DemoApplication : Application(), HasActivityInjector, HasSupportFragm
     @Inject
     lateinit var dispatchingFragmentAndroidInjector: DispatchingAndroidInjector<Fragment>
 
+    private lateinit var component: ApplicationComponent
+
     override fun onCreate() {
         super.onCreate()
-        val component = createComponent()
+        component = createComponent()
         component.inject(this)
-
         AppInjector.init(this)
-
         initImageLoader()
     }
 
@@ -41,7 +41,9 @@ open class DemoApplication : Application(), HasActivityInjector, HasSupportFragm
         return DaggerApplicationComponent.builder().application(this).build()
     }
 
-    override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityAndroidInjector
+    override fun activityInjector(): AndroidInjector<Activity> =
+            AppInjector.decorator(dispatchingActivityAndroidInjector, component)
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingFragmentAndroidInjector
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> =
+                dispatchingFragmentAndroidInjector
 }

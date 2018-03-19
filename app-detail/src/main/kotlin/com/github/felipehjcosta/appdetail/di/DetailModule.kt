@@ -1,8 +1,6 @@
 package com.github.felipehjcosta.appdetail.di
 
-import android.content.Context
 import android.content.SharedPreferences
-import com.felipecosta.kotlinrxjavasample.R
 import com.felipecosta.kotlinrxjavasample.data.FavoriteRepository
 import com.felipecosta.kotlinrxjavasample.data.SharedPreferencesStorage
 import com.github.felipehjcosta.appdetail.view.DetailActivity
@@ -25,8 +23,8 @@ class DetailModule {
 
     @DetailScope
     @Provides
-    fun provideDiskDataRepository(context: Context, sharedPreferences: SharedPreferences): FavoriteRepository {
-        val key = context.getString(R.string.saved_favorite_characters)
+    fun provideDiskDataRepository(sharedPreferences: SharedPreferences): FavoriteRepository {
+        val key = "saved_favorite_character"
         val localStorage = SharedPreferencesStorage(key, sharedPreferences)
 
         return FavoriteRepository(localStorage)

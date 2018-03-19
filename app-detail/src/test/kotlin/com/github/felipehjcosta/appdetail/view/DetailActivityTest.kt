@@ -1,12 +1,13 @@
-package com.felipecosta.kotlinrxjavasample.modules.detail.view
+package com.github.felipehjcosta.appdetail.view
 
 import android.support.annotation.IdRes
 import android.support.design.widget.CollapsingToolbarLayout
 import android.view.View
 import android.widget.TextView
-import com.felipecosta.kotlinrxjavasample.R
-import com.felipecosta.kotlinrxjavasample.TestStubApplication
-import com.felipecosta.kotlinrxjavasample.modules.detail.presentation.CharacterDetailViewModel
+import com.github.felipehjcosta.appdetail.BuildConfig
+import com.github.felipehjcosta.appdetail.R
+import com.github.felipehjcosta.appdetail.TestStubApplication
+import com.github.felipehjcosta.appdetail.presentation.CharacterDetailViewModel
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -24,7 +25,12 @@ import kotlin.test.assertTrue
 
 
 @RunWith(RobolectricTestRunner::class)
-@Config(application = TestStubApplication::class)
+@Config(
+        application = TestStubApplication::class,
+        manifest = Config.NONE,
+        constants = BuildConfig::class,
+        sdk = [21]
+)
 class DetailActivityTest {
 
     private val name = "Thor"

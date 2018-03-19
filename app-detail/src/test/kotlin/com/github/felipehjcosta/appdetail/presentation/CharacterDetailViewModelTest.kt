@@ -1,8 +1,8 @@
-package com.felipecosta.kotlinrxjavasample.modules.detail.presentation
+package com.github.felipehjcosta.appdetail.presentation
 
 import com.felipecosta.kotlinrxjavasample.data.FavoriteRepository
 import com.felipecosta.kotlinrxjavasample.data.pojo.*
-import com.felipecosta.kotlinrxjavasample.modules.detail.datamodel.DetailDataModel
+import com.github.felipehjcosta.appdetail.datamodel.DetailDataModel
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Observable

@@ -1,7 +1,6 @@
 apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'de.mannodermaus.android-junit5'
 apply plugin: "com.vanniktech.dependency.graph.generator"
 
 ext {
@@ -22,12 +21,13 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "com.felipecosta.kotlinrxjavasample.runner.CustomTestRunner"
+        testInstrumentationRunner "com.github.felipehjcosta.marvelapp.base.runner.CustomTestRunner"
 
         vectorDrawables.useSupportLibrary = true
 
         buildConfigField "String", "MARVEL_PRIVATE_KEY", "\"" + MARVEL_PRIVATE_KEY + "\""
         buildConfigField "String", "MARVEL_PUBLIC_KEY", "\"" + MARVEL_PUBLIC_KEY + "\""
+        multiDexEnabled true
     }
 
     sourceSets {
@@ -53,10 +53,10 @@ android {
     }
 
     testOptions {
-        junitPlatform {
-            jupiterVersion "5.0.2"
-            vintageVersion "4.12.2"
-        }
+//        junitPlatform {
+//            jupiterVersion "5.0.2"
+//            vintageVersion "4.12.2"
+//        }
         unitTests {
             includeAndroidResources = true
         }
@@ -130,9 +130,7 @@ dependencies {
     testImplementation "org.robolectric:robolectric:3.7.1"
     testImplementation "org.robolectric:shadows-supportv4:3.7.1"
 
-    testImplementation junit5.unitTests()
-    // (Optional) For running tests inside Android Studio 3.x (see below for details)
-    testCompileOnly junit5.unitTestsRuntime()
+    testCompile 'junit:junit:4.12'
 
 
     androidTestImplementation 'org.mockito:mockito-android:2.6.3'

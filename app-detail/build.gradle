@@ -1,7 +1,6 @@
 apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'de.mannodermaus.android-junit5'
 
 android {
     compileSdkVersion compile_sdk_version
@@ -28,6 +27,12 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 
 }
@@ -77,7 +82,5 @@ dependencies {
     testImplementation "org.robolectric:robolectric:3.7.1"
     testImplementation "org.robolectric:shadows-supportv4:3.7.1"
 
-    testImplementation junit5.unitTests()
-    // (Optional) For running tests inside Android Studio 3.x (see below for details)
-    testCompileOnly junit5.unitTestsRuntime()
+    testCompile 'junit:junit:4.12'
 }

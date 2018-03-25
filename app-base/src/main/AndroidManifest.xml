@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.felipecosta.kotlinrxjavasample">
+    package="com.github.felipehjcosta.marvelapp.base">
 
     <!-- Include following permission if you load images from Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -33,7 +33,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.felipecosta.kotlinrxjavasample.main.MainActivity" />
+                android:value="com.github.felipehjcosta.marvelapp.base.main.MainActivity" />
         </activity>
     </application>
 

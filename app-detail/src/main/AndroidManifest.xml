@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.felipehjcosta.appdetail">
+    package="com.github.felipehjcosta.marvelapp.detail">
 
     <application>
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.felipecosta.kotlinrxjavasample.main.MainActivity">
+    tools:context="com.github.felipehjcosta.marvelapp.main.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -34,14 +34,14 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/listing_recycler_view"
-                android:name="com.felipecosta.kotlinrxjavasample.modules.listing.ListingFragment"
+                android:name="com.github.felipehjcosta.marvelapp.modules.listing.ListingFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:scrollbars="vertical"
                 android:visibility="gone"
                 app:layoutManager="LinearLayoutManager"
-                tools:context="com.felipecosta.kotlinrxjavasample.modules.listing.view.CharacterListingFragment"
+                tools:context="com.github.felipehjcosta.marvelapp.modules.listing.view.CharacterListingFragment"
                 tools:listitem="@layout/listing_fragment_item"
                 tools:visibility="visible" />
         </android.support.v4.widget.SwipeRefreshLayout>

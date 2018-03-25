@@ -9,7 +9,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "de.mannodermaus.gradle.plugins:android-junit5:1.0.31"
         classpath "com.vanniktech:gradle-dependency-graph-generator-plugin:0.2.0"
     }
 }

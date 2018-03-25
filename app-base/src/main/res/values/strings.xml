@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KotlinRxJavaSample</string>
+    <string name="app_name">Marvel App</string>
     <string name="wiki_heroes">Wiki Heroes</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

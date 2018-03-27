@@ -5,9 +5,10 @@ buildscript {
         jcenter()
         maven { url 'https://maven.google.com' }
         maven { url "https://plugins.gradle.org/m2/" }
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.vanniktech:gradle-dependency-graph-generator-plugin:0.2.0"
     }

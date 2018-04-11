@@ -1,27 +1,20 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.instantapp'
 
 android {
     compileSdkVersion compile_sdk_version
     buildToolsVersion build_tools_version
 
     defaultConfig {
-        applicationId "com.github.felipehjcosta.marvelapp"
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
         versionCode version_code
         versionName version_name
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        debug {}
+        release {}
     }
-
 }
 
 dependencies {

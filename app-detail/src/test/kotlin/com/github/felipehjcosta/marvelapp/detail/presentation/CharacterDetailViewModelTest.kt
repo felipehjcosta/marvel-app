@@ -38,7 +38,7 @@ internal class CharacterDetailViewModelTest {
 
         val expectedName = "Wolverine"
         val expectedDescription = "Description"
-        val expectedThumbnailUrl = "http://thumbnailUrl.jpg"
+        val expectedThumbnailUrl = "https://thumbnailUrl.jpg"
         val expectedComicsCount = 1
         val expectedEventsCount = 1
         val expectedSeriesCount = 1

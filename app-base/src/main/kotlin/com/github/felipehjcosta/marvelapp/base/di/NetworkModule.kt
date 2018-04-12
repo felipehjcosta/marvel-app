@@ -11,8 +11,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-const val PORT = "80"
-const val BASE_URL = "http://gateway.marvel.com" + ":" + PORT
+const val PORT = "443"
+const val BASE_URL = "https://gateway.marvel.com:$PORT"
 
 @Module
 class NetworkModule {

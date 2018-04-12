@@ -9,5 +9,5 @@ class Thumbnail {
     var extension: String = ""
 
     val url: String
-        get() = "$path.$extension"
+        get() = "${path.replace("http://", "https://")}.$extension"
 }

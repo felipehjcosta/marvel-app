@@ -1,7 +1,6 @@
 package com.github.felipehjcosta.marvelapp.base.modules.wiki.presentation
 
 import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
-import com.github.felipehjcosta.marvelapp.base.modules.listing.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.base.modules.wiki.datamodel.HighlightedCharactersDataModel
 import io.mockk.every
 import io.mockk.mockk

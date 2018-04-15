@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import com.felipecosta.rxaction.RxCommand
 import com.github.felipehjcosta.marvelapp.base.R
 import com.github.felipehjcosta.marvelapp.base.TestStubApplication
-import com.github.felipehjcosta.marvelapp.base.modules.listing.presentation.CharacterItemViewModel
+import com.github.felipehjcosta.marvelapp.base.modules.wiki.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.base.modules.wiki.presentation.HighlightedCharactersViewModel
 import com.github.felipehjcosta.marvelapp.base.modules.wiki.presentation.OthersCharactersViewModel
 import com.github.felipehjcosta.marvelapp.base.util.bindView

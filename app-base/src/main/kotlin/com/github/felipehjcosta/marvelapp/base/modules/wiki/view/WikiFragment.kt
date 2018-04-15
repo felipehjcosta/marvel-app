@@ -17,6 +17,7 @@ import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
 import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.base.util.findBy
 import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
+import com.github.felipehjcosta.marvelapp.base.util.navigateToListing
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -65,7 +66,7 @@ class WikiFragment : Fragment() {
             toolbar.inflateMenu(R.menu.wiki_toolbar_menu)
             toolbar.setOnMenuItemClickListener { item ->
                 if (item.itemId == R.id.wiki_menu_search) {
-//                    context?.let { CharacterListingActivity.start(it) }
+                    activity?.let { navigateToListing(it) }
                     true
                 } else {
                     false

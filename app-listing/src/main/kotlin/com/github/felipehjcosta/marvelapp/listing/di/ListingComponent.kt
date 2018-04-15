@@ -1,6 +1,7 @@
 package com.github.felipehjcosta.marvelapp.listing.di
 
 import com.github.felipehjcosta.marvelapp.base.di.ApplicationComponent
+import com.github.felipehjcosta.marvelapp.base.util.AppInjector
 import com.github.felipehjcosta.marvelapp.listing.view.CharacterListingFragment
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -20,7 +21,7 @@ interface ListingComponent : AndroidInjector<CharacterListingFragment> {
 }
 
 fun setupDependencyInjection() {
-//    AppInjector.register(CharacterListingFragment::class.java) { applicationComponent ->
-//        DaggerListingComponent.builder().plus(applicationComponent)
-//    }
+    AppInjector.registerFragmentBuilder(CharacterListingFragment::class.java) { applicationComponent ->
+        DaggerListingComponent.builder().plus(applicationComponent)
+    }
 }

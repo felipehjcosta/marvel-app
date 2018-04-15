@@ -17,6 +17,7 @@ import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
 import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
 import com.github.felipehjcosta.marvelapp.listing.R
+import com.github.felipehjcosta.marvelapp.listing.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModel
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
@@ -37,6 +38,11 @@ class CharacterListingFragment : Fragment() {
     private lateinit var compositeDisposable: CompositeDisposable
 
     private lateinit var adapter: CharacterItemRecyclerViewAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setupDependencyInjection()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

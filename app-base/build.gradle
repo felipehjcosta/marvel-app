@@ -152,6 +152,7 @@ dependencies {
 
     application project(":app-apk")
     feature project(":app-detail")
+    feature project(":app-listing")
 }
 
 task copyTestClasses(type: Copy) {

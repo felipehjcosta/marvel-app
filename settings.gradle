@@ -1,1 +1,1 @@
-include ':app-base', ':checkableheart', ':app-apk', ':app-detail', ':app-instant'
+include ':app-base', ':checkableheart', ':app-apk', ':app-detail', ':app-instant', ':app-listing'

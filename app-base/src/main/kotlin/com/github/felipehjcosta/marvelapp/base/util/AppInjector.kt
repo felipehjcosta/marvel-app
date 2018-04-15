@@ -14,7 +14,9 @@ import dagger.android.support.AndroidSupportInjection
 
 object AppInjector {
 
-    private val map = mutableMapOf<Class<out Activity>, (ApplicationComponent) -> AndroidInjector.Builder<out Activity>>()
+    private val activityMap = mutableMapOf<Class<out Activity>, (ApplicationComponent) -> AndroidInjector.Builder<out Activity>>()
+
+    private val fragmentMap = mutableMapOf<Class<out Fragment>, (ApplicationComponent) -> AndroidInjector.Builder<out Fragment>>()
 
     internal fun init(demoApplication: DemoApplication) {
         demoApplication.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks by EmptyActivityLifecycleCallbacks() {
@@ -51,11 +53,19 @@ object AppInjector {
         }
     }
 
-    fun <T : Activity> register(clazz: Class<T>, block: (ApplicationComponent) -> AndroidInjector.Builder<T>) {
-        map[clazz] = block
+    fun <T : Activity> registerActivityBuilder(clazz: Class<T>, block: (ApplicationComponent) -> AndroidInjector.Builder<T>) {
+        activityMap[clazz] = block
     }
 
-    internal fun decorator(androidInjector: AndroidInjector<Activity>, component: ApplicationComponent): AndroidInjector<Activity> {
-        return InstantAppsActivityInjector(component, map, androidInjector)
+    fun <T : Fragment> registerFragmentBuilder(clazz: Class<T>, block: (ApplicationComponent) -> AndroidInjector.Builder<T>) {
+        fragmentMap[clazz] = block
+    }
+
+    internal fun decorateActivityAndroidInjector(androidInjector: AndroidInjector<Activity>, component: ApplicationComponent): AndroidInjector<Activity> {
+        return InstantAppsActivityInjector(component, activityMap, androidInjector)
+    }
+
+    internal fun decorateFragmentAndroidInjector(androidInjector: AndroidInjector<Fragment>, component: ApplicationComponent): AndroidInjector<Fragment> {
+        return InstantAppsFragmentInjector(component, fragmentMap, androidInjector)
     }
 }

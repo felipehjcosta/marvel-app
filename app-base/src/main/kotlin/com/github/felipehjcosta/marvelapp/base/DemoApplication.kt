@@ -42,8 +42,8 @@ open class DemoApplication : Application(), HasActivityInjector, HasSupportFragm
     }
 
     override fun activityInjector(): AndroidInjector<Activity> =
-            AppInjector.decorator(dispatchingActivityAndroidInjector, component)
+            AppInjector.decorateActivityAndroidInjector(dispatchingActivityAndroidInjector, component)
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> =
-            dispatchingFragmentAndroidInjector
+            AppInjector.decorateFragmentAndroidInjector(dispatchingFragmentAndroidInjector, component)
 }

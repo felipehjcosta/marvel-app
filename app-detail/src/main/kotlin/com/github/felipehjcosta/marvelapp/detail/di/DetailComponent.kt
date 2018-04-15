@@ -21,7 +21,7 @@ interface DetailComponent : AndroidInjector<DetailActivity> {
 }
 
 fun setupDependencyInjection() {
-    AppInjector.register(DetailActivity::class.java) { applicationComponent ->
+    AppInjector.registerActivityBuilder(DetailActivity::class.java) { applicationComponent ->
         DaggerDetailComponent.builder().plus(applicationComponent)
     }
 }

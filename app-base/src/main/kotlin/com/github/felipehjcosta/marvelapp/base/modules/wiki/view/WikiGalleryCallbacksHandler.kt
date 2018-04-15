@@ -7,9 +7,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import com.github.felipehjcosta.marvelapp.base.R
-import com.github.felipehjcosta.marvelapp.base.modules.listing.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
+import com.github.felipehjcosta.marvelapp.base.R
+import com.github.felipehjcosta.marvelapp.base.modules.wiki.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.base.util.FastBlur
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
@@ -55,8 +55,7 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
 
     }
 
-    private fun processBitmap(bitmap: Bitmap): Bitmap = Bitmap.
-            createScaledBitmap(addGradient(blur(bitmap)), container.width, container.height, false)
+    private fun processBitmap(bitmap: Bitmap): Bitmap = Bitmap.createScaledBitmap(addGradient(blur(bitmap)), container.width, container.height, false)
 
     private fun blur(bitmap: Bitmap): Bitmap {
 

@@ -4,8 +4,8 @@
     <application>
 
         <activity
-            android:name=".view.DetailActivity"
-            android:label="@string/title_activity_details"
+            android:name=".view.CharacterListingActivity"
+            android:label="@string/title_activity_listing"
             android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter
@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:host="marvelapp.instantappsample.com" />
-                <data android:pathPrefix="/detail" />
+                <data android:pathPrefix="/listing" />
                 <data android:scheme="https" />
                 <data android:scheme="http" />
             </intent-filter>

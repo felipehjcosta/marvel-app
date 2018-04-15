@@ -9,15 +9,14 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.github.felipehjcosta.marvelapp.base.R
-import com.github.felipehjcosta.marvelapp.base.modules.listing.view.CharacterListingActivity
 import com.github.felipehjcosta.marvelapp.base.modules.wiki.presentation.HighlightedCharactersViewModel
 import com.github.felipehjcosta.marvelapp.base.modules.wiki.presentation.OthersCharactersViewModel
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
 import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.base.util.findBy
 import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
-import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -66,7 +65,7 @@ class WikiFragment : Fragment() {
             toolbar.inflateMenu(R.menu.wiki_toolbar_menu)
             toolbar.setOnMenuItemClickListener { item ->
                 if (item.itemId == R.id.wiki_menu_search) {
-                    context?.let { CharacterListingActivity.start(it) }
+//                    context?.let { CharacterListingActivity.start(it) }
                     true
                 } else {
                     false

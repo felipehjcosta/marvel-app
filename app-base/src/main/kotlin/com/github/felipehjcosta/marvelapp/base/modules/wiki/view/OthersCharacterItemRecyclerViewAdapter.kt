@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.felipehjcosta.marvelapp.base.R
-import com.github.felipehjcosta.marvelapp.base.modules.listing.presentation.CharacterItemViewModel
+import com.github.felipehjcosta.marvelapp.base.modules.wiki.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.jakewharton.rxrelay2.PublishRelay
 import com.nostra13.universalimageloader.core.DisplayImageOptions
@@ -29,8 +29,8 @@ class OthersCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<OthersCharac
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = from(parent.context)
             .inflate(R.layout.others_characters_fragment_item, parent, false).run {
-        ViewHolder(this)
-    }
+                ViewHolder(this)
+            }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {

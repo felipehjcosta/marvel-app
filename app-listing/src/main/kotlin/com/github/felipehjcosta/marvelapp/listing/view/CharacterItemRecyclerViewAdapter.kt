@@ -1,23 +1,23 @@
-package com.github.felipehjcosta.marvelapp.base.modules.wiki.view
+package com.github.felipehjcosta.marvelapp.listing.view
 
 import android.animation.AnimatorInflater
 import android.graphics.Bitmap
-import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater.from
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.github.felipehjcosta.marvelapp.base.R
-import com.github.felipehjcosta.marvelapp.base.modules.wiki.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.base.util.bindView
+import com.github.felipehjcosta.marvelapp.listing.R
+import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterItemViewModel
 import com.jakewharton.rxrelay2.PublishRelay
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer
 import io.reactivex.Observable
 
-class HighlightedCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<HighlightedCharacterItemRecyclerViewAdapter.ViewHolder>() {
+class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyclerViewAdapter.ViewHolder>() {
 
     private val characterItemViewModels: MutableList<CharacterItemViewModel> = mutableListOf()
 
@@ -27,7 +27,7 @@ class HighlightedCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<Highlig
         get() = onItemSelectedRelay
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = from(parent.context)
-            .inflate(R.layout.highlighted_characters_fragment_item, parent, false).run {
+            .inflate(R.layout.listing_fragment_item, parent, false).run {
                 ViewHolder(this)
             }
 
@@ -35,10 +35,13 @@ class HighlightedCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<Highlig
         holder.apply {
             contentView.text = characterItemViewModels[position].name
 
+            val cornerRadius = itemView.resources.getDimensionPixelSize(com.github.felipehjcosta.marvelapp.base.R.dimen.image_default_color_radius)
+
             val imageOptions = DisplayImageOptions.Builder()
-                    .showImageOnLoading(R.color.image_default_color)
-                    .showImageForEmptyUri(R.color.image_default_color)
-                    .showImageOnFail(R.color.image_default_color)
+                    .displayer(RoundedBitmapDisplayer(cornerRadius))
+                    .showImageOnLoading(com.github.felipehjcosta.marvelapp.base.R.drawable.ic_rounded_image_default)
+                    .showImageForEmptyUri(com.github.felipehjcosta.marvelapp.base.R.drawable.ic_rounded_image_default)
+                    .showImageOnFail(com.github.felipehjcosta.marvelapp.base.R.drawable.ic_rounded_image_default)
                     .bitmapConfig(Bitmap.Config.RGB_565)
                     .cacheInMemory(true)
                     .cacheOnDisk(true)
@@ -71,8 +74,8 @@ class HighlightedCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<Highlig
         val contentView: TextView by bindView(R.id.title)
 
         init {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, R.anim.card_view_elevation)
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, com.github.felipehjcosta.marvelapp.base.R.anim.card_view_elevation)
             }
         }
 

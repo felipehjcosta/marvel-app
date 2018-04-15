@@ -83,4 +83,6 @@ dependencies {
     testImplementation "org.robolectric:shadows-supportv4:3.7.1"
 
     testImplementation 'junit:junit:4.12'
+    testImplementation "com.android.support.test:runner:1.0.2-alpha1"
+    testImplementation "com.android.support.test:rules:1.0.2-alpha1"
 }

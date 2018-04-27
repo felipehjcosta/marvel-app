@@ -155,6 +155,7 @@ dependencies {
     application project(":app-apk")
     feature project(":app-detail")
     feature project(":app-listing")
+    feature project(":app-wiki")
 }
 
 task copyTestClasses(type: Copy) {

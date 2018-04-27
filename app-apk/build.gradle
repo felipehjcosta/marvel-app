@@ -28,4 +28,5 @@ dependencies {
     implementation project(':app-base')
     implementation project(':app-detail')
     implementation project(':app-listing')
+    implementation project(':app-wiki')
 }

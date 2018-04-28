@@ -16,6 +16,7 @@ import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.base.util.findBy
 import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
 import com.github.felipehjcosta.marvelapp.base.util.navigateToListing
+import com.github.felipehjcosta.marvelapp.wiki.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.wiki.presentation.HighlightedCharactersViewModel
 import com.github.felipehjcosta.marvelapp.wiki.presentation.OthersCharactersViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -39,6 +40,11 @@ class WikiFragment : Fragment() {
     private lateinit var highlightedCharactersLayoutManager: GalleryLayoutManager
 
     private val toolbar: Toolbar by bindView(R.id.highlighted_characters_toolbar)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setupDependencyInjection()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

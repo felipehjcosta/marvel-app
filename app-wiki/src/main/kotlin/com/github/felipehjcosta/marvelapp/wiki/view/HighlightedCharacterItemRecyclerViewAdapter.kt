@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.github.felipehjcosta.marvelapp.base.R
 import com.github.felipehjcosta.marvelapp.base.util.bindView
+import com.github.felipehjcosta.marvelapp.wiki.R
 import com.github.felipehjcosta.marvelapp.wiki.presentation.CharacterItemViewModel
 import com.jakewharton.rxrelay2.PublishRelay
 import com.nostra13.universalimageloader.core.DisplayImageOptions
@@ -36,9 +36,9 @@ class HighlightedCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<Highlig
             contentView.text = characterItemViewModels[position].name
 
             val imageOptions = DisplayImageOptions.Builder()
-                    .showImageOnLoading(R.color.image_default_color)
-                    .showImageForEmptyUri(R.color.image_default_color)
-                    .showImageOnFail(R.color.image_default_color)
+                    .showImageOnLoading(com.github.felipehjcosta.marvelapp.base.R.color.image_default_color)
+                    .showImageForEmptyUri(com.github.felipehjcosta.marvelapp.base.R.color.image_default_color)
+                    .showImageOnFail(com.github.felipehjcosta.marvelapp.base.R.color.image_default_color)
                     .bitmapConfig(Bitmap.Config.RGB_565)
                     .cacheInMemory(true)
                     .cacheOnDisk(true)

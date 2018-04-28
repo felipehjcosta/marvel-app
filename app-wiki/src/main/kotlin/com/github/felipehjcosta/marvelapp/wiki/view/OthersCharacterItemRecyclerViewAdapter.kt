@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.github.felipehjcosta.marvelapp.base.R
 import com.github.felipehjcosta.marvelapp.base.util.bindView
+import com.github.felipehjcosta.marvelapp.wiki.R
 import com.github.felipehjcosta.marvelapp.wiki.presentation.CharacterItemViewModel
 import com.jakewharton.rxrelay2.PublishRelay
 import com.nostra13.universalimageloader.core.DisplayImageOptions
@@ -40,9 +40,9 @@ class OthersCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<OthersCharac
 
             val imageOptions = DisplayImageOptions.Builder()
                     .displayer(RoundedBitmapDisplayer(cornerRadius))
-                    .showImageOnLoading(R.drawable.ic_rounded_image_default)
-                    .showImageForEmptyUri(R.drawable.ic_rounded_image_default)
-                    .showImageOnFail(R.drawable.ic_rounded_image_default)
+                    .showImageOnLoading(com.github.felipehjcosta.marvelapp.base.R.drawable.ic_rounded_image_default)
+                    .showImageForEmptyUri(com.github.felipehjcosta.marvelapp.base.R.drawable.ic_rounded_image_default)
+                    .showImageOnFail(com.github.felipehjcosta.marvelapp.base.R.drawable.ic_rounded_image_default)
                     .bitmapConfig(Bitmap.Config.RGB_565)
                     .cacheInMemory(true)
                     .cacheOnDisk(true)

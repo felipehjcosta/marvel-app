@@ -67,6 +67,7 @@ dependencies {
     api "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rxjava_jakewharton_version"
 
     api 'com.github.felipehjcosta:rxaction:1.1.0'
+    api 'com.github.felipehjcosta:gallerylayoutmanager:1.1.0'
 
     api project(':checkableheart')
 

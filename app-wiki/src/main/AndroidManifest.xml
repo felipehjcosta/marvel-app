@@ -6,6 +6,18 @@
             android:name=".view.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
+        <intent-filter
+            android:autoVerify="true"
+            android:order="2">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <data android:host="marvelapp.instantappsample.com" />
+            <data android:pathPrefix="/main" />
+            <data android:scheme="https" />
+            <data android:scheme="http" />
+        </intent-filter>
     </application>
 
 </manifest>

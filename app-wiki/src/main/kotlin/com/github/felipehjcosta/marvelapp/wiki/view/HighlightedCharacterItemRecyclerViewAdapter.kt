@@ -72,7 +72,7 @@ class HighlightedCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<Highlig
 
         init {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, R.anim.card_view_elevation)
+                view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, com.github.felipehjcosta.marvelapp.base.R.anim.card_view_elevation)
             }
         }
 

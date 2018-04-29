@@ -36,7 +36,7 @@ class OthersCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<OthersCharac
         holder.apply {
             contentView.text = characterItemViewModels[position].name
 
-            val cornerRadius = itemView.resources.getDimensionPixelSize(R.dimen.image_default_color_radius)
+            val cornerRadius = itemView.resources.getDimensionPixelSize(com.github.felipehjcosta.marvelapp.base.R.dimen.image_default_color_radius)
 
             val imageOptions = DisplayImageOptions.Builder()
                     .displayer(RoundedBitmapDisplayer(cornerRadius))
@@ -76,7 +76,7 @@ class OthersCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<OthersCharac
 
         init {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, R.anim.card_view_elevation)
+                view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, com.github.felipehjcosta.marvelapp.base.R.anim.card_view_elevation)
             }
         }
 

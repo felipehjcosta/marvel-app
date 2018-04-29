@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_listing"
             android:checked="true"
             android:icon="@drawable/ic_menu_gallery"
-            android:showAsAction="always"
+            app:showAsAction="always"
             android:title="Characters" />
         <item
             android:id="@+id/nav_favorite"
             android:icon="@drawable/heart_outline"
-            android:showAsAction="always"
+            app:showAsAction="always"
             android:title="Favorites" />
     </group>
 

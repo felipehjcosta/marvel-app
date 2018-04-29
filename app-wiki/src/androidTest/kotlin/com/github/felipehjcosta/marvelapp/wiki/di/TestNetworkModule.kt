@@ -1,4 +1,4 @@
-package com.github.felipehjcosta.marvelapp.base.di
+package com.github.felipehjcosta.marvelapp.wiki.di
 
 import com.github.felipehjcosta.marvelapp.base.BuildConfig
 import com.github.felipehjcosta.marvelapp.base.data.CharacterService

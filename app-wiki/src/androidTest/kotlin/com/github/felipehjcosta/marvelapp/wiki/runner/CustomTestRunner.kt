@@ -1,11 +1,11 @@
-package com.github.felipehjcosta.marvelapp.base.runner
+package com.github.felipehjcosta.marvelapp.wiki.runner
 
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnitRunner
-import com.github.felipehjcosta.marvelapp.base.MockDemoApplication
+import com.github.felipehjcosta.marvelapp.wiki.MockDemoApplication
 import com.linkedin.android.testbutler.TestButler
 import com.squareup.rx2.idler.Rx2Idler
 import io.reactivex.plugins.RxJavaPlugins

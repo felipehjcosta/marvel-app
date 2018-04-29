@@ -1,4 +1,4 @@
-package com.github.felipehjcosta.marvelapp.base.main
+package com.github.felipehjcosta.marvelapp.wiki.main
 
 import android.content.Intent
 import android.support.test.InstrumentationRegistry
@@ -8,9 +8,10 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import com.github.felipehjcosta.marvelapp.base.MockDemoApplication
-import com.github.felipehjcosta.marvelapp.base.R
-import com.github.felipehjcosta.marvelapp.base.utils.readAsset
+import com.github.felipehjcosta.marvelapp.wiki.MockDemoApplication
+import com.github.felipehjcosta.marvelapp.wiki.R
+import com.github.felipehjcosta.marvelapp.wiki.utils.readAsset
+import com.github.felipehjcosta.marvelapp.wiki.view.MainActivity
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer

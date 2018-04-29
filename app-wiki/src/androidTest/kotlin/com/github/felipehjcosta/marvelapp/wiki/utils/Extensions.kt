@@ -1,4 +1,4 @@
-package com.github.felipehjcosta.marvelapp.base.utils
+package com.github.felipehjcosta.marvelapp.wiki.utils
 
 import android.support.test.InstrumentationRegistry
 

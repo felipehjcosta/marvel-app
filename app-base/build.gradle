@@ -21,8 +21,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "com.github.felipehjcosta.marvelapp.base.runner.CustomTestRunner"
-
         vectorDrawables.useSupportLibrary = true
 
         buildConfigField "String", "MARVEL_PRIVATE_KEY", "\"" + MARVEL_PRIVATE_KEY + "\""

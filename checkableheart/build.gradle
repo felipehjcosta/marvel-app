@@ -24,8 +24,8 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$support_library_version"
-    implementation "com.android.support:design:$support_library_version"
+    implementation supportDependencies.appCompat
+    implementation supportDependencies.design
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })

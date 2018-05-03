@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.2.40'
+    ext.kotlinVersion = '1.2.40'
 
     repositories {
         jcenter()
@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.vanniktech:gradle-dependency-graph-generator-plugin:0.2.0"
     }
 }
@@ -23,17 +23,6 @@ ext.target_sdk_version = 27
 
 ext.version_code = 1
 ext.version_name = "1.0"
-
-ext.dagger_version = "2.13"
-ext.javax_annotation_version = "1.0"
-ext.universal_image_loader_version = "1.9.5"
-ext.rxjava_version = "2.1.6"
-ext.rxjava_android_version = "2.0.1"
-ext.rxjava_jakewharton_version = "2.0.0"
-ext.retrofit_version = "2.3.0"
-ext.okhttp_version = "3.8.1"
-ext.gson_version = "gson"
-ext.androidx_version = "0.2"
 
 allprojects {
     repositories {

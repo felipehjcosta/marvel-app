@@ -25,7 +25,6 @@ android {
 
         buildConfigField "String", "MARVEL_PRIVATE_KEY", "\"" + MARVEL_PRIVATE_KEY + "\""
         buildConfigField "String", "MARVEL_PUBLIC_KEY", "\"" + MARVEL_PUBLIC_KEY + "\""
-        multiDexEnabled true
     }
 
     sourceSets {

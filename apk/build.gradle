@@ -25,8 +25,8 @@ android {
 }
 
 dependencies {
-    implementation project(':app-base')
-    implementation project(':app-detail')
-    implementation project(':app-listing')
-    implementation project(':app-wiki')
+    implementation project(':feature:base')
+    implementation project(':feature:detail')
+    implementation project(':feature:listing')
+    implementation project(':feature:wiki')
 }

@@ -12,7 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.github.felipehjcosta.marvelapp.wiki.runner.CustomTestRunner"
 
     }
 
@@ -38,8 +38,8 @@ android {
 }
 
 dependencies {
-    implementation project(':app-base')
-    application project(':app-apk')
+    implementation project(':feature:base')
+    application project(':apk')
     api project(':checkableheart')
 
     api kotlinDependencies.values()
@@ -55,7 +55,16 @@ dependencies {
 
     api rxJavaDependencies.values()
 
+    api uiDependencies.galleryLayoutManager
+
+    api networkDependencies.values()
+
     testImplementation kotlinTestDependencies.values()
     testImplementation networkTestDependencies.values()
     testImplementation testDependencies.values()
+
+    androidTestImplementation networkTestDependencies.values()
+    kaptAndroidTest daggerCompilerDependencies.values()
+    androidTestImplementation androidTestDependencies.values()
+    androidTestUtil androidTestUtilDependencies.values()
 }

@@ -38,8 +38,8 @@ android {
 }
 
 dependencies {
-    implementation project(':app-base')
-    application project(':app-apk')
+    implementation project(':feature:base')
+    application project(':apk')
     api project(':checkableheart')
 
     api kotlinDependencies.values()

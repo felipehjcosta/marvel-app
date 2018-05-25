@@ -76,10 +76,10 @@ kapt {
 
 dependencies {
     implementation project(':checkableheart')
-    application project(":app-apk")
-    feature project(":app-detail")
-    feature project(":app-listing")
-    feature project(":app-wiki")
+    application project(":apk")
+    feature project(":feature:detail")
+    feature project(":feature:listing")
+    feature project(":feature:wiki")
 
     implementation kotlinDependencies.values()
 

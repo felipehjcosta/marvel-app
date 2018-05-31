@@ -40,6 +40,7 @@ android {
 dependencies {
     implementation project(':feature:base')
     application project(':apk')
+    implementation 'com.facebook.shimmer:shimmer:0.2.0'
     api project(':checkableheart')
 
     api kotlinDependencies.values()

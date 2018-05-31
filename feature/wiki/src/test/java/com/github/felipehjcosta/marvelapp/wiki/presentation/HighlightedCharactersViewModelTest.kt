@@ -4,6 +4,7 @@ import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
 import com.github.felipehjcosta.marvelapp.wiki.datamodel.HighlightedCharactersDataModel
 import io.mockk.every
 import io.mockk.mockk
+import io.reactivex.Observable
 import io.reactivex.Observable.just
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.observers.TestObserver
@@ -42,6 +43,25 @@ class HighlightedCharactersViewModelTest {
         val disposable = viewModel.loadItemsCommand.execute().subscribe()
 
         itemsObserver.assertValue { it[0].name == characterName }
+
+        disposable.dispose()
+    }
+
+    @Test
+    fun ensureShowLoadingEmitCorrectValuesWhenExecuteLoadItemsCommandCorrectly() {
+
+        val characterName = "Wolverine"
+        val character = Character().apply { name = characterName }
+
+        every { dataModel.getHighlightedCharacters() } returns Observable.just(listOf(character))
+
+        val itemsObserver = TestObserver.create<Boolean>()
+
+        viewModel.showLoading.subscribe(itemsObserver)
+
+        val disposable = viewModel.loadItemsCommand.execute().subscribe()
+
+        itemsObserver.assertValues(true, false)
 
         disposable.dispose()
     }

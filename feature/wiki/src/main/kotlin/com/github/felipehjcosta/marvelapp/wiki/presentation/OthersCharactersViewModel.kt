@@ -28,4 +28,6 @@ class OthersCharactersViewModel @Inject constructor(
                 CharacterItemViewModel(it.id, it.name, it.thumbnail.url)
             }
         }
+    val showLoading: Observable<Boolean>
+        get() = asyncLoadItemsCommand.executing
 }

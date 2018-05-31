@@ -59,15 +59,12 @@ class WikiFragment : Fragment() {
 
             recyclerView.layoutManager = GridLayoutManager(context, 3)
             othersAdapter = OthersCharacterItemRecyclerViewAdapter()
-            recyclerView.adapter = othersAdapter
 
             recyclerView = it.findBy(R.id.highlighted_characters_recycler_view)
             highlightedAdapter = HighlightedCharacterItemRecyclerViewAdapter()
 
             highlightedCharactersLayoutManager = GalleryLayoutManager()
             highlightedCharactersLayoutManager.attach(recyclerView)
-
-            recyclerView.adapter = highlightedAdapter
 
             toolbar.inflateMenu(R.menu.wiki_toolbar_menu)
             toolbar.setOnMenuItemClickListener { item ->
@@ -94,7 +91,21 @@ class WikiFragment : Fragment() {
                         highlightedCharactersLayoutManager.onItemSelectedListener = this
                     }
                 }
-                .subscribe { highlightedAdapter.replaceItems(it) }
+                .subscribe {
+                    highlightedAdapter.replaceItems(it)
+                    view.findBy<RecyclerView>(R.id.highlighted_characters_recycler_view).apply {
+                        adapter = highlightedAdapter
+                    }
+                }
+
+        compositeDisposable += highlightedCharactersViewModel.showLoading.filter { it == true }.subscribe {
+            LoadingWikiGalleryCallbacksHandler().apply {
+                highlightedCharactersLayoutManager.itemTransformer = this
+            }
+            view.findBy<RecyclerView>(R.id.highlighted_characters_recycler_view).apply {
+                adapter = LoadingHighlightedCharacterItemRecyclerViewAdapter(7)
+            }
+        }
 
         compositeDisposable += highlightedAdapter.onItemSelected
                 .subscribe { itemSelectedId ->
@@ -104,7 +115,20 @@ class WikiFragment : Fragment() {
         compositeDisposable += highlightedCharactersViewModel.loadItemsCommand.execute().subscribe()
 
         compositeDisposable += othersCharactersViewModel.items
-                .subscribe { othersAdapter.replaceItems(it) }
+                .subscribe {
+                    othersAdapter.replaceItems(it)
+                    view.findBy<RecyclerView>(R.id.others_characters_recycler_view).apply {
+                        adapter = othersAdapter
+                    }
+                }
+
+        compositeDisposable += othersCharactersViewModel.showLoading
+                .filter { it == true }
+                .subscribe {
+                    view.findBy<RecyclerView>(R.id.others_characters_recycler_view).apply {
+                        adapter = LoadingOthersCharacterItemRecyclerViewAdapter(7)
+                    }
+                }
 
         compositeDisposable += othersAdapter.onItemSelected
                 .subscribe { itemSelectedId ->

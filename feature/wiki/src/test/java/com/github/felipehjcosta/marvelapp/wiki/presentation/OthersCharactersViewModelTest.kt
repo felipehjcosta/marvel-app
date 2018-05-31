@@ -44,4 +44,23 @@ class OthersCharactersViewModelTest {
 
         disposable.dispose()
     }
+
+    @Test
+    fun ensureShowLoadingEmitCorrectValuesWhenExecuteLoadItemsCommandCorrectly() {
+
+        val characterName = "Wolverine"
+        val character = Character().apply { name = characterName }
+
+        every { dataModel.getOthersCharacters() } returns Observable.just(listOf(character))
+
+        val itemsObserver = TestObserver.create<Boolean>()
+
+        viewModel.showLoading.subscribe(itemsObserver)
+
+        val disposable = viewModel.loadItemsCommand.execute().subscribe()
+
+        itemsObserver.assertValues(true, false)
+
+        disposable.dispose()
+    }
 }

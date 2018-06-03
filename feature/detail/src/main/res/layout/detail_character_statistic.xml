@@ -1,119 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
     android:background="@color/colorPrimary"
-    android:orientation="horizontal"
-    tools:showIn="@layout/content_details">
+    tools:showIn="@layout/activity_detail">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/statistic_comics"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginTop="6dp"
+        android:text="@string/zero"
+        android:textColor="@color/text_inverse"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/statistic_comics_title"
+        app:layout_constraintEnd_toEndOf="@+id/statistic_comics_title"
+        app:layout_constraintStart_toStartOf="@+id/statistic_comics_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/statistic_comics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@color/text_inverse"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/statistic_comics"
-            android:textColor="@color/text_inverse" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/statistic_comics_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="@string/statistic_comics"
+        android:textColor="@color/text_inverse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/separator1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
+        android:id="@+id/separator1"
         android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="@color/separator_color" />
+        android:layout_height="0dp"
+        android:background="@color/separator_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/statistic_events_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/statistic_comics_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/statistic_events"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginTop="6dp"
+        android:text="@string/zero"
+        android:textColor="@color/text_inverse"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/statistic_events_title"
+        app:layout_constraintEnd_toEndOf="@+id/statistic_events_title"
+        app:layout_constraintStart_toStartOf="@+id/statistic_events_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/statistic_events"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@color/text_inverse"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/statistic_events"
-            android:textColor="@color/text_inverse" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/statistic_events_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="@string/statistic_events"
+        android:textColor="@color/text_inverse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/separator2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/separator1" />
 
     <View
-        android:layout_width="1px"
-        android:layout_height="match_parent"
-        android:background="@color/separator_color" />
+        android:id="@+id/separator2"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/separator_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/statistic_series_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/statistic_events_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/statistic_series"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginTop="6dp"
+        android:text="@string/zero"
+        android:textColor="@color/text_inverse"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/statistic_series_title"
+        app:layout_constraintEnd_toEndOf="@+id/statistic_series_title"
+        app:layout_constraintStart_toStartOf="@+id/statistic_series_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/statistic_series"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@color/text_inverse"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/statistic_series"
-            android:textColor="@color/text_inverse" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/statistic_series_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="@string/statistic_series"
+        android:textColor="@color/text_inverse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/separator3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/separator2" />
 
     <View
-        android:layout_width="1px"
-        android:layout_height="match_parent"
-        android:background="@color/separator_color" />
+        android:id="@+id/separator3"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/separator_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/statistic_stories_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/statistic_series_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/statistic_stories"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginTop="6dp"
+        android:text="@string/zero"
+        android:textColor="@color/text_inverse"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/statistic_stories_title"
+        app:layout_constraintEnd_toEndOf="@+id/statistic_stories_title"
+        app:layout_constraintStart_toStartOf="@+id/statistic_stories_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/statistic_stories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@color/text_inverse"
-            android:textSize="24sp" />
+    <TextView
+        android:id="@+id/statistic_stories_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="@string/statistic_stories"
+        android:textColor="@color/text_inverse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/separator3" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/statistic_stories"
-            android:textColor="@color/text_inverse" />
-    </LinearLayout>
-
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

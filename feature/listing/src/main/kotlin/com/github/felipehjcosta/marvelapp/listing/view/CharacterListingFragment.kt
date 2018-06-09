@@ -9,12 +9,10 @@ import android.support.v4.widget.ContentLoadingProgressBar
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
-import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
 import com.github.felipehjcosta.marvelapp.listing.R
 import com.github.felipehjcosta.marvelapp.listing.di.setupDependencyInjection
@@ -26,8 +24,13 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
+import kotlinx.android.synthetic.main.listing_fragment.toolbar
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
+import android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material as navigationIconResId
+import kotlinx.android.synthetic.main.listing_fragment.loading_view as loadingView
+import kotlinx.android.synthetic.main.listing_fragment.recycler_view as recyclerView
+import kotlinx.android.synthetic.main.listing_fragment.swipe_refresh_view as swipeRefreshView
 
 
 class CharacterListingFragment : Fragment() {
@@ -52,22 +55,19 @@ class CharacterListingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView by bindView(R.id.listing_recycler_view)
         val linearLayoutManger = LinearLayoutManager(context)
         recyclerView.layoutManager = linearLayoutManger
         adapter = CharacterItemRecyclerViewAdapter()
         recyclerView.adapter = adapter
 
-        val loading: ContentLoadingProgressBar by bindView(R.id.listing_loading)
-        val swipeRefresh: SwipeRefreshLayout by bindView(R.id.listing_swipe_refresh)
-
-        val toolbar: Toolbar by bindView(R.id.toolbar)
-        toolbar.navigationIcon = getDrawable(resources, android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material, null)
-        toolbar.setNavigationOnClickListener {
-            activity?.onBackPressed()
+        toolbar.apply {
+            navigationIcon = getDrawable(resources, navigationIconResId, null)
+            setNavigationOnClickListener {
+                activity?.onBackPressed()
+            }
         }
 
-        bind(recyclerView, linearLayoutManger, loading, swipeRefresh)
+        bind(recyclerView, linearLayoutManger, loadingView, swipeRefreshView)
     }
 
     private fun bind(recyclerView: RecyclerView,

@@ -1,13 +1,9 @@
 package com.github.felipehjcosta.marvelapp.detail.view
 
 import android.os.Bundle
-import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
-import android.widget.ImageView
-import android.widget.TextView
-import com.example.checkableheart.ui.HeartFab
 import com.github.felipehjcosta.marvelapp.base.rx.checkedChanges
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
 import com.github.felipehjcosta.marvelapp.base.util.bindView
@@ -17,6 +13,14 @@ import com.github.felipehjcosta.marvelapp.detail.presentation.CharacterDetailVie
 import com.nostra13.universalimageloader.core.ImageLoader
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_detail.favorite_button as favoriteFab
+import kotlinx.android.synthetic.main.activity_detail.image_backdrop as backdrop
+import kotlinx.android.synthetic.main.activity_detail.toolbar_layout as toolbarLayout
+import kotlinx.android.synthetic.main.content_details.text_description as description
+import kotlinx.android.synthetic.main.detail_character_statistic.statistic_comics as statisticComics
+import kotlinx.android.synthetic.main.detail_character_statistic.statistic_events as statisticEvents
+import kotlinx.android.synthetic.main.detail_character_statistic.statistic_series as statisticSeries
+import kotlinx.android.synthetic.main.detail_character_statistic.statistic_stories as statisticStories
 
 
 class DetailActivity : AppCompatActivity() {
@@ -26,14 +30,6 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var compositeDisposable: CompositeDisposable
 
-    private val toolbarLayout: CollapsingToolbarLayout by bindView(R.id.toolbar_layout)
-    private val backdrop: ImageView by bindView(R.id.image_backdrop)
-    private val description: TextView by bindView(R.id.text_description)
-    private val statisticComics: TextView by bindView(R.id.statistic_comics)
-    private val statisticEvents: TextView by bindView(R.id.statistic_events)
-    private val statisticSeries: TextView by bindView(R.id.statistic_series)
-    private val statisticStories: TextView by bindView(R.id.statistic_stories)
-    private val favoriteFab: HeartFab by bindView(R.id.favorite_button)
     private lateinit var imageLoader: ImageLoader
 
     override fun onCreate(savedInstanceState: Bundle?) {

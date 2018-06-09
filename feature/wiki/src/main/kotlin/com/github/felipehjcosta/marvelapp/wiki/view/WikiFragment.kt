@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
-import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.base.util.findBy
 import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
 import com.github.felipehjcosta.marvelapp.base.util.navigateToListing
@@ -20,7 +18,11 @@ import com.github.felipehjcosta.marvelapp.wiki.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.wiki.presentation.HighlightedCharactersViewModel
 import com.github.felipehjcosta.marvelapp.wiki.presentation.OthersCharactersViewModel
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_wiki.*
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.fragment_wiki.highlighted_characters_container as highlightedCharactersContainer
+import kotlinx.android.synthetic.main.fragment_wiki.highlighted_characters_recycler_view as highlightedCharactersRecyclerView
+import kotlinx.android.synthetic.main.fragment_wiki.others_characters_recycler_view as othersCharactersRecyclerView
 
 
 class WikiFragment : Fragment() {
@@ -33,13 +35,11 @@ class WikiFragment : Fragment() {
 
     private lateinit var compositeDisposable: CompositeDisposable
 
-    private lateinit var othersAdapter: OthersCharacterItemRecyclerViewAdapter
+    private var othersAdapter = OthersCharacterItemRecyclerViewAdapter()
 
-    private lateinit var highlightedAdapter: HighlightedCharacterItemRecyclerViewAdapter
+    private var highlightedAdapter = HighlightedCharacterItemRecyclerViewAdapter()
 
     private lateinit var highlightedCharactersLayoutManager: GalleryLayoutManager
-
-    private val toolbar: Toolbar by bindView(R.id.highlighted_characters_toolbar)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,20 +54,15 @@ class WikiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view?.let {
-            var recyclerView: RecyclerView = it.findBy(R.id.others_characters_recycler_view)
+        othersCharactersRecyclerView.layoutManager = GridLayoutManager(context, 3)
 
-            recyclerView.layoutManager = GridLayoutManager(context, 3)
-            othersAdapter = OthersCharacterItemRecyclerViewAdapter()
+        highlightedCharactersLayoutManager = GalleryLayoutManager().apply {
+            attach(highlightedCharactersRecyclerView)
+        }
 
-            recyclerView = it.findBy(R.id.highlighted_characters_recycler_view)
-            highlightedAdapter = HighlightedCharacterItemRecyclerViewAdapter()
-
-            highlightedCharactersLayoutManager = GalleryLayoutManager()
-            highlightedCharactersLayoutManager.attach(recyclerView)
-
-            toolbar.inflateMenu(R.menu.wiki_toolbar_menu)
-            toolbar.setOnMenuItemClickListener { item ->
+        toolbar.apply {
+            inflateMenu(R.menu.wiki_toolbar_menu)
+            setOnMenuItemClickListener { item ->
                 if (item.itemId == R.id.wiki_menu_search) {
                     activity?.let { navigateToListing(it) }
                     true
@@ -75,9 +70,9 @@ class WikiFragment : Fragment() {
                     false
                 }
             }
-
-            bind()
         }
+
+        bind()
     }
 
     private fun bind() {
@@ -85,7 +80,6 @@ class WikiFragment : Fragment() {
 
         compositeDisposable += highlightedCharactersViewModel.items
                 .doOnNext {
-                    val highlightedCharactersContainer: ViewGroup = view.findBy(R.id.highlighted_characters_container)
                     WikiGalleryCallbacksHandler(it, highlightedCharactersContainer).apply {
                         highlightedCharactersLayoutManager.itemTransformer = this
                         highlightedCharactersLayoutManager.onItemSelectedListener = this
@@ -93,9 +87,7 @@ class WikiFragment : Fragment() {
                 }
                 .subscribe {
                     highlightedAdapter.replaceItems(it)
-                    view.findBy<RecyclerView>(R.id.highlighted_characters_recycler_view).apply {
-                        adapter = highlightedAdapter
-                    }
+                    highlightedCharactersRecyclerView.adapter = highlightedAdapter
                 }
 
         compositeDisposable += highlightedCharactersViewModel.showLoading.filter { it == true }.subscribe {
@@ -117,17 +109,13 @@ class WikiFragment : Fragment() {
         compositeDisposable += othersCharactersViewModel.items
                 .subscribe {
                     othersAdapter.replaceItems(it)
-                    view.findBy<RecyclerView>(R.id.others_characters_recycler_view).apply {
-                        adapter = othersAdapter
-                    }
+                    othersCharactersRecyclerView.adapter = othersAdapter
                 }
 
         compositeDisposable += othersCharactersViewModel.showLoading
                 .filter { it == true }
                 .subscribe {
-                    view.findBy<RecyclerView>(R.id.others_characters_recycler_view).apply {
-                        adapter = LoadingOthersCharacterItemRecyclerViewAdapter(7)
-                    }
+                    othersCharactersRecyclerView.adapter = LoadingOthersCharacterItemRecyclerViewAdapter(7)
                 }
 
         compositeDisposable += othersAdapter.onItemSelected

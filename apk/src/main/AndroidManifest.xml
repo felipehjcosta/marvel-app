@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.github.felipehjcosta.marvelapp">
 
-    <application/>
+    <application
+        android:allowBackup="false"
+        tools:replace="android:allowBackup"
+        android:icon="@mipmap/ic_launcher"
+        tools:ignore="GoogleAppIndexingWarning" />
 </manifest>

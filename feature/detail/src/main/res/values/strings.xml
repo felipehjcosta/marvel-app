@@ -1,4 +1,5 @@
 <resources>
 
     <string name="zero">0</string>
+    <string name="hero_image">Hero image</string>
 </resources>

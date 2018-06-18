@@ -1,8 +1,8 @@
 package com.github.felipehjcosta.marvelapp.base.rx
 
+import android.os.Looper
 import com.example.checkableheart.ui.HeartFab
 import com.jakewharton.rxbinding2.InitialValueObservable
-import com.jakewharton.rxbinding2.internal.Preconditions.checkMainThread
 import io.reactivex.Observer
 import io.reactivex.android.MainThreadDisposable
 
@@ -33,5 +33,14 @@ class CheckableViewCheckedChangeObservable(private val view: HeartFab) : Initial
         override fun onDispose() {
             view.setOnCheckedChangeListener(null)
         }
+    }
+
+    private fun checkMainThread(observer: Observer<*>): Boolean {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            observer.onError(IllegalStateException(
+                    "Expected to be called on the main thread but was " + Thread.currentThread().name))
+            return false
+        }
+        return true
     }
 }

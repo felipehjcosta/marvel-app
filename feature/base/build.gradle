@@ -41,7 +41,12 @@ android {
     }
 
     lintOptions {
-        abortOnError false
+        // set to true to turn off analysis progress reporting by lint
+        quiet false
+        // if true, stop the gradle build if errors are found
+        abortOnError true
+        // if true, only report errors
+        ignoreWarnings false
     }
 
     dexOptions {

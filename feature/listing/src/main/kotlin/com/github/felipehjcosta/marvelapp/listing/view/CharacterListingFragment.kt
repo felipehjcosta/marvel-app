@@ -27,7 +27,7 @@ import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.listing_fragment.toolbar
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
-import android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material as navigationIconResId
+import com.github.felipehjcosta.marvelapp.listing.R.drawable.ic_arrow_back_white_24dp as navigationIconResId
 import kotlinx.android.synthetic.main.listing_fragment.loading_view as loadingView
 import kotlinx.android.synthetic.main.listing_fragment.recycler_view as recyclerView
 import kotlinx.android.synthetic.main.listing_fragment.swipe_refresh_view as swipeRefreshView

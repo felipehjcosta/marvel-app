@@ -1,14 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.github.felipehjcosta.marvelapp.wiki">
 
-    <application>
+    <application
+        android:supportsRtl="false"
+        tools:ignore="AllowBackup,MissingApplicationIcon">
         <activity
             android:name=".view.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter
                 android:autoVerify="true"
-                android:order="2">
+                android:order="2"
+                tools:targetApi="m">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.BROWSABLE" />

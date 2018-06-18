@@ -5,6 +5,6 @@
         android:id="@+id/wiki_menu_search"
         android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="100"
-        android:title="Search"
+        android:title="@string/wiki_menu_search_title"
         app:showAsAction="always" />
 </menu>

@@ -1,3 +1,9 @@
 <resources>
 
+    <string name="nav_listing_title">Characters</string>
+    <string name="nav_favorite_title">Favorites</string>
+    <string name="highlighted_characters_section_title">Destaque</string>
+    <string name="highlighted_characters_section_subtitle">Veja os heróis favoritos da Marvel Wiki Heroes</string>
+    <string name="others_characters_section_title">Outros heróis</string>
+    <string name="wiki_menu_search_title">Search</string>
 </resources>

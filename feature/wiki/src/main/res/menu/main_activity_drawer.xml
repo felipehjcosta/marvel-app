@@ -7,13 +7,13 @@
             android:id="@+id/nav_listing"
             android:checked="true"
             android:icon="@drawable/ic_menu_gallery"
-            app:showAsAction="always"
-            android:title="Characters" />
+            app:showAsAction="ifRoom"
+            android:title="@string/nav_listing_title" />
         <item
             android:id="@+id/nav_favorite"
             android:icon="@drawable/heart_outline"
-            app:showAsAction="always"
-            android:title="Favorites" />
+            app:showAsAction="ifRoom"
+            android:title="@string/nav_favorite_title" />
     </group>
 
 </menu>

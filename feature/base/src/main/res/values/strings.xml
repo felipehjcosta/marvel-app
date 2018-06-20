@@ -9,4 +9,7 @@
     <string name="card_image">Card Image</string>
     <string name="card_title">Card title</string>
     <string name="favorites">Favorites</string>
+
+    <string name="title_activity_details">DetailActivity</string>
+    <string name="title_activity_listing">All heroes</string>
 </resources>

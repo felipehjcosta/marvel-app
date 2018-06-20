@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="detail_background">#222222</color>
     <color name="separator_color">#55FFFFFF</color>
     <color name="text_inverse">#DEDEDE</color>
 </resources>

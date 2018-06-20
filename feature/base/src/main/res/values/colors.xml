@@ -10,4 +10,6 @@
 
     <color name="transparent">#00000000</color>
     <color name="black">#ff000000</color>
+
+    <color name="detail_background">#222222</color>
 </resources>

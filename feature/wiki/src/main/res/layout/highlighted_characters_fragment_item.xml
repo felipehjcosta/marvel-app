@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="152dp"
     android:layout_height="232dp"
-    android:foreground="@drawable/highlighted_characters_foreground"
     android:layout_gravity="center"
+    android:foreground="@drawable/highlighted_characters_foreground"
     android:orientation="vertical">
 
     <ImageView
@@ -20,10 +20,11 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
+        android:layout_gravity="bottom|left"
         android:layout_margin="16dp"
         android:contentDescription="@string/card_title"
         android:gravity="center_horizontal"
         android:textAppearance="?attr/textAppearanceListItem"
+        tools:ignore="RtlHardcoded"
         tools:text="Greyhound" />
 </FrameLayout>

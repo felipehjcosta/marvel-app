@@ -2,4 +2,10 @@
 
     <string name="zero">0</string>
     <string name="hero_image">Hero image</string>
+
+    <string name="title_activity_details">DetailActivity</string>
+    <string name="statistic_comics">COMICS</string>
+    <string name="statistic_series">SERIES</string>
+    <string name="statistic_stories">STORIES</string>
+    <string name="statistic_events">EVENTS</string>
 </resources>

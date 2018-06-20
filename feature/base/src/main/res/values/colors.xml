@@ -3,8 +3,6 @@
     <color name="colorPrimary">#24262b</color>
     <color name="colorPrimaryDark">#24262b</color>
     <color name="colorAccent">#F7F100</color>
-    <color name="separator_color">#55FFFFFF</color>
-    <color name="text_inverse">#DEDEDE</color>
     <color name="image_default_color">#BDBDBD</color>
     <color name="background">#000</color>
 

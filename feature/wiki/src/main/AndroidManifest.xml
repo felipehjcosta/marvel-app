@@ -2,12 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.github.felipehjcosta.marvelapp.wiki">
 
-    <application
-        android:supportsRtl="false"
-        tools:ignore="AllowBackup,MissingApplicationIcon">
+    <application tools:ignore="AllowBackup,MissingApplicationIcon">
         <activity
             android:name=".view.MainActivity"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter
                 android:autoVerify="true"

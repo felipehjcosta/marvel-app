@@ -1,5 +1,5 @@
 <resources>
-
+    <string name="wiki_heroes">Wiki Heroes</string>
     <string name="nav_listing_title">Characters</string>
     <string name="nav_favorite_title">Favorites</string>
     <string name="highlighted_characters_section_title">Destaque</string>

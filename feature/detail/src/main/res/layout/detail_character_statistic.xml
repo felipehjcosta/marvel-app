@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
+    android:background="@color/colorPrimary"
+    tools:ignore="Overdraw"
     tools:showIn="@layout/activity_detail">
 
     <TextView

@@ -74,9 +74,7 @@ class CharacterItemRecyclerViewAdapter : RecyclerView.Adapter<CharacterItemRecyc
         val contentView: TextView by bindView(R.id.title)
 
         init {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, com.github.felipehjcosta.marvelapp.base.R.anim.card_view_elevation)
-            }
+            view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, com.github.felipehjcosta.marvelapp.base.R.anim.card_view_elevation)
         }
 
         override fun toString(): String {

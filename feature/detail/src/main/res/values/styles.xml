@@ -1,3 +1,5 @@
 <resources>
-
+    <style name="AppTheme.NoActionBar.Detail">
+        <item name="android:windowBackground">@color/detail_background</item>
+    </style>
 </resources>

@@ -2,7 +2,6 @@ package com.github.felipehjcosta.marvelapp.wiki.view
 
 import android.animation.AnimatorInflater
 import android.graphics.Bitmap
-import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater.from
 import android.view.View
@@ -75,9 +74,7 @@ class OthersCharacterItemRecyclerViewAdapter : RecyclerView.Adapter<OthersCharac
         val contentView: TextView by bindView(R.id.title)
 
         init {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, com.github.felipehjcosta.marvelapp.base.R.anim.card_view_elevation)
-            }
+            view.stateListAnimator = AnimatorInflater.loadStateListAnimator(view.context, com.github.felipehjcosta.marvelapp.base.R.anim.card_view_elevation)
         }
 
         override fun toString(): String {

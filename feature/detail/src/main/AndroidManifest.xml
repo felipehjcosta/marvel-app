@@ -7,7 +7,7 @@
         <activity
             android:name=".view.DetailActivity"
             android:label="@string/title_activity_details"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar.Detail">
 
             <intent-filter
                 android:autoVerify="true"

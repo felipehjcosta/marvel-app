@@ -4,7 +4,8 @@
 
     <application
         android:allowBackup="false"
-        tools:replace="android:allowBackup"
         android:icon="@mipmap/ic_launcher"
-        tools:ignore="GoogleAppIndexingWarning" />
+        android:supportsRtl="false"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:supportsRtl,android:allowBackup" />
 </manifest>

@@ -1,64 +1,55 @@
 package com.github.felipehjcosta.marvelapp.base.data
 
-import com.github.felipehjcosta.marvelapp.base.BuildConfig
+import com.github.felipehjcosta.marvelapp.base.BuildConfig.MARVEL_PRIVATE_KEY
+import com.github.felipehjcosta.marvelapp.base.BuildConfig.MARVEL_PUBLIC_KEY
 import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
 import io.reactivex.Observable
-import java.security.NoSuchAlgorithmException
 import java.util.*
 
 
 class NetworkDataRepository(private val characterService: CharacterService) : DataRepository {
 
-    val timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L
-
-    fun getHash(): String {
-        return md5(timestamp.toString() + BuildConfig.MARVEL_PRIVATE_KEY + BuildConfig.MARVEL_PUBLIC_KEY)
-    }
+    private val timestamp: String
+        get() {
+            return (Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L).toString()
+        }
 
     override fun getCharacterList(offset: Int, limit: Int): Observable<List<Character>> {
+        val localTimestamp = timestamp
+        val hashSignature = generateHash(localTimestamp)
         return characterService.listCharacters(limit,
                 offset,
-                timestamp.toString(),
-                BuildConfig.MARVEL_PUBLIC_KEY,
-                getHash())
+                localTimestamp,
+                MARVEL_PUBLIC_KEY,
+                hashSignature)
                 .map { characterDataWrapper ->
                     characterDataWrapper.characterDataContainer.characters
                 }
     }
 
     override fun getCharacter(characterId: Int): Observable<Character> {
+        val localTimestamp = timestamp
+        val hashSignature = generateHash(localTimestamp)
         return characterService.getCharacterWithId(
                 characterId,
-                timestamp.toString(),
-                BuildConfig.MARVEL_PUBLIC_KEY,
-                getHash())
+                localTimestamp,
+                MARVEL_PUBLIC_KEY,
+                hashSignature)
                 .map { characterDataWrapper ->
                     characterDataWrapper.characterDataContainer.characters[0]
                 }
     }
 
-    fun md5(s: String): String {
-        try {
-            // Create MD5 Hash
-            val digest = java.security.MessageDigest.getInstance("MD5")
-            digest.update(s.toByteArray())
-            val messageDigest = digest.digest()
+    private fun generateHash(timestamp: String): String {
+        return (timestamp + MARVEL_PRIVATE_KEY + MARVEL_PUBLIC_KEY).toMD5()
+    }
 
-            // Create Hex String
-            val hexString = StringBuilder()
-            for (aMessageDigest in messageDigest) {
-                var h = Integer.toHexString(0xFF and aMessageDigest.toInt())
-                while (h.length < 2)
-                    h = "0" + h
-                hexString.append(h)
-            }
-            return hexString.toString()
-
-        } catch (e: NoSuchAlgorithmException) {
-            e.printStackTrace()
+    private fun String.toMD5(): String {
+        val md = java.security.MessageDigest.getInstance("MD5")
+        val digested = md.digest(toByteArray())
+        return digested.joinToString("") {
+            String.format("%02x", it)
         }
-
-        return ""
     }
 
 }

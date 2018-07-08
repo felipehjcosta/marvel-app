@@ -65,7 +65,7 @@ dependencies {
 
     api rxJavaDependencies.values()
 
-    api uiDependencies.galleryLayoutManager
+    api uiDependencies.values()
 
     api networkDependencies.values()
 

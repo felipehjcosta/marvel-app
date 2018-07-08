@@ -99,7 +99,7 @@ dependencies {
 
     implementation rxJavaDependencies.values()
 
-    implementation uiDependencies.galleryLayoutManager
+    implementation uiDependencies.values()
 
     implementation networkDependencies.values()
 

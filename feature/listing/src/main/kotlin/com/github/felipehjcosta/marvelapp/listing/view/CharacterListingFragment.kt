@@ -2,24 +2,30 @@ package com.github.felipehjcosta.marvelapp.listing.view
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.res.ResourcesCompat.getDrawable
 import android.support.v4.widget.ContentLoadingProgressBar
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
 import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
 import com.github.felipehjcosta.marvelapp.listing.R
 import com.github.felipehjcosta.marvelapp.listing.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModel
+import com.github.felipehjcosta.recyclerviewdsl.onRecyclerView
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
+import com.nostra13.universalimageloader.core.DisplayImageOptions
+import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
@@ -27,6 +33,7 @@ import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.listing_fragment.toolbar
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
+import com.github.felipehjcosta.marvelapp.base.R as RFromBase
 import com.github.felipehjcosta.marvelapp.listing.R.drawable.ic_arrow_back_white_24dp as navigationIconResId
 import kotlinx.android.synthetic.main.listing_fragment.loading_view as loadingView
 import kotlinx.android.synthetic.main.listing_fragment.recycler_view as recyclerView
@@ -57,8 +64,6 @@ class CharacterListingFragment : Fragment() {
 
         val linearLayoutManger = LinearLayoutManager(context)
         recyclerView.layoutManager = linearLayoutManger
-        adapter = CharacterItemRecyclerViewAdapter()
-        recyclerView.adapter = adapter
 
         toolbar.apply {
             navigationIcon = getDrawable(resources, navigationIconResId, null)
@@ -67,22 +72,46 @@ class CharacterListingFragment : Fragment() {
             }
         }
 
-        bind(recyclerView, linearLayoutManger, loadingView, swipeRefreshView)
+        bind(linearLayoutManger, loadingView, swipeRefreshView)
     }
 
-    private fun bind(recyclerView: RecyclerView,
-                     linearLayoutManger: LinearLayoutManager,
+    private fun bind(linearLayoutManger: LinearLayoutManager,
                      contentLoadingProgressBar: ContentLoadingProgressBar,
                      swipeRefresh: SwipeRefreshLayout) {
         compositeDisposable = CompositeDisposable()
 
         compositeDisposable += viewModel.items
-                .doOnNext { adapter.replaceItems(it) }
-                .subscribe()
+                .subscribe {
+                    onRecyclerView(recyclerView) {
+                        bind(R.layout.listing_fragment_item) {
+                            withItems(it) {
 
-        compositeDisposable += adapter.onItemSelected
-                .subscribe { itemSelectedId ->
-                    activity?.let { navigateToDetail(it, itemSelectedId) }
+                                on<TextView>(R.id.title) {
+                                    it.view?.text = it.item?.name
+                                }
+
+                                on<ImageView>(R.id.image) {
+                                    val cornerRadius = resources.getDimensionPixelSize(RFromBase.dimen.image_default_color_radius)
+
+                                    val imageOptions = DisplayImageOptions.Builder()
+                                            .displayer(RoundedBitmapDisplayer(cornerRadius))
+                                            .showImageOnLoading(RFromBase.drawable.ic_rounded_image_default)
+                                            .showImageForEmptyUri(RFromBase.drawable.ic_rounded_image_default)
+                                            .showImageOnFail(RFromBase.drawable.ic_rounded_image_default)
+                                            .bitmapConfig(Bitmap.Config.RGB_565)
+                                            .cacheInMemory(true)
+                                            .cacheOnDisk(true)
+                                            .build()
+
+                                    ImageLoader.getInstance().displayImage(it.item?.image, it.view, imageOptions)
+                                }
+
+                                onClick { _, item ->
+                                    activity?.let { navigateToDetail(it, item?.id ?: 0) }
+                                }
+                            }
+                        }
+                    }
                 }
 
         compositeDisposable += viewModel.showLoading
@@ -98,8 +127,13 @@ class CharacterListingFragment : Fragment() {
         compositeDisposable += viewModel.loadItemsCommand.execute().subscribe()
 
         compositeDisposable += viewModel.newItems
-                .doOnNext { adapter.addItems(it) }
-                .subscribe()
+                .subscribe {
+                    onRecyclerView(recyclerView) {
+                        bind(R.layout.listing_fragment_item) {
+                            addExtraItems(it)
+                        }
+                    }
+                }
 
         val loadMoreCommand = viewModel.loadMoreItemsCommand
 

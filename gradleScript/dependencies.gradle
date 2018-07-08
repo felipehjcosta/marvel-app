@@ -20,6 +20,7 @@ ext {
     imageLoaderLibrary = "1.9.5"
 
     galleryLayoutManagerLibrary = "1.1.0"
+    recyclerViewDslLibrary = "0.7.0"
 
     lruCacheLibrary = "2.0.2"
 
@@ -103,7 +104,8 @@ ext {
     ]
 
     uiDependencies = [
-            galleryLayoutManager: "com.github.felipehjcosta:gallerylayoutmanager:$galleryLayoutManagerLibrary"
+            galleryLayoutManager: "com.github.felipehjcosta:gallerylayoutmanager:$galleryLayoutManagerLibrary",
+            recyclerViewDsl: "com.github.felipehjcosta:recyclerview-dsl:$recyclerViewDslLibrary"
     ]
 
     lruCacheDependencies = [

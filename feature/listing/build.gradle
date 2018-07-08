@@ -64,6 +64,8 @@ dependencies {
 
     api rxJavaDependencies.values()
 
+    api uiDependencies.recyclerViewDsl
+
     testImplementation kotlinTestDependencies.values()
     testImplementation networkTestDependencies.values()
     testImplementation testDependencies.values()

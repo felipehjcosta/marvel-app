@@ -1,25 +1,32 @@
 package com.github.felipehjcosta.marvelapp.wiki.view
 
 
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Looper
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
-import com.github.felipehjcosta.marvelapp.base.util.findBy
 import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
 import com.github.felipehjcosta.marvelapp.base.util.navigateToListing
 import com.github.felipehjcosta.marvelapp.wiki.R
 import com.github.felipehjcosta.marvelapp.wiki.di.setupDependencyInjection
+import com.github.felipehjcosta.marvelapp.wiki.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.wiki.presentation.HighlightedCharactersViewModel
 import com.github.felipehjcosta.marvelapp.wiki.presentation.OthersCharactersViewModel
+import com.github.felipehjcosta.recyclerviewdsl.onRecyclerView
+import com.nostra13.universalimageloader.core.DisplayImageOptions
+import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_wiki.*
 import javax.inject.Inject
+import com.github.felipehjcosta.marvelapp.base.R as RFromBase
 import kotlinx.android.synthetic.main.fragment_wiki.highlighted_characters_container as highlightedCharactersContainer
 import kotlinx.android.synthetic.main.fragment_wiki.highlighted_characters_recycler_view as highlightedCharactersRecyclerView
 import kotlinx.android.synthetic.main.fragment_wiki.others_characters_recycler_view as othersCharactersRecyclerView
@@ -35,10 +42,6 @@ class WikiFragment : Fragment() {
 
     private lateinit var compositeDisposable: CompositeDisposable
 
-    private var othersAdapter = OthersCharacterItemRecyclerViewAdapter()
-
-    private var highlightedAdapter = HighlightedCharacterItemRecyclerViewAdapter()
-
     private lateinit var highlightedCharactersLayoutManager: GalleryLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,8 +56,6 @@ class WikiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        othersCharactersRecyclerView.layoutManager = GridLayoutManager(context, 3)
 
         highlightedCharactersLayoutManager = GalleryLayoutManager().apply {
             attach(highlightedCharactersRecyclerView)
@@ -77,7 +78,11 @@ class WikiFragment : Fragment() {
 
     private fun bind() {
         compositeDisposable = CompositeDisposable()
+        bindHighlightedCharactersSection()
+        bindOthersCharactersSection()
+    }
 
+    private fun bindHighlightedCharactersSection() {
         compositeDisposable += highlightedCharactersViewModel.items
                 .doOnNext {
                     WikiGalleryCallbacksHandler(it, highlightedCharactersContainer).apply {
@@ -85,45 +90,113 @@ class WikiFragment : Fragment() {
                         highlightedCharactersLayoutManager.onItemSelectedListener = this
                     }
                 }
-                .subscribe {
-                    highlightedAdapter.replaceItems(it)
-                    highlightedCharactersRecyclerView.adapter = highlightedAdapter
-                }
+                .subscribe { displayHighlightedCharacters(it) }
 
-        compositeDisposable += highlightedCharactersViewModel.showLoading.filter { it == true }.subscribe {
-            LoadingWikiGalleryCallbacksHandler().apply {
-                highlightedCharactersLayoutManager.itemTransformer = this
-            }
-            view.findBy<RecyclerView>(R.id.highlighted_characters_recycler_view).apply {
-                adapter = LoadingHighlightedCharacterItemRecyclerViewAdapter(7)
+        compositeDisposable += highlightedCharactersViewModel.showLoading
+                .filter { it == true }
+                .doOnNext {
+                    LoadingWikiGalleryCallbacksHandler().apply {
+                        highlightedCharactersLayoutManager.itemTransformer = this
+                    }
+                }
+                .subscribe { displayLoadingHighlightedCharacters() }
+
+    }
+
+    private fun displayLoadingHighlightedCharacters() {
+        onRecyclerView(highlightedCharactersRecyclerView) {
+            bind(R.layout.loading_highlighted_characters_item) {
+                withItems(arrayOfNulls<Any?>(7).toList()) {
+                }
             }
         }
+    }
 
-        compositeDisposable += highlightedAdapter.onItemSelected
-                .subscribe { itemSelectedId ->
-                    activity?.let { navigateToDetail(it, itemSelectedId) }
+    private fun displayHighlightedCharacters(list: List<CharacterItemViewModel>) {
+        onRecyclerView(highlightedCharactersRecyclerView) {
+            bind(R.layout.highlighted_characters_fragment_item) {
+                withItems(list) {
+                    on<TextView>(R.id.title) {
+                        it.view?.text = it.item?.name
+                    }
+
+                    on<ImageView>(R.id.image) {
+                        val imageOptions = DisplayImageOptions.Builder()
+                                .showImageOnLoading(RFromBase.color.image_default_color)
+                                .showImageForEmptyUri(RFromBase.color.image_default_color)
+                                .showImageOnFail(RFromBase.color.image_default_color)
+                                .bitmapConfig(Bitmap.Config.RGB_565)
+                                .cacheInMemory(true)
+                                .cacheOnDisk(true)
+                                .build()
+
+                        ImageLoader.getInstance().displayImage(it.item?.image, it.view, imageOptions)
+                    }
+
+                    onClick { _, characterItemViewModel ->
+                        activity?.let { navigateToDetail(it, characterItemViewModel?.id ?: 0) }
+                    }
                 }
+            }
+        }
+    }
 
+    private fun bindOthersCharactersSection() {
         compositeDisposable += highlightedCharactersViewModel.loadItemsCommand.execute().subscribe()
 
         compositeDisposable += othersCharactersViewModel.items
-                .subscribe {
-                    othersAdapter.replaceItems(it)
-                    othersCharactersRecyclerView.adapter = othersAdapter
-                }
+                .subscribe { displayOthersCharacters(it) }
 
         compositeDisposable += othersCharactersViewModel.showLoading
                 .filter { it == true }
-                .subscribe {
-                    othersCharactersRecyclerView.adapter = LoadingOthersCharacterItemRecyclerViewAdapter(7)
-                }
-
-        compositeDisposable += othersAdapter.onItemSelected
-                .subscribe { itemSelectedId ->
-                    activity?.let { navigateToDetail(it, itemSelectedId) }
-                }
+                .subscribe { displayLoadingOthersCharacters() }
 
         compositeDisposable += othersCharactersViewModel.loadItemsCommand.execute().subscribe()
+    }
+
+    private fun displayLoadingOthersCharacters() {
+        onRecyclerView(othersCharactersRecyclerView) {
+            withGridLayout { spanCount = 3 }
+
+            bind(R.layout.loading_others_characters_item) {
+                withItems(arrayOfNulls<Any?>(7).toList()) {
+                }
+            }
+        }
+    }
+
+    private fun displayOthersCharacters(list: List<CharacterItemViewModel>) {
+        onRecyclerView(othersCharactersRecyclerView) {
+            withGridLayout { spanCount = 3 }
+
+            bind(R.layout.others_characters_fragment_item) {
+                withItems(list) {
+                    on<TextView>(R.id.title) {
+                        it.view?.text = it.item?.name
+                    }
+
+                    on<ImageView>(R.id.image) {
+                        val cornerRadius = resources.getDimensionPixelSize(RFromBase.dimen.image_default_color_radius)
+
+                        val imageOptions = DisplayImageOptions.Builder()
+                                .displayer(RoundedBitmapDisplayer(cornerRadius))
+                                .showImageOnLoading(RFromBase.drawable.ic_rounded_image_default)
+                                .showImageForEmptyUri(RFromBase.drawable.ic_rounded_image_default)
+                                .showImageOnFail(RFromBase.drawable.ic_rounded_image_default)
+                                .bitmapConfig(Bitmap.Config.RGB_565)
+                                .cacheInMemory(true)
+                                .cacheOnDisk(true)
+                                .build()
+
+                        ImageLoader.getInstance().displayImage(it.item?.image, it.view, imageOptions)
+                    }
+
+                    onClick { _, characterItemViewModel ->
+                        activity?.let { navigateToDetail(it, characterItemViewModel?.id ?: 0) }
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

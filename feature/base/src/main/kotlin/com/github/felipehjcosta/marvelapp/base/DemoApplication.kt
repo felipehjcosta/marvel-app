@@ -29,12 +29,6 @@ open class DemoApplication : Application(), HasActivityInjector, HasSupportFragm
         component = createComponent()
         component.inject(this)
         AppInjector.init(this)
-        initImageLoader()
-    }
-
-    private fun initImageLoader() {
-        val config = ImageLoaderConfiguration.Builder(this).build()
-        ImageLoader.getInstance().init(config)
     }
 
     protected open fun createComponent(): ApplicationComponent {

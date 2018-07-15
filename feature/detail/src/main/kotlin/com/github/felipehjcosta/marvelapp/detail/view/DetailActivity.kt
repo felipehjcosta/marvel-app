@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.rx.checkedChanges
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
 import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.detail.R
 import com.github.felipehjcosta.marvelapp.detail.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.detail.presentation.CharacterDetailViewModel
-import com.nostra13.universalimageloader.core.ImageLoader
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_detail.favorite_button as favoriteFab
@@ -30,7 +30,8 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var compositeDisposable: CompositeDisposable
 
-    private lateinit var imageLoader: ImageLoader
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setupDependencyInjection()
@@ -43,8 +44,6 @@ class DetailActivity : AppCompatActivity() {
         val toolbar: Toolbar by bindView(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-        imageLoader = ImageLoader.getInstance()
     }
 
     override fun onResume() {
@@ -56,7 +55,7 @@ class DetailActivity : AppCompatActivity() {
         compositeDisposable = CompositeDisposable()
         compositeDisposable += viewModel.name.subscribe { toolbarLayout.title = it }
         compositeDisposable += viewModel.description.subscribe { description.text = it }
-        compositeDisposable += viewModel.thumbnailUrl.subscribe { imageLoader.displayImage(it, backdrop) }
+        compositeDisposable += viewModel.thumbnailUrl.subscribe { imageLoader.loadImage(it, backdrop) }
 
         compositeDisposable += viewModel.comicsCount.subscribe { statisticComics.text = it.toString() }
         compositeDisposable += viewModel.eventsCount.subscribe { statisticEvents.text = it.toString() }

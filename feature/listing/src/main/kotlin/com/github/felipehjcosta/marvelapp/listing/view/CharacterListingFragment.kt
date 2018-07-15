@@ -2,7 +2,6 @@ package com.github.felipehjcosta.marvelapp.listing.view
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.res.ResourcesCompat.getDrawable
@@ -14,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
 import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
 import com.github.felipehjcosta.marvelapp.listing.R
@@ -23,9 +23,6 @@ import com.github.felipehjcosta.recyclerviewdsl.onRecyclerView
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
-import com.nostra13.universalimageloader.core.DisplayImageOptions
-import com.nostra13.universalimageloader.core.ImageLoader
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
@@ -33,7 +30,6 @@ import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.listing_fragment.toolbar
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
-import com.github.felipehjcosta.marvelapp.base.R as RFromBase
 import com.github.felipehjcosta.marvelapp.listing.R.drawable.ic_arrow_back_white_24dp as navigationIconResId
 import kotlinx.android.synthetic.main.listing_fragment.loading_view as loadingView
 import kotlinx.android.synthetic.main.listing_fragment.recycler_view as recyclerView
@@ -44,6 +40,9 @@ class CharacterListingFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: CharacterListViewModel
+
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     private lateinit var compositeDisposable: CompositeDisposable
 
@@ -91,19 +90,11 @@ class CharacterListingFragment : Fragment() {
                                 }
 
                                 on<ImageView>(R.id.image) {
-                                    val cornerRadius = resources.getDimensionPixelSize(RFromBase.dimen.image_default_color_radius)
-
-                                    val imageOptions = DisplayImageOptions.Builder()
-                                            .displayer(RoundedBitmapDisplayer(cornerRadius))
-                                            .showImageOnLoading(RFromBase.drawable.ic_rounded_image_default)
-                                            .showImageForEmptyUri(RFromBase.drawable.ic_rounded_image_default)
-                                            .showImageOnFail(RFromBase.drawable.ic_rounded_image_default)
-                                            .bitmapConfig(Bitmap.Config.RGB_565)
-                                            .cacheInMemory(true)
-                                            .cacheOnDisk(true)
-                                            .build()
-
-                                    ImageLoader.getInstance().displayImage(it.item?.image, it.view, imageOptions)
+                                    val imageUrl = it.item?.image
+                                    val imageView = it.view
+                                    if (imageUrl != null && imageView != null) {
+                                        imageLoader.loadRoundedImage(imageUrl, imageView)
+                                    }
                                 }
 
                                 onClick { _, item ->

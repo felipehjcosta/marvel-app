@@ -2,6 +2,7 @@ package com.github.felipehjcosta.marvelapp.wiki.view
 
 import android.support.v7.widget.RecyclerView
 import com.felipecosta.rxaction.RxCommand
+import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.wiki.BuildConfig
 import com.github.felipehjcosta.marvelapp.wiki.R
@@ -36,9 +37,12 @@ class WikiFragmentTest {
 
     private val mockOthersCharactersViewModel = mockk<OthersCharactersViewModel>(relaxed = true)
 
+    private val mockImageLoader = mockk<ImageLoader>(relaxed = true)
+
     private val fragment = WikiFragment().apply {
         highlightedCharactersViewModel = mockHighlightedCharactersViewModel
         othersCharactersViewModel = mockOthersCharactersViewModel
+        imageLoader = mockImageLoader
     }
 
     @Test

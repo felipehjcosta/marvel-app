@@ -3,9 +3,10 @@ package com.github.felipehjcosta.marvelapp.listing.view
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import com.felipecosta.rxaction.RxCommand
-import com.github.felipehjcosta.marvelapp.listing.R
+import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.listing.BuildConfig
+import com.github.felipehjcosta.marvelapp.listing.R
 import com.github.felipehjcosta.marvelapp.listing.TestStubApplication
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModel
@@ -38,12 +39,17 @@ class CharacterListingFragmentTest {
 
     private val mockViewModel = mockk<CharacterListViewModel>(relaxed = true)
 
+    private val mockImageLoader = mockk<ImageLoader>(relaxed = true)
+
     private val items = listOf(CharacterItemViewModel(
             1,
             "Thor",
             "http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350.jpg"))
 
-    private val fragment = CharacterListingFragment().apply { viewModel = mockViewModel }
+    private val fragment = CharacterListingFragment().apply {
+        viewModel = mockViewModel
+        imageLoader = mockImageLoader
+    }
 
     @Test
     fun givenItemsEmittedWhenStartFragmentItShouldPopulateTheList() {

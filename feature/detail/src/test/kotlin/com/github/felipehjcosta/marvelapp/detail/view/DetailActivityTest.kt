@@ -4,6 +4,7 @@ import android.support.annotation.IdRes
 import android.support.design.widget.CollapsingToolbarLayout
 import android.view.View
 import android.widget.TextView
+import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.detail.BuildConfig
 import com.github.felipehjcosta.marvelapp.detail.R
 import com.github.felipehjcosta.marvelapp.detail.TestStubApplication
@@ -42,12 +43,19 @@ class DetailActivityTest {
 
     private val mockViewModel = mockk<CharacterDetailViewModel>(relaxed = true)
 
+    private val mockImageLoader = mockk<ImageLoader>(relaxed = true)
+
     private val detailActivityController: ActivityController<DetailActivity> = Robolectric
             .buildActivity(DetailActivity::class.java)
             .create()
             .start()
             .postCreate(null)
-            .apply { get().viewModel = mockViewModel }
+            .apply {
+                get().apply {
+                    viewModel = mockViewModel
+                    imageLoader = mockImageLoader
+                }
+            }
 
     @Test
     fun givenSubscribedToDetailViewModelWhenResumeItShouldDisplayCharacterInformation() {

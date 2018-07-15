@@ -2,6 +2,7 @@ package com.github.felipehjcosta.marvelapp.wiki.di
 
 import com.github.felipehjcosta.marvelapp.base.di.AppModule
 import com.github.felipehjcosta.marvelapp.base.di.ApplicationComponent
+import com.github.felipehjcosta.marvelapp.base.di.UiModule
 import com.github.felipehjcosta.marvelapp.wiki.main.MainActivityTest
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -13,6 +14,7 @@ import javax.inject.Singleton
     TestApplicationModule::class,
     TestNetworkModule::class,
     AppModule::class,
+    UiModule::class,
     AndroidInjectionModule::class,
     AndroidSupportInjectionModule::class
 ])

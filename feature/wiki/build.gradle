@@ -61,8 +61,6 @@ dependencies {
     kapt daggerCompilerDependencies.values()
     compileOnly annotationsDependencies.values()
 
-    api imageLoaderDependencies.values()
-
     api rxJavaDependencies.values()
 
     api uiDependencies.values()

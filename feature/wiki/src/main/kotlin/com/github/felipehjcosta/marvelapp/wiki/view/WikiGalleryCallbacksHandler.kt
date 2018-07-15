@@ -9,15 +9,15 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.github.felipehjcosta.marvelapp.base.R
+import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.util.FastBlur
 import com.github.felipehjcosta.marvelapp.wiki.presentation.CharacterItemViewModel
-import com.nostra13.universalimageloader.core.DisplayImageOptions
-import com.nostra13.universalimageloader.core.ImageLoader
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
 
-class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel>,
-                                  private val container: ViewGroup) :
-        GalleryLayoutManager.ItemTransformer, GalleryLayoutManager.OnItemSelectedListener {
+class WikiGalleryCallbacksHandler(
+        private val imageLoader: ImageLoader,
+        private val items: List<CharacterItemViewModel>,
+        private val container: ViewGroup
+) : GalleryLayoutManager.ItemTransformer, GalleryLayoutManager.OnItemSelectedListener {
 
     override fun transformItem(layoutManager: GalleryLayoutManager, item: View, viewPosition: Int, fraction: Float) {
         item.pivotX = item.width / 2.0f
@@ -36,23 +36,9 @@ class WikiGalleryCallbacksHandler(private val items: List<CharacterItemViewModel
     }
 
     override fun onItemSelected(recyclerView: RecyclerView?, item: View, position: Int) {
-        val options = DisplayImageOptions.Builder()
-                .showImageOnLoading(R.color.image_default_color)
-                .showImageForEmptyUri(R.color.image_default_color)
-                .showImageOnFail(R.color.image_default_color)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .postProcessor { processBitmap(it) }
-                .build()
-
-        ImageLoader.getInstance().loadImage(items[position].image, options, object : SimpleImageLoadingListener() {
-            override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
-                super.onLoadingComplete(imageUri, view, loadedImage)
-                container.background(loadedImage!!, true)
-            }
-        })
-
+        imageLoader.loadImage(items[position].image, this::processBitmap) {
+            container.background(it!!, true)
+        }
     }
 
     private fun processBitmap(bitmap: Bitmap): Bitmap = Bitmap.createScaledBitmap(addGradient(blur(bitmap)), container.width, container.height, false)

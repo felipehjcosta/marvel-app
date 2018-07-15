@@ -2,9 +2,9 @@
 
 This repository contains an Android application example made with the Kotlin and RxJava.
 
-[![Build Status](https://travis-ci.org/felipehjcosta/kotlin-rxjava-android.svg?branch=master)](https://travis-ci.org/felipehjcosta/kotlin-rxjava-android)
-[![codecov](https://codecov.io/gh/felipehjcosta/kotlin-rxjava-android/branch/master/graph/badge.svg)](https://codecov.io/gh/felipehjcosta/kotlin-rxjava-android)
-[![codebeat badge](https://codebeat.co/badges/5e56eece-5548-419f-9c2d-c7fa7ea7e061)](https://codebeat.co/projects/github-com-fcostaa-kotlin-rxjava-android-master)
+[![Build Status](https://travis-ci.org/felipehjcosta/marvel-app.svg?branch=master)](https://travis-ci.org/felipehjcosta/marvel-app)
+[![codecov](https://codecov.io/gh/felipehjcosta/marvel-app/branch/master/graph/badge.svg)](https://codecov.io/gh/felipehjcosta/marvel-app)
+[![codebeat badge](https://codebeat.co/badges/34651f37-6eee-421a-bab3-ae65b4079f04)](https://codebeat.co/projects/github-com-felipehjcosta-marvel-app-master)
 
 License
 -------

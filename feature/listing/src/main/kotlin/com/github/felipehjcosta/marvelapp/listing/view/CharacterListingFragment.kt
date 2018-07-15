@@ -46,7 +46,6 @@ class CharacterListingFragment : Fragment() {
 
     private lateinit var compositeDisposable: CompositeDisposable
 
-    private lateinit var adapter: CharacterItemRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

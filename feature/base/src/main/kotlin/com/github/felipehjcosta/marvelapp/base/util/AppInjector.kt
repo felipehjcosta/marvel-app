@@ -31,7 +31,7 @@ object AppInjector {
             try {
                 AndroidInjection.inject(activity)
             } catch (e: IllegalArgumentException) {
-                android.util.Log.i("DemoApplication", "Unable to inject activity: ${activity.javaClass.simpleName}", e)
+                android.util.Log.i(AppInjector::class.simpleName, "Unable to inject activity: ${activity.javaClass.simpleName}", e)
             }
 
             activity.supportFragmentManager.registerFragmentLifecycleCallbacks(
@@ -49,7 +49,7 @@ object AppInjector {
         try {
             AndroidSupportInjection.inject(fragment)
         } catch (e: IllegalArgumentException) {
-            android.util.Log.i("AppInjector", "Unable to inject fragment: ${fragment?.javaClass?.simpleName}", e)
+            android.util.Log.i(AppInjector::class.simpleName, "Unable to inject fragment: ${fragment?.javaClass?.simpleName}", e)
         }
     }
 

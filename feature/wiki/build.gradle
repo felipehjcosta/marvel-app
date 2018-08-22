@@ -47,25 +47,14 @@ android {
 }
 
 dependencies {
-    implementation project(':feature:base')
     application project(':apk')
+    implementation project(':feature:base')
+    implementation project(':checkableheart')
     implementation 'com.facebook.shimmer:shimmer:0.2.0'
-    api project(':checkableheart')
 
-    api kotlinDependencies.values()
-
-    api supportDependencies.values()
-    api androidxDependencies.values()
-
-    api daggerDependencies.values()
     kapt daggerCompilerDependencies.values()
     compileOnly annotationsDependencies.values()
 
-    api rxJavaDependencies.values()
-
-    api uiDependencies.values()
-
-    api networkDependencies.values()
 
     testImplementation kotlinTestDependencies.values()
     testImplementation networkTestDependencies.values()

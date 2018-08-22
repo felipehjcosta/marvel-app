@@ -47,20 +47,12 @@ android {
 }
 
 dependencies {
-    implementation project(':feature:base')
     application project(':apk')
-    api project(':checkableheart')
+    implementation project(':feature:base')
+    implementation project(':checkableheart')
 
-    api kotlinDependencies.values()
-
-    api supportDependencies.values()
-    api androidxDependencies.values()
-
-    api daggerDependencies.values()
     kapt daggerCompilerDependencies.values()
     compileOnly annotationsDependencies.values()
-
-    api rxJavaDependencies.values()
 
     testImplementation kotlinTestDependencies.values()
     testImplementation networkTestDependencies.values()

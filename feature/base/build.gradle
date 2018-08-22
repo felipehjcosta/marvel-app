@@ -80,30 +80,30 @@ kapt {
 }
 
 dependencies {
-    implementation project(':checkableheart')
     application project(":apk")
     feature project(":feature:detail")
     feature project(":feature:listing")
     feature project(":feature:wiki")
+    api project(':checkableheart')
 
-    implementation kotlinDependencies.values()
+    api kotlinDependencies.values()
 
-    implementation supportDependencies.values()
-    implementation androidxDependencies.values()
+    api supportDependencies.values()
+    api androidxDependencies.values()
 
-    implementation daggerDependencies.values()
+    api daggerDependencies.values()
     kapt daggerCompilerDependencies.values()
     compileOnly annotationsDependencies.values()
 
-    implementation imageLoaderDependencies.values()
+    api imageLoaderDependencies.values()
 
-    implementation rxJavaDependencies.values()
+    api rxJavaDependencies.values()
 
-    implementation uiDependencies.values()
+    api uiDependencies.values()
 
-    implementation networkDependencies.values()
+    api networkDependencies.values()
 
-    implementation lruCacheDependencies.lruCache
+    api lruCacheDependencies.lruCache
 
     testImplementation kotlinTestDependencies.values()
     testImplementation networkTestDependencies.values()

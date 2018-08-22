@@ -54,14 +54,6 @@ dependencies {
 
     kapt daggerCompilerDependencies.values()
     compileOnly annotationsDependencies.values()
-
-
-    testImplementation kotlinTestDependencies.values()
-    testImplementation networkTestDependencies.values()
-    testImplementation testDependencies.values()
-
-    androidTestImplementation networkTestDependencies.values()
-    kaptAndroidTest daggerCompilerDependencies.values()
-    androidTestImplementation androidTestDependencies.values()
-    androidTestUtil androidTestUtilDependencies.values()
 }
+
+ext.add_test_dependencies(project)

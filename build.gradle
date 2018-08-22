@@ -31,3 +31,20 @@ allprojects {
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 }
+
+subprojects {
+    ext {
+        add_test_dependencies = {Project project ->
+            project.dependencies {
+                testImplementation kotlinTestDependencies.values()
+                testImplementation networkTestDependencies.values()
+                testImplementation testDependencies.values()
+
+                androidTestImplementation networkTestDependencies.values()
+                kaptAndroidTest daggerCompilerDependencies.values()
+                androidTestImplementation androidTestDependencies.values()
+                androidTestUtil androidTestUtilDependencies.values()
+            }
+        }
+    }
+}

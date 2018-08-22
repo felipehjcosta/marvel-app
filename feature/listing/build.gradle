@@ -53,8 +53,6 @@ dependencies {
 
     kapt daggerCompilerDependencies.values()
     compileOnly annotationsDependencies.values()
-
-    testImplementation kotlinTestDependencies.values()
-    testImplementation networkTestDependencies.values()
-    testImplementation testDependencies.values()
 }
+
+ext.add_test_dependencies(project)

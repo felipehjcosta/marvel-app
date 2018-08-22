@@ -104,16 +104,9 @@ dependencies {
     api networkDependencies.values()
 
     api lruCacheDependencies.lruCache
-
-    testImplementation kotlinTestDependencies.values()
-    testImplementation networkTestDependencies.values()
-    testImplementation testDependencies.values()
-
-    androidTestImplementation networkTestDependencies.values()
-    kaptAndroidTest daggerCompilerDependencies.values()
-    androidTestImplementation androidTestDependencies.values()
-    androidTestUtil androidTestUtilDependencies.values()
 }
+
+ext.add_test_dependencies(project)
 
 task copyTestClasses(type: Copy) {
     from "build/tmp/kotlin-classes/debugUnitTest"

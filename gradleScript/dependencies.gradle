@@ -3,8 +3,8 @@ ext {
     supportLibrary = '27.1.1'
     constraintLayout = '1.1.0'
 
-    rxJavaLibrary = "2.1.6"
-    rxJavaAndroidLibrary = "2.0.1"
+    rxJavaLibrary = "2.2.0"
+    rxJavaAndroidLibrary = "2.1.0"
     rxJavaJakewhartonLibrary = "2.0.0"
     rxActionLibrary = "1.1.0"
 

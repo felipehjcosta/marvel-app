@@ -13,6 +13,7 @@ import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Test
+import java.util.concurrent.TimeUnit
 
 internal class CharacterDetailViewModelTest {
 
@@ -68,6 +69,7 @@ internal class CharacterDetailViewModelTest {
 
         viewModel.characterCommand.execute().subscribe()
 
+        nameObservable.await(500L, TimeUnit.MILLISECONDS)
         nameObservable.assertValue(expectedName)
         descriptionObservable.assertValue(expectedDescription)
         thumbnailUrlObservable.assertValue(expectedThumbnailUrl)

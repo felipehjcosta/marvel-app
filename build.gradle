@@ -1,14 +1,13 @@
 buildscript {
-    ext.kotlinVersion = '1.2.60'
+    ext.kotlinVersion = '1.2.61'
 
     repositories {
         jcenter()
-        maven { url 'https://maven.google.com' }
         maven { url "https://plugins.gradle.org/m2/" }
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-beta05'
+        classpath 'com.android.tools.build:gradle:3.2.0-rc02'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.vanniktech:gradle-dependency-graph-generator-plugin:0.2.0"
     }
@@ -17,7 +16,7 @@ buildscript {
 apply from: 'gradleScript/dependencies.gradle'
 
 ext.compile_sdk_version = 27
-ext.build_tools_version = "27.0.3"
+ext.build_tools_version = "28.0.2"
 ext.min_sdk_version = 21
 ext.target_sdk_version = 27
 

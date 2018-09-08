@@ -12,7 +12,12 @@ android {
     }
 
     buildTypes {
-        debug {}
+        debugMini {
+            initWith debug
+            minifyEnabled true
+            debuggable true
+            matchingFallbacks = ['debug']
+        }
         release {}
     }
 

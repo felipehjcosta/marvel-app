@@ -28,6 +28,7 @@ android {
 
 dependencies {
     implementation project(':feature:base')
+    implementation project(':feature:wiki')
     implementation project(':feature:detail')
     implementation project(':feature:listing')
 }

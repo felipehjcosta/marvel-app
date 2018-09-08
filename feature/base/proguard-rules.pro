@@ -42,3 +42,6 @@
 -dontwarn java.nio.file.*
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 -dontwarn okio.**
+
+# Project
+-keep class com.github.felipehjcosta.marvelapp.base.data.pojo.** { *; }

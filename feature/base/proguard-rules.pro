@@ -16,6 +16,9 @@
 #   public *;
 #}
 
+# Get rid of package names, makes file smaller
+-repackageclasses com.github.felipehjcosta.marvelapp.repackage
+
 ### Support v7, Design
 -keep class android.support.v7.** { *; }
 -keep public class android.support.v7.widget.** { *; }

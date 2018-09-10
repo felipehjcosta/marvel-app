@@ -36,8 +36,8 @@ object AppInjector {
 
             activity.supportFragmentManager.registerFragmentLifecycleCallbacks(
                     object : FragmentManager.FragmentLifecycleCallbacks() {
-                        override fun onFragmentCreated(fm: FragmentManager?,
-                                                       fragment: Fragment?,
+                        override fun onFragmentCreated(fm: FragmentManager,
+                                                       fragment: Fragment,
                                                        savedInstanceState: Bundle?) {
                             handleFragment(fragment)
                         }

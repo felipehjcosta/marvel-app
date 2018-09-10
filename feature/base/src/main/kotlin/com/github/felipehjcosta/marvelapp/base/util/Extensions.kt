@@ -26,6 +26,6 @@ inline fun <reified T : View> RecyclerView.ViewHolder.bindView(@IdRes idRes: Int
 inline fun <reified T : View> View?.findBy(@IdRes res: Int): T = this?.findViewById<T>(res) as T
 inline fun <reified T : View> Activity?.findBy(@IdRes res: Int): T = this?.findViewById<T>(res) as T
 
-operator fun <K, V> LruCache<K, V>.set(key: K?, value: V?): Unit {
+operator fun <K, V> LruCache<K, V>.set(key: K, value: V): Unit {
     this.put(key, value)
 }

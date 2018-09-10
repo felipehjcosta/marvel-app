@@ -1,6 +1,6 @@
 ext {
     //Version
-    supportLibrary = '27.1.1'
+    supportLibrary = '28.0.0-rc02'
     constraintLayout = '1.1.0'
 
     rxJavaLibrary = "2.2.0"

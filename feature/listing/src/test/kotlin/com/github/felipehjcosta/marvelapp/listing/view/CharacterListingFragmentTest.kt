@@ -60,7 +60,7 @@ class CharacterListingFragmentTest {
         startFragment(fragment)
 
         val recyclerView: RecyclerView by fragment.bindView(R.id.recycler_view)
-        assertEquals(1, recyclerView.adapter.itemCount)
+        assertEquals(1, recyclerView.adapter!!.itemCount)
     }
 
     @Test

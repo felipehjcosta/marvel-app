@@ -54,7 +54,7 @@ class WikiFragmentTest {
         startFragment(fragment)
 
         val recyclerView: RecyclerView by fragment.bindView(R.id.highlighted_characters_recycler_view)
-        assertEquals(5, recyclerView.adapter.itemCount)
+        assertEquals(5, recyclerView.adapter!!.itemCount)
     }
 
     @Test
@@ -66,7 +66,7 @@ class WikiFragmentTest {
         startFragment(fragment)
 
         val recyclerView: RecyclerView by fragment.bindView(R.id.others_characters_recycler_view)
-        assertEquals(5, recyclerView.adapter.itemCount)
+        assertEquals(5, recyclerView.adapter!!.itemCount)
     }
 
     @Test

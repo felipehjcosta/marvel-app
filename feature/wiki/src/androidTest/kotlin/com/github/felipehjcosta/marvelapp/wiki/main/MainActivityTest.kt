@@ -2,21 +2,15 @@ package com.github.felipehjcosta.marvelapp.wiki.main
 
 import android.content.Intent
 import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.scrollTo
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.github.felipehjcosta.marvelapp.wiki.MockDemoApplication
-import com.github.felipehjcosta.marvelapp.wiki.R
 import com.github.felipehjcosta.marvelapp.wiki.utils.readAsset
 import com.github.felipehjcosta.marvelapp.wiki.view.MainActivity
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
-import org.hamcrest.core.AllOf.allOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -33,6 +27,10 @@ class MainActivityTest {
 
     @Inject
     lateinit var mockWebServer: MockWebServer
+
+    private val highlightedCharactersScreen = HighlightedCharactersScreen()
+
+    private val othersCharactersScreen = OthersCharactersScreen()
 
     init {
         val mockDemoApplication = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as MockDemoApplication
@@ -100,15 +98,27 @@ class MainActivityTest {
 
     @Test
     fun whenLaunchedThenTheFirstHighlightedCharacterItemIsShown() {
-        onView(allOf(withId(R.id.highlighted_characters_recycler_view), hasDescendant(withText("Hulk"))))
-                .perform(scrollTo())
-                .check(matches(isDisplayed()))
+        highlightedCharactersScreen {
+            recyclerView {
+                childWith<HighlightedCharactersScreen.Item> {
+                    withDescendant { withText("Hulk") }
+                    perform { scrollTo() }
+                    matches { isDisplayed() }
+                }
+            }
+        }
     }
 
     @Test
     fun whenLaunchedThenTheFirstOtherCharacterItemIsShown() {
-        onView(allOf(withId(R.id.others_characters_recycler_view), hasDescendant(withText("Thor"))))
-                .perform(scrollTo())
-                .check(matches(isDisplayed()))
+        othersCharactersScreen {
+            recyclerView {
+                childWith<OthersCharactersScreen.Item> {
+                    withDescendant { withText("Thor") }
+                    perform { scrollTo() }
+                    matches { isDisplayed() }
+                }
+            }
+        }
     }
 }

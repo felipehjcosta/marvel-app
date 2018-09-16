@@ -39,7 +39,7 @@ android:
    - sys-img-armeabi-v7a-android-21
 
 before_install:
-  - yes | sdkmanager "platforms;android-28"
+  - yes | sdkmanager "platforms;android-27"
 
 before_script:
   # Do not cache a few Gradle files/directories (see https://docs.travis-ci.com/user/languages/java/#Caching)

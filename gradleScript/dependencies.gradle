@@ -3,7 +3,7 @@ ext {
     supportLibrary = '28.0.0-rc02'
     constraintLayout = '1.1.0'
 
-    kotlinxCoroutinesLibrary = "0.26.0"
+    kotlinxCoroutinesLibrary = "0.24.0"
 
     rxJavaLibrary = "2.2.0"
     rxJavaAndroidLibrary = "2.1.0"

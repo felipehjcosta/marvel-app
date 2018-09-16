@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./gradlew clean testDebug lintDebug --console=plain
+./gradlew clean testDebugUnitTest lintDebug --console=plain

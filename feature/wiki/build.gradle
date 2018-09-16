@@ -53,7 +53,6 @@ android {
 dependencies {
     application project(':apk')
     implementation project(':feature:base')
-    implementation project(':checkableheart')
     implementation 'com.facebook.shimmer:shimmer:0.2.0'
 
     kapt daggerCompilerDependencies.values()

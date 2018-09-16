@@ -53,7 +53,6 @@ android {
 dependencies {
     application project(':apk')
     implementation project(':feature:base')
-    implementation project(':checkableheart')
 
     kapt daggerCompilerDependencies.values()
     compileOnly annotationsDependencies.values()

@@ -92,6 +92,7 @@ dependencies {
     feature project(":feature:listing")
     feature project(":feature:wiki")
     api project(':library:checkableheart')
+    api project(':library:cache')
 
     api kotlinDependencies.values()
 

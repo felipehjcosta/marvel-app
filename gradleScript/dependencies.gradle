@@ -3,6 +3,8 @@ ext {
     supportLibrary = '28.0.0-rc02'
     constraintLayout = '1.1.0'
 
+    kotlinxCoroutinesLibrary = "0.26.0"
+
     rxJavaLibrary = "2.2.0"
     rxJavaAndroidLibrary = "2.1.0"
     rxJavaJakewhartonLibrary = "2.0.0"
@@ -13,6 +15,8 @@ ext {
     okhttpLibrary = "3.8.1"
     retrofitLibrary = "2.3.0"
     gsonLibrary = "gson"
+
+    layerCacheLibrary = "0.3.0"
 
     daggerLibrary = "2.17"
     javaxAnnotationLibrary = "1.0"
@@ -53,6 +57,10 @@ ext {
             kotlinReflect: "org.jetbrains.kotlin:kotlin-reflect:${ext.kotlinVersion}"
     ]
 
+    kotlinxDependencies = [
+            kotlinxCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinxCoroutinesLibrary}"
+    ]
+
     kotlinTestDependencies = [
             kotlinTest     : "org.jetbrains.kotlin:kotlin-test:${ext.kotlinVersion}",
             kotlinTestJunit: "org.jetbrains.kotlin:kotlin-test-junit:${ext.kotlinVersion}"
@@ -84,6 +92,11 @@ ext {
 
     networkTestDependencies = [
             mockWebServer: "com.squareup.okhttp3:mockwebserver:$okhttpLibrary"
+    ]
+
+    layerCacheDependencies = [
+            layerCache       : "com.appmattus:layercache:${layerCacheLibrary}",
+            layerCacheAndroid: "com.appmattus:layercache-android:${layerCacheLibrary}"
     ]
 
     daggerDependencies = [

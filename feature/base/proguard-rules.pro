@@ -46,5 +46,8 @@
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 -dontwarn okio.**
 
+# kotlinx.serialization
+-dontnote kotlinx.serialization.SerializationKt
+
 # Project
 -keep class com.github.felipehjcosta.marvelapp.base.data.pojo.** { *; }

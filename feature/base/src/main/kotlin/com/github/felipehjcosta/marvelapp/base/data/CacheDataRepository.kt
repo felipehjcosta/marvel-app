@@ -1,9 +1,9 @@
 package com.github.felipehjcosta.marvelapp.base.data
 
 import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
-import com.google.gson.Gson
 import com.jakewharton.rxrelay2.BehaviorRelay.*
 import io.reactivex.Observable
+import kotlinx.serialization.json.JSON
 import java.io.InputStream
 
 
@@ -33,8 +33,12 @@ class CacheDataRepository(private val dataRepository: DataRepository,
         return concat(memoryObservable, networkObservable).take(1)
     }
 
-    private fun saveInCache(character: Character) = Gson().apply { cache.put(character.id.toString(), toJson(character).byteInputStream()) }
+    private fun saveInCache(character: Character) {
+        cache.put(character.id.toString(), JSON.stringify(character).byteInputStream())
+    }
 
-    private fun readFromCache(inputStream: InputStream): Character = with(Gson()) { fromJson(inputStream.reader(), Character::class.java) }
+    private fun readFromCache(inputStream: InputStream): Character {
+        return JSON.parse(inputStream.reader().readText())
+    }
 
 }

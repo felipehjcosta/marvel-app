@@ -1,12 +1,11 @@
 package com.github.felipehjcosta.marvelapp.base.data.pojo
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Optional
+import kotlinx.serialization.Serializable
 
-class Summary {
-    @SerializedName("resourceURI")
-    var resourceURI: String = ""
-    @SerializedName("name")
-    var name: String = ""
-    @SerializedName("type")
-    var type: String = ""
-}
+@Serializable
+class Summary(
+        @Optional var resourceURI: String = "",
+        @Optional var name: String = "",
+        @Optional var type: String = ""
+)

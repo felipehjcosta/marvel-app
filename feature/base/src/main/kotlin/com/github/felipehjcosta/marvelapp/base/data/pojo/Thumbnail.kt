@@ -1,13 +1,15 @@
 package com.github.felipehjcosta.marvelapp.base.data.pojo
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Optional
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
-class Thumbnail {
-    @SerializedName("path")
-    var path: String = ""
-    @SerializedName("extension")
-    var extension: String = ""
-
+@Serializable
+class Thumbnail(
+        @Optional var path: String = "",
+        @Optional var extension: String = ""
+) {
+    @Transient
     val url: String
         get() = "${path.replace("http://", "https://")}.$extension"
 }

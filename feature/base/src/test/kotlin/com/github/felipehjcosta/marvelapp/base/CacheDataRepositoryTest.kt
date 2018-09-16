@@ -4,11 +4,10 @@ import com.github.felipehjcosta.marvelapp.base.data.CacheDataRepository
 import com.github.felipehjcosta.marvelapp.base.data.DataRepository
 import com.github.felipehjcosta.marvelapp.base.data.SimpleDiskCache
 import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
-import com.google.gson.Gson
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Observable.just
 import io.reactivex.observers.TestObserver
-import org.junit.Before
+import kotlinx.serialization.json.JSON
 import org.junit.Test
 import org.mockito.Mockito
 import java.io.InputStream
@@ -16,22 +15,15 @@ import kotlin.test.assertEquals
 
 class CacheDataRepositoryTest {
 
-    val dataRepository: DataRepository = mock()
+    private val dataRepository: DataRepository = mock()
 
-    val cache: SimpleDiskCache = mock()
+    private val cache: SimpleDiskCache = mock()
 
-    val entry: SimpleDiskCache.InputStreamEntry = mock()
+    private val entry: SimpleDiskCache.InputStreamEntry = mock()
 
-    val character = Character().apply { id = 42 }
+    private val character = Character().apply { id = 42 }
 
-    val gson = Gson()
-
-    lateinit var cacheDataRepository: CacheDataRepository
-
-    @Before
-    fun setUp() {
-        cacheDataRepository = CacheDataRepository(dataRepository, cache)
-    }
+    private var cacheDataRepository = CacheDataRepository(dataRepository, cache)
 
     @Test
     fun whenGetCharacterListThenAssertItsCached() {
@@ -49,12 +41,12 @@ class CacheDataRepositoryTest {
 
         Mockito.verify(cache).put(eq("42"), argumentCaptor.capture())
 
-        assertEquals(gson.toJson(character), argumentCaptor.lastValue.use { it.reader().readText() })
+        assertEquals(JSON.stringify(character), argumentCaptor.lastValue.use { it.reader().readText() })
     }
 
     @Test
     fun givenCachedWhenGetCharacterThenReturnsCached() {
-        whenever(entry.inputStream).thenReturn(gson.toJson(character).byteInputStream())
+        whenever(entry.inputStream).thenReturn(JSON.stringify(character).byteInputStream())
 
         whenever(cache.getInputStream("42")).thenReturn(entry)
 
@@ -71,7 +63,7 @@ class CacheDataRepositoryTest {
 
     @Test
     fun givenCachedWhenGetCharacterThenNotInteractWithNetwork() {
-        whenever(entry.inputStream).thenReturn(gson.toJson(character).byteInputStream())
+        whenever(entry.inputStream).thenReturn(JSON.stringify(character).byteInputStream())
 
         whenever(cache.getInputStream("42")).thenReturn(entry)
 
@@ -113,7 +105,7 @@ class CacheDataRepositoryTest {
 
         Mockito.verify(cache).put(eq("42"), argumentCaptor.capture())
 
-        assertEquals(gson.toJson(character), argumentCaptor.lastValue.use { it.reader().readText() })
+        assertEquals(JSON.stringify(character), argumentCaptor.lastValue.use { it.reader().readText() })
     }
 
 }

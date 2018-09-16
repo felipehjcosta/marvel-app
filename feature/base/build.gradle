@@ -1,5 +1,6 @@
 apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlinx-serialization'
 apply plugin: 'kotlin-kapt'
 apply plugin: "com.vanniktech.dependency.graph.generator"
 
@@ -93,6 +94,8 @@ dependencies {
     feature project(":feature:wiki")
     api project(':library:checkableheart')
     implementation project(':library:cache')
+
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.0.1'
 
     api kotlinDependencies.values()
 

@@ -14,7 +14,7 @@ ext {
 
     okhttpLibrary = "3.8.1"
     retrofitLibrary = "2.3.0"
-    gsonLibrary = "gson"
+    KotlinSerializationConverterLibrary = "0.0.1"
 
     layerCacheLibrary = "0.3.0"
 
@@ -85,9 +85,8 @@ ext {
             okhHttp               : "com.squareup.okhttp3:okhttp:$okhttpLibrary",
             okhHttpLogging        : "com.squareup.okhttp3:logging-interceptor:$okhttpLibrary",
             retrofit              : "com.squareup.retrofit2:retrofit:$retrofitLibrary",
-            retrofitConverterGson : "com.squareup.retrofit2:converter-gson:$retrofitLibrary",
             retrofitAdapterRxJava2: "com.squareup.retrofit2:adapter-rxjava2:$retrofitLibrary",
-            gson                  : "com.google.code.gson:gson:$gsonLibrary"
+            KotlinSerializationConverter: "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$KotlinSerializationConverterLibrary"
     ]
 
     networkTestDependencies = [

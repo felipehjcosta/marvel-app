@@ -4,6 +4,7 @@ import android.content.Context
 import com.github.felipehjcosta.marvelapp.base.BuildConfig
 import com.github.felipehjcosta.marvelapp.base.data.CharacterService
 import com.github.felipehjcosta.marvelapp.base.network.OfflineCacheInterceptor
+import com.github.felipehjcosta.marvelapp.base.util.createNetworkConverterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -11,7 +12,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 const val PORT = "443"
@@ -41,7 +41,8 @@ class NetworkModule {
     fun providesCharacterService(httpClient: OkHttpClient): CharacterService = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(createNetworkConverterFactory())
             .client(httpClient)
             .build().create(CharacterService::class.java)
+
 }

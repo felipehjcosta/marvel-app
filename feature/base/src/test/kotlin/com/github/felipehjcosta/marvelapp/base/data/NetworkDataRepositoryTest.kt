@@ -2,6 +2,7 @@ package com.github.felipehjcosta.marvelapp.base.data
 
 import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
 import com.github.felipehjcosta.marvelapp.base.readResourceFile
+import com.github.felipehjcosta.marvelapp.base.util.createNetworkConverterFactory
 import io.reactivex.observers.TestObserver
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
@@ -10,7 +11,6 @@ import org.junit.After
 import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class NetworkDataRepositoryTest {
@@ -23,7 +23,7 @@ class NetworkDataRepositoryTest {
     private val service: CharacterService = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(createNetworkConverterFactory())
             .client(httpClient)
             .build().create(CharacterService::class.java)
 

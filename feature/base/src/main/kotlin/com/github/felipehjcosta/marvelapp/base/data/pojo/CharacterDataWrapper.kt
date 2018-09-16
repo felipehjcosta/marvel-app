@@ -1,29 +1,16 @@
 package com.github.felipehjcosta.marvelapp.base.data.pojo
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Optional
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-
-class CharacterDataWrapper {
-
-    @SerializedName("code")
-    var code: Int = 0
-
-    @SerializedName("status")
-    var status: String = ""
-
-    @SerializedName("copyright")
-    var copyright: String = ""
-
-    @SerializedName("attributionText")
-    var attributionText: String = ""
-
-    @SerializedName("attributionHTML")
-    var attributionHTML: String = ""
-
-    @SerializedName("data")
-    var characterDataContainer: CharacterDataContainer = CharacterDataContainer()
-
-    @SerializedName("etag")
-    var etag: String = ""
-
-}
+@Serializable
+class CharacterDataWrapper(
+        @Optional var code: Int = 0,
+        @Optional var status: String = "",
+        @Optional var copyright: String = "",
+        @Optional var attributionText: String = "",
+        @Optional var attributionHTML: String = "",
+        @Optional @SerialName("data") var characterDataContainer: CharacterDataContainer = CharacterDataContainer(),
+        @Optional var etag: String = ""
+)

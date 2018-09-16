@@ -1,14 +1,17 @@
 buildscript {
     ext.kotlinVersion = '1.2.61'
+    ext.serialization_version = '0.6.1'
 
     repositories {
         jcenter()
-        maven { url "https://plugins.gradle.org/m2/" }
         google()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://kotlin.bintray.com/kotlinx" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0-rc03'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlinx:kotlinx-gradle-serialization-plugin:$serialization_version"
         classpath "com.vanniktech:gradle-dependency-graph-generator-plugin:0.2.0"
         classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.3'
     }
@@ -29,6 +32,7 @@ allprojects {
         jcenter()
         google()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven { url "https://kotlin.bintray.com/kotlinx" }
     }
 }
 

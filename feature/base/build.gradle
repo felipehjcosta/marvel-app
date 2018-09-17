@@ -83,7 +83,6 @@ repositories {
 }
 
 kapt {
-    generateStubs = true
     correctErrorTypes = true
 }
 

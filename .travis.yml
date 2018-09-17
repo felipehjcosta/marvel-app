@@ -51,7 +51,9 @@ matrix:
     after_success:
       - bash <(curl -s https://codecov.io/bash)
   - name: "Instrumentation Test"
-    before_script: .travis/travis_create_avd.sh
+    before_script:
+      - echo no | $HOME/android-sdk/tools/bin/avdmanager create avd -n test -k "system-images;android-21;default;armeabi-v7a"
+      - emulator -avd test -no-skin -no-audio -no-window -gpu off &
     script: .travis/travis_run_instrumentation_test.sh
   - name: "Assemble"
     script: .travis/travis_assemble.sh.sh

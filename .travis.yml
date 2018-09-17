@@ -54,4 +54,4 @@ matrix:
     before_script: .travis/travis_create_avd.sh
     script: .travis/travis_run_instrumentation_test.sh
   - name: "Assemble"
-    script: .travis/travis_run_instrumentation_test.sh
+    script: .travis/travis_assemble.sh.sh

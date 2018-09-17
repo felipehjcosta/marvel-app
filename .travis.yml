@@ -39,7 +39,7 @@ install:
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'platforms;android-28' > /dev/null
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;m2repository' > /dev/null
   - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;android;m2repository' > /dev/null
-  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'system-images;android-21;default;armeabi-v7a ' > /dev/null
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'system-images;android-21;default;armeabi-v7a' > /dev/null
 
 env:
   - ANDROID_HOME=$HOME/android-sdk

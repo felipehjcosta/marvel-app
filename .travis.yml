@@ -54,6 +54,10 @@ matrix:
     before_script:
       - echo no | $HOME/android-sdk/tools/bin/avdmanager create avd -n test -k "system-images;android-21;default;armeabi-v7a"
       - emulator -avd test -no-skin -no-audio -no-window -gpu off &
-    script: .travis/travis_run_instrumentation_test.sh
+    script:
+      - ./gradlew assembleAndroidTest --console=plain
+      - $HOME/android-sdk/platform-tools/adb wait-for-device
+      - $HOME/android-sdk/platform-tools/adb devices
+      - $HOME/android-sdk/platform-tools/adb shell input keyevent 82 &
   - name: "Assemble"
     script: .travis/travis_assemble.sh.sh

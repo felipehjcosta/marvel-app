@@ -60,5 +60,6 @@ matrix:
       - $HOME/android-sdk/platform-tools/adb wait-for-device
       - $HOME/android-sdk/platform-tools/adb devices
       - $HOME/android-sdk/platform-tools/adb shell input keyevent 82 &
+      - ./gradlew connectedAndroidTest --console=plain
   - name: "Assemble"
     script: .travis/travis_assemble.sh.sh

@@ -48,7 +48,8 @@ env:
 matrix:
   include:
   - name: "Unit Test"
-    script: .travis/travis_run_unit_test.sh
+    script:
+      - ./gradlew testDebugUnitTest lintDebug --console=plain
     after_success:
       - bash <(curl -s https://codecov.io/bash)
   - name: "Instrumentation Test"
@@ -62,4 +63,5 @@ matrix:
       - $HOME/android-sdk/platform-tools/adb shell input keyevent 82 &
       - ./gradlew connectedAndroidTest --console=plain
   - name: "Assemble"
-    script: .travis/travis_assemble.sh.sh
+    script:
+      - ./gradlew assembleRelease --console=plain

@@ -51,11 +51,6 @@ android {
         ignoreWarnings false
     }
 
-    dexOptions {
-        // Skip pre-dexing when running on Travis CI or when disabled via -Dpre-dex=false.
-        preDexLibraries = preDexEnabled && !isTravisBuild
-    }
-
     testOptions {
 //        junitPlatform {
 //            jupiterVersion "5.0.2"

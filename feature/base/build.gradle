@@ -4,12 +4,6 @@ apply plugin: 'kotlinx-serialization'
 apply plugin: 'kotlin-kapt'
 apply plugin: "com.vanniktech.dependency.graph.generator"
 
-ext {
-    travisBuild = System.getenv("TRAVIS") == "true"
-    // allows for -Dpre-dex=false to be set
-    preDexEnabled = "true".equals(System.getProperty("pre-dex", "true"))
-}
-
 android {
     compileSdkVersion compile_sdk_version
     buildToolsVersion build_tools_version
@@ -59,7 +53,7 @@ android {
 
     dexOptions {
         // Skip pre-dexing when running on Travis CI or when disabled via -Dpre-dex=false.
-        preDexLibraries = preDexEnabled && !travisBuild
+        preDexLibraries = preDexEnabled && !isTravisBuild
     }
 
     testOptions {

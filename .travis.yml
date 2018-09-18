@@ -49,7 +49,7 @@ matrix:
   include:
   - name: "Unit Test"
     script:
-      - ./gradlew testDebugUnitTest lintDebug --console=plain --parallel
+      - ./gradlew testDebugUnitTest lintDebug --console=plain
     after_success:
       - bash <(curl -s https://codecov.io/bash)
   - name: "Instrumentation Test"

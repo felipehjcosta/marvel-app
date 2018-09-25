@@ -20,7 +20,7 @@ buildscript {
 apply from: 'gradleScript/dependencies.gradle'
 
 ext.compile_sdk_version = 28
-ext.build_tools_version = "28.0.2"
+ext.build_tools_version = "28.0.3"
 ext.min_sdk_version = 21
 ext.target_sdk_version = 28
 

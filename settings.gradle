@@ -1,3 +1,3 @@
-include ':apk', ':instant', ':network'
+include ':apk', ':instant'
 include ':feature:base', ':feature:detail', ':feature:listing', ':feature:wiki'
-include ':library:checkableheart', ':library:cache'
+include ':library:checkableheart', ':library:network', ':library:cache'

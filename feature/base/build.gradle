@@ -81,6 +81,7 @@ dependencies {
     feature project(":feature:listing")
     feature project(":feature:wiki")
     api project(':library:checkableheart')
+    implementation project(':library:network')
     implementation project(':library:cache')
 
     implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.0.1'

@@ -5,16 +5,16 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "com.vanniktech.dependency.graph.generator"
 
 android {
-    compileSdkVersion compile_sdk_version
-    buildToolsVersion build_tools_version
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
-    baseFeature = true
+    baseFeature true
 
     defaultConfig {
-        minSdkVersion min_sdk_version
-        targetSdkVersion target_sdk_version
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
 
         vectorDrawables.useSupportLibrary = true
 

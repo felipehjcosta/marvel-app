@@ -1,14 +1,14 @@
 apply plugin: 'com.android.instantapp'
 
 android {
-    compileSdkVersion compile_sdk_version
-    buildToolsVersion build_tools_version
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion min_sdk_version
-        targetSdkVersion target_sdk_version
-        versionCode version_code
-        versionName version_name
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
     }
 
     buildTypes {

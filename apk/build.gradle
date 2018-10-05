@@ -2,15 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
-    compileSdkVersion compile_sdk_version
-    buildToolsVersion build_tools_version
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
         applicationId "com.github.felipehjcosta.marvelapp"
-        minSdkVersion min_sdk_version
-        targetSdkVersion target_sdk_version
-        versionCode version_code
-        versionName version_name
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

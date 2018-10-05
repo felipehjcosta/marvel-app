@@ -1,7 +1,7 @@
 ext {
     //Version
     supportLibrary = '28.0.0'
-    constraintLayout = '1.1.0'
+    constraintLayout = '1.1.3'
 
     kotlinxCoroutinesLibrary = "0.24.0"
 

@@ -15,8 +15,8 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providesNetworkFacade(applicationContext: Context): NetworkFacade {
-        return NetworkFacade(applicationContext, BASE_URL)
+    fun providesNetworkFacade(applicationContext: Context, @BaseUrl baseUrl: String): NetworkFacade {
+        return NetworkFacade(applicationContext, baseUrl)
     }
 
     @Singleton

@@ -6,6 +6,7 @@ import android.os.Looper
 import android.support.v4.app.Fragment
 import com.github.felipehjcosta.marvelapp.base.di.ApplicationComponent
 import com.github.felipehjcosta.marvelapp.base.di.DaggerApplicationComponent
+import com.github.felipehjcosta.marvelapp.base.network.BASE_URL
 import com.github.felipehjcosta.marvelapp.base.util.AppInjector
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -40,7 +41,7 @@ open class DemoApplication : Application(), HasActivityInjector, HasSupportFragm
     }
 
     protected open fun createComponent(): ApplicationComponent {
-        return DaggerApplicationComponent.builder().application(this).build()
+        return DaggerApplicationComponent.builder().application(this).baseUrl(BASE_URL).build()
     }
 
     override fun activityInjector(): AndroidInjector<Activity> =

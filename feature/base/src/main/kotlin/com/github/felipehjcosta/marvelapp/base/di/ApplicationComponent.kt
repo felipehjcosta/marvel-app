@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import com.github.felipehjcosta.marvelapp.base.DemoApplication
 import com.github.felipehjcosta.marvelapp.base.data.DataRepository
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
-import com.github.felipehjcosta.marvelapp.network.di.NetworkModule
+import com.github.felipehjcosta.marvelapp.base.network.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

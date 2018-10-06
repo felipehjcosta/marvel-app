@@ -5,7 +5,7 @@ import kotlinx.serialization.json.JSON
 import okhttp3.MediaType
 import retrofit2.Converter
 
-internal fun createNetworkConverterFactory(
+fun createNetworkConverterFactory(
         contentType: MediaType = MediaType.parse("application/json")!!,
         json: JSON = JSON.nonstrict
 ): Converter.Factory {

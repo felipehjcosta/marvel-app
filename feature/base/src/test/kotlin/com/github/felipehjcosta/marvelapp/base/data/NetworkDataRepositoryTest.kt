@@ -2,7 +2,7 @@ package com.github.felipehjcosta.marvelapp.base.data
 
 import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
 import com.github.felipehjcosta.marvelapp.base.readResourceFile
-import com.github.felipehjcosta.marvelapp.base.util.createNetworkConverterFactory
+import com.github.felipehjcosta.marvelapp.network.utils.createNetworkConverterFactory
 import io.reactivex.observers.TestObserver
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse

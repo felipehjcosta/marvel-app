@@ -35,6 +35,6 @@ dependencies {
     implementation kotlinDependencies.values()
 
     implementation networkDependencies.values()
-    kapt daggerCompilerDependencies.values()
-    implementation daggerDependencies.values()
 }
+
+ext.add_test_dependencies(project)

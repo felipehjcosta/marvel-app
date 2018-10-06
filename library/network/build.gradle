@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -21,7 +23,18 @@ android {
         }
     }
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
 }
 
 dependencies {
+    implementation kotlinDependencies.values()
+
+    implementation networkDependencies.values()
+    kapt daggerCompilerDependencies.values()
+    implementation daggerDependencies.values()
 }

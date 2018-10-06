@@ -1,4 +1,4 @@
-package com.github.felipehjcosta.marvelapp.base.network
+package com.github.felipehjcosta.marvelapp.network.interceptor
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -9,7 +9,7 @@ import okhttp3.Response
 private const val INTERNET_MAX_AGE = 5
 private const val NO_INTERNET_MAX_STALE = 60 * 60 * 24 * 7
 
-class OfflineCacheInterceptor(private val context: Context) : Interceptor {
+internal class OfflineCacheInterceptor(private val context: Context) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()

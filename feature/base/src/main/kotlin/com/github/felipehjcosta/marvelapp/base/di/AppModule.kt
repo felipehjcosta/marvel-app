@@ -6,6 +6,7 @@ import com.github.felipehjcosta.marvelapp.base.R
 import com.github.felipehjcosta.marvelapp.base.data.*
 import dagger.Module
 import dagger.Provides
+import retrofit2.Retrofit
 import java.io.File
 import javax.inject.Singleton
 
@@ -21,7 +22,8 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providesDataRepository(characterService: CharacterService, cache: SimpleDiskCache): DataRepository {
+    fun providesDataRepository(retrofit: Retrofit, cache: SimpleDiskCache): DataRepository {
+        val characterService = retrofit.create(CharacterService::class.java)
         return CacheDataRepository(NetworkDataRepository(characterService), cache)
     }
 

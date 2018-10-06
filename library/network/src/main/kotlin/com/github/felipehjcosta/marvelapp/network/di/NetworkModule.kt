@@ -1,10 +1,9 @@
-package com.github.felipehjcosta.marvelapp.base.di
+package com.github.felipehjcosta.marvelapp.network.di
 
 import android.content.Context
-import com.github.felipehjcosta.marvelapp.base.BuildConfig
-import com.github.felipehjcosta.marvelapp.base.data.CharacterService
-import com.github.felipehjcosta.marvelapp.base.network.OfflineCacheInterceptor
-import com.github.felipehjcosta.marvelapp.base.util.createNetworkConverterFactory
+import com.github.felipehjcosta.marvelapp.network.BuildConfig
+import com.github.felipehjcosta.marvelapp.network.interceptor.OfflineCacheInterceptor
+import com.github.felipehjcosta.marvelapp.network.utils.createNetworkConverterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -38,11 +37,11 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providesCharacterService(httpClient: OkHttpClient): CharacterService = Retrofit.Builder()
+    fun providesRetrofit(httpClient: OkHttpClient): Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(createNetworkConverterFactory())
             .client(httpClient)
-            .build().create(CharacterService::class.java)
+            .build()
 
 }

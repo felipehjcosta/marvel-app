@@ -35,7 +35,7 @@ class MainActivityTest {
     init {
         val mockDemoApplication = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as MockDemoApplication
 
-        mockDemoApplication.applicationComponent.inject(this)
+        mockDemoApplication.testApplicationComponent.inject(this)
     }
 
     @Before

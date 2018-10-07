@@ -1,4 +1,4 @@
-package com.github.felipehjcosta.marvelapp.base.data
+package com.github.felipehjcosta.marvelapp.base.character.data
 
 import org.junit.Before
 import org.junit.Rule

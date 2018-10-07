@@ -1,6 +1,6 @@
 package com.github.felipehjcosta.marvelapp.wiki.presentation
 
-import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
+import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import com.github.felipehjcosta.marvelapp.wiki.datamodel.OthersCharactersDataModel
 import io.mockk.every
 import io.mockk.mockk

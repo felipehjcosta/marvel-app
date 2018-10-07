@@ -1,6 +1,6 @@
-package com.github.felipehjcosta.marvelapp.base.data
+package com.github.felipehjcosta.marvelapp.base.character.data
 
-import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
+import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import com.github.felipehjcosta.marvelapp.base.readResourceFile
 import com.github.felipehjcosta.marvelapp.network.utils.createNetworkConverterFactory
 import io.reactivex.observers.TestObserver

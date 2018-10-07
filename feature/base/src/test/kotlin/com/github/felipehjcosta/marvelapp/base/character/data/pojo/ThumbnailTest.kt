@@ -1,4 +1,4 @@
-package com.github.felipehjcosta.marvelapp.base.data.pojo
+package com.github.felipehjcosta.marvelapp.base.character.data.pojo
 
 import org.junit.Test
 import kotlin.test.assertEquals

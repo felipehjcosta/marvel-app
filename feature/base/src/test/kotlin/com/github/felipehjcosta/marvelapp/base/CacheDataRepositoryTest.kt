@@ -1,9 +1,9 @@
 package com.github.felipehjcosta.marvelapp.base
 
-import com.github.felipehjcosta.marvelapp.base.data.CacheDataRepository
-import com.github.felipehjcosta.marvelapp.base.data.DataRepository
-import com.github.felipehjcosta.marvelapp.base.data.SimpleDiskCache
-import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
+import com.github.felipehjcosta.marvelapp.base.character.data.CacheDataRepository
+import com.github.felipehjcosta.marvelapp.base.character.data.DataRepository
+import com.github.felipehjcosta.marvelapp.base.character.data.SimpleDiskCache
+import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Observable.just
 import io.reactivex.observers.TestObserver

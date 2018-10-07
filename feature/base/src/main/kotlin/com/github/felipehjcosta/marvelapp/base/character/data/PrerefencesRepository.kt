@@ -1,4 +1,4 @@
-package com.github.felipehjcosta.marvelapp.base.data
+package com.github.felipehjcosta.marvelapp.base.character.data
 
 import android.content.Context
 import com.github.felipehjcosta.marvelapp.base.R

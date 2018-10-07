@@ -1,7 +1,7 @@
 package com.github.felipehjcosta.marvelapp.wiki.datamodel
 
-import com.github.felipehjcosta.marvelapp.base.data.DataRepository
-import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
+import com.github.felipehjcosta.marvelapp.base.character.data.DataRepository
+import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Observable.just

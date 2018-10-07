@@ -1,4 +1,4 @@
-package com.github.felipehjcosta.marvelapp.base.data
+package com.github.felipehjcosta.marvelapp.base.character.data
 
 import com.jakewharton.disklrucache.DiskLruCache
 import java.io.*

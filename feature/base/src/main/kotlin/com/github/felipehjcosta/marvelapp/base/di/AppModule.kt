@@ -3,7 +3,7 @@ package com.github.felipehjcosta.marvelapp.base.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.github.felipehjcosta.marvelapp.base.R
-import com.github.felipehjcosta.marvelapp.base.data.*
+import com.github.felipehjcosta.marvelapp.base.character.data.*
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -18,13 +18,6 @@ class AppModule {
     fun providesDiskCache(context: Context): SimpleDiskCache {
         val fileCache = File(context.cacheDir, "disk_cache")
         return SimpleDiskCache.open(fileCache, 1, Integer.MAX_VALUE.toLong())
-    }
-
-    @Singleton
-    @Provides
-    fun providesDataRepository(retrofit: Retrofit, cache: SimpleDiskCache): DataRepository {
-        val characterService = retrofit.create(CharacterService::class.java)
-        return CacheDataRepository(NetworkDataRepository(characterService), cache)
     }
 
     @Singleton

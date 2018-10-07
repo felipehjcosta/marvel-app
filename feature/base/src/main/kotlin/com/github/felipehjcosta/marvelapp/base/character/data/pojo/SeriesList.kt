@@ -1,11 +1,11 @@
-package com.github.felipehjcosta.marvelapp.base.data.pojo
+package com.github.felipehjcosta.marvelapp.base.character.data.pojo
 
 import kotlinx.serialization.Optional
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class StoryList(
+class SeriesList(
         @Optional @SerialName("available") var available: Int = 0,
         @Optional @SerialName("returned") var returned: Int = 0,
         @Optional @SerialName("collectionURI") var collectionURI: String = "",

@@ -2,7 +2,7 @@ package com.github.felipehjcosta.marvelapp.listing.presentation
 
 import com.felipecosta.rxaction.RxAction
 import com.felipecosta.rxaction.RxCommand
-import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
+import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import com.github.felipehjcosta.marvelapp.listing.datamodel.ListingDataModel
 import com.jakewharton.rxrelay2.BehaviorRelay
 import io.reactivex.Observable

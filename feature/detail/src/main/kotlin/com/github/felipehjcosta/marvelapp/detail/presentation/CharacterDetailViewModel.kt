@@ -1,7 +1,7 @@
 package com.github.felipehjcosta.marvelapp.detail.presentation
 
-import com.github.felipehjcosta.marvelapp.base.data.FavoriteRepository
-import com.github.felipehjcosta.marvelapp.base.data.pojo.Character
+import com.github.felipehjcosta.marvelapp.base.character.data.FavoriteRepository
+import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import com.felipecosta.rxaction.RxAction
 import com.felipecosta.rxaction.RxCommand
 import com.github.felipehjcosta.marvelapp.detail.datamodel.DetailDataModel

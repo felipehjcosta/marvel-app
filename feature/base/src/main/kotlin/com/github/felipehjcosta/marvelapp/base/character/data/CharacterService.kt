@@ -1,6 +1,6 @@
-package com.github.felipehjcosta.marvelapp.base.data
+package com.github.felipehjcosta.marvelapp.base.character.data
 
-import com.github.felipehjcosta.marvelapp.base.data.pojo.CharacterDataWrapper
+import com.github.felipehjcosta.marvelapp.base.character.data.pojo.CharacterDataWrapper
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

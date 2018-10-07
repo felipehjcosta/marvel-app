@@ -1,7 +1,7 @@
 package com.github.felipehjcosta.marvelapp.detail.presentation
 
-import com.github.felipehjcosta.marvelapp.base.data.FavoriteRepository
-import com.github.felipehjcosta.marvelapp.base.data.pojo.*
+import com.github.felipehjcosta.marvelapp.base.character.data.FavoriteRepository
+import com.github.felipehjcosta.marvelapp.base.character.data.pojo.*
 import com.github.felipehjcosta.marvelapp.detail.datamodel.DetailDataModel
 import io.mockk.every
 import io.mockk.mockk

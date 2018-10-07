@@ -14,8 +14,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
+import com.github.felipehjcosta.marvelapp.base.navigator.AppNavigator
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
-import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
 import com.github.felipehjcosta.marvelapp.listing.R
 import com.github.felipehjcosta.marvelapp.listing.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModel
@@ -44,8 +44,10 @@ class CharacterListingFragment : Fragment() {
     @Inject
     lateinit var imageLoader: ImageLoader
 
-    private lateinit var compositeDisposable: CompositeDisposable
+    @Inject
+    lateinit var appNavigator: AppNavigator
 
+    private lateinit var compositeDisposable: CompositeDisposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,7 +99,7 @@ class CharacterListingFragment : Fragment() {
                                 }
 
                                 onClick { _, item ->
-                                    activity?.let { navigateToDetail(it, item?.id ?: 0) }
+                                    activity?.let { appNavigator.showDetail(it, item?.id ?: 0) }
                                 }
                             }
                         }

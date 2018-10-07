@@ -7,6 +7,8 @@ import com.github.felipehjcosta.marvelapp.base.DemoApplication
 import com.github.felipehjcosta.marvelapp.base.character.CharacterModule
 import com.github.felipehjcosta.marvelapp.base.character.data.DataRepository
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
+import com.github.felipehjcosta.marvelapp.base.navigator.AppNavigator
+import com.github.felipehjcosta.marvelapp.base.navigator.NavigatorModule
 import com.github.felipehjcosta.marvelapp.base.network.BaseUrl
 import com.github.felipehjcosta.marvelapp.base.network.NetworkModule
 import dagger.BindsInstance
@@ -21,6 +23,7 @@ import javax.inject.Singleton
     NetworkModule::class,
     AppModule::class,
     UiModule::class,
+    NavigatorModule::class,
     CharacterModule::class,
     AndroidInjectionModule::class,
     AndroidSupportInjectionModule::class
@@ -44,4 +47,6 @@ interface ApplicationComponent {
     val sharedPreferences: SharedPreferences
 
     val imageLoader: ImageLoader
+
+    val appNavigator: AppNavigator
 }

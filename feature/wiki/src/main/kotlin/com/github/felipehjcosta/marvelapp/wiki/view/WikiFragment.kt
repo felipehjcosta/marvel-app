@@ -1,9 +1,7 @@
 package com.github.felipehjcosta.marvelapp.wiki.view
 
 
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.os.Looper
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
+import com.github.felipehjcosta.marvelapp.base.navigator.AppNavigator
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
-import com.github.felipehjcosta.marvelapp.base.util.navigateToDetail
-import com.github.felipehjcosta.marvelapp.base.util.navigateToListing
 import com.github.felipehjcosta.marvelapp.wiki.R
 import com.github.felipehjcosta.marvelapp.wiki.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.wiki.presentation.CharacterItemViewModel
@@ -39,6 +36,9 @@ class WikiFragment : Fragment() {
 
     @Inject
     lateinit var imageLoader: ImageLoader
+
+    @Inject
+    lateinit var appNavigator: AppNavigator
 
     private lateinit var compositeDisposable: CompositeDisposable
 
@@ -65,7 +65,7 @@ class WikiFragment : Fragment() {
             inflateMenu(R.menu.wiki_toolbar_menu)
             setOnMenuItemClickListener { item ->
                 if (item.itemId == R.id.wiki_menu_search) {
-                    activity?.let { navigateToListing(it) }
+                    activity?.let { appNavigator.showList(it) }
                     true
                 } else {
                     false
@@ -129,7 +129,9 @@ class WikiFragment : Fragment() {
                     }
 
                     onClick { _, characterItemViewModel ->
-                        activity?.let { navigateToDetail(it, characterItemViewModel?.id ?: 0) }
+                        activity?.let {
+                            appNavigator.showDetail(it, characterItemViewModel?.id ?: 0)
+                        }
                     }
                 }
             }
@@ -179,7 +181,9 @@ class WikiFragment : Fragment() {
                     }
 
                     onClick { _, characterItemViewModel ->
-                        activity?.let { navigateToDetail(it, characterItemViewModel?.id ?: 0) }
+                        activity?.let {
+                            appNavigator.showDetail(it, characterItemViewModel?.id ?: 0)
+                        }
                     }
                 }
             }

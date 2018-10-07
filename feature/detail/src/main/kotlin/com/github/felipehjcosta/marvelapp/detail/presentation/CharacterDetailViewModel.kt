@@ -1,9 +1,8 @@
 package com.github.felipehjcosta.marvelapp.detail.presentation
 
-import com.github.felipehjcosta.marvelapp.base.character.data.FavoriteRepository
-import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import com.felipecosta.rxaction.RxAction
 import com.felipecosta.rxaction.RxCommand
+import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import com.github.felipehjcosta.marvelapp.detail.datamodel.DetailDataModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,8 +11,7 @@ import javax.inject.Inject
 
 class CharacterDetailViewModel @Inject constructor(
         private val characterId: Int,
-        private val dataModel: DetailDataModel,
-        private val favoriteRepository: FavoriteRepository
+        private val dataModel: DetailDataModel
 ) {
 
     private val asyncLoadCharacterAction: RxAction<Any, Character> = RxAction {
@@ -46,16 +44,5 @@ class CharacterDetailViewModel @Inject constructor(
 
     val storiesCount: Observable<Int>
         get() = characterObservable.map { it.stories.items.count() }
-
-    val isFavorite: Observable<Boolean>
-        get() = favoriteRepository.isFavorite()
-
-    fun removeFavorite() {
-        favoriteRepository.removeFavorite()
-    }
-
-    fun saveFavorite() {
-        favoriteRepository.saveFavorite()
-    }
 
 }

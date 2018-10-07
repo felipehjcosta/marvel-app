@@ -1,6 +1,5 @@
 package com.github.felipehjcosta.marvelapp.detail.presentation
 
-import com.github.felipehjcosta.marvelapp.base.character.data.FavoriteRepository
 import com.github.felipehjcosta.marvelapp.base.character.data.pojo.*
 import com.github.felipehjcosta.marvelapp.detail.datamodel.DetailDataModel
 import io.mockk.every
@@ -21,9 +20,7 @@ internal class CharacterDetailViewModelTest {
 
     private val dataModel = mockk<DetailDataModel>()
 
-    private val favoriteRepository = mockk<FavoriteRepository>()
-
-    private val viewModel = CharacterDetailViewModel(characterId, dataModel, favoriteRepository)
+    private val viewModel = CharacterDetailViewModel(characterId, dataModel)
 
     @Before
     fun setUp() {

@@ -61,12 +61,8 @@ class DetailActivity : AppCompatActivity() {
         compositeDisposable += viewModel.eventsCount.subscribe { statisticEvents.text = it.toString() }
         compositeDisposable += viewModel.seriesCount.subscribe { statisticSeries.text = it.toString() }
         compositeDisposable += viewModel.storiesCount.subscribe { statisticStories.text = it.toString() }
-        compositeDisposable += viewModel.isFavorite.subscribe { favoriteFab.isChecked = it }
 
         compositeDisposable += viewModel.characterCommand.execute().subscribe()
-
-        compositeDisposable += favoriteFab.checkedChanges()
-                .subscribe { if (it) viewModel.saveFavorite() else viewModel.removeFavorite() }
     }
 
     override fun onPause() {

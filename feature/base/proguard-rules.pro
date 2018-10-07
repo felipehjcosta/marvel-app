@@ -48,6 +48,4 @@
 
 # kotlinx.serialization
 -dontnote kotlinx.serialization.SerializationKt
-
-# Project
--keep class com.github.felipehjcosta.marvelapp.base.data.pojo.** { *; }
+-keep,includedescriptorclasses class com.github.felipehjcosta.marvelapp.**$$serializer { *; }

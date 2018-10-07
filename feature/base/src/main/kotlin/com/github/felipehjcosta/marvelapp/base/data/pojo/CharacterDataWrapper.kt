@@ -6,11 +6,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class CharacterDataWrapper(
-        @Optional var code: Int = 0,
-        @Optional var status: String = "",
-        @Optional var copyright: String = "",
-        @Optional var attributionText: String = "",
-        @Optional var attributionHTML: String = "",
+        @Optional @SerialName("code") var code: Int = 0,
+        @Optional @SerialName("status") var status: String = "",
+        @Optional @SerialName("copyright") var copyright: String = "",
+        @Optional @SerialName("attributionText") var attributionText: String = "",
+        @Optional @SerialName("attributionHTML") var attributionHTML: String = "",
         @Optional @SerialName("data") var characterDataContainer: CharacterDataContainer = CharacterDataContainer(),
-        @Optional var etag: String = ""
+        @Optional @SerialName("etag") var etag: String = ""
 )

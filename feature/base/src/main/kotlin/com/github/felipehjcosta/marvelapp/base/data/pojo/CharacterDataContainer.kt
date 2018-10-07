@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class CharacterDataContainer(
-        @Optional var offset: Int = 0,
-        @Optional var limit: Int = 0,
-        @Optional var total: Int = 0,
-        @Optional var count: Int = 0,
+        @Optional @SerialName("offset") var offset: Int = 0,
+        @Optional @SerialName("limit") var limit: Int = 0,
+        @Optional @SerialName("total") var total: Int = 0,
+        @Optional @SerialName("count") var count: Int = 0,
         @Optional @SerialName("results") var characters: List<Character> = emptyList()
 )

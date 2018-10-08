@@ -7,9 +7,9 @@ import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.listing.BuildConfig
 import com.github.felipehjcosta.marvelapp.listing.R
-import com.github.felipehjcosta.marvelapp.listing.TestStubApplication
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModel
+import com.github.felipehjcosta.marvelapp.test.TestStubApplication
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Observable

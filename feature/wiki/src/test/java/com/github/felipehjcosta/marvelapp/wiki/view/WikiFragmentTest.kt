@@ -4,9 +4,9 @@ import android.support.v7.widget.RecyclerView
 import com.felipecosta.rxaction.RxCommand
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.util.bindView
+import com.github.felipehjcosta.marvelapp.test.TestStubApplication
 import com.github.felipehjcosta.marvelapp.wiki.BuildConfig
 import com.github.felipehjcosta.marvelapp.wiki.R
-import com.github.felipehjcosta.marvelapp.wiki.TestStubApplication
 import com.github.felipehjcosta.marvelapp.wiki.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.wiki.presentation.HighlightedCharactersViewModel
 import com.github.felipehjcosta.marvelapp.wiki.presentation.OthersCharactersViewModel

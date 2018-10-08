@@ -2,7 +2,7 @@ package com.github.felipehjcosta.marvelapp.base.navigator
 
 import android.app.Activity
 import com.github.felipehjcosta.marvelapp.base.BuildConfig
-import com.github.felipehjcosta.marvelapp.base.TestStubApplication
+import com.github.felipehjcosta.marvelapp.test.TestStubApplication
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric

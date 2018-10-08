@@ -7,8 +7,8 @@ import android.widget.TextView
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.detail.BuildConfig
 import com.github.felipehjcosta.marvelapp.detail.R
-import com.github.felipehjcosta.marvelapp.detail.TestStubApplication
 import com.github.felipehjcosta.marvelapp.detail.presentation.CharacterDetailViewModel
+import com.github.felipehjcosta.marvelapp.test.TestStubApplication
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

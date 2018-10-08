@@ -1,79 +1,61 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fillViewport="true"
     tools:context=".view.WikiFragment">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:elevation="4dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="@string/wiki_heroes" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:divider="@drawable/divider"
+        android:orientation="vertical"
+        android:showDividers="middle">
 
         <LinearLayout
+            android:id="@+id/highlighted_characters_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@drawable/divider"
+            android:background="@color/transparent"
+            android:gravity="center"
             android:orientation="vertical"
-            android:showDividers="middle">
-
-            <LinearLayout
-                android:id="@+id/highlighted_characters_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/highlighted_characters_section_title"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:gravity="center"
-                    android:text="@string/highlighted_characters_section_subtitle"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/highlighted_characters_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="232dp" />
-
-            </LinearLayout>
+            android:paddingTop="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/others_characters_section_title"
+                android:text="@string/highlighted_characters_section_title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:text="@string/highlighted_characters_section_subtitle"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/others_characters_recycler_view"
+                android:id="@+id/highlighted_characters_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                app:layoutManager="GridLayoutManager" />
+                android:layout_height="232dp" />
+
         </LinearLayout>
 
-    </ScrollView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/others_characters_section_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/others_characters_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager" />
+    </LinearLayout>
+
+</ScrollView>

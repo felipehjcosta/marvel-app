@@ -5,7 +5,7 @@
     <application tools:ignore="AllowBackup,MissingApplicationIcon">
         <activity
             android:name=".view.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.ActionBar">
             <intent-filter
                 android:autoVerify="true"
                 android:order="2"

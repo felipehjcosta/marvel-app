@@ -3,9 +3,7 @@ package com.github.felipehjcosta.marvelapp.wiki.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
@@ -19,7 +17,6 @@ import com.github.felipehjcosta.marvelapp.wiki.presentation.HighlightedCharacter
 import com.github.felipehjcosta.marvelapp.wiki.presentation.OthersCharactersViewModel
 import com.github.felipehjcosta.recyclerviewdsl.onRecyclerView
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_wiki.*
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_wiki.highlighted_characters_container as highlightedCharactersContainer
 import kotlinx.android.synthetic.main.fragment_wiki.highlighted_characters_recycler_view as highlightedCharactersRecyclerView
@@ -47,6 +44,7 @@ class WikiFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupDependencyInjection()
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -61,19 +59,21 @@ class WikiFragment : Fragment() {
             attach(highlightedCharactersRecyclerView)
         }
 
-        toolbar.apply {
-            inflateMenu(R.menu.wiki_toolbar_menu)
-            setOnMenuItemClickListener { item ->
-                if (item.itemId == R.id.wiki_menu_search) {
-                    activity?.let { appNavigator.showList(it) }
-                    true
-                } else {
-                    false
-                }
-            }
+        bind()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.wiki_toolbar_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean = when (item?.itemId) {
+        R.id.wiki_menu_search -> {
+            activity?.let { appNavigator.showList(it) }
+            true
         }
 
-        bind()
+        else -> super.onOptionsItemSelected(item)
     }
 
     private fun bind() {

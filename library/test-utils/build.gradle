@@ -28,6 +28,9 @@ android {
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
 
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {

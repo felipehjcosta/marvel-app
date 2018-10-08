@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 
 @RunWith(AndroidJUnit4::class)
-class MainActivityTest {
+class WikiUITest {
 
     @Rule
     @JvmField

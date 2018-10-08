@@ -1,7 +1,7 @@
 package com.github.felipehjcosta.marvelapp.wiki.di
 
 import com.github.felipehjcosta.marvelapp.base.di.ApplicationComponent
-import com.github.felipehjcosta.marvelapp.wiki.main.MainActivityTest
+import com.github.felipehjcosta.marvelapp.wiki.main.WikiUITest
 import dagger.Component
 
 @UITestScope
@@ -9,7 +9,7 @@ import dagger.Component
         dependencies = [ApplicationComponent::class]
 )
 interface TestApplicationComponent {
-    fun inject(mainActivityTest: MainActivityTest)
+    fun inject(wikiUITest: WikiUITest)
 
     @Component.Builder
     interface Builder {

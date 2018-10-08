@@ -32,7 +32,7 @@ subprojects {
     ext {
         add_test_dependencies = {Project p ->
             p.dependencies {
-                testImplementation project(':library:test-utils')
+                testImplementation project(':library:unit-test-utils')
 
                 androidTestImplementation networkTestDependencies.values()
                 kaptAndroidTest daggerCompilerDependencies.values()

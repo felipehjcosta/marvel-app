@@ -35,8 +35,5 @@ android {
 
 dependencies {
     implementation supportDependencies.appCompat
-
-    api kotlinTestDependencies.values()
-    api networkTestDependencies.values()
-    api testDependencies.values()
+    implementation kotlinDependencies.values()
 }

@@ -1,7 +1,7 @@
 apply from: 'gradleScript/dependencies.gradle'
 
 buildscript {
-    ext.kotlinVersion = '1.2.61'
+    ext.kotlinVersion = '1.2.71'
     ext.kotlinSerializationVersion = '0.6.1'
 
     repositories {

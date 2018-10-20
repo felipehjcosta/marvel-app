@@ -2,7 +2,7 @@ apply from: 'gradleScript/dependencies.gradle'
 
 buildscript {
     ext.kotlinVersion = '1.2.71'
-    ext.kotlinSerializationVersion = '0.6.1'
+    ext.kotlinSerializationVersion = '0.6.2'
 
     repositories {
         jcenter()

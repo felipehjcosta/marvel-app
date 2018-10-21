@@ -45,7 +45,6 @@ dependencies {
     implementation kotlinDependencies.values()
     implementation kotlinxDependencies.kotlinxCoroutines
     implementation rxJavaDependencies.values()
-    implementation layerCacheDependencies.values()
 
     androidTestImplementation androidTestDependencies.espressoCore
     testImplementation testDependencies.junit

@@ -23,8 +23,6 @@ ext {
     retrofitLibrary = "2.3.0"
     KotlinSerializationConverterLibrary = "0.0.1"
 
-    layerCacheLibrary = "0.3.0"
-
     daggerLibrary = "2.18"
     javaxAnnotationLibrary = "1.0"
 
@@ -98,11 +96,6 @@ ext {
 
     networkTestDependencies = [
             mockWebServer: "com.squareup.okhttp3:mockwebserver:$okhttpLibrary"
-    ]
-
-    layerCacheDependencies = [
-            layerCache       : "com.appmattus:layercache:${layerCacheLibrary}",
-            layerCacheAndroid: "com.appmattus:layercache-android:${layerCacheLibrary}"
     ]
 
     daggerDependencies = [

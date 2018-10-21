@@ -130,7 +130,7 @@ class WikiFragment : Fragment() {
 
                     onClick { _, characterItemViewModel ->
                         activity?.let {
-                            appNavigator.showDetail(it, characterItemViewModel?.id ?: 0)
+                            appNavigator.showDetail(it, characterItemViewModel?.id ?: 0L)
                         }
                     }
                 }

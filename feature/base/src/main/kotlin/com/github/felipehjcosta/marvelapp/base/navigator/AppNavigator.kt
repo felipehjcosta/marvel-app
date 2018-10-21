@@ -5,5 +5,5 @@ import android.app.Activity
 interface AppNavigator {
     fun showWiki(activity: Activity)
     fun showList(activity: Activity)
-    fun showDetail(activity: Activity, id: Int)
+    fun showDetail(activity: Activity, id: Long)
 }

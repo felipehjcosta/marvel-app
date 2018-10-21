@@ -15,7 +15,7 @@ internal class UrlBasedAppNavigator : AppNavigator {
         "https://marvelapp.instantappsample.com/listing".toUri().startDeepLink(activity)
     }
 
-    override fun showDetail(activity: Activity, id: Int) {
+    override fun showDetail(activity: Activity, id: Long) {
         "https://marvelapp.instantappsample.com/detail/$id".toUri().startDeepLink(activity)
     }
 

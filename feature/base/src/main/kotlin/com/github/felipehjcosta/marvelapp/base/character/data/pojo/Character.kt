@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class Character(
-        @Optional @SerialName("id") var id: Int = -1,
+        @Optional @SerialName("id") var id: Long = -1,
         @Optional @SerialName("name") var name: String = "",
         @Optional @SerialName("description") var description: String = "",
         @Optional @SerialName("resourceURI") var resourceURI: String = "",
@@ -29,5 +29,5 @@ class Character(
         return true
     }
 
-    override fun hashCode(): Int = id
+    override fun hashCode(): Int = id.toInt()
 }

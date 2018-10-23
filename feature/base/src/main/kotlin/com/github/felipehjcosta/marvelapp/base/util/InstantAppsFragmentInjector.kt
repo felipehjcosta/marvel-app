@@ -3,7 +3,6 @@ package com.github.felipehjcosta.marvelapp.base.util
 import android.support.v4.app.Fragment
 import com.github.felipehjcosta.marvelapp.base.di.ApplicationComponent
 import dagger.android.AndroidInjector
-import kotlin.reflect.full.cast
 
 class InstantAppsFragmentInjector(
         private val applicationComponent: ApplicationComponent,
@@ -27,5 +26,5 @@ class InstantAppsFragmentInjector(
 
     private fun Fragment?.activityClass(): Class<out Fragment>? = this?.javaClass
 
-    private inline fun <reified T : Fragment> Fragment?.cast(): T? = T::class.cast(this)
+    private inline fun <reified T : Fragment> Fragment?.cast(): T? = this as? T
 }

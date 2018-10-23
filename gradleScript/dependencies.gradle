@@ -58,8 +58,7 @@ ext {
     ]
 
     kotlinDependencies = [
-            kotlinStd    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${ext.kotlinVersion}",
-            kotlinReflect: "org.jetbrains.kotlin:kotlin-reflect:${ext.kotlinVersion}"
+            kotlinStd    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${ext.kotlinVersion}"
     ]
 
     kotlinxDependencies = [

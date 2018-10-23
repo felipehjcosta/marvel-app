@@ -3,7 +3,6 @@ package com.github.felipehjcosta.marvelapp.base.util
 import android.app.Activity
 import com.github.felipehjcosta.marvelapp.base.di.ApplicationComponent
 import dagger.android.AndroidInjector
-import kotlin.reflect.full.cast
 
 class InstantAppsActivityInjector(
         private val applicationComponent: ApplicationComponent,
@@ -27,5 +26,5 @@ class InstantAppsActivityInjector(
 
     private fun Activity?.activityClass(): Class<out Activity>? = this?.javaClass
 
-    private inline fun <reified T : Activity> Activity?.cast(): T? = T::class.cast(this)
+    private inline fun <reified T : Activity> Activity?.cast(): T? = this as? T
 }

@@ -44,7 +44,7 @@ class NetworkDataRepositoryTest {
 
         itemObserver.awaitTerminalEvent()
 
-        itemObserver.assertValue { it.id == 1009664 }
+        itemObserver.assertValue { it.id == 1009664L }
 
         itemObserver.dispose()
     }

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -45,6 +46,9 @@ dependencies {
     implementation kotlinDependencies.values()
     implementation kotlinxDependencies.kotlinxCoroutines
     implementation rxJavaDependencies.values()
+    implementation databaseDependencies.values()
+
+    kapt databaseCompilerDependencies.values()
 
     androidTestImplementation androidTestDependencies.espressoCore
     testImplementation testDependencies.junit

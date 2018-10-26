@@ -15,9 +15,9 @@ data class ThumbnailEntity(
         @ColumnInfo(name = "thumbnail_id")
         var id: Long = 0L,
 
-        var url: String = "",
+        var path: String = "",
 
-        var type: String = "",
+        var extension: String = "",
 
         @ColumnInfo(name = "thumbnail_character_id")
         var characterId: Long = 0L

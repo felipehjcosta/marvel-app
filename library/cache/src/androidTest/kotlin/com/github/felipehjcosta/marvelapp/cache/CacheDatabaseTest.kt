@@ -72,8 +72,8 @@ class CacheDatabaseTest {
             )
 
             thumbnail.apply {
-                url = "http://i.annihil.us/u/prod/marvel/i/mg/9/c0/527bb7b37ff55"
-                type = "jpg"
+                path = "http://i.annihil.us/u/prod/marvel/i/mg/9/c0/527bb7b37ff55"
+                extension = "jpg"
             }
 
             comicListRelations.apply {

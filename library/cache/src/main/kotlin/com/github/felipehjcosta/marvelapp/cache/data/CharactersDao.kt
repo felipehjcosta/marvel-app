@@ -55,7 +55,7 @@ abstract class CharactersDao {
     @Insert
     internal abstract fun insert(summaryEntity: SummaryEntity): Long
 
-    internal fun insert(characterRelations: CharacterRelations) {
+    fun insert(characterRelations: CharacterRelations) {
         val characterId = insert(characterRelations.character)
         characterRelations.urls.forEach {
             it.characterId = characterRelations.character.id

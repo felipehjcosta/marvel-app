@@ -23,7 +23,6 @@ abstract class CacheDatabase : RoomDatabase() {
     abstract fun charactersDao(): CharactersDao
 }
 
-
 fun newInstance(context: Context): CacheDatabase {
     return Room.databaseBuilder(
             context,

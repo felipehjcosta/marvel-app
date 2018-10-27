@@ -46,7 +46,7 @@ dependencies {
     implementation kotlinDependencies.values()
     implementation kotlinxDependencies.kotlinxCoroutines
     implementation rxJavaDependencies.values()
-    implementation databaseDependencies.values()
+    api databaseDependencies.values()
 
     kapt databaseCompilerDependencies.values()
 

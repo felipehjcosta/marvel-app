@@ -2,6 +2,7 @@ package com.github.felipehjcosta.marvelapp.cache.data
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
+import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -32,28 +33,28 @@ abstract class CharactersDao {
         """)
     abstract fun all(): Single<List<CharacterRelations>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     internal abstract fun insert(characterEntity: CharacterEntity): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     internal abstract fun insert(urlEntity: UrlEntity): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     internal abstract fun insert(thumbnailEntity: ThumbnailEntity): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     internal abstract fun insert(comicListEntity: ComicListEntity): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     internal abstract fun insert(storyListEntity: StoryListEntity): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     internal abstract fun insert(eventListEntity: EventListEntity): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     internal abstract fun insert(seriesListEntity: SeriesListEntity): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     internal abstract fun insert(summaryEntity: SummaryEntity): Long
 
     fun insert(characterRelations: CharacterRelations) {

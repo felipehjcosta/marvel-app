@@ -7,7 +7,7 @@ import com.github.felipehjcosta.marvelapp.cache.data.CharacterRelations
 import com.github.felipehjcosta.marvelapp.cache.data.CharactersDao
 import com.github.felipehjcosta.marvelapp.cache.data.SummaryEntity
 import com.github.felipehjcosta.marvelapp.cache.data.UrlEntity
-import io.reactivex.subscribers.TestSubscriber
+import io.reactivex.observers.TestObserver
 import org.junit.After
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,18 +26,40 @@ class CacheDatabaseTest {
     }
 
     @Test
+    fun ensureEmptyCharacterEntityByIdWhenDataDoesNotExist() {
+
+        val itemsObserver = TestObserver.create<CharacterRelations>()
+
+        charactersDao.findById(42L).subscribe(itemsObserver)
+
+        itemsObserver.await(500L, TimeUnit.MILLISECONDS)
+        itemsObserver.assertNoValues()
+    }
+
+    @Test
     fun ensureFindCharacterEntityByIdWhenDataExists() {
 
         val characterRelations = createFixture()
 
         charactersDao.insert(characterRelations)
 
-        val itemsObserver = TestSubscriber.create<CharacterRelations>()
+        val itemsObserver = TestObserver.create<CharacterRelations>()
 
         charactersDao.findById(42L).subscribe(itemsObserver)
 
         itemsObserver.await(500L, TimeUnit.MILLISECONDS)
         itemsObserver.assertValue { it == characterRelations }
+    }
+
+    @Test
+    fun ensureEmptyCharacterEntitiesWhenDataDoesNotExist() {
+
+        val itemsObserver = TestObserver.create<List<CharacterRelations>>()
+
+        charactersDao.all().subscribe(itemsObserver)
+
+        itemsObserver.await(500L, TimeUnit.MILLISECONDS)
+        itemsObserver.assertValue { it == emptyList<List<CharacterRelations>>() }
     }
 
     @Test
@@ -47,7 +69,7 @@ class CacheDatabaseTest {
 
         charactersDao.insert(characterRelations)
 
-        val itemsObserver = TestSubscriber.create<List<CharacterRelations>>()
+        val itemsObserver = TestObserver.create<List<CharacterRelations>>()
 
         charactersDao.all().subscribe(itemsObserver)
 

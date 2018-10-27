@@ -3,7 +3,8 @@ package com.github.felipehjcosta.marvelapp.cache.data
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
-import io.reactivex.Flowable
+import io.reactivex.Maybe
+import io.reactivex.Single
 
 @Dao
 abstract class CharactersDao {
@@ -18,7 +19,7 @@ abstract class CharactersDao {
         AND series_list.series_list_character_id = character.id
         LIMIT 1
         """)
-    abstract fun findById(id: Long): Flowable<CharacterRelations>
+    abstract fun findById(id: Long): Maybe<CharacterRelations>
 
     @Query("""
         SELECT * FROM character, thumbnail, comic_list, story_list, event_list, series_list
@@ -29,7 +30,7 @@ abstract class CharactersDao {
         AND event_list.event_list_character_id = character.id
         AND series_list.series_list_character_id = character.id
         """)
-    abstract fun all(): Flowable<List<CharacterRelations>>
+    abstract fun all(): Single<List<CharacterRelations>>
 
     @Insert
     internal abstract fun insert(characterEntity: CharacterEntity): Long

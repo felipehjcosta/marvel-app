@@ -33,8 +33,6 @@ ext {
     galleryLayoutManagerLibrary = "1.1.0"
     recyclerViewDslLibrary = "0.7.0"
 
-    lruCacheLibrary = "2.0.2"
-
     junitLibrary = "4.12"
     mockitoLibrary = "2.6.3"
     mockitoKotlinLibrary = "1.5.0"
@@ -133,10 +131,6 @@ ext {
     uiDependencies = [
             galleryLayoutManager: "com.github.felipehjcosta:gallerylayoutmanager:$galleryLayoutManagerLibrary",
             recyclerViewDsl     : "com.github.felipehjcosta:recyclerview-dsl:$recyclerViewDslLibrary"
-    ]
-
-    lruCacheDependencies = [
-            lruCache: "com.jakewharton:disklrucache:$lruCacheLibrary"
     ]
 
     testDependencies = [

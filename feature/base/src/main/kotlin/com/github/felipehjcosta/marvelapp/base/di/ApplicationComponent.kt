@@ -4,6 +4,7 @@ package com.github.felipehjcosta.marvelapp.base.di
 import android.app.Application
 import android.content.SharedPreferences
 import com.github.felipehjcosta.marvelapp.base.DemoApplication
+import com.github.felipehjcosta.marvelapp.base.cache.CacheModule
 import com.github.felipehjcosta.marvelapp.base.character.CharacterModule
 import com.github.felipehjcosta.marvelapp.base.character.data.DataRepository
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
@@ -21,6 +22,7 @@ import javax.inject.Singleton
 @Component(modules = [
     ApplicationModule::class,
     NetworkModule::class,
+    CacheModule::class,
     AppModule::class,
     UiModule::class,
     NavigatorModule::class,

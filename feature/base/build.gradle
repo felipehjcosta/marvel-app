@@ -100,8 +100,6 @@ dependencies {
     api uiDependencies.values()
 
     api networkDependencies.values()
-
-    api lruCacheDependencies.lruCache
 }
 
 ext.add_test_dependencies(project)

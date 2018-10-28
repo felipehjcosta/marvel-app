@@ -48,6 +48,10 @@ android {
         ignoreWarnings false
     }
 
+    adbOptions {
+        timeOutInMs 30 * 1000
+    }
+
 }
 
 dependencies {

@@ -12,8 +12,6 @@ ext {
 
     roomLibrary = "1.1.1"
 
-    kotlinxCoroutinesLibrary = "0.24.0"
-
     rxJavaLibrary = "2.2.0"
     rxJavaAndroidLibrary = "2.1.0"
     rxJavaJakewhartonLibrary = "2.0.0"
@@ -58,11 +56,7 @@ ext {
     ]
 
     kotlinDependencies = [
-            kotlinStd    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${ext.kotlinVersion}"
-    ]
-
-    kotlinxDependencies = [
-            kotlinxCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinxCoroutinesLibrary}"
+            kotlinStd: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${ext.kotlinVersion}"
     ]
 
     databaseDependencies = [

@@ -44,7 +44,6 @@ dependencies {
     implementation supportDependencies.appCompat
     implementation supportDependencies.design
     implementation kotlinDependencies.values()
-    implementation kotlinxDependencies.kotlinxCoroutines
     implementation rxJavaDependencies.values()
     api databaseDependencies.values()
 

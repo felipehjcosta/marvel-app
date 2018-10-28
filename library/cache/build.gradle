@@ -40,7 +40,7 @@ android {
     tasks.lint.enabled = false
 
     adbOptions {
-        timeOutInMs 30 * 1000
+        timeOutInMs 5 * 60 * 1000
     }
 }
 

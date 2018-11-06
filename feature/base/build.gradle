@@ -62,6 +62,7 @@ android {
     }
     packagingOptions {
         exclude 'META-INF/app_debug.kotlin_module'
+        exclude 'META-INF/proguard/androidx-annotations.pro'
     }
 }
 

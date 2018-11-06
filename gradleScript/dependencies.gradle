@@ -37,8 +37,10 @@ ext {
     robolectricLibrary = "3.7.1"
     mockkLibrary = "1.6"
 
-    espressoLibrary = "3.0.1"
-    androidTestLibrary = "1.0.2-alpha1"
+    espressoLibrary = "3.1.0"
+    androidTestLibrary = "1.1.0"
+    androidTestJunitLibrary = "1.0.0"
+    androidTestTruthLibrary = "1.0.0"
     kakaoLibrary = "1.4.0"
     mockitAndroidLibrary = "2.6.3"
     rx2IdlerLibrary = "0.9.0"
@@ -133,20 +135,19 @@ ext {
             mockitoKotlin     : "com.nhaarman:mockito-kotlin:$mockitoKotlinLibrary",
             robolectric       : "org.robolectric:robolectric:$robolectricLibrary",
             robolectricSupport: "org.robolectric:shadows-supportv4:$robolectricLibrary",
-            mockk             : "io.mockk:mockk:$mockkLibrary",
-            androidTestRunner : "com.android.support.test:runner:$androidTestLibrary",
-            androidTestRules  : "com.android.support.test:rules:$androidTestLibrary"
+            mockk             : "io.mockk:mockk:$mockkLibrary"
     ]
 
     androidTestDependencies = [
-            espressoCore     : "com.android.support.test.espresso:espresso-core:$espressoLibrary",
-            espressoContrib  : "com.android.support.test.espresso:espresso-contrib:$espressoLibrary",
-            androidTestRunner: "com.android.support.test:runner:$androidTestLibrary",
-            androidTestRules : "com.android.support.test:rules:$androidTestLibrary",
-            kakao            : "com.agoda.kakao:kakao:$kakaoLibrary",
-            mockitAndroid    : "org.mockito:mockito-android:$mockitAndroidLibrary",
-            rx2Idler         : "com.squareup.rx.idler:rx2-idler:$rx2IdlerLibrary",
-            testButler       : "com.linkedin.testbutler:test-butler-library:$testButlerLibrary"
+            runner         : "androidx.test:runner:$androidTestLibrary",
+            junit          : "androidx.test.ext:junit:$androidTestJunitLibrary",
+            expressoIntents: "androidx.test.espresso:espresso-intents:$espressoLibrary",
+            expressoCore   : "androidx.test.espresso:espresso-core:$espressoLibrary",
+            truth          : "androidx.test.ext:truth:$androidTestTruthLibrary",
+            kakao          : "com.agoda.kakao:kakao:$kakaoLibrary",
+            mockitAndroid  : "org.mockito:mockito-android:$mockitAndroidLibrary",
+            rx2Idler       : "com.squareup.rx.idler:rx2-idler:$rx2IdlerLibrary",
+            testButler     : "com.linkedin.testbutler:test-butler-library:$testButlerLibrary"
     ]
 
     androidTestUtilDependencies = [

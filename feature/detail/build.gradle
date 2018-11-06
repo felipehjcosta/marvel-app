@@ -48,6 +48,10 @@ android {
         ignoreWarnings false
     }
 
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+
 }
 
 dependencies {

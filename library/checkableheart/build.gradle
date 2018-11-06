@@ -24,11 +24,15 @@ android {
 
     tasks.lint.enabled = false
 
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+
 }
 
 dependencies {
     implementation supportDependencies.appCompat
     implementation supportDependencies.design
-    androidTestImplementation androidTestDependencies.espressoCore
+    androidTestImplementation androidTestDependencies.values()
     testImplementation testDependencies.junit
 }

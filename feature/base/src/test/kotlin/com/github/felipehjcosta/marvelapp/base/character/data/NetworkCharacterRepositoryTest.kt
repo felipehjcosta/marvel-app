@@ -13,7 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 
-class NetworkDataRepositoryTest {
+class NetworkCharacterRepositoryTest {
 
     private val mockWebServer = MockWebServer()
 
@@ -27,7 +27,7 @@ class NetworkDataRepositoryTest {
             .client(httpClient)
             .build().create(CharacterService::class.java)
 
-    private val networkDataRepository = NetworkDataRepository(service)
+    private val networkDataRepository = NetworkCharacterRepository(service)
 
     @After
     fun tearDown() = mockWebServer.shutdown()

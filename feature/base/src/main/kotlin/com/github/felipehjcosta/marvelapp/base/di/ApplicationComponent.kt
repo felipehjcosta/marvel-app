@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import com.github.felipehjcosta.marvelapp.base.DemoApplication
 import com.github.felipehjcosta.marvelapp.base.cache.CacheModule
 import com.github.felipehjcosta.marvelapp.base.character.CharacterModule
-import com.github.felipehjcosta.marvelapp.base.character.data.DataRepository
+import com.github.felipehjcosta.marvelapp.base.character.data.CharacterRepository
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.navigator.AppNavigator
 import com.github.felipehjcosta.marvelapp.base.navigator.NavigatorModule
@@ -44,7 +44,7 @@ interface ApplicationComponent {
         fun build(): ApplicationComponent
     }
 
-    val dataRepository: DataRepository
+    val characterRepository: CharacterRepository
 
     val sharedPreferences: SharedPreferences
 

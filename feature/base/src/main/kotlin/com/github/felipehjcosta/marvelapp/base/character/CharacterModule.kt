@@ -12,9 +12,9 @@ class CharacterModule {
 
     @Singleton
     @Provides
-    fun providesDataRepository(retrofit: Retrofit, cacheDatabase: CacheDatabase): DataRepository {
+    fun providesDataRepository(retrofit: Retrofit, cacheDatabase: CacheDatabase): CharacterRepository {
         val characterService = retrofit.create(CharacterService::class.java)
         val charactersDao = cacheDatabase.charactersDao()
-        return CacheDataRepository(NetworkDataRepository(characterService), charactersDao)
+        return CacheCharacterRepository(NetworkCharacterRepository(characterService), charactersDao)
     }
 }

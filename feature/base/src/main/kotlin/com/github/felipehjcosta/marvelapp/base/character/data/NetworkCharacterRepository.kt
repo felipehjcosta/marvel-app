@@ -7,7 +7,7 @@ import io.reactivex.Observable
 import java.util.*
 
 
-class NetworkDataRepository(private val characterService: CharacterService) : DataRepository {
+class NetworkCharacterRepository(private val characterService: CharacterService) : CharacterRepository {
 
     private val timestamp: String
         get() {

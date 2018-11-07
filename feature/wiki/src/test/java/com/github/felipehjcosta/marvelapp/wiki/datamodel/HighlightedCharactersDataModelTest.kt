@@ -1,6 +1,6 @@
 package com.github.felipehjcosta.marvelapp.wiki.datamodel
 
-import com.github.felipehjcosta.marvelapp.base.character.data.DataRepository
+import com.github.felipehjcosta.marvelapp.base.character.data.CharacterRepository
 import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import io.mockk.every
 import io.mockk.mockk
@@ -10,7 +10,7 @@ import org.junit.Test
 
 class HighlightedCharactersDataModelTest {
 
-    private val repository = mockk<DataRepository>()
+    private val repository = mockk<CharacterRepository>()
 
     private val dataModel = HighlightedCharactersDataModel(repository)
 

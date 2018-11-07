@@ -1,6 +1,6 @@
 package com.github.felipehjcosta.marvelapp.listing.datamodel
 
-import com.github.felipehjcosta.marvelapp.base.character.data.DataRepository
+import com.github.felipehjcosta.marvelapp.base.character.data.CharacterRepository
 import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import io.mockk.every
 import io.mockk.mockk
@@ -10,7 +10,7 @@ import org.junit.Test
 
 class ListingContentDataModelTest {
 
-    private val dataRepository = mockk<DataRepository>()
+    private val dataRepository = mockk<CharacterRepository>()
 
     private val listingContentDataModel = ListingContentDataModel(dataRepository)
 

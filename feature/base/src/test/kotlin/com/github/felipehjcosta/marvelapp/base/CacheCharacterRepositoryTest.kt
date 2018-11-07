@@ -1,7 +1,7 @@
 package com.github.felipehjcosta.marvelapp.base
 
-import com.github.felipehjcosta.marvelapp.base.character.data.CacheDataRepository
-import com.github.felipehjcosta.marvelapp.base.character.data.DataRepository
+import com.github.felipehjcosta.marvelapp.base.character.data.CacheCharacterRepository
+import com.github.felipehjcosta.marvelapp.base.character.data.CharacterRepository
 import com.github.felipehjcosta.marvelapp.base.character.data.pojo.*
 import com.github.felipehjcosta.marvelapp.cache.data.CharacterRelations
 import com.github.felipehjcosta.marvelapp.cache.data.CharactersDao
@@ -17,9 +17,9 @@ import org.junit.Test
 import java.io.IOException
 import kotlin.test.assertEquals
 
-class CacheDataRepositoryTest {
+class CacheCharacterRepositoryTest {
 
-    private val dataRepository = mockk<DataRepository>()
+    private val dataRepository = mockk<CharacterRepository>()
 
     private val charactersDao = mockk<CharactersDao>(relaxed = true)
 
@@ -27,7 +27,7 @@ class CacheDataRepositoryTest {
 
     private val characterEntity = createCharacterRelations()
 
-    private var cacheDataRepository = CacheDataRepository(dataRepository, charactersDao)
+    private var cacheDataRepository = CacheCharacterRepository(dataRepository, charactersDao)
 
     @Test
     fun whenGetCharacterListThenAssertItsCached() {

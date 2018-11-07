@@ -7,13 +7,13 @@ import io.reactivex.Observable.defer
 import java.io.IOException
 
 
-class CacheDataRepository(
-        private val dataRepository: DataRepository,
+class CacheCharacterRepository(
+        private val characterRepository: CharacterRepository,
         private val charactersDao: CharactersDao
-) : DataRepository {
+) : CharacterRepository {
 
     override fun getCharacterList(offset: Int, limit: Int): Observable<List<Character>> {
-        return dataRepository.getCharacterList(offset, limit)
+        return characterRepository.getCharacterList(offset, limit)
                 .doOnNext { list -> list.forEach { saveInCache(it) } }
                 .onErrorResumeNext { throwable: Throwable ->
                     when (throwable) {
@@ -28,7 +28,7 @@ class CacheDataRepository(
     override fun getCharacter(characterId: Int): Observable<Character> {
         val memoryObservable = charactersDao.findById(characterId.toLong()).map { it.toCharacter() }
 
-        val networkObservable = defer { dataRepository.getCharacter(characterId) }
+        val networkObservable = defer { characterRepository.getCharacter(characterId) }
                 .doOnNext { saveInCache(it) }
                 .singleOrError()
 

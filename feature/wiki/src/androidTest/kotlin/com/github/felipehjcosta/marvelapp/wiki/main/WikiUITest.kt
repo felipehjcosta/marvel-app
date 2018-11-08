@@ -1,18 +1,21 @@
 package com.github.felipehjcosta.marvelapp.wiki.main
 
-import android.content.Intent
-import android.support.test.InstrumentationRegistry
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.felipehjcosta.marvelapp.wiki.MockDemoApplication
+import com.github.felipehjcosta.marvelapp.wiki.R
 import com.github.felipehjcosta.marvelapp.wiki.utils.readAsset
+import com.github.felipehjcosta.marvelapp.wiki.utils.withRecyclerView
 import com.github.felipehjcosta.marvelapp.wiki.view.MainActivity
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import javax.inject.Inject
@@ -21,19 +24,13 @@ import javax.inject.Inject
 @RunWith(AndroidJUnit4::class)
 class WikiUITest {
 
-    @Rule
-    @JvmField
-    val activityRule = ActivityTestRule<MainActivity>(MainActivity::class.java, false, false)
+    private lateinit var scenario: ActivityScenario<MainActivity>
 
     @Inject
     lateinit var mockWebServer: MockWebServer
 
-    private val highlightedCharactersScreen = HighlightedCharactersScreen()
-
-    private val othersCharactersScreen = OthersCharactersScreen()
-
     init {
-        val mockDemoApplication = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as MockDemoApplication
+        val mockDemoApplication = ApplicationProvider.getApplicationContext<MockDemoApplication>()
 
         mockDemoApplication.testApplicationComponent.inject(this)
     }
@@ -43,6 +40,7 @@ class WikiUITest {
 
         mockWebServer.setDispatcher(object : Dispatcher() {
             override fun dispatch(request: RecordedRequest?): MockResponse {
+                println(">>> dispatch request: ${request!!.requestUrl.encodedPath()}")
                 return when (request!!.requestUrl.encodedPath()) {
                     "/v1/public/characters/1009664" -> MockResponse()
                             .setResponseCode(200)
@@ -93,32 +91,20 @@ class WikiUITest {
             }
         })
 
-        activityRule.launchActivity(Intent())
+        scenario = ActivityScenario.launch(MainActivity::class.java)
     }
 
     @Test
     fun whenLaunchedThenTheFirstHighlightedCharacterItemIsShown() {
-        highlightedCharactersScreen {
-            recyclerView {
-                childWith<HighlightedCharactersScreen.Item> {
-                    withDescendant { withText("Hulk") }
-                    perform { scrollTo() }
-                    matches { isDisplayed() }
-                }
-            }
-        }
+        onView(withRecyclerView(R.id.highlighted_characters_recycler_view).atPosition(0))
+                .check(matches(hasDescendant(withText("Hulk"))))
+                .check(matches(isDisplayed()))
     }
 
     @Test
     fun whenLaunchedThenTheFirstOtherCharacterItemIsShown() {
-        othersCharactersScreen {
-            recyclerView {
-                childWith<OthersCharactersScreen.Item> {
-                    withDescendant { withText("Thor") }
-                    perform { scrollTo() }
-                    matches { isDisplayed() }
-                }
-            }
-        }
+        onView(withRecyclerView(R.id.others_characters_recycler_view).atPosition(0))
+                .check(matches(hasDescendant(withText("Thor"))))
+                .check(matches(isDisplayed()))
     }
 }

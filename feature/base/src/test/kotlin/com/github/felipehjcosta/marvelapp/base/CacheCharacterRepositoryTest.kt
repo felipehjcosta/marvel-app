@@ -9,9 +9,9 @@ import com.github.felipehjcosta.marvelapp.cache.data.SummaryEntity
 import com.github.felipehjcosta.marvelapp.cache.data.UrlEntity
 import io.mockk.*
 import io.reactivex.Maybe
-import io.reactivex.Observable
-import io.reactivex.Observable.just
 import io.reactivex.Single
+import io.reactivex.Single.error
+import io.reactivex.Single.just
 import io.reactivex.observers.TestObserver
 import org.junit.Test
 import java.io.IOException
@@ -48,7 +48,7 @@ class CacheCharacterRepositoryTest {
 
     @Test
     fun givenDecoratedCharacterListFailedCachedWhenGetCharacterListThenReturnCache() {
-        every { dataRepository.getCharacterList(0, 1) } returns Observable.error(IOException())
+        every { dataRepository.getCharacterList(0, 1) } returns error(IOException())
 
         every { charactersDao.all() } returns Single.just(listOf(characterEntity))
 
@@ -64,7 +64,7 @@ class CacheCharacterRepositoryTest {
     @Test
     fun givenDecoratedCharacterListFailedWithEmptyCachedWhenGetCharacterListThenReturnCache() {
         val exception = IOException()
-        every { dataRepository.getCharacterList(0, 1) } returns Observable.error(exception)
+        every { dataRepository.getCharacterList(0, 1) } returns error(exception)
 
         every { charactersDao.all() } returns Single.just(emptyList())
 

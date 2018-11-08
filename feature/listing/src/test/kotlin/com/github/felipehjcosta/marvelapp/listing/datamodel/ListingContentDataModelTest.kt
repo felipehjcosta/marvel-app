@@ -4,7 +4,7 @@ import com.github.felipehjcosta.marvelapp.base.character.data.CharacterRepositor
 import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
 import io.mockk.every
 import io.mockk.mockk
-import io.reactivex.Observable.just
+import io.reactivex.Single.just
 import io.reactivex.observers.TestObserver
 import org.junit.Test
 

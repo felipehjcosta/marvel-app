@@ -3,7 +3,7 @@ package com.github.felipehjcosta.marvelapp.base.character.data
 import com.github.felipehjcosta.marvelapp.base.BuildConfig.MARVEL_PRIVATE_KEY
 import com.github.felipehjcosta.marvelapp.base.BuildConfig.MARVEL_PUBLIC_KEY
 import com.github.felipehjcosta.marvelapp.base.character.data.pojo.Character
-import io.reactivex.Observable
+import io.reactivex.Single
 import java.util.*
 
 
@@ -14,7 +14,7 @@ class NetworkCharacterRepository(private val characterService: CharacterService)
             return (Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L).toString()
         }
 
-    override fun getCharacterList(offset: Int, limit: Int): Observable<List<Character>> {
+    override fun getCharacterList(offset: Int, limit: Int): Single<List<Character>> {
         val localTimestamp = timestamp
         val hashSignature = generateHash(localTimestamp)
         return characterService.listCharacters(limit,
@@ -27,7 +27,7 @@ class NetworkCharacterRepository(private val characterService: CharacterService)
                 }
     }
 
-    override fun getCharacter(characterId: Int): Observable<Character> {
+    override fun getCharacter(characterId: Int): Single<Character> {
         val localTimestamp = timestamp
         val hashSignature = generateHash(localTimestamp)
         return characterService.getCharacterWithId(

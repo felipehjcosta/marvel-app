@@ -2,8 +2,8 @@ package com.github.felipehjcosta.marvelapp.base.character.data
 
 import com.github.felipehjcosta.marvelapp.base.character.data.pojo.*
 import com.github.felipehjcosta.marvelapp.cache.data.*
-import io.reactivex.Observable
-import io.reactivex.Observable.defer
+import io.reactivex.Single
+import io.reactivex.Single.defer
 import java.io.IOException
 
 
@@ -12,35 +12,34 @@ class CacheCharacterRepository(
         private val charactersDao: CharactersDao
 ) : CharacterRepository {
 
-    override fun getCharacterList(offset: Int, limit: Int): Observable<List<Character>> {
+    override fun getCharacterList(offset: Int, limit: Int): Single<List<Character>> {
         return characterRepository.getCharacterList(offset, limit)
-                .doOnNext { list -> list.forEach { saveInCache(it) } }
+                .doOnSuccess { list -> list.forEach { saveInCache(it) } }
                 .onErrorResumeNext { throwable: Throwable ->
                     when (throwable) {
-                        is IOException -> Observable.defer { readFromCache() }.flatMap {
-                            if (it.isEmpty()) Observable.error(throwable) else Observable.just(it)
+                        is IOException -> defer { readFromCache() }.flatMap {
+                            if (it.isEmpty()) Single.error(throwable) else Single.just(it)
                         }
-                        else -> Observable.error(throwable)
+                        else -> Single.error(throwable)
                     }
                 }
     }
 
-    override fun getCharacter(characterId: Int): Observable<Character> {
+    override fun getCharacter(characterId: Int): Single<Character> {
         val memoryObservable = charactersDao.findById(characterId.toLong()).map { it.toCharacter() }
 
         val networkObservable = defer { characterRepository.getCharacter(characterId) }
-                .doOnNext { saveInCache(it) }
-                .singleOrError()
+                .doOnSuccess { saveInCache(it) }
 
-        return memoryObservable.switchIfEmpty(networkObservable).toObservable()
+        return memoryObservable.switchIfEmpty(networkObservable)
     }
 
     private fun saveInCache(character: Character) {
         charactersDao.insert(character.toCharacterRelations())
     }
 
-    private fun readFromCache(): Observable<List<Character>> {
-        return charactersDao.all().toObservable().map { list -> list.map { it.toCharacter() } }
+    private fun readFromCache(): Single<List<Character>> {
+        return charactersDao.all().map { list -> list.map { it.toCharacter() } }
     }
 
     private fun CharacterRelations.toCharacter(): Character {

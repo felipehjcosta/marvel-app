@@ -9,7 +9,7 @@ import javax.inject.Inject
 class HighlightedCharactersDataModel @Inject constructor(private val repository: CharacterRepository) {
 
     fun getHighlightedCharacters(): Observable<List<Character>> = just(1009351, 1009610, 1009718, 1009368)
-            .concatMap { repository.getCharacter(it) }
+            .concatMap { repository.getCharacter(it).toObservable() }
             .reduce(mutableListOf<Character>()) { acc, element -> acc.apply { add(element) } }
             .toObservable()
             .map { it }

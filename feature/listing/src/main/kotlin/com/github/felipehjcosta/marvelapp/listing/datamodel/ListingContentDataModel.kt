@@ -10,5 +10,5 @@ class ListingContentDataModel @Inject constructor(
 ) : ListingDataModel {
 
     override fun loadItems(offset: Int, limit: Int):
-            Observable<List<Character>> = characterRepository.getCharacterList(offset, limit)
+            Observable<List<Character>> = characterRepository.getCharacterList(offset, limit).toObservable()
 }

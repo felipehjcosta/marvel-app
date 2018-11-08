@@ -9,6 +9,6 @@ class DetailContentDataModel @Inject constructor(
         private val characterRepository: CharacterRepository
 ) : DetailDataModel {
     override fun character(characterId: Int): Observable<Character> = characterRepository
-            .getCharacter(characterId)
+            .getCharacter(characterId).toObservable()
 
 }

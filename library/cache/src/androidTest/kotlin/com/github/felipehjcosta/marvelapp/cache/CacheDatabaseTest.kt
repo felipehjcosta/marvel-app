@@ -1,24 +1,22 @@
 package com.github.felipehjcosta.marvelapp.cache
 
 import android.arch.persistence.room.Room.inMemoryDatabaseBuilder
-import android.support.test.InstrumentationRegistry.getTargetContext
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.felipehjcosta.marvelapp.cache.data.CharacterRelations
 import com.github.felipehjcosta.marvelapp.cache.data.CharactersDao
 import com.github.felipehjcosta.marvelapp.cache.data.SummaryEntity
 import com.github.felipehjcosta.marvelapp.cache.data.UrlEntity
 import io.reactivex.observers.TestObserver
 import org.junit.After
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.concurrent.TimeUnit
 
 @RunWith(AndroidJUnit4::class)
-@Ignore
 class CacheDatabaseTest {
 
-    private val cacheDatabase: CacheDatabase = inMemoryDatabaseBuilder(getTargetContext(),
+    private val cacheDatabase: CacheDatabase = inMemoryDatabaseBuilder(getApplicationContext(),
             CacheDatabase::class.java).build()
     private val charactersDao: CharactersDao = cacheDatabase.charactersDao()
 

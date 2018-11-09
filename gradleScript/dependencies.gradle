@@ -144,7 +144,6 @@ ext {
             expressoIntents: "androidx.test.espresso:espresso-intents:$espressoLibrary",
             expressoCore   : "androidx.test.espresso:espresso-core:$espressoLibrary",
             truth          : "androidx.test.ext:truth:$androidTestTruthLibrary",
-            kakao          : "com.agoda.kakao:kakao:$kakaoLibrary",
             mockitAndroid  : "org.mockito:mockito-android:$mockitAndroidLibrary",
             rx2Idler       : "com.squareup.rx.idler:rx2-idler:$rx2IdlerLibrary",
             testButler     : "com.linkedin.testbutler:test-butler-library:$testButlerLibrary"

@@ -24,7 +24,7 @@ ext {
     retrofitLibrary = "2.4.0"
     KotlinSerializationConverterLibrary = "0.2.0"
 
-    daggerLibrary = "2.18"
+    daggerLibrary = "2.19"
     javaxAnnotationLibrary = "1.0"
 
     imageLoaderLibrary = "1.9.5"

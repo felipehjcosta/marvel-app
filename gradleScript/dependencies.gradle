@@ -22,7 +22,7 @@ ext {
 
     okhttpLibrary = "3.11.0"
     retrofitLibrary = "2.4.0"
-    KotlinSerializationConverterLibrary = "0.0.1"
+    KotlinSerializationConverterLibrary = "0.2.0"
 
     daggerLibrary = "2.18"
     javaxAnnotationLibrary = "1.0"
@@ -33,7 +33,7 @@ ext {
     recyclerViewDslLibrary = "0.7.0"
 
     junitLibrary = "4.12"
-    mockkLibrary = "1.6"
+    mockkLibrary = "1.8.13.kotlin13"
     robolectricLibrary = "3.7.1"
 
     espressoLibrary = "3.1.0"

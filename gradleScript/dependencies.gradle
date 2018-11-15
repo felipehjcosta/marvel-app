@@ -20,8 +20,8 @@ ext {
 
     androidxLibrary = "0.2"
 
-    okhttpLibrary = "3.8.1"
-    retrofitLibrary = "2.3.0"
+    okhttpLibrary = "3.11.0"
+    retrofitLibrary = "2.4.0"
     KotlinSerializationConverterLibrary = "0.0.1"
 
     daggerLibrary = "2.18"

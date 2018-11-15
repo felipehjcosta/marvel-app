@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.res.ResourcesCompat.getDrawable
 import android.support.v4.widget.ContentLoadingProgressBar
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
@@ -27,7 +26,6 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
-import kotlinx.android.synthetic.main.listing_fragment.toolbar
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
 import com.github.felipehjcosta.marvelapp.listing.R.drawable.ic_arrow_back_white_24dp as navigationIconResId
@@ -64,13 +62,6 @@ class CharacterListingFragment : Fragment() {
 
         val linearLayoutManger = LinearLayoutManager(context)
         recyclerView.layoutManager = linearLayoutManger
-
-        toolbar.apply {
-            navigationIcon = getDrawable(resources, navigationIconResId, null)
-            setNavigationOnClickListener {
-                activity?.onBackPressed()
-            }
-        }
 
         bind(linearLayoutManger, loadingView, swipeRefreshView)
     }

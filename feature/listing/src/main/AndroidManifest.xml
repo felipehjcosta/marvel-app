@@ -7,7 +7,7 @@
         <activity
             android:name=".view.CharacterListingActivity"
             android:label="@string/title_activity_listing"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.ActionBar">
 
             <intent-filter
                 android:autoVerify="true"

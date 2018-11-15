@@ -33,17 +33,14 @@ ext {
     recyclerViewDslLibrary = "0.7.0"
 
     junitLibrary = "4.12"
-    mockitoLibrary = "2.6.3"
-    mockitoKotlinLibrary = "1.5.0"
-    robolectricLibrary = "3.7.1"
     mockkLibrary = "1.6"
+    robolectricLibrary = "3.7.1"
 
     espressoLibrary = "3.1.0"
     androidTestLibrary = "1.1.0"
     androidTestJunitLibrary = "1.0.0"
     androidTestTruthLibrary = "1.0.0"
     kakaoLibrary = "1.4.0"
-    mockitAndroidLibrary = "2.6.3"
     rx2IdlerLibrary = "0.9.0"
     testButlerLibrary = "1.3.1"
 
@@ -132,11 +129,9 @@ ext {
 
     testDependencies = [
             junit             : "junit:junit:$junitLibrary",
-            mockito           : "org.mockito:mockito-core:$mockitoLibrary",
-            mockitoKotlin     : "com.nhaarman:mockito-kotlin:$mockitoKotlinLibrary",
+            mockk             : "io.mockk:mockk:$mockkLibrary",
             robolectric       : "org.robolectric:robolectric:$robolectricLibrary",
-            robolectricSupport: "org.robolectric:shadows-supportv4:$robolectricLibrary",
-            mockk             : "io.mockk:mockk:$mockkLibrary"
+            robolectricSupport: "org.robolectric:shadows-supportv4:$robolectricLibrary"
     ]
 
     androidTestDependencies = [
@@ -145,7 +140,6 @@ ext {
             expressoIntents: "androidx.test.espresso:espresso-intents:$espressoLibrary",
             expressoCore   : "androidx.test.espresso:espresso-core:$espressoLibrary",
             truth          : "androidx.test.ext:truth:$androidTestTruthLibrary",
-            mockitAndroid  : "org.mockito:mockito-android:$mockitAndroidLibrary",
             rx2Idler       : "com.squareup.rx.idler:rx2-idler:$rx2IdlerLibrary",
             testButler     : "com.linkedin.testbutler:test-butler-library:$testButlerLibrary"
     ]

@@ -20,7 +20,7 @@
             android:clipToPadding="false"
             android:scrollbars="vertical"
             android:visibility="gone"
-            app:layoutManager="LinearLayoutManager"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             tools:context="com.github.felipehjcosta.marvelapp.modules.listing.view.CharacterListingFragment"
             tools:listitem="@layout/listing_fragment_item"
             tools:visibility="visible" />

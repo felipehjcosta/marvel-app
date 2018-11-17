@@ -101,7 +101,7 @@ class CacheCharacterRepositoryTest {
 
         characterObserver.dispose()
 
-        verify(exactly = 0) { dataRepository.getCharacter(42) }
+        verify { dataRepository.getCharacter(42) wasNot Called }
     }
 
     @Test

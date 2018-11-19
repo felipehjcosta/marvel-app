@@ -20,7 +20,7 @@ ext {
 
     androidxLibrary = "0.2"
 
-    okhttpLibrary = "3.11.0"
+    okhttpLibrary = "3.12.0"
     retrofitLibrary = "2.5.0"
     KotlinSerializationConverterLibrary = "0.2.0"
 
@@ -93,7 +93,6 @@ ext {
     ]
 
     networkDependencies = [
-            okhHttp                     : "com.squareup.okhttp3:okhttp:$okhttpLibrary",
             okhHttpLogging              : "com.squareup.okhttp3:logging-interceptor:$okhttpLibrary",
             retrofit                    : "com.squareup.retrofit2:retrofit:$retrofitLibrary",
             retrofitAdapterRxJava2      : "com.squareup.retrofit2:adapter-rxjava2:$retrofitLibrary",

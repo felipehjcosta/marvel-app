@@ -15,7 +15,14 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion"
         classpath "com.vanniktech:gradle-dependency-graph-generator-plugin:0.2.0"
+        classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.13.0"
     }
+}
+
+apply plugin: "com.vanniktech.android.junit.jacoco"
+
+junitJacoco {
+    jacocoVersion = "0.8.2"
 }
 
 allprojects {

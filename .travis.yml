@@ -47,9 +47,12 @@ env:
 
 matrix:
   include:
+  - name: "Lint"
+    script:
+      - ./gradlew lintDebug  --console=plain
   - name: "Unit Test"
     script:
-      - ./gradlew testDebugUnitTest lintDebug jacocoTestReportDebug --console=plain
+      - ./gradlew testDebugUnitTest jacocoTestReportDebug --console=plain
     after_success:
       - bash <(curl -s https://codecov.io/bash)
   - name: "Instrumentation Test"

@@ -1,7 +1,5 @@
 package com.github.felipehjcosta.marvelapp.base.di
 
-//import com.nostra13.universalimageloader.core.ImageLoader
-//import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import android.content.Context
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.imageloader.UniversalImageLoader

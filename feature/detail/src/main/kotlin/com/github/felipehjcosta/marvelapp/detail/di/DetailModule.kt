@@ -9,12 +9,11 @@ class DetailModule {
 
     @DetailScope
     @Provides
-    fun providesCharacterId(detailActivity: DetailActivity) = with(detailActivity.intent) {
-        try {
-            detailActivity.intent.data.lastPathSegment.toInt()
-        } catch (e: Exception) {
-            -1
-        }
-    }
+    fun providesCharacterId(detailActivity: DetailActivity): Int = detailActivity
+            .intent
+            ?.data
+            ?.lastPathSegment
+            ?.toInt()
+            ?: -1
 
 }

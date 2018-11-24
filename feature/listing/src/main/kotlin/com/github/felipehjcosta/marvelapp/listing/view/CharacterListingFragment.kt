@@ -85,7 +85,9 @@ class CharacterListingFragment : Fragment() {
                                     val imageUrl = it.item?.image
                                     val imageView = it.view
                                     if (imageUrl != null && imageView != null) {
-                                        imageLoader.loadRoundedImage(imageUrl, imageView)
+                                        val cornerRadius = imageView.resources
+                                                .getDimensionPixelSize(com.github.felipehjcosta.marvelapp.base.R.dimen.image_default_color_radius)
+                                        imageLoader.loadRoundedImage(imageUrl, imageView, cornerRadius)
                                     }
                                 }
 

@@ -11,8 +11,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 class UniversalImageLoader(
         private val imageLoader: com.nostra13.universalimageloader.core.ImageLoader
 ) : ImageLoader {
-    override fun loadRoundedImage(url: String, imageView: ImageView) {
-        val cornerRadius = imageView.resources.getDimensionPixelSize(R.dimen.image_default_color_radius)
+    override fun loadRoundedImage(url: String, imageView: ImageView, cornerRadius: Int) {
 
         val imageOptions = DisplayImageOptions.Builder()
                 .displayer(RoundedBitmapDisplayer(cornerRadius))

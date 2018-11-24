@@ -4,8 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.net.toUri
+import javax.inject.Inject
 
-internal class UrlBasedAppNavigator : AppNavigator {
+internal class UrlBasedAppNavigator @Inject constructor() : AppNavigator {
 
     override fun showWiki(activity: Activity) {
         "https://marvelapp.instantappsample.com/main".toUri().startDeepLink(activity)

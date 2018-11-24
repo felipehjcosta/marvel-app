@@ -2,16 +2,14 @@ package com.github.felipehjcosta.marvelapp.detail.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
-import com.github.felipehjcosta.marvelapp.base.rx.checkedChanges
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
-import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.detail.R
 import com.github.felipehjcosta.marvelapp.detail.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.detail.presentation.CharacterDetailViewModel
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_detail.toolbar
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_detail.favorite_button as favoriteFab
 import kotlinx.android.synthetic.main.activity_detail.image_backdrop as backdrop
@@ -41,7 +39,6 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initView() {
         setContentView(R.layout.activity_detail)
-        val toolbar: Toolbar by bindView(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }

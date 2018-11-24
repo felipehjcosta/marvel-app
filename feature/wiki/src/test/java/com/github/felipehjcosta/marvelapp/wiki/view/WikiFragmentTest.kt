@@ -3,7 +3,6 @@ package com.github.felipehjcosta.marvelapp.wiki.view
 import android.support.v7.widget.RecyclerView
 import com.felipecosta.rxaction.RxCommand
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
-import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.test.TestStubApplication
 import com.github.felipehjcosta.marvelapp.wiki.BuildConfig
 import com.github.felipehjcosta.marvelapp.wiki.R
@@ -53,7 +52,7 @@ class WikiFragmentTest {
 
         startFragment(fragment)
 
-        val recyclerView: RecyclerView by fragment.bindView(R.id.highlighted_characters_recycler_view)
+        val recyclerView: RecyclerView = fragment.view!!.findViewById(R.id.highlighted_characters_recycler_view)
         assertEquals(5, recyclerView.adapter!!.itemCount)
     }
 
@@ -65,7 +64,7 @@ class WikiFragmentTest {
 
         startFragment(fragment)
 
-        val recyclerView: RecyclerView by fragment.bindView(R.id.others_characters_recycler_view)
+        val recyclerView: RecyclerView = fragment.view!!.findViewById(R.id.others_characters_recycler_view)
         assertEquals(5, recyclerView.adapter!!.itemCount)
     }
 

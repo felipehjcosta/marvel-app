@@ -4,7 +4,6 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import com.felipecosta.rxaction.RxCommand
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
-import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.listing.BuildConfig
 import com.github.felipehjcosta.marvelapp.listing.R
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterItemViewModel
@@ -59,7 +58,7 @@ class CharacterListingFragmentTest {
 
         startFragment(fragment)
 
-        val recyclerView: RecyclerView by fragment.bindView(R.id.recycler_view)
+        val recyclerView: RecyclerView = fragment.view!!.findViewById(R.id.recycler_view)
         assertEquals(1, recyclerView.adapter!!.itemCount)
     }
 
@@ -71,7 +70,7 @@ class CharacterListingFragmentTest {
 
         startFragment(fragment)
 
-        val swipeRefresh: SwipeRefreshLayout by fragment.bindView(R.id.swipe_refresh_view)
+        val swipeRefresh: SwipeRefreshLayout = fragment.view!!.findViewById(R.id.swipe_refresh_view)
 
         assertTrue { swipeRefresh.isRefreshing }
     }
@@ -109,7 +108,7 @@ class CharacterListingFragmentTest {
 
         assertFalse { commandExecuteCompletable.hasObservers() }
 
-        val recyclerView: RecyclerView by fragment.bindView(R.id.recycler_view)
+        val recyclerView: RecyclerView = fragment.view!!.findViewById(R.id.recycler_view)
         recyclerView.scrollBy(0, 1000)
 
         Robolectric.getForegroundThreadScheduler().advanceBy(500L, TimeUnit.MILLISECONDS)

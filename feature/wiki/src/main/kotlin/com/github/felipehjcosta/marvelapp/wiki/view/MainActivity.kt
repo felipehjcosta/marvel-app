@@ -1,18 +1,15 @@
 package com.github.felipehjcosta.marvelapp.wiki.view
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import com.github.felipehjcosta.marvelapp.base.modules.favorite.view.FavoriteFragment
-import com.github.felipehjcosta.marvelapp.base.util.bindView
 import com.github.felipehjcosta.marvelapp.wiki.R
 import com.jakewharton.rxbinding2.support.design.widget.itemSelections
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.main_activity.nav_view as bottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
-    private val bottomNavigationView: BottomNavigationView by bindView(R.id.nav_view)
 
     lateinit var disposable: Disposable
 

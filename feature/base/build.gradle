@@ -29,6 +29,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         debugMini {
             initWith debug
             minifyEnabled true

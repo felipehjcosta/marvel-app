@@ -91,17 +91,17 @@ dependencies {
     api KotlinDependencies.values
 
     api SupportDependencies.values
-    api androidxDependencies.values()
+    api AndroidxDependencies.values
 
     api DaggerDependencies.values
     kapt DaggerCompilerDependencies.values
     compileOnly AnnotationsDependencies.values
 
-    api imageLoaderDependencies.values()
+    api ImageLoaderDependencies.values
 
     api RxJavaDependencies.values
 
-    api uiDependencies.values()
+    api UiDependencies.values
 
     api NetworkDependencies.values
 }

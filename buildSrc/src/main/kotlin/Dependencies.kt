@@ -160,3 +160,22 @@ object AndroidTestUtilDependencies {
 
     val values = listOf(testButlerApp)
 }
+
+object AndroidxDependencies {
+    const val androidxCore = "androidx.core:core-ktx:${Versions.androidxLibrary}"
+
+    val values = listOf(androidxCore)
+}
+
+object ImageLoaderDependencies {
+    const val universalImageLoader = "com.nostra13.universalimageloader:universal-image-loader:${Versions.imageLoaderLibrary}"
+
+    val values = listOf(universalImageLoader)
+}
+
+object UiDependencies {
+    const val galleryLayoutManager = "com.github.felipehjcosta:gallerylayoutmanager:${Versions.galleryLayoutManagerLibrary}"
+    const val recyclerViewDsl = "com.github.felipehjcosta:recyclerview-dsl:${Versions.recyclerViewDslLibrary}"
+
+    val values = listOf(galleryLayoutManager, recyclerViewDsl)
+}

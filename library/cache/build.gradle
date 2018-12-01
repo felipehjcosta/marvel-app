@@ -60,10 +60,10 @@ dependencies {
 
     kapt DatabaseCompilerDependencies.values
 
-    androidTestImplementation androidTestDependencies.runner
-    androidTestImplementation androidTestDependencies.junit
-    androidTestImplementation androidTestDependencies.expressoIntents
-    androidTestImplementation androidTestDependencies.expressoCore
-    androidTestImplementation androidTestDependencies.truth
-    testImplementation testDependencies.junit
+    androidTestImplementation AndroidTestDependencies.runner
+    androidTestImplementation AndroidTestDependencies.junit
+    androidTestImplementation AndroidTestDependencies.expressoIntents
+    androidTestImplementation AndroidTestDependencies.expressoCore
+    androidTestImplementation AndroidTestDependencies.truth
+    testImplementation TestDependencies.junit
 }

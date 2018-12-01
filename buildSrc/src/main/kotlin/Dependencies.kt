@@ -120,3 +120,43 @@ object NetworkTestDependencies {
 
     val values = listOf(mockWebServer)
 }
+
+object TestDependencies {
+    const val junit = "junit:junit:${Versions.junitLibrary}"
+    const val mockk = "io.mockk:mockk:${Versions.mockkLibrary}"
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectricLibrary}"
+    const val robolectricSupport = "org.robolectric:shadows-supportv4:${Versions.robolectricLibrary}"
+
+    val values = listOf(
+            junit,
+            mockk,
+            robolectric,
+            robolectricSupport
+    )
+}
+
+object AndroidTestDependencies {
+    const val runner = "androidx.test:runner:${Versions.androidTestLibrary}"
+    const val junit = "androidx.test.ext:junit:${Versions.androidTestJunitLibrary}"
+    const val expressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoLibrary}"
+    const val expressoIntents = "androidx.test.espresso:espresso-intents:${Versions.espressoLibrary}"
+    const val truth = "androidx.test.ext:truth:${Versions.androidTestTruthLibrary}"
+    const val rx2Idler = "com.squareup.rx.idler:rx2-idler:${Versions.rx2IdlerLibrary}"
+    const val testButler = "com.linkedin.testbutler:test-butler-library:${Versions.testButlerLibrary}"
+
+    val values = listOf(
+            runner,
+            junit,
+            expressoCore,
+            expressoIntents,
+            truth,
+            rx2Idler,
+            testButler
+    )
+}
+
+object AndroidTestUtilDependencies {
+    const val testButlerApp = "com.linkedin.testbutler:test-butler-app:${Versions.testButlerLibrary}@apk"
+
+    val values = listOf(testButlerApp)
+}

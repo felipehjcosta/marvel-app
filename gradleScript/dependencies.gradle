@@ -12,25 +12,4 @@ ext {
             galleryLayoutManager: "com.github.felipehjcosta:gallerylayoutmanager:${Versions.galleryLayoutManagerLibrary}",
             recyclerViewDsl     : "com.github.felipehjcosta:recyclerview-dsl:${Versions.recyclerViewDslLibrary}"
     ]
-
-    testDependencies = [
-            junit             : "junit:junit:${Versions.junitLibrary}",
-            mockk             : "io.mockk:mockk:${Versions.mockkLibrary}",
-            robolectric       : "org.robolectric:robolectric:${Versions.robolectricLibrary}",
-            robolectricSupport: "org.robolectric:shadows-supportv4:${Versions.robolectricLibrary}"
-    ]
-
-    androidTestDependencies = [
-            runner         : "androidx.test:runner:${Versions.androidTestLibrary}",
-            junit          : "androidx.test.ext:junit:${Versions.androidTestJunitLibrary}",
-            expressoIntents: "androidx.test.espresso:espresso-intents:${Versions.espressoLibrary}",
-            expressoCore   : "androidx.test.espresso:espresso-core:${Versions.espressoLibrary}",
-            truth          : "androidx.test.ext:truth:${Versions.androidTestTruthLibrary}",
-            rx2Idler       : "com.squareup.rx.idler:rx2-idler:${Versions.rx2IdlerLibrary}",
-            testButler     : "com.linkedin.testbutler:test-butler-library:${Versions.testButlerLibrary}"
-    ]
-
-    androidTestUtilDependencies = [
-            testButlerApp: "com.linkedin.testbutler:test-butler-app:${Versions.testButlerLibrary}@apk"
-    ]
 }

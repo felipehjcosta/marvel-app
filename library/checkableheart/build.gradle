@@ -33,6 +33,6 @@ android {
 dependencies {
     implementation SupportDependencies.appCompat
     implementation SupportDependencies.design
-    androidTestImplementation androidTestDependencies.values()
-    testImplementation testDependencies.junit
+    androidTestImplementation AndroidTestDependencies.values
+    testImplementation TestDependencies.junit
 }

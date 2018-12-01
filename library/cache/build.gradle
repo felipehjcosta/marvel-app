@@ -56,9 +56,9 @@ dependencies {
     implementation SupportDependencies.design
     implementation KotlinDependencies.values
     implementation rxJavaDependencies.values()
-    api databaseDependencies.values()
+    api DatabaseDependencies.values
 
-    kapt databaseCompilerDependencies.values()
+    kapt DatabaseCompilerDependencies.values
 
     androidTestImplementation androidTestDependencies.runner
     androidTestImplementation androidTestDependencies.junit

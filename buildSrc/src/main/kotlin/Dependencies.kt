@@ -38,3 +38,22 @@ object SupportDependencies {
             constraintLayout
     )
 }
+
+object DatabaseDependencies {
+    const val room = "android.arch.persistence.room:runtime:${Versions.roomLibrary}"
+    const val roomRxjava2 = "android.arch.persistence.room:rxjava2:${Versions.roomLibrary}"
+
+    val values = listOf(room, roomRxjava2)
+}
+
+object DatabaseCompilerDependencies {
+    const val room = "android.arch.persistence.room:compiler:${Versions.roomLibrary}"
+
+    val values = listOf(room)
+}
+
+object DatabaseTestDependencies {
+    const val room = "android.arch.persistence.room:testing:${Versions.roomLibrary}"
+
+    val values = listOf(room)
+}

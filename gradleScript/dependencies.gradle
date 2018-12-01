@@ -1,149 +1,104 @@
 ext {
-    compileSdkVersion = 28
-    buildToolsVersion = "28.0.3"
-    minSdkVersion = 21
-    targetSdkVersion = 28
 
-    versionCode = 1
-    versionName = "1.0"
-
-    supportLibrary = '28.0.0'
-    constraintLayout = '1.1.3'
-
-    roomLibrary = "1.1.1"
-
-    rxJavaLibrary = "2.2.4"
-    rxJavaAndroidLibrary = "2.1.0"
-    rxJavaRelayLibrary = "2.1.0"
-    rxJavaBindingLibrary = "2.2.0"
-    rxActionLibrary = "1.1.0"
-
-    androidxLibrary = "0.2"
-
-    okhttpLibrary = "3.12.0"
-    retrofitLibrary = "2.5.0"
-    KotlinSerializationConverterLibrary = "0.2.0"
-
-    daggerLibrary = "2.19"
-    javaxAnnotationLibrary = "1.0"
-
-    imageLoaderLibrary = "1.9.5"
-
-    galleryLayoutManagerLibrary = "1.1.0"
-    recyclerViewDslLibrary = "0.7.0"
-
-    junitLibrary = "4.12"
-    mockkLibrary = "1.8.13.kotlin13"
-    robolectricLibrary = "3.7.1"
-
-    espressoLibrary = "3.1.0"
-    androidTestLibrary = "1.1.0"
-    androidTestJunitLibrary = "1.0.0"
-    androidTestTruthLibrary = "1.0.0"
-    kakaoLibrary = "1.4.0"
-    rx2IdlerLibrary = "0.9.0"
-    testButlerLibrary = "1.3.1"
-
-    //Support Libraries dependencies
     supportDependencies = [
-            supportV4        : "com.android.support:support-v4:${supportLibrary}",
-            appCompat        : "com.android.support:appcompat-v7:${supportLibrary}",
-            design           : "com.android.support:design:${supportLibrary}",
-            recyclerView     : "com.android.support:recyclerview-v7:${supportLibrary}",
-            cardView         : "com.android.support:cardview-v7:${supportLibrary}",
-            supportAnnotation: "com.android.support:support-annotations:${supportLibrary}",
-            constraintLayout : "com.android.support.constraint:constraint-layout:${constraintLayout}"
+            supportV4        : "com.android.support:support-v4:${Versions.supportLibrary}",
+            appCompat        : "com.android.support:appcompat-v7:${Versions.supportLibrary}",
+            design           : "com.android.support:design:${Versions.supportLibrary}",
+            recyclerView     : "com.android.support:recyclerview-v7:${Versions.supportLibrary}",
+            cardView         : "com.android.support:cardview-v7:${Versions.supportLibrary}",
+            supportAnnotation: "com.android.support:support-annotations:${Versions.supportLibrary}",
+            constraintLayout : "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
     ]
 
     kotlinDependencies = [
-            kotlinStd: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${ext.kotlinVersion}"
+            kotlinStd: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     ]
 
     databaseDependencies = [
-            room       : "android.arch.persistence.room:runtime:$roomLibrary",
-            roomRxjava2: "android.arch.persistence.room:rxjava2:$roomLibrary"
+            room       : "android.arch.persistence.room:runtime:${Versions.roomLibrary}",
+            roomRxjava2: "android.arch.persistence.room:rxjava2:${Versions.roomLibrary}"
     ]
 
     databaseCompilerDependencies = [
-            room: "android.arch.persistence.room:compiler:$roomLibrary"
+            room: "android.arch.persistence.room:compiler:${Versions.roomLibrary}"
     ]
 
     databaseTestDependencies = [
-            room: "android.arch.persistence.room:testing:$roomLibrary"
+            room: "android.arch.persistence.room:testing:${Versions.roomLibrary}"
     ]
 
     kotlinTestDependencies = [
-            kotlinTest     : "org.jetbrains.kotlin:kotlin-test:${ext.kotlinVersion}",
-            kotlinTestJunit: "org.jetbrains.kotlin:kotlin-test-junit:${ext.kotlinVersion}"
+            kotlinTest     : "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}",
+            kotlinTestJunit: "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     ]
 
     androidxDependencies = [
-            androidxCore: "androidx.core:core-ktx:$androidxLibrary"
+            androidxCore: "androidx.core:core-ktx:${Versions.androidxLibrary}"
     ]
 
     rxJavaDependencies = [
-            rxJava               : "io.reactivex.rxjava2:rxjava:$rxJavaLibrary",
-            rxJavaAndroid        : "io.reactivex.rxjava2:rxandroid:$rxJavaAndroidLibrary",
-            rxRelay              : "com.jakewharton.rxrelay2:rxrelay:$rxJavaRelayLibrary",
-            rxBinding            : "com.jakewharton.rxbinding2:rxbinding-kotlin:$rxJavaBindingLibrary",
-            rxBindingDesign      : "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rxJavaBindingLibrary",
-            rxBindingSupportv4   : "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$rxJavaBindingLibrary",
-            rxBindingRecyclerView: "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rxJavaBindingLibrary",
-            rxAction             : "com.github.felipehjcosta:rxaction:$rxActionLibrary"
+            rxJava               : "io.reactivex.rxjava2:rxjava:${Versions.rxJavaLibrary}",
+            rxJavaAndroid        : "io.reactivex.rxjava2:rxandroid:${Versions.rxJavaAndroidLibrary}",
+            rxRelay              : "com.jakewharton.rxrelay2:rxrelay:${Versions.rxJavaRelayLibrary}",
+            rxBinding            : "com.jakewharton.rxbinding2:rxbinding-kotlin:${Versions.rxJavaBindingLibrary}",
+            rxBindingDesign      : "com.jakewharton.rxbinding2:rxbinding-design-kotlin:${Versions.rxJavaBindingLibrary}",
+            rxBindingSupportv4   : "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:${Versions.rxJavaBindingLibrary}",
+            rxBindingRecyclerView: "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:${Versions.rxJavaBindingLibrary}",
+            rxAction             : "com.github.felipehjcosta:rxaction:${Versions.rxActionLibrary}"
     ]
 
     networkDependencies = [
-            okhHttpLogging              : "com.squareup.okhttp3:logging-interceptor:$okhttpLibrary",
-            retrofit                    : "com.squareup.retrofit2:retrofit:$retrofitLibrary",
-            retrofitAdapterRxJava2      : "com.squareup.retrofit2:adapter-rxjava2:$retrofitLibrary",
-            KotlinSerializationConverter: "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$KotlinSerializationConverterLibrary"
+            okhHttpLogging              : "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLibrary}",
+            retrofit                    : "com.squareup.retrofit2:retrofit:${Versions.retrofitLibrary}",
+            retrofitAdapterRxJava2      : "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitLibrary}",
+            KotlinSerializationConverter: "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.kotlinSerializationConverterLibrary}"
     ]
 
     networkTestDependencies = [
-            mockWebServer: "com.squareup.okhttp3:mockwebserver:$okhttpLibrary"
+            mockWebServer: "com.squareup.okhttp3:mockwebserver:${Versions.okhttpLibrary}"
     ]
 
     daggerDependencies = [
-            dagger              : "com.google.dagger:dagger:$daggerLibrary",
-            daggerAndroidSupport: "com.google.dagger:dagger-android-support:$daggerLibrary"
+            dagger              : "com.google.dagger:dagger:${Versions.daggerLibrary}",
+            daggerAndroidSupport: "com.google.dagger:dagger-android-support:${Versions.daggerLibrary}"
     ]
 
     daggerCompilerDependencies = [
-            dagger                : "com.google.dagger:dagger-compiler:$daggerLibrary",
-            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$daggerLibrary"
+            dagger                : "com.google.dagger:dagger-compiler:${Versions.daggerLibrary}",
+            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:${Versions.daggerLibrary}"
     ]
 
     annotationsDependencies = [
-            javaxAnnotation: "javax.annotation:jsr250-api:$javaxAnnotationLibrary"
+            javaxAnnotation: "javax.annotation:jsr250-api:${Versions.javaxAnnotationLibrary}"
     ]
 
     imageLoaderDependencies = [
-            universalImageLoader: "com.nostra13.universalimageloader:universal-image-loader:$imageLoaderLibrary"
+            universalImageLoader: "com.nostra13.universalimageloader:universal-image-loader:${Versions.imageLoaderLibrary}"
     ]
 
     uiDependencies = [
-            galleryLayoutManager: "com.github.felipehjcosta:gallerylayoutmanager:$galleryLayoutManagerLibrary",
-            recyclerViewDsl     : "com.github.felipehjcosta:recyclerview-dsl:$recyclerViewDslLibrary"
+            galleryLayoutManager: "com.github.felipehjcosta:gallerylayoutmanager:${Versions.galleryLayoutManagerLibrary}",
+            recyclerViewDsl     : "com.github.felipehjcosta:recyclerview-dsl:${Versions.recyclerViewDslLibrary}"
     ]
 
     testDependencies = [
-            junit             : "junit:junit:$junitLibrary",
-            mockk             : "io.mockk:mockk:$mockkLibrary",
-            robolectric       : "org.robolectric:robolectric:$robolectricLibrary",
-            robolectricSupport: "org.robolectric:shadows-supportv4:$robolectricLibrary"
+            junit             : "junit:junit:${Versions.junitLibrary}",
+            mockk             : "io.mockk:mockk:${Versions.mockkLibrary}",
+            robolectric       : "org.robolectric:robolectric:${Versions.robolectricLibrary}",
+            robolectricSupport: "org.robolectric:shadows-supportv4:${Versions.robolectricLibrary}"
     ]
 
     androidTestDependencies = [
-            runner         : "androidx.test:runner:$androidTestLibrary",
-            junit          : "androidx.test.ext:junit:$androidTestJunitLibrary",
-            expressoIntents: "androidx.test.espresso:espresso-intents:$espressoLibrary",
-            expressoCore   : "androidx.test.espresso:espresso-core:$espressoLibrary",
-            truth          : "androidx.test.ext:truth:$androidTestTruthLibrary",
-            rx2Idler       : "com.squareup.rx.idler:rx2-idler:$rx2IdlerLibrary",
-            testButler     : "com.linkedin.testbutler:test-butler-library:$testButlerLibrary"
+            runner         : "androidx.test:runner:${Versions.androidTestLibrary}",
+            junit          : "androidx.test.ext:junit:${Versions.androidTestJunitLibrary}",
+            expressoIntents: "androidx.test.espresso:espresso-intents:${Versions.espressoLibrary}",
+            expressoCore   : "androidx.test.espresso:espresso-core:${Versions.espressoLibrary}",
+            truth          : "androidx.test.ext:truth:${Versions.androidTestTruthLibrary}",
+            rx2Idler       : "com.squareup.rx.idler:rx2-idler:${Versions.rx2IdlerLibrary}",
+            testButler     : "com.linkedin.testbutler:test-butler-library:${Versions.testButlerLibrary}"
     ]
 
     androidTestUtilDependencies = [
-            testButlerApp: "com.linkedin.testbutler:test-butler-app:$testButlerLibrary@apk"
+            testButlerApp: "com.linkedin.testbutler:test-butler-app:${Versions.testButlerLibrary}@apk"
     ]
 }

@@ -23,11 +23,6 @@ ext {
             room: "android.arch.persistence.room:testing:${Versions.roomLibrary}"
     ]
 
-    kotlinTestDependencies = [
-            kotlinTest     : "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}",
-            kotlinTestJunit: "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
-    ]
-
     androidxDependencies = [
             androidxCore: "androidx.core:core-ktx:${Versions.androidxLibrary}"
     ]

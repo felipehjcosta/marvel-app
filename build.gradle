@@ -37,7 +37,7 @@ subprojects {
         add_test_dependencies = { Project p ->
             p.dependencies {
                 testImplementation project(':library:unit-test-utils')
-                testImplementation kotlinTestDependencies.values()
+                testImplementation KotlinTestDependencies.values
                 testImplementation networkTestDependencies.values()
                 testImplementation testDependencies.values()
 

@@ -6,21 +6,17 @@ object BuildPlugins {
     const val androidJunitJacocoPlugin = "com.vanniktech:gradle-android-junit-jacoco-plugin:${Versions.androidJunitJacocoPlugin}"
 }
 
-object Dependencies {
-    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Kotlin.version}"
-}
-
-object TestDependencies {
-    const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:${Kotlin.version}"
-    const val kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:${Kotlin.version}"
-}
-
 object KotlinDependencies {
-    val values = listOf(Dependencies.kotlinStdlib)
+    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Kotlin.version}"
+
+    val values = listOf(kotlinStdlib)
 }
 
 object KotlinTestDependencies {
-    val values = listOf(TestDependencies.kotlinTest, TestDependencies.kotlinTestJunit)
+    const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:${Kotlin.version}"
+    const val kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:${Kotlin.version}"
+
+    val values = listOf(kotlinTest, kotlinTestJunit)
 }
 
 object SupportDependencies {

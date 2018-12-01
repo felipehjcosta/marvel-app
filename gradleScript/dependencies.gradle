@@ -4,17 +4,6 @@ ext {
             androidxCore: "androidx.core:core-ktx:${Versions.androidxLibrary}"
     ]
 
-    networkDependencies = [
-            okhHttpLogging              : "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLibrary}",
-            retrofit                    : "com.squareup.retrofit2:retrofit:${Versions.retrofitLibrary}",
-            retrofitAdapterRxJava2      : "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitLibrary}",
-            KotlinSerializationConverter: "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.kotlinSerializationConverterLibrary}"
-    ]
-
-    networkTestDependencies = [
-            mockWebServer: "com.squareup.okhttp3:mockwebserver:${Versions.okhttpLibrary}"
-    ]
-
     imageLoaderDependencies = [
             universalImageLoader: "com.nostra13.universalimageloader:universal-image-loader:${Versions.imageLoaderLibrary}"
     ]

@@ -37,7 +37,7 @@ android {
 dependencies {
     implementation KotlinDependencies.values
 
-    implementation networkDependencies.values()
+    implementation NetworkDependencies.values
 }
 
 ext.add_test_dependencies(project)

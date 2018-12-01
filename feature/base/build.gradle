@@ -103,7 +103,7 @@ dependencies {
 
     api uiDependencies.values()
 
-    api networkDependencies.values()
+    api NetworkDependencies.values
 }
 
 ext.add_test_dependencies(project)

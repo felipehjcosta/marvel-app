@@ -38,10 +38,10 @@ subprojects {
             p.dependencies {
                 testImplementation project(':library:unit-test-utils')
                 testImplementation KotlinTestDependencies.values
-                testImplementation networkTestDependencies.values()
+                testImplementation NetworkTestDependencies.values
                 testImplementation testDependencies.values()
 
-                androidTestImplementation networkTestDependencies.values()
+                androidTestImplementation NetworkTestDependencies.values
                 kaptAndroidTest DaggerCompilerDependencies.values
                 androidTestImplementation androidTestDependencies.values()
                 androidTestUtil androidTestUtilDependencies.values()

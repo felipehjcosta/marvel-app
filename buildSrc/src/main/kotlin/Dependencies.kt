@@ -100,3 +100,23 @@ object AnnotationsDependencies {
 
     val values = listOf(javaxAnnotation)
 }
+
+object NetworkDependencies {
+    const val okhHttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLibrary}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitLibrary}"
+    const val retrofitAdapterRxJava2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitLibrary}"
+    const val kotlinSerializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.kotlinSerializationConverterLibrary}"
+
+    val values = listOf(
+            okhHttpLogging,
+            retrofit,
+            retrofitAdapterRxJava2,
+            kotlinSerializationConverter
+    )
+}
+
+object NetworkTestDependencies {
+    const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttpLibrary}"
+
+    val values = listOf(mockWebServer)
+}

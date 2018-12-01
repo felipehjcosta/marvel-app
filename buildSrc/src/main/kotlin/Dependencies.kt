@@ -22,3 +22,23 @@ object KotlinDependencies {
 object KotlinTestDependencies {
     val values = listOf(TestDependencies.kotlinTest, TestDependencies.kotlinTestJunit)
 }
+
+object SupportDependencies {
+    const val supportV4 = "com.android.support:support-v4:${Versions.supportLibrary}"
+    const val appCompat = "com.android.support:appcompat-v7:${Versions.supportLibrary}"
+    const val design = "com.android.support:design:${Versions.supportLibrary}"
+    const val recyclerView = "com.android.support:recyclerview-v7:${Versions.supportLibrary}"
+    const val cardView = "com.android.support:cardview-v7:${Versions.supportLibrary}"
+    const val supportAnnotation = "com.android.support:support-annotations:${Versions.supportLibrary}"
+    const val constraintLayout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
+
+    val values = listOf(
+            supportV4,
+            appCompat,
+            design,
+            recyclerView,
+            cardView,
+            supportAnnotation,
+            constraintLayout
+    )
+}

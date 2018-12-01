@@ -90,7 +90,7 @@ dependencies {
 
     api KotlinDependencies.values
 
-    api supportDependencies.values()
+    api SupportDependencies.values
     api androidxDependencies.values()
 
     api daggerDependencies.values()

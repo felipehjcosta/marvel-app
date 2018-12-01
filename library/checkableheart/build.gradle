@@ -31,8 +31,8 @@ android {
 }
 
 dependencies {
-    implementation supportDependencies.appCompat
-    implementation supportDependencies.design
+    implementation SupportDependencies.appCompat
+    implementation SupportDependencies.design
     androidTestImplementation androidTestDependencies.values()
     testImplementation testDependencies.junit
 }

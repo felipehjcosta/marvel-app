@@ -55,7 +55,7 @@ dependencies {
     implementation SupportDependencies.appCompat
     implementation SupportDependencies.design
     implementation KotlinDependencies.values
-    implementation rxJavaDependencies.values()
+    implementation RxJavaDependencies.values
     api DatabaseDependencies.values
 
     kapt DatabaseCompilerDependencies.values

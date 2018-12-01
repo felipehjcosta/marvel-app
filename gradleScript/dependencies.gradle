@@ -4,17 +4,6 @@ ext {
             androidxCore: "androidx.core:core-ktx:${Versions.androidxLibrary}"
     ]
 
-    rxJavaDependencies = [
-            rxJava               : "io.reactivex.rxjava2:rxjava:${Versions.rxJavaLibrary}",
-            rxJavaAndroid        : "io.reactivex.rxjava2:rxandroid:${Versions.rxJavaAndroidLibrary}",
-            rxRelay              : "com.jakewharton.rxrelay2:rxrelay:${Versions.rxJavaRelayLibrary}",
-            rxBinding            : "com.jakewharton.rxbinding2:rxbinding-kotlin:${Versions.rxJavaBindingLibrary}",
-            rxBindingDesign      : "com.jakewharton.rxbinding2:rxbinding-design-kotlin:${Versions.rxJavaBindingLibrary}",
-            rxBindingSupportv4   : "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:${Versions.rxJavaBindingLibrary}",
-            rxBindingRecyclerView: "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:${Versions.rxJavaBindingLibrary}",
-            rxAction             : "com.github.felipehjcosta:rxaction:${Versions.rxActionLibrary}"
-    ]
-
     networkDependencies = [
             okhHttpLogging              : "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLibrary}",
             retrofit                    : "com.squareup.retrofit2:retrofit:${Versions.retrofitLibrary}",

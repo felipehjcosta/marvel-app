@@ -57,3 +57,26 @@ object DatabaseTestDependencies {
 
     val values = listOf(room)
 }
+
+object RxJavaDependencies {
+    const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJavaLibrary}"
+    const val rxJavaAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxJavaAndroidLibrary}"
+    const val rxRelay = "com.jakewharton.rxrelay2:rxrelay:${Versions.rxJavaRelayLibrary}"
+    const val rxBinding = "com.jakewharton.rxbinding2:rxbinding-kotlin:${Versions.rxJavaBindingLibrary}"
+    const val rxBindingDesign = "com.jakewharton.rxbinding2:rxbinding-design-kotlin:${Versions.rxJavaBindingLibrary}"
+    const val rxBindingSupportv4 = "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:${Versions.rxJavaBindingLibrary}"
+    const val rxBindingRecyclerView = "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:${Versions.rxJavaBindingLibrary}"
+    const val rxAction = "com.github.felipehjcosta:rxaction:${Versions.rxActionLibrary}"
+
+    val values = listOf(
+            rxJava,
+            rxJavaAndroid,
+            rxRelay,
+            rxBinding,
+            rxBindingDesign,
+            rxBindingSupportv4,
+            rxBindingRecyclerView,
+            rxAction
+    )
+
+}

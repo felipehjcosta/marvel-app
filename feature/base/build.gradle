@@ -99,7 +99,7 @@ dependencies {
 
     api imageLoaderDependencies.values()
 
-    api rxJavaDependencies.values()
+    api RxJavaDependencies.values
 
     api uiDependencies.values()
 

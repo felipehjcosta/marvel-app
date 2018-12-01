@@ -61,8 +61,8 @@ dependencies {
     application project(':apk')
     implementation project(':feature:base')
 
-    kapt daggerCompilerDependencies.values()
-    compileOnly annotationsDependencies.values()
+    kapt DaggerCompilerDependencies.values
+    compileOnly AnnotationsDependencies.values
 }
 
 ext.add_test_dependencies(project)

@@ -66,8 +66,8 @@ dependencies {
     implementation project(':feature:base')
     implementation 'com.facebook.shimmer:shimmer:0.2.0'
 
-    kapt daggerCompilerDependencies.values()
-    compileOnly annotationsDependencies.values()
+    kapt DaggerCompilerDependencies.values
+    compileOnly AnnotationsDependencies.values
 }
 
 ext.add_test_dependencies(project)

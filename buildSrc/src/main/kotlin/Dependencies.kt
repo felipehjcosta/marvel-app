@@ -80,3 +80,23 @@ object RxJavaDependencies {
     )
 
 }
+
+object DaggerDependencies {
+    const val dagger = "com.google.dagger:dagger:${Versions.daggerLibrary}"
+    const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:${Versions.daggerLibrary}"
+
+    val values = listOf(dagger, daggerAndroidSupport)
+}
+
+object DaggerCompilerDependencies {
+    const val dagger = "com.google.dagger:dagger-compiler:${Versions.daggerLibrary}"
+    const val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:${Versions.daggerLibrary}"
+
+    val values = listOf(dagger, daggerAndroidProcessor)
+}
+
+object AnnotationsDependencies {
+    const val javaxAnnotation = "javax.annotation:jsr250-api:${Versions.javaxAnnotationLibrary}"
+
+    val values = listOf(javaxAnnotation)
+}

@@ -42,7 +42,7 @@ subprojects {
                 testImplementation testDependencies.values()
 
                 androidTestImplementation networkTestDependencies.values()
-                kaptAndroidTest daggerCompilerDependencies.values()
+                kaptAndroidTest DaggerCompilerDependencies.values
                 androidTestImplementation androidTestDependencies.values()
                 androidTestUtil androidTestUtilDependencies.values()
             }

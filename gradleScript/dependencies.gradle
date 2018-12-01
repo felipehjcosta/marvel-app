@@ -15,20 +15,6 @@ ext {
             mockWebServer: "com.squareup.okhttp3:mockwebserver:${Versions.okhttpLibrary}"
     ]
 
-    daggerDependencies = [
-            dagger              : "com.google.dagger:dagger:${Versions.daggerLibrary}",
-            daggerAndroidSupport: "com.google.dagger:dagger-android-support:${Versions.daggerLibrary}"
-    ]
-
-    daggerCompilerDependencies = [
-            dagger                : "com.google.dagger:dagger-compiler:${Versions.daggerLibrary}",
-            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:${Versions.daggerLibrary}"
-    ]
-
-    annotationsDependencies = [
-            javaxAnnotation: "javax.annotation:jsr250-api:${Versions.javaxAnnotationLibrary}"
-    ]
-
     imageLoaderDependencies = [
             universalImageLoader: "com.nostra13.universalimageloader:universal-image-loader:${Versions.imageLoaderLibrary}"
     ]

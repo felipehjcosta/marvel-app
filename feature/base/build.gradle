@@ -93,9 +93,9 @@ dependencies {
     api SupportDependencies.values
     api androidxDependencies.values()
 
-    api daggerDependencies.values()
-    kapt daggerCompilerDependencies.values()
-    compileOnly annotationsDependencies.values()
+    api DaggerDependencies.values
+    kapt DaggerCompilerDependencies.values
+    compileOnly AnnotationsDependencies.values
 
     api imageLoaderDependencies.values()
 

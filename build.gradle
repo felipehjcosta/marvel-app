@@ -8,11 +8,11 @@ buildscript {
         maven { url "https://kotlin.bintray.com/kotlinx" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-        classpath "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
-        classpath "com.vanniktech:gradle-dependency-graph-generator-plugin:0.2.0"
-        classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.13.0"
+        classpath BuildPlugins.androidGradlePlugin
+        classpath BuildPlugins.kotlinGradlePlugin
+        classpath BuildPlugins.kotlinSerializiationPlugin
+        classpath BuildPlugins.dependencyGraphGeneratorPlugin
+        classpath BuildPlugins.androidJunitJacocoPlugin
     }
 }
 

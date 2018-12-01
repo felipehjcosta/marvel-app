@@ -35,5 +35,5 @@ android {
 
 dependencies {
     implementation supportDependencies.appCompat
-    implementation kotlinDependencies.values()
+    implementation KotlinDependencies.values
 }

@@ -54,7 +54,7 @@ android {
 dependencies {
     implementation supportDependencies.appCompat
     implementation supportDependencies.design
-    implementation kotlinDependencies.values()
+    implementation KotlinDependencies.values
     implementation rxJavaDependencies.values()
     api databaseDependencies.values()
 

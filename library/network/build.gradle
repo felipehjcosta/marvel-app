@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-    implementation kotlinDependencies.values()
+    implementation KotlinDependencies.values
 
     implementation networkDependencies.values()
 }

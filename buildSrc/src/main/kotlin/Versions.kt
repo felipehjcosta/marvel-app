@@ -1,3 +1,7 @@
+internal object Kotlin {
+    const val version = "1.3.10"
+}
+
 object Versions {
     const val kotlin = "1.3.10"
 

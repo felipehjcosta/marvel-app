@@ -10,10 +10,6 @@ ext {
             constraintLayout : "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
     ]
 
-    kotlinDependencies = [
-            kotlinStd: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
-    ]
-
     databaseDependencies = [
             room       : "android.arch.persistence.room:runtime:${Versions.roomLibrary}",
             roomRxjava2: "android.arch.persistence.room:rxjava2:${Versions.roomLibrary}"

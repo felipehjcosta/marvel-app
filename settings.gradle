@@ -1,3 +1,0 @@
-include ':apk', ':instant'
-include ':feature:base', ':feature:detail', ':feature:listing', ':feature:wiki'
-include ':library:checkableheart', ':library:network', ':library:cache', ':library:unit-test-utils'

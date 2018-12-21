@@ -49,7 +49,7 @@ jobs:
   include:
   - stage: "Lint"
     script:
-      - ./gradlew lintDebug  --console=plain
+      - ./gradlew detekt lintDebug  --console=plain
   - stage: "Test"
     before_script:
       - echo no | $HOME/android-sdk/tools/bin/avdmanager create avd -n test -k "system-images;android-21;default;armeabi-v7a"

@@ -6,6 +6,7 @@ object Versions {
     const val androidGradlePlugin = "3.2.1"
     const val dependencyGraphGeneratorPlugin = "0.2.0"
     const val androidJunitJacocoPlugin = "0.13.0"
+    const val detektGradlePlugin = "1.0.0-RC12"
 
     const val compileSdkVersion = 28
     const val buildToolsVersion = "28.0.3"

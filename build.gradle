@@ -11,6 +11,7 @@ buildscript {
         classpath BuildPlugins.kotlinSerializiationPlugin
         classpath BuildPlugins.dependencyGraphGeneratorPlugin
         classpath BuildPlugins.androidJunitJacocoPlugin
+        classpath BuildPlugins.detektGradlePlugin
     }
 }
 
@@ -27,6 +28,15 @@ allprojects {
         jcenter()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
         maven { url "https://kotlin.bintray.com/kotlinx" }
+    }
+
+    apply plugin: "io.gitlab.arturbosch.detekt"
+
+    detekt {
+        toolVersion = "1.0.0-RC12"
+        input = files("src/main/kotlin")
+        filters = ".*/resources/.*,.*/build/.*"
+        config = files("${project.rootDir}/default-detekt-config.yml")
     }
 }
 

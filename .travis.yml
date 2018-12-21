@@ -45,12 +45,12 @@ env:
   - ANDROID_HOME=$HOME/android-sdk
 
 
-matrix:
+jobs:
   include:
-  - name: "Lint"
+  - stage: "Lint"
     script:
       - ./gradlew lintDebug  --console=plain
-  - name: "Test"
+  - stage: "Test"
     before_script:
       - echo no | $HOME/android-sdk/tools/bin/avdmanager create avd -n test -k "system-images;android-21;default;armeabi-v7a"
       - $HOME/android-sdk/emulator/emulator -avd test -no-skin -no-audio -no-window -gpu off &
@@ -62,6 +62,6 @@ matrix:
       - ./gradlew testDebugUnitTest connectedAndroidTest combinedTestReportDebug --console=plain
     after_success:
       - bash <(curl -s https://codecov.io/bash)
-  - name: "Assemble"
+  - stage: "Assemble"
     script:
       - ./gradlew assembleRelease --console=plain

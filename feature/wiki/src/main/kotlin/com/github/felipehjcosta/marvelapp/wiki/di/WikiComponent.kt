@@ -8,8 +8,8 @@ import dagger.android.AndroidInjector
 
 @WikiScope
 @Component(
-        modules = [WikiModule::class],
-        dependencies = [ApplicationComponent::class]
+    modules = [WikiModule::class],
+    dependencies = [ApplicationComponent::class]
 )
 interface WikiComponent : AndroidInjector<WikiFragment> {
 

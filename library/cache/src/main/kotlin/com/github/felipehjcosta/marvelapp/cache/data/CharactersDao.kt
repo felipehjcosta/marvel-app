@@ -10,7 +10,8 @@ import io.reactivex.Single
 @Dao
 abstract class CharactersDao {
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM character, thumbnail, comic_list, story_list, event_list, series_list
         WHERE id = :id
         AND thumbnail.thumbnail_character_id = character.id
@@ -19,10 +20,12 @@ abstract class CharactersDao {
         AND event_list.event_list_character_id = character.id
         AND series_list.series_list_character_id = character.id
         LIMIT 1
-        """)
+        """
+    )
     abstract fun findById(id: Long): Maybe<CharacterRelations>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM character, thumbnail, comic_list, story_list, event_list, series_list
         WHERE
         thumbnail.thumbnail_character_id = character.id
@@ -30,7 +33,8 @@ abstract class CharactersDao {
         AND story_list.story_list_character_id = character.id
         AND event_list.event_list_character_id = character.id
         AND series_list.series_list_character_id = character.id
-        """)
+        """
+    )
     abstract fun all(): Single<List<CharacterRelations>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

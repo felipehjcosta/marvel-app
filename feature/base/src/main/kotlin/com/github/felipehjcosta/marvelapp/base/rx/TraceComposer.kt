@@ -7,7 +7,7 @@ import io.reactivex.ObservableTransformer
 class TraceComposer<T> constructor(private val prefix: String) : ObservableTransformer<T, T> {
 
     override fun apply(upstream: Observable<T>): ObservableSource<T> = upstream
-            .doOnSubscribe { _ -> println("[$prefix] doOnSubscribe") }
+            .doOnSubscribe { println("[$prefix] doOnSubscribe") }
             .doOnDispose { println("[$prefix] doOnDispose") }
             .doOnNext { value -> println("[$prefix] doOnNext $value") }
             .doOnError { error -> println("[$prefix] doOnError $error") }

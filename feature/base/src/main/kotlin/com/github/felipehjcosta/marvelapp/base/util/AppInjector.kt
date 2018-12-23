@@ -14,12 +14,15 @@ import dagger.android.support.AndroidSupportInjection
 
 object AppInjector {
 
-    private val activityMap = mutableMapOf<Class<out Activity>, (ApplicationComponent) -> AndroidInjector.Builder<out Activity>>()
+    private val activityMap =
+        mutableMapOf<Class<out Activity>, (ApplicationComponent) -> AndroidInjector.Builder<out Activity>>()
 
-    private val fragmentMap = mutableMapOf<Class<out Fragment>, (ApplicationComponent) -> AndroidInjector.Builder<out Fragment>>()
+    private val fragmentMap =
+        mutableMapOf<Class<out Fragment>, (ApplicationComponent) -> AndroidInjector.Builder<out Fragment>>()
 
     internal fun init(demoApplication: DemoApplication) {
-        demoApplication.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks by EmptyActivityLifecycleCallbacks() {
+        demoApplication.registerActivityLifecycleCallbacks(object :
+            Application.ActivityLifecycleCallbacks by EmptyActivityLifecycleCallbacks() {
             override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
                 handleActivity(activity)
             }
@@ -31,17 +34,24 @@ object AppInjector {
             try {
                 AndroidInjection.inject(activity)
             } catch (e: IllegalArgumentException) {
-                android.util.Log.i(AppInjector::class.java.simpleName, "Unable to inject activity: ${activity.javaClass.simpleName}", e)
+                android.util.Log.i(
+                    AppInjector::class.java.simpleName,
+                    "Unable to inject activity: ${activity.javaClass.simpleName}",
+                    e
+                )
             }
 
             activity.supportFragmentManager.registerFragmentLifecycleCallbacks(
-                    object : FragmentManager.FragmentLifecycleCallbacks() {
-                        override fun onFragmentCreated(fm: FragmentManager,
-                                                       fragment: Fragment,
-                                                       savedInstanceState: Bundle?) {
-                            handleFragment(fragment)
-                        }
-                    }, true)
+                object : FragmentManager.FragmentLifecycleCallbacks() {
+                    override fun onFragmentCreated(
+                        fm: FragmentManager,
+                        fragment: Fragment,
+                        savedInstanceState: Bundle?
+                    ) {
+                        handleFragment(fragment)
+                    }
+                }, true
+            )
         }
     }
 
@@ -49,23 +59,39 @@ object AppInjector {
         try {
             AndroidSupportInjection.inject(fragment)
         } catch (e: IllegalArgumentException) {
-            android.util.Log.i(AppInjector::class.java.simpleName, "Unable to inject fragment: ${fragment?.javaClass?.simpleName}", e)
+            android.util.Log.i(
+                AppInjector::class.java.simpleName,
+                "Unable to inject fragment: ${fragment?.javaClass?.simpleName}",
+                e
+            )
         }
     }
 
-    fun <T : Activity> registerActivityBuilder(clazz: Class<T>, block: (ApplicationComponent) -> AndroidInjector.Builder<T>) {
+    fun <T : Activity> registerActivityBuilder(
+        clazz: Class<T>,
+        block: (ApplicationComponent) -> AndroidInjector.Builder<T>
+    ) {
         activityMap[clazz] = block
     }
 
-    fun <T : Fragment> registerFragmentBuilder(clazz: Class<T>, block: (ApplicationComponent) -> AndroidInjector.Builder<T>) {
+    fun <T : Fragment> registerFragmentBuilder(
+        clazz: Class<T>,
+        block: (ApplicationComponent) -> AndroidInjector.Builder<T>
+    ) {
         fragmentMap[clazz] = block
     }
 
-    internal fun decorateActivityAndroidInjector(androidInjector: AndroidInjector<Activity>, component: ApplicationComponent): AndroidInjector<Activity> {
+    internal fun decorateActivityAndroidInjector(
+        androidInjector: AndroidInjector<Activity>,
+        component: ApplicationComponent
+    ): AndroidInjector<Activity> {
         return InstantAppsActivityInjector(component, activityMap, androidInjector)
     }
 
-    internal fun decorateFragmentAndroidInjector(androidInjector: AndroidInjector<Fragment>, component: ApplicationComponent): AndroidInjector<Fragment> {
+    internal fun decorateFragmentAndroidInjector(
+        androidInjector: AndroidInjector<Fragment>,
+        component: ApplicationComponent
+    ): AndroidInjector<Fragment> {
         return InstantAppsFragmentInjector(component, fragmentMap, androidInjector)
     }
 }

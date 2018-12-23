@@ -22,12 +22,14 @@ import com.github.felipehjcosta.recyclerviewdsl.onRecyclerView
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
-import io.reactivex.Observable
+import io.reactivex.Observable.combineLatest
+import io.reactivex.Observable.just
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
+import com.github.felipehjcosta.marvelapp.base.R as RBase
 import com.github.felipehjcosta.marvelapp.listing.R.drawable.ic_arrow_back_white_24dp as navigationIconResId
 import kotlinx.android.synthetic.main.listing_fragment.loading_view as loadingView
 import kotlinx.android.synthetic.main.listing_fragment.recycler_view as recyclerView
@@ -85,14 +87,18 @@ class CharacterListingFragment : Fragment() {
                                     val imageUrl = it.item?.image
                                     val imageView = it.view
                                     if (imageUrl != null && imageView != null) {
+                                        val radius = RBase.dimen.image_default_color_radius
                                         val cornerRadius = imageView.resources
-                                                .getDimensionPixelSize(com.github.felipehjcosta.marvelapp.base.R.dimen.image_default_color_radius)
-                                        imageLoader.loadRoundedImage(imageUrl, imageView, cornerRadius)
+                                                .getDimensionPixelSize(radius)
+                                        imageLoader
+                                                .loadRoundedImage(imageUrl, imageView, cornerRadius)
                                     }
                                 }
 
                                 onClick { _, item ->
-                                    activity?.let { appNavigator.showDetail(it, item?.id ?: 0) }
+                                    activity?.let {
+                                        appNavigator.showDetail(it, item?.id ?: 0)
+                                    }
                                 }
                             }
                         }
@@ -100,7 +106,12 @@ class CharacterListingFragment : Fragment() {
                 }
 
         compositeDisposable += viewModel.showLoading
-                .map { if (it) recyclerView to contentLoadingProgressBar else contentLoadingProgressBar to recyclerView }
+                .map {
+                    if (it)
+                        recyclerView to contentLoadingProgressBar
+                    else
+                        contentLoadingProgressBar to recyclerView
+                }
                 .subscribe { crossFade(it.first, it.second) }
 
         compositeDisposable += viewModel.showLoading.subscribe { swipeRefresh.isRefreshing = it }
@@ -122,13 +133,12 @@ class CharacterListingFragment : Fragment() {
 
         val loadMoreCommand = viewModel.loadMoreItemsCommand
 
-        compositeDisposable += Observable.combineLatest(recyclerView.scrollEvents(), Observable.just(linearLayoutManger),
+        compositeDisposable += combineLatest(recyclerView.scrollEvents(), just(linearLayoutManger),
                 BiFunction { event: RecyclerViewScrollEvent, layoutManager: LinearLayoutManager ->
                     if (event.dy() > 0) {
                         val totalItemCount = layoutManager.itemCount
                         val firstVisibleItem = layoutManager.findLastVisibleItemPosition()
-                        val visibleThreshold = 5
-                        (totalItemCount) < (firstVisibleItem + visibleThreshold)
+                        (totalItemCount) < (firstVisibleItem + VISIBLE_THRESHOLD)
                     } else {
                         false
                     }
@@ -164,7 +174,9 @@ class CharacterListingFragment : Fragment() {
         // Animate the content view to 100% opacity, and clear any animation
         // listener set on the view.
 
-        val shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
+        val shortAnimationDuration = resources
+                .getInteger(android.R.integer.config_shortAnimTime)
+                .toLong()
 
         toView.animate()
                 .alpha(1f)
@@ -187,6 +199,7 @@ class CharacterListingFragment : Fragment() {
     companion object {
 
         private const val DEBOUNCE_SCROLL_TIMEOUT = 400L
+        private const val VISIBLE_THRESHOLD = 5
 
         fun newInstance(): CharacterListingFragment {
             return CharacterListingFragment()

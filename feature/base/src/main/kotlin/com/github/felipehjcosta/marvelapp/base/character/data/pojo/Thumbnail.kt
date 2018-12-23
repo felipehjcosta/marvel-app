@@ -7,8 +7,8 @@ import kotlinx.serialization.Transient
 
 @Serializable
 class Thumbnail(
-        @Optional @SerialName("path") var path: String = "",
-        @Optional @SerialName("extension") var extension: String = ""
+    @Optional @SerialName("path") var path: String = "",
+    @Optional @SerialName("extension") var extension: String = ""
 ) {
     @Transient
     val url: String

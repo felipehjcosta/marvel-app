@@ -5,13 +5,10 @@ import com.example.checkableheart.ui.HeartFab
 import com.jakewharton.rxbinding2.InitialValueObservable
 
 
-fun HeartFab.checkedChanges(): InitialValueObservable<Boolean> = RxCheckableView.checkedChanges(this)
+fun HeartFab.checkedChanges(): InitialValueObservable<Boolean> =
+    RxCheckableView.checkedChanges(this)
 
 class RxCheckableView private constructor() {
-
-
-    init {
-    }
 
     companion object {
 

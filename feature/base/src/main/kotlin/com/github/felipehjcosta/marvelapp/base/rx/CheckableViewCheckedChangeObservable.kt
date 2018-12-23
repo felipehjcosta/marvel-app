@@ -7,7 +7,8 @@ import io.reactivex.Observer
 import io.reactivex.android.MainThreadDisposable
 
 
-class CheckableViewCheckedChangeObservable(private val view: HeartFab) : InitialValueObservable<Boolean>() {
+class CheckableViewCheckedChangeObservable(private val view: HeartFab) :
+    InitialValueObservable<Boolean>() {
 
     override fun subscribeListener(observer: Observer<in Boolean>) {
         if (!checkMainThread(observer)) {
@@ -22,7 +23,10 @@ class CheckableViewCheckedChangeObservable(private val view: HeartFab) : Initial
         return view.isChecked
     }
 
-    internal class Listener(private val view: HeartFab, private val observer: Observer<in Boolean>) : MainThreadDisposable(), HeartFab.OnCheckedChangeListener {
+    internal class Listener(
+        private val view: HeartFab,
+        private val observer: Observer<in Boolean>
+    ) : MainThreadDisposable(), HeartFab.OnCheckedChangeListener {
 
         override fun onCheckedChanged(view: HeartFab, isChecked: Boolean) {
             if (!isDisposed) {
@@ -37,8 +41,11 @@ class CheckableViewCheckedChangeObservable(private val view: HeartFab) : Initial
 
     private fun checkMainThread(observer: Observer<*>): Boolean {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            observer.onError(IllegalStateException(
-                    "Expected to be called on the main thread but was " + Thread.currentThread().name))
+            observer.onError(
+                IllegalStateException(
+                    "Expected to be called on the main thread but was " + Thread.currentThread().name
+                )
+            )
             return false
         }
         return true

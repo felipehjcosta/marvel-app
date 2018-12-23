@@ -3,6 +3,6 @@ package com.github.felipehjcosta.marvelapp.base.rx
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-infix operator fun CompositeDisposable.plusAssign(disposable: Disposable): Unit {
+infix operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
     this.add(disposable)
 }

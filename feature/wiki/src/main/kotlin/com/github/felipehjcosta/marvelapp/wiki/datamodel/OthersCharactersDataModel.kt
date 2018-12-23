@@ -7,7 +7,27 @@ import io.reactivex.Observable.just
 import javax.inject.Inject
 
 class OthersCharactersDataModel @Inject constructor(private val repository: CharacterRepository) {
-    fun getOthersCharacters(): Observable<List<Character>> = just(1009664, 1009220, 1010733, 1009629, 1009175, 1009268, 1009417)
+
+    companion object {
+        private const val THOR_CHARACTER_ID = 1009351
+        private const val CAPTAIN_AMERICA_CHARACTER_ID = 1009220
+        private const val STAR_LORD_CHARACTER_ID = 1010733
+        private const val STORM_CHARACTER_ID = 1009629
+        private const val BEAST_CHARACTER_ID = 1009175
+        private const val DEADPOOL_CHARACTER_ID = 1009268
+        private const val MAGNETO_CHARACTER_ID = 1009417
+    }
+
+    fun getOthersCharacters(): Observable<List<Character>> =
+        just(
+            THOR_CHARACTER_ID,
+            CAPTAIN_AMERICA_CHARACTER_ID,
+            STAR_LORD_CHARACTER_ID,
+            STORM_CHARACTER_ID,
+            BEAST_CHARACTER_ID,
+            DEADPOOL_CHARACTER_ID,
+            MAGNETO_CHARACTER_ID
+        )
             .concatMap { repository.getCharacter(it).toObservable() }
             .reduce(mutableListOf<Character>()) { acc, element -> acc.apply { add(element) } }
             .toObservable()

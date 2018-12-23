@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class Summary(
-        @Optional @SerialName("resourceURI") var resourceURI: String = "",
-        @Optional @SerialName("name") var name: String = "",
-        @Optional @SerialName("type") var type: String = ""
+    @Optional @SerialName("resourceURI") var resourceURI: String = "",
+    @Optional @SerialName("name") var name: String = "",
+    @Optional @SerialName("type") var type: String = ""
 )

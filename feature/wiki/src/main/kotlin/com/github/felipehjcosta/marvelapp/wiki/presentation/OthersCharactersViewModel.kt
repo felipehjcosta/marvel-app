@@ -10,21 +10,21 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class OthersCharactersViewModel @Inject constructor(
-        private val dataModel: OthersCharactersDataModel
+    private val dataModel: OthersCharactersDataModel
 ) {
 
     private val asyncLoadItemsCommand: RxAction<Any, List<Character>> = RxAction {
         dataModel.getOthersCharacters()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     val loadItemsCommand: RxCommand<Any>
         get() = asyncLoadItemsCommand
 
     val items: Observable<List<CharacterItemViewModel>>
-        get() = asyncLoadItemsCommand.elements.map {
-            it.map {
+        get() = asyncLoadItemsCommand.elements.map { list ->
+            list.map {
                 CharacterItemViewModel(it.id, it.name, it.thumbnail.url)
             }
         }

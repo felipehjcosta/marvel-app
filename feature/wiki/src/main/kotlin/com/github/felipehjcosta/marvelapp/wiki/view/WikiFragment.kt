@@ -18,6 +18,7 @@ import com.github.felipehjcosta.marvelapp.wiki.presentation.OthersCharactersView
 import com.github.felipehjcosta.recyclerviewdsl.onRecyclerView
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
+import com.github.felipehjcosta.marvelapp.base.R as RBase
 import kotlinx.android.synthetic.main.fragment_wiki.highlighted_characters_container as highlightedCharactersContainer
 import kotlinx.android.synthetic.main.fragment_wiki.highlighted_characters_recycler_view as highlightedCharactersRecyclerView
 import kotlinx.android.synthetic.main.fragment_wiki.others_characters_recycler_view as othersCharactersRecyclerView
@@ -47,8 +48,11 @@ class WikiFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_wiki, container, false)
     }
 
@@ -84,30 +88,32 @@ class WikiFragment : Fragment() {
 
     private fun bindHighlightedCharactersSection() {
         compositeDisposable += highlightedCharactersViewModel.items
-                .doOnNext {
-                    WikiGalleryCallbacksHandler(imageLoader, it, highlightedCharactersContainer).apply {
-                        highlightedCharactersLayoutManager.itemTransformer = this
-                        highlightedCharactersLayoutManager.onItemSelectedListener = this
-                    }
+            .doOnNext { characters ->
+                WikiGalleryCallbacksHandler(
+                    imageLoader,
+                    characters,
+                    highlightedCharactersContainer
+                ).apply {
+                    highlightedCharactersLayoutManager.itemTransformer = this
+                    highlightedCharactersLayoutManager.onItemSelectedListener = this
                 }
-                .subscribe { displayHighlightedCharacters(it) }
+            }
+            .subscribe { displayHighlightedCharacters(it) }
 
         compositeDisposable += highlightedCharactersViewModel.showLoading
-                .filter { it == true }
-                .doOnNext {
-                    LoadingWikiGalleryCallbacksHandler().apply {
-                        highlightedCharactersLayoutManager.itemTransformer = this
-                    }
+            .filter { it == true }
+            .doOnNext {
+                LoadingWikiGalleryCallbacksHandler().apply {
+                    highlightedCharactersLayoutManager.itemTransformer = this
                 }
-                .subscribe { displayLoadingHighlightedCharacters() }
-
+            }
+            .subscribe { displayLoadingHighlightedCharacters() }
     }
 
     private fun displayLoadingHighlightedCharacters() {
         onRecyclerView(highlightedCharactersRecyclerView) {
             bind(R.layout.loading_highlighted_characters_item) {
-                withItems(arrayOfNulls<Any?>(7).toList()) {
-                }
+                withItems(arrayOfNulls<Any?>(LOADING_CHARACTERS_COUNT).toList()) {}
             }
         }
     }
@@ -142,29 +148,28 @@ class WikiFragment : Fragment() {
         compositeDisposable += highlightedCharactersViewModel.loadItemsCommand.execute().subscribe()
 
         compositeDisposable += othersCharactersViewModel.items
-                .subscribe { displayOthersCharacters(it) }
+            .subscribe { displayOthersCharacters(it) }
 
         compositeDisposable += othersCharactersViewModel.showLoading
-                .filter { it == true }
-                .subscribe { displayLoadingOthersCharacters() }
+            .filter { it == true }
+            .subscribe { displayLoadingOthersCharacters() }
 
         compositeDisposable += othersCharactersViewModel.loadItemsCommand.execute().subscribe()
     }
 
     private fun displayLoadingOthersCharacters() {
         onRecyclerView(othersCharactersRecyclerView) {
-            withGridLayout { spanCount = 3 }
+            withGridLayout { spanCount = GRID_SPAN_COUNT }
 
             bind(R.layout.loading_others_characters_item) {
-                withItems(arrayOfNulls<Any?>(7).toList()) {
-                }
+                withItems(arrayOfNulls<Any?>(LOADING_CHARACTERS_COUNT).toList()) {}
             }
         }
     }
 
     private fun displayOthersCharacters(list: List<CharacterItemViewModel>) {
         onRecyclerView(othersCharactersRecyclerView) {
-            withGridLayout { spanCount = 3 }
+            withGridLayout { spanCount = GRID_SPAN_COUNT }
 
             bind(R.layout.others_characters_fragment_item) {
                 withItems(list) {
@@ -177,7 +182,7 @@ class WikiFragment : Fragment() {
                         val imageView = it.view
                         if (imageUrl != null && imageView != null) {
                             val cornerRadius = imageView.resources
-                                    .getDimensionPixelSize(com.github.felipehjcosta.marvelapp.base.R.dimen.image_default_color_radius)
+                                .getDimensionPixelSize(RBase.dimen.image_default_color_radius)
                             imageLoader.loadRoundedImage(imageUrl, imageView, cornerRadius)
                         }
                     }
@@ -202,7 +207,9 @@ class WikiFragment : Fragment() {
     }
 
     companion object {
+        private const val GRID_SPAN_COUNT = 3
+        private const val LOADING_CHARACTERS_COUNT = 7
+
         fun newInstance() = WikiFragment()
     }
-
 }

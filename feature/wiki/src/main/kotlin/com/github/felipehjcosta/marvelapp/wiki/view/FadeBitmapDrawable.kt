@@ -26,14 +26,16 @@ import android.graphics.drawable.Drawable
 import android.os.SystemClock
 import android.view.View
 
-internal class FadeBitmapDrawable(resources: Resources,
-                                  bitmap: Bitmap,
-                                  private var placeholder: Drawable?,
-                                  fade: Boolean) : BitmapDrawable(resources, bitmap) {
-    var startTimeMillis: Long = 0L
-    var animating: Boolean = false
+internal class FadeBitmapDrawable(
+    resources: Resources,
+    bitmap: Bitmap,
+    private var placeholder: Drawable?,
+    fade: Boolean
+) : BitmapDrawable(resources, bitmap) {
+    private var startTimeMillis: Long = 0L
+    private var animating: Boolean = false
 
-    var internalAlpha = 0xFF
+    private var internalAlpha = ALPHA
 
     init {
         if (fade) {
@@ -61,7 +63,6 @@ internal class FadeBitmapDrawable(resources: Resources,
                 super.setAlpha(internalAlpha)
             }
         }
-
     }
 
     override fun setAlpha(alpha: Int) {
@@ -82,6 +83,7 @@ internal class FadeBitmapDrawable(resources: Resources,
 
     companion object {
         private const val FADE_DURATION = 400.0f
+        private const val ALPHA = 0xFF
     }
 }
 

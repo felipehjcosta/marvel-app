@@ -16,7 +16,7 @@ data class SeriesListEntity(
         var id: Long = 0L,
 
         @ColumnInfo(name = "series_list_available")
-        var available: Int = -0,
+        var available: Int = 0,
 
         @ColumnInfo(name = "series_list_returned")
         var returned: Int = 0,

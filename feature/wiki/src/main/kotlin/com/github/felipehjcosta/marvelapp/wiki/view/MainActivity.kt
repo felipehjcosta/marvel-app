@@ -23,17 +23,27 @@ class MainActivity : AppCompatActivity() {
 
         val itemSelectionObservable = bottomNavigationView.itemSelections().share()
 
-        val sample1FragmentObservable = itemSelectionObservable.filter { it.itemId == R.id.nav_listing }.map { WikiFragment.newInstance() }
+        val sample1FragmentObservable =
+            itemSelectionObservable.filter { it.itemId == R.id.nav_listing }
+                .map { WikiFragment.newInstance() }
 
-        val sample2FragmentObservable = itemSelectionObservable.filter { it.itemId == R.id.nav_favorite }.map { FavoriteFragment.newInstance() }
+        val sample2FragmentObservable =
+            itemSelectionObservable.filter { it.itemId == R.id.nav_favorite }
+                .map { FavoriteFragment.newInstance() }
 
-        val contentFragmentObservable = merge(listOf(sample1FragmentObservable,
-                sample2FragmentObservable))
+        val contentFragmentObservable = merge(
+            listOf(
+                sample1FragmentObservable,
+                sample2FragmentObservable
+            )
+        )
 
         disposable = contentFragmentObservable.filter {
             !(supportFragmentManager.findFragmentById(R.id.main_content)?.javaClass?.equals(it.javaClass)
-                    ?: false)
-        }.subscribe { supportFragmentManager.beginTransaction().replace(R.id.main_content, it).commit() }
+                ?: false)
+        }.subscribe {
+            supportFragmentManager.beginTransaction().replace(R.id.main_content, it).commit()
+        }
     }
 
     override fun onDestroy() {

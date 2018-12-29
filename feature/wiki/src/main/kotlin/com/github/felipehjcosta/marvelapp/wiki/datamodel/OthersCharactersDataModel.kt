@@ -9,7 +9,7 @@ import javax.inject.Inject
 class OthersCharactersDataModel @Inject constructor(private val repository: CharacterRepository) {
 
     companion object {
-        private const val THOR_CHARACTER_ID = 1009351
+        private const val THOR_CHARACTER_ID = 1009664
         private const val CAPTAIN_AMERICA_CHARACTER_ID = 1009220
         private const val STAR_LORD_CHARACTER_ID = 1010733
         private const val STORM_CHARACTER_ID = 1009629

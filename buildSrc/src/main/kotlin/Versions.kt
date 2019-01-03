@@ -21,7 +21,7 @@ object Versions {
 
     const val roomLibrary = "1.1.1"
 
-    const val rxJavaLibrary = "2.2.4"
+    const val rxJavaLibrary = "2.2.5"
     const val rxJavaAndroidLibrary = "2.1.0"
     const val rxJavaRelayLibrary = "2.1.0"
     const val rxJavaBindingLibrary = "2.2.0"

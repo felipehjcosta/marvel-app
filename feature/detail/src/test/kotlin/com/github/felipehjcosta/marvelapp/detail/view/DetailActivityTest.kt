@@ -5,7 +5,6 @@ import android.support.design.widget.CollapsingToolbarLayout
 import android.view.View
 import android.widget.TextView
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
-import com.github.felipehjcosta.marvelapp.detail.BuildConfig
 import com.github.felipehjcosta.marvelapp.detail.R
 import com.github.felipehjcosta.marvelapp.detail.presentation.CharacterDetailViewModel
 import com.github.felipehjcosta.marvelapp.test.TestStubApplication
@@ -27,10 +26,9 @@ import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
 @Config(
-        application = TestStubApplication::class,
-        manifest = Config.NONE,
-        constants = BuildConfig::class,
-        sdk = [21]
+    application = TestStubApplication::class,
+    manifest = Config.NONE,
+    sdk = [21]
 )
 class DetailActivityTest {
 
@@ -46,16 +44,16 @@ class DetailActivityTest {
     private val mockImageLoader = mockk<ImageLoader>(relaxed = true)
 
     private val detailActivityController: ActivityController<DetailActivity> = Robolectric
-            .buildActivity(DetailActivity::class.java)
-            .create()
-            .start()
-            .postCreate(null)
-            .apply {
-                get().apply {
-                    viewModel = mockViewModel
-                    imageLoader = mockImageLoader
-                }
+        .buildActivity(DetailActivity::class.java)
+        .create()
+        .start()
+        .postCreate(null)
+        .apply {
+            get().apply {
+                viewModel = mockViewModel
+                imageLoader = mockImageLoader
             }
+        }
 
     @Test
     fun givenSubscribedToDetailViewModelWhenResumeItShouldDisplayCharacterInformation() {
@@ -69,29 +67,41 @@ class DetailActivityTest {
 
         detailActivityController.resume().visible()
 
-        assertEquals(name, detailActivityController
+        assertEquals(
+            name, detailActivityController
                 .findView<CollapsingToolbarLayout>(R.id.toolbar_layout)
-                .title)
+                .title
+        )
 
-        assertEquals(description, detailActivityController
+        assertEquals(
+            description, detailActivityController
                 .findView<TextView>(R.id.text_description)
-                .text)
+                .text
+        )
 
-        assertEquals(comicsCount.toString(), detailActivityController
+        assertEquals(
+            comicsCount.toString(), detailActivityController
                 .findView<TextView>(R.id.statistic_comics)
-                .text)
+                .text
+        )
 
-        assertEquals(eventsCount.toString(), detailActivityController
+        assertEquals(
+            eventsCount.toString(), detailActivityController
                 .findView<TextView>(R.id.statistic_events)
-                .text)
+                .text
+        )
 
-        assertEquals(seriesCount.toString(), detailActivityController
+        assertEquals(
+            seriesCount.toString(), detailActivityController
                 .findView<TextView>(R.id.statistic_series)
-                .text)
+                .text
+        )
 
-        assertEquals(storiesCount.toString(), detailActivityController
+        assertEquals(
+            storiesCount.toString(), detailActivityController
                 .findView<TextView>(R.id.statistic_stories)
-                .text)
+                .text
+        )
 
         verify { mockViewModel.characterCommand }
     }

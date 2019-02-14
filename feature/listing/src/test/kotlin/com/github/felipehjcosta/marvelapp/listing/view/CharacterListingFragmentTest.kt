@@ -4,7 +4,6 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import com.felipecosta.rxaction.RxCommand
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
-import com.github.felipehjcosta.marvelapp.listing.BuildConfig
 import com.github.felipehjcosta.marvelapp.listing.R
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModel
@@ -29,10 +28,9 @@ import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
 @Config(
-        application = TestStubApplication::class,
-        manifest = Config.NONE,
-        constants = BuildConfig::class,
-        sdk = [21]
+    application = TestStubApplication::class,
+    manifest = Config.NONE,
+    sdk = [21]
 )
 class CharacterListingFragmentTest {
 
@@ -40,10 +38,13 @@ class CharacterListingFragmentTest {
 
     private val mockImageLoader = mockk<ImageLoader>(relaxed = true)
 
-    private val items = listOf(CharacterItemViewModel(
+    private val items = listOf(
+        CharacterItemViewModel(
             1,
             "Thor",
-            "http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350.jpg"))
+            "http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350.jpg"
+        )
+    )
 
     private val fragment = CharacterListingFragment().apply {
         viewModel = mockViewModel
@@ -156,7 +157,7 @@ class CharacterListingFragmentTest {
         var count = 10
 
         return generateSequence { (count--).takeIf { it > 0 } }
-                .map { mockk<CharacterItemViewModel>(relaxed = true) }
-                .toList()
+            .map { mockk<CharacterItemViewModel>(relaxed = true) }
+            .toList()
     }
 }

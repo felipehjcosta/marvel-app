@@ -1,7 +1,6 @@
 package com.github.felipehjcosta.marvelapp.base.navigator
 
 import android.app.Activity
-import com.github.felipehjcosta.marvelapp.base.BuildConfig
 import com.github.felipehjcosta.marvelapp.test.TestStubApplication
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,14 +13,14 @@ import kotlin.test.assertNotNull
 
 @RunWith(RobolectricTestRunner::class)
 @Config(
-        application = TestStubApplication::class,
-        manifest = Config.NONE,
-        constants = BuildConfig::class,
-        sdk = [21]
+    application = TestStubApplication::class,
+    manifest = Config.NONE,
+    sdk = [21]
 )
 class UrlBasedAppNavigatorTest {
 
-    private val activityController: ActivityController<Activity> = Robolectric.buildActivity(Activity::class.java)
+    private val activityController: ActivityController<Activity> =
+        Robolectric.buildActivity(Activity::class.java)
     private val shadowActivity = Shadows.shadowOf(activityController.get())
     private val appNavigator = UrlBasedAppNavigator()
 

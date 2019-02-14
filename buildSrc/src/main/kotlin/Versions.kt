@@ -43,7 +43,7 @@ object Versions {
 
     const val junitLibrary = "4.12"
     const val mockkLibrary = "1.8.13.kotlin13"
-    const val robolectricLibrary = "3.7.1"
+    const val robolectricLibrary = "4.2"
 
     const val espressoLibrary = "3.1.0"
     const val androidTestLibrary = "1.1.0"

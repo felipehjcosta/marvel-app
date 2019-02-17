@@ -6,7 +6,6 @@ import android.view.*
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
@@ -125,10 +124,8 @@ class WikiFragment : Fragment() {
             bind(R.layout.highlighted_characters_fragment_item) {
                 withItems(list) {
                     on<FrameLayout>(R.id.container) {
-                        it.view?.foreground = ContextCompat.getDrawable(
-                            context!!,
-                            R.drawable.highlighted_characters_foreground
-                        )
+                        it.view?.foreground =
+                            context?.getDrawable(R.drawable.highlighted_characters_foreground)
                     }
                     on<TextView>(R.id.title) {
                         it.view?.text = it.item?.name

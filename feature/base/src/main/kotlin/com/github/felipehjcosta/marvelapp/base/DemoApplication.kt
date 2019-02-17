@@ -3,7 +3,7 @@ package com.github.felipehjcosta.marvelapp.base
 import android.app.Activity
 import android.app.Application
 import android.os.Looper
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.github.felipehjcosta.marvelapp.base.di.ApplicationComponent
 import com.github.felipehjcosta.marvelapp.base.di.DaggerApplicationComponent
 import com.github.felipehjcosta.marvelapp.base.network.BASE_URL

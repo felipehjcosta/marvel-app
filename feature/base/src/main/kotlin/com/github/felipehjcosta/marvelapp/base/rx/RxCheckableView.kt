@@ -1,8 +1,8 @@
 package com.github.felipehjcosta.marvelapp.base.rx
 
-import android.support.annotation.CheckResult
+import androidx.annotation.CheckResult
 import com.example.checkableheart.ui.HeartFab
-import com.jakewharton.rxbinding2.InitialValueObservable
+import com.jakewharton.rxbinding3.InitialValueObservable
 
 
 fun HeartFab.checkedChanges(): InitialValueObservable<Boolean> =

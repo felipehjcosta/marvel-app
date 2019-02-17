@@ -7,12 +7,12 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".view.CharacterListingFragment">
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:name="com.github.felipehjcosta.marvelapp.modules.listing.ListingFragment"
             android:layout_width="match_parent"
@@ -20,13 +20,13 @@
             android:clipToPadding="false"
             android:scrollbars="vertical"
             android:visibility="gone"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:context="com.github.felipehjcosta.marvelapp.modules.listing.view.CharacterListingFragment"
             tools:listitem="@layout/listing_fragment_item"
             tools:visibility="visible" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <android.support.v4.widget.ContentLoadingProgressBar
+    <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/loading_view"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"

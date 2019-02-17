@@ -78,9 +78,10 @@ dependencies {
     implementation(project(":library:network"))
     implementation(project(":library:cache"))
 
+    DebugDependencies.values.forEach { debugApi(it) }
+
     KotlinDependencies.values.forEach { api(it) }
 
-    SupportDependencies.values.forEach { api(it) }
     AndroidxDependencies.values.forEach { api(it) }
 
     DaggerDependencies.values.forEach { api(it) }

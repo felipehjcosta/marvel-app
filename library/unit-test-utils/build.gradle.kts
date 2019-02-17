@@ -34,6 +34,6 @@ android {
 }
 
 dependencies {
-    implementation(SupportDependencies.appCompat)
+    implementation(AndroidxDependencies.appCompat)
     KotlinDependencies.values.forEach { implementation(it) }
 }

@@ -40,6 +40,10 @@ allprojects {
         filters = ".*/resources/.*,.*/build/.*"
         config = files("${project.rootDir}/default-detekt-config.yml")
     }
+
+    configurations.all {
+        all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
 }
 
 subprojects {

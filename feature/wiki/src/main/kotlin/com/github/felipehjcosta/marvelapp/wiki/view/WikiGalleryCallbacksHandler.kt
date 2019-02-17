@@ -3,10 +3,10 @@ package com.github.felipehjcosta.marvelapp.wiki.view
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.github.felipehjcosta.marvelapp.base.R
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader

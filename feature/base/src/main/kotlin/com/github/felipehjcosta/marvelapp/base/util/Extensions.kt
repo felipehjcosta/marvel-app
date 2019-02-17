@@ -1,11 +1,11 @@
 package com.github.felipehjcosta.marvelapp.base.util
 
 import android.app.Activity
-import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
-import android.support.v4.util.LruCache
-import android.support.v7.widget.RecyclerView
+import android.util.LruCache
 import android.view.View
+import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 
 inline fun <reified T : View> Activity.bindView(@IdRes idRes: Int): Lazy<T> {
     return lazy(LazyThreadSafetyMode.NONE) { findViewById<T>(idRes) as T }

@@ -1,10 +1,10 @@
 package com.github.felipehjcosta.marvelapp.wiki.view
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.github.felipehjcosta.marvelapp.base.modules.favorite.view.FavoriteFragment
 import com.github.felipehjcosta.marvelapp.wiki.R
-import com.jakewharton.rxbinding2.support.design.widget.itemSelections
+import com.jakewharton.rxbinding3.material.itemSelections
 import io.reactivex.Observable.merge
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.main_activity.nav_view as bottomNavigationView

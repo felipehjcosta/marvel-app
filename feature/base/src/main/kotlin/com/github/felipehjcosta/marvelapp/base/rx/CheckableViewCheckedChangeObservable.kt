@@ -2,7 +2,7 @@ package com.github.felipehjcosta.marvelapp.base.rx
 
 import android.os.Looper
 import com.example.checkableheart.ui.HeartFab
-import com.jakewharton.rxbinding2.InitialValueObservable
+import com.jakewharton.rxbinding3.InitialValueObservable
 import io.reactivex.Observer
 import io.reactivex.android.MainThreadDisposable
 
@@ -19,9 +19,8 @@ class CheckableViewCheckedChangeObservable(private val view: HeartFab) :
         view.setOnCheckedChangeListener(listener)
     }
 
-    override fun getInitialValue(): Boolean {
-        return view.isChecked
-    }
+    override val initialValue: Boolean
+        get() = view.isChecked
 
     internal class Listener(
         private val view: HeartFab,

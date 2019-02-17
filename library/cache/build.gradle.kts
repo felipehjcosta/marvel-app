@@ -54,18 +54,14 @@ android {
 }
 
 dependencies {
-    implementation(SupportDependencies.appCompat)
-    implementation(SupportDependencies.design)
+    implementation(AndroidxDependencies.appCompat)
+    implementation(AndroidxDependencies.design)
     KotlinDependencies.values.forEach { implementation(it) }
     RxJavaDependencies.values.forEach { implementation(it) }
     DatabaseDependencies.values.forEach { api(it) }
 
     DatabaseCompilerDependencies.values.forEach { kapt(it) }
 
-    androidTestImplementation(AndroidTestDependencies.runner)
-    androidTestImplementation(AndroidTestDependencies.junit)
-    androidTestImplementation(AndroidTestDependencies.expressoIntents)
-    androidTestImplementation(AndroidTestDependencies.expressoCore)
-    androidTestImplementation(AndroidTestDependencies.truth)
     testImplementation(TestDependencies.junit)
+    AndroidTestDependencies.values.forEach { androidTestImplementation(it) }
 }

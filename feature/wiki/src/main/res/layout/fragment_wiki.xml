@@ -36,7 +36,7 @@
                 android:text="@string/highlighted_characters_section_subtitle"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/highlighted_characters_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="232dp" />
@@ -50,12 +50,12 @@
             android:text="@string/others_characters_section_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/others_characters_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:layoutManager="android.support.v7.widget.GridLayoutManager" />
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
     </LinearLayout>
 
 </ScrollView>

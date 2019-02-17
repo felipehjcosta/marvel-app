@@ -3,7 +3,7 @@ package com.github.felipehjcosta.marvelapp.base.navigator
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import androidx.net.toUri
+import androidx.core.net.toUri
 import javax.inject.Inject
 
 internal class UrlBasedAppNavigator @Inject constructor() : AppNavigator {

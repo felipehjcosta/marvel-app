@@ -16,18 +16,22 @@ object Versions {
     const val versionCode = 1
     const val versionName = "1.0"
 
-    const val supportLibrary = "28.0.0"
-    const val constraintLayout = "1.1.3"
+    const val androidxSupportV4Library = "1.0.0"
+    const val androidxAppCompatLibrary = "1.0.0"
+    const val androidxMaterialLibrary = "1.0.0-rc01"
+    const val androidxRecyclerViewLibrary = "1.0.0"
+    const val androidxSupportAnnotationLibrary = "1.0.0"
+    const val androidxConstraintLayoutLibrary = "1.1.2"
+    const val androidxKtxLibrary = "1.0.0"
+    const val androidxFragmentTesting = "1.1.0-alpha04"
 
-    const val roomLibrary = "1.1.1"
+    const val roomLibrary = "2.0.0-rc01"
 
     const val rxJavaLibrary = "2.2.6"
     const val rxJavaAndroidLibrary = "2.1.0"
     const val rxJavaRelayLibrary = "2.1.0"
-    const val rxJavaBindingLibrary = "2.2.0"
+    const val rxJavaBindingLibrary = "3.0.0-alpha2"
     const val rxActionLibrary = "1.1.0"
-
-    const val androidxLibrary = "0.2"
 
     const val okhttpLibrary = "3.12.0"
     const val retrofitLibrary = "2.5.0"
@@ -42,14 +46,14 @@ object Versions {
     const val recyclerViewDslLibrary = "0.7.0"
 
     const val junitLibrary = "4.12"
-    const val mockkLibrary = "1.8.13.kotlin13"
-    const val robolectricLibrary = "4.2"
-
-    const val espressoLibrary = "3.1.0"
-    const val androidTestLibrary = "1.1.0"
-    const val androidTestJunitLibrary = "1.0.0"
-    const val androidTestTruthLibrary = "1.0.0"
-    const val kakaoLibrary = "1.4.0"
+    const val mockkLibrary = "1.9.1"
+    const val robolectricLibrary = "4.1"
+    const val androidxJunitLibrary = "1.1.0"
+    const val androidxTruthLibrary = "1.1.0"
+    const val androidxRunnerLibrary = "1.1.1"
+    const val androidxRulesLibrary = "1.1.1"
+    const val androidxEspressoCoreLibrary = "3.1.1"
+    const val androidxEspressoContribLibrary = "3.1.1"
     const val rx2IdlerLibrary = "0.9.0"
     const val testButlerLibrary = "1.3.1"
 }

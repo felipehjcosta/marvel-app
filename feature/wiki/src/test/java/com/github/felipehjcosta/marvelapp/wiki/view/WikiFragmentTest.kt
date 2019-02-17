@@ -1,8 +1,9 @@
 package com.github.felipehjcosta.marvelapp.wiki.view
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.felipecosta.rxaction.RxCommand
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
+import com.github.felipehjcosta.marvelapp.wiki.SupportFragmentController
 import com.github.felipehjcosta.marvelapp.test.TestStubApplication
 import com.github.felipehjcosta.marvelapp.wiki.R
 import com.github.felipehjcosta.marvelapp.wiki.presentation.CharacterItemViewModel
@@ -16,8 +17,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.robolectric.shadows.support.v4.SupportFragmentController.of
-import org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFragment
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -49,7 +48,7 @@ class WikiFragmentTest {
             every { mockHighlightedCharactersViewModel.items } returns this
         }
 
-        startFragment(fragment)
+        SupportFragmentController.setupFragment(fragment)
 
         val recyclerView: RecyclerView =
             fragment.view!!.findViewById(R.id.highlighted_characters_recycler_view)
@@ -62,7 +61,7 @@ class WikiFragmentTest {
             every { mockOthersCharactersViewModel.items } returns this
         }
 
-        startFragment(fragment)
+        SupportFragmentController.setupFragment(fragment)
 
         val recyclerView: RecyclerView =
             fragment.view!!.findViewById(R.id.others_characters_recycler_view)
@@ -94,7 +93,7 @@ class WikiFragmentTest {
         }
         every { mockOthersCharactersViewModel.loadItemsCommand } returns mockOthersLoadItemsCommand
 
-        val controller = of(fragment).create(null).start().resume()
+        val controller = SupportFragmentController.of(fragment).create(null).start().resume()
 
         assertTrue { highlightedItemsSubject.hasObservers() }
         assertTrue { othersItemsSubject.hasObservers() }

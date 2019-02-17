@@ -1,13 +1,13 @@
 package com.github.felipehjcosta.marvelapp.detail.view
 
-import android.support.annotation.IdRes
-import android.support.design.widget.CollapsingToolbarLayout
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.IdRes
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.detail.R
 import com.github.felipehjcosta.marvelapp.detail.presentation.CharacterDetailViewModel
 import com.github.felipehjcosta.marvelapp.test.TestStubApplication
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

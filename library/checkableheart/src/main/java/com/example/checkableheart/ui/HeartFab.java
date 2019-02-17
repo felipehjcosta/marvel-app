@@ -2,17 +2,19 @@ package com.example.checkableheart.ui;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Checkable;
 
 import com.example.checkableheart.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.core.content.ContextCompat;
+
 /**
  * Animations based in Nick Butcher's repository https://github.com/nickbutcher/plaid
- *
- *
+ * <p>
+ * <p>
  * A {@link Checkable} {@link FloatingActionButton} which can be offset vertically.
  */
 public class HeartFab extends FloatingActionButton implements Checkable, View.OnClickListener {

@@ -1,8 +1,8 @@
 package com.github.felipehjcosta.marvelapp.detail.view
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
 import com.github.felipehjcosta.marvelapp.detail.R
@@ -52,12 +52,25 @@ class DetailActivity : AppCompatActivity() {
         compositeDisposable = CompositeDisposable()
         compositeDisposable += viewModel.name.subscribe { toolbarLayout.title = it }
         compositeDisposable += viewModel.description.subscribe { description.text = it }
-        compositeDisposable += viewModel.thumbnailUrl.subscribe { imageLoader.loadImage(it, backdrop) }
+        compositeDisposable += viewModel.thumbnailUrl.subscribe {
+            imageLoader.loadImage(
+                it,
+                backdrop
+            )
+        }
 
-        compositeDisposable += viewModel.comicsCount.subscribe { statisticComics.text = it.toString() }
-        compositeDisposable += viewModel.eventsCount.subscribe { statisticEvents.text = it.toString() }
-        compositeDisposable += viewModel.seriesCount.subscribe { statisticSeries.text = it.toString() }
-        compositeDisposable += viewModel.storiesCount.subscribe { statisticStories.text = it.toString() }
+        compositeDisposable += viewModel.comicsCount.subscribe {
+            statisticComics.text = it.toString()
+        }
+        compositeDisposable += viewModel.eventsCount.subscribe {
+            statisticEvents.text = it.toString()
+        }
+        compositeDisposable += viewModel.seriesCount.subscribe {
+            statisticSeries.text = it.toString()
+        }
+        compositeDisposable += viewModel.storiesCount.subscribe {
+            statisticStories.text = it.toString()
+        }
 
         compositeDisposable += viewModel.characterCommand.execute().subscribe()
     }

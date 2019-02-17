@@ -33,10 +33,8 @@ android {
 }
 
 dependencies {
-    implementation(SupportDependencies.appCompat)
-    implementation(SupportDependencies.design)
+    implementation(AndroidxDependencies.appCompat)
+    implementation(AndroidxDependencies.design)
 
     testImplementation(TestDependencies.junit)
-
-    AndroidTestDependencies.values.forEach { androidTestImplementation(it) }
 }

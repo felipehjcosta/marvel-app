@@ -1,14 +1,14 @@
 package com.github.felipehjcosta.marvelapp.base.util
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.github.felipehjcosta.marvelapp.base.di.ApplicationComponent
 import dagger.android.AndroidInjector
 
 class InstantAppsFragmentInjector(
-        private val applicationComponent: ApplicationComponent,
-        private val map: MutableMap<Class<out Fragment>,
+    private val applicationComponent: ApplicationComponent,
+    private val map: MutableMap<Class<out Fragment>,
                 (ApplicationComponent) -> AndroidInjector.Builder<out Fragment>>,
-        private val decoratedAndroidInjector: AndroidInjector<Fragment>
+    private val decoratedAndroidInjector: AndroidInjector<Fragment>
 ) : AndroidInjector<Fragment> by decoratedAndroidInjector {
 
     override fun inject(instance: Fragment?) {

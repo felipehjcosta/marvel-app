@@ -59,7 +59,7 @@ dependencies {
     application(project(":apk"))
     implementation(project(":feature:base"))
     implementation("com.facebook.shimmer:shimmer:0.2.0")
-    implementation(SupportDependencies.supportAnnotation)
+    implementation(AndroidxDependencies.supportAnnotation)
 
     DaggerCompilerDependencies.values.forEach { kapt(it) }
     AnnotationsDependencies.values.forEach { compileOnly(it) }

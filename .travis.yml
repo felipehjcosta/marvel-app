@@ -50,6 +50,9 @@ jobs:
   - stage: "Lint"
     script:
       - ./gradlew detekt lintDebug --console=plain
+  - stage: "Can I drop Jetifier?"
+    script:
+    - ./gradlew -Pandroid.enableJetifier=false canIDropJetifier
   - stage: "Test"
     before_script:
       - echo no | $HOME/android-sdk/tools/bin/avdmanager create avd -n test -k "system-images;android-21;default;armeabi-v7a"

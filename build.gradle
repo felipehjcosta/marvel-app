@@ -13,10 +13,12 @@ buildscript {
         classpath BuildPlugins.dependencyGraphGeneratorPlugin
         classpath BuildPlugins.androidJunitJacocoPlugin
         classpath BuildPlugins.detektGradlePlugin
+        classpath BuildPlugins.canidropjetifierPlugin
     }
 }
 
 apply plugin: "com.vanniktech.android.junit.jacoco"
+apply plugin: "com.github.plnice.canidropjetifier"
 
 junitJacoco {
     jacocoVersion = "0.8.2"

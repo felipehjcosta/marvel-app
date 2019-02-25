@@ -9,6 +9,8 @@ object BuildPlugins {
         "com.vanniktech:gradle-android-junit-jacoco-plugin:${Versions.androidJunitJacocoPlugin}"
     const val detektGradlePlugin =
         "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detektGradlePlugin}"
+    const val canidropjetifierPlugin =
+        "com.github.plnice:canidropjetifier:${Versions.canidropjetifierPlugin}"
 }
 
 object KotlinDependencies {

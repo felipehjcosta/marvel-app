@@ -152,14 +152,14 @@ class WikiFragment : Fragment() {
     private fun bindOthersCharactersSection() {
         compositeDisposable += highlightedCharactersViewModel.input.loadItemsCommand.execute().subscribe()
 
-        compositeDisposable += othersCharactersViewModel.items
+        compositeDisposable += othersCharactersViewModel.output.items
             .subscribe { displayOthersCharacters(it) }
 
-        compositeDisposable += othersCharactersViewModel.showLoading
+        compositeDisposable += othersCharactersViewModel.output.showLoading
             .filter { it == true }
             .subscribe { displayLoadingOthersCharacters() }
 
-        compositeDisposable += othersCharactersViewModel.loadItemsCommand.execute().subscribe()
+        compositeDisposable += othersCharactersViewModel.input.loadItemsCommand.execute().subscribe()
     }
 
     private fun displayLoadingOthersCharacters() {

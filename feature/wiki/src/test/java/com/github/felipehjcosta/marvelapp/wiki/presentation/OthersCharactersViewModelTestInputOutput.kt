@@ -12,10 +12,10 @@ import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Test
 
-class OthersCharactersViewModelTest {
+class OthersCharactersViewModelTestInputOutput {
     private val dataModel = mockk<OthersCharactersDataModel>()
 
-    private val viewModel = OthersCharactersViewModel(dataModel)
+    private val viewModel = OthersCharactersViewModelInputOutput(dataModel)
 
     @Before
     fun setUp() {
@@ -36,9 +36,9 @@ class OthersCharactersViewModelTest {
 
         val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
 
-        viewModel.items.subscribe(itemsObserver)
+        viewModel.output.items.subscribe(itemsObserver)
 
-        val disposable = viewModel.loadItemsCommand.execute().subscribe()
+        val disposable = viewModel.input.loadItemsCommand.execute().subscribe()
 
         itemsObserver.assertValue { it[0].name == characterName }
 
@@ -55,9 +55,9 @@ class OthersCharactersViewModelTest {
 
         val itemsObserver = TestObserver.create<Boolean>()
 
-        viewModel.showLoading.subscribe(itemsObserver)
+        viewModel.output.showLoading.subscribe(itemsObserver)
 
-        val disposable = viewModel.loadItemsCommand.execute().subscribe()
+        val disposable = viewModel.input.loadItemsCommand.execute().subscribe()
 
         itemsObserver.assertValues(true, false)
 

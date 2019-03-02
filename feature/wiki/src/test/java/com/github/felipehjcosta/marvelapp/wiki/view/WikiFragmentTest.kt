@@ -6,7 +6,9 @@ import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.test.TestStubApplication
 import com.github.felipehjcosta.marvelapp.wiki.R
 import com.github.felipehjcosta.marvelapp.wiki.SupportFragmentController
-import com.github.felipehjcosta.marvelapp.wiki.presentation.*
+import com.github.felipehjcosta.marvelapp.wiki.presentation.CharacterItemViewModel
+import com.github.felipehjcosta.marvelapp.wiki.presentation.HighlightedCharactersViewModel
+import com.github.felipehjcosta.marvelapp.wiki.presentation.OthersCharactersViewModel
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.subjects.BehaviorSubject
@@ -27,17 +29,17 @@ import kotlin.test.assertTrue
 )
 class WikiFragmentTest {
 
-    private val mockInputViewModel = mockk<HighlightedCharactersViewModelInput>(relaxed = true)
-
-    private val mockOutputViewModel = mockk<HighlightedCharactersViewModelOutput>(relaxed = true)
-
     private val mockHighlightedCharactersViewModel =
         mockk<HighlightedCharactersViewModel>(relaxed = true).apply {
-            every { input } returns mockInputViewModel
-            every { output } returns mockOutputViewModel
+            every { input } returns mockk(relaxed = true)
+            every { output } returns mockk(relaxed = true)
         }
 
-    private val mockOthersCharactersViewModel = mockk<OthersCharactersViewModel>(relaxed = true)
+    private val mockOthersCharactersViewModel =
+        mockk<OthersCharactersViewModel>(relaxed = true).apply {
+            every { input } returns mockk(relaxed = true)
+            every { output } returns mockk(relaxed = true)
+        }
 
     private val mockImageLoader = mockk<ImageLoader>(relaxed = true)
 
@@ -63,7 +65,7 @@ class WikiFragmentTest {
     @Test
     fun `given others characters emitted when start Fragment it should populate list`() {
         BehaviorSubject.createDefault(generateItems()).apply {
-            every { mockOthersCharactersViewModel.items } returns this
+            every { mockOthersCharactersViewModel.output.items } returns this
         }
 
         SupportFragmentController.setupFragment(fragment)
@@ -81,7 +83,7 @@ class WikiFragmentTest {
         }
 
         val othersItemsSubject = BehaviorSubject.createDefault(generateItems()).apply {
-            every { mockOthersCharactersViewModel.items } returns this
+            every { mockOthersCharactersViewModel.output.items } returns this
         }
 
         val mockHighlightedLoadItemsCommand = mockk<RxCommand<Any>>(relaxed = true)
@@ -96,7 +98,7 @@ class WikiFragmentTest {
         val othersLoadItemsCommandExecuteCompletable = CompletableSubject.create().apply {
             every { mockOthersLoadItemsCommand.execute(any()) } returns this
         }
-        every { mockOthersCharactersViewModel.loadItemsCommand } returns mockOthersLoadItemsCommand
+        every { mockOthersCharactersViewModel.input.loadItemsCommand } returns mockOthersLoadItemsCommand
 
         val controller = SupportFragmentController.of(fragment).create(null).start().resume()
 

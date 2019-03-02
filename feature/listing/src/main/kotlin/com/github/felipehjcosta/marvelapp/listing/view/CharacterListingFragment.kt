@@ -17,6 +17,7 @@ import com.github.felipehjcosta.marvelapp.base.navigator.AppNavigator
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
 import com.github.felipehjcosta.marvelapp.listing.R
 import com.github.felipehjcosta.marvelapp.listing.di.setupDependencyInjection
+import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModel
 import com.github.felipehjcosta.recyclerviewdsl.onRecyclerView
 import com.jakewharton.rxbinding3.recyclerview.RecyclerViewScrollEvent
@@ -78,36 +79,7 @@ class CharacterListingFragment : Fragment() {
         compositeDisposable = CompositeDisposable()
 
         compositeDisposable += viewModel.items
-            .subscribe {
-                onRecyclerView(recyclerView) {
-                    bind(R.layout.listing_fragment_item) {
-                        withItems(it) {
-
-                            on<TextView>(R.id.title) {
-                                it.view?.text = it.item?.name
-                            }
-
-                            on<ImageView>(R.id.image) {
-                                val imageUrl = it.item?.image
-                                val imageView = it.view
-                                if (imageUrl != null && imageView != null) {
-                                    val radius = RBase.dimen.image_default_color_radius
-                                    val cornerRadius = imageView.resources
-                                        .getDimensionPixelSize(radius)
-                                    imageLoader
-                                        .loadRoundedImage(imageUrl, imageView, cornerRadius)
-                                }
-                            }
-
-                            onClick { _, item ->
-                                activity?.let {
-                                    appNavigator.showDetail(it, item?.id ?: 0)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            .subscribe(this::displayList)
 
         compositeDisposable += viewModel.showLoading
             .map {
@@ -164,6 +136,37 @@ class CharacterListingFragment : Fragment() {
 
     private fun unbind() {
         compositeDisposable.dispose()
+    }
+
+    private fun displayList(items: List<CharacterItemViewModel>) {
+        onRecyclerView(recyclerView) {
+            bind(R.layout.listing_fragment_item) {
+                withItems(items) {
+
+                    on<TextView>(R.id.title) {
+                        it.view?.text = it.item?.name
+                    }
+
+                    on<ImageView>(R.id.image) {
+                        val imageUrl = it.item?.image
+                        val imageView = it.view
+                        if (imageUrl != null && imageView != null) {
+                            val radius = RBase.dimen.image_default_color_radius
+                            val cornerRadius = imageView.resources
+                                .getDimensionPixelSize(radius)
+                            imageLoader
+                                .loadRoundedImage(imageUrl, imageView, cornerRadius)
+                        }
+                    }
+
+                    onClick { _, item ->
+                        activity?.let {
+                            appNavigator.showDetail(it, item?.id ?: 0)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun crossFade(fromView: View, toView: View) {

@@ -88,7 +88,7 @@ class WikiFragment : Fragment() {
     }
 
     private fun bindHighlightedCharactersSection() {
-        compositeDisposable += highlightedCharactersViewModel.items
+        compositeDisposable += highlightedCharactersViewModel.output.items
             .doOnNext { characters ->
                 WikiGalleryCallbacksHandler(
                     imageLoader,
@@ -101,7 +101,7 @@ class WikiFragment : Fragment() {
             }
             .subscribe { displayHighlightedCharacters(it) }
 
-        compositeDisposable += highlightedCharactersViewModel.showLoading
+        compositeDisposable += highlightedCharactersViewModel.output.showLoading
             .filter { it == true }
             .doOnNext {
                 LoadingWikiGalleryCallbacksHandler().apply {
@@ -150,7 +150,7 @@ class WikiFragment : Fragment() {
     }
 
     private fun bindOthersCharactersSection() {
-        compositeDisposable += highlightedCharactersViewModel.loadItemsCommand.execute().subscribe()
+        compositeDisposable += highlightedCharactersViewModel.input.loadItemsCommand.execute().subscribe()
 
         compositeDisposable += othersCharactersViewModel.items
             .subscribe { displayOthersCharacters(it) }

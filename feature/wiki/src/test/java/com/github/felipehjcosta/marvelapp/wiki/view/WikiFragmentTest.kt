@@ -3,12 +3,10 @@ package com.github.felipehjcosta.marvelapp.wiki.view
 import androidx.recyclerview.widget.RecyclerView
 import com.felipecosta.rxaction.RxCommand
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
-import com.github.felipehjcosta.marvelapp.wiki.SupportFragmentController
 import com.github.felipehjcosta.marvelapp.test.TestStubApplication
 import com.github.felipehjcosta.marvelapp.wiki.R
-import com.github.felipehjcosta.marvelapp.wiki.presentation.CharacterItemViewModel
-import com.github.felipehjcosta.marvelapp.wiki.presentation.HighlightedCharactersViewModel
-import com.github.felipehjcosta.marvelapp.wiki.presentation.OthersCharactersViewModel
+import com.github.felipehjcosta.marvelapp.wiki.SupportFragmentController
+import com.github.felipehjcosta.marvelapp.wiki.presentation.*
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.subjects.BehaviorSubject
@@ -29,8 +27,15 @@ import kotlin.test.assertTrue
 )
 class WikiFragmentTest {
 
+    private val mockInputViewModel = mockk<HighlightedCharactersViewModelInput>(relaxed = true)
+
+    private val mockOutputViewModel = mockk<HighlightedCharactersViewModelOutput>(relaxed = true)
+
     private val mockHighlightedCharactersViewModel =
-        mockk<HighlightedCharactersViewModel>(relaxed = true)
+        mockk<HighlightedCharactersViewModel>(relaxed = true).apply {
+            every { input } returns mockInputViewModel
+            every { output } returns mockOutputViewModel
+        }
 
     private val mockOthersCharactersViewModel = mockk<OthersCharactersViewModel>(relaxed = true)
 
@@ -45,7 +50,7 @@ class WikiFragmentTest {
     @Test
     fun `given highlighted characters emitted when start Fragment it should populate gallery`() {
         BehaviorSubject.createDefault(generateItems()).apply {
-            every { mockHighlightedCharactersViewModel.items } returns this
+            every { mockHighlightedCharactersViewModel.output.items } returns this
         }
 
         SupportFragmentController.setupFragment(fragment)
@@ -72,7 +77,7 @@ class WikiFragmentTest {
     fun `When go through Fragment lifecycle it should bind view models properties followed by unbind them`() {
 
         val highlightedItemsSubject = BehaviorSubject.createDefault(generateItems()).apply {
-            every { mockHighlightedCharactersViewModel.items } returns this
+            every { mockHighlightedCharactersViewModel.output.items } returns this
         }
 
         val othersItemsSubject = BehaviorSubject.createDefault(generateItems()).apply {
@@ -84,7 +89,7 @@ class WikiFragmentTest {
         val highlightedLoadItemsCommandExecuteCompletable = CompletableSubject.create().apply {
             every { mockHighlightedLoadItemsCommand.execute(any()) } returns this
         }
-        every { mockHighlightedCharactersViewModel.loadItemsCommand } returns mockHighlightedLoadItemsCommand
+        every { mockHighlightedCharactersViewModel.input.loadItemsCommand } returns mockHighlightedLoadItemsCommand
 
         val mockOthersLoadItemsCommand = mockk<RxCommand<Any>>(relaxed = true)
 

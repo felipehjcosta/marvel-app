@@ -10,6 +10,7 @@ import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.listing.R
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModel
+import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModelInputOutput
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Observable
@@ -28,7 +29,10 @@ import kotlin.test.assertTrue
 @RunWith(AndroidJUnit4::class)
 class CharacterListingFragmentTest {
 
-    private val mockViewModel = mockk<CharacterListViewModel>(relaxed = true)
+    private val mockViewModel = mockk<CharacterListViewModel>(relaxed = true).apply {
+        every { input } returns mockk(relaxed = true)
+        every { output } returns mockk(relaxed = true)
+    }
 
     private val mockImageLoader = mockk<ImageLoader>(relaxed = true)
 
@@ -57,7 +61,7 @@ class CharacterListingFragmentTest {
     @Test
     fun givenItemsEmittedWhenStartFragmentItShouldPopulateTheList() {
         createDefault(items).apply {
-            every { mockViewModel.items } returns this
+            every { mockViewModel.output.items } returns this
         }
 
         launchFragmentInContainer { fragment }.moveToState(Lifecycle.State.RESUMED).onFragment {
@@ -69,7 +73,7 @@ class CharacterListingFragmentTest {
     @Test
     fun givenShowLoadingEmittedWhenStartFragmentItShouldShowSwipeRefresh() {
         createDefault(items).apply {
-            every { mockViewModel.showLoading } returns Observable.just(true)
+            every { mockViewModel.output.showLoading } returns Observable.just(true)
         }
 
         launchFragmentInContainer { fragment }.moveToState(Lifecycle.State.RESUMED).onFragment {
@@ -86,7 +90,7 @@ class CharacterListingFragmentTest {
         val commandExecuteCompletable = CompletableSubject.create().apply {
             every { mockLoadItemsCommand.execute(any()) } returns this
         }
-        every { mockViewModel.loadItemsCommand } returns mockLoadItemsCommand
+        every { mockViewModel.input.loadItemsCommand } returns mockLoadItemsCommand
 
         launchFragmentInContainer { fragment }.moveToState(Lifecycle.State.RESUMED)
 
@@ -96,19 +100,19 @@ class CharacterListingFragmentTest {
     @Test
     fun givenItemsWhenDispatchScrollEventItShouldLoadMoreItems() {
         createDefault(generateItems()).apply {
-            every { mockViewModel.items } returns this
+            every { mockViewModel.output.items } returns this
         }
 
-        every { mockViewModel.showLoading } returns Observable.just(false)
+        every { mockViewModel.output.showLoading } returns Observable.just(false)
 
         val mockLoadMoreItemsCommand = mockk<RxCommand<Any>>(relaxed = true)
 
         val commandExecuteCompletable = CompletableSubject.create().apply {
             every { mockLoadMoreItemsCommand.execute(any()) } returns this
         }
-        every { mockViewModel.loadMoreItemsCommand } returns mockLoadMoreItemsCommand
+        every { mockViewModel.input.loadMoreItemsCommand } returns mockLoadMoreItemsCommand
 
-        every { mockViewModel.showLoadingMore } returns Observable.just(false)
+        every { mockViewModel.output.showLoadingMore } returns Observable.just(false)
 
         launchFragmentInContainer { fragment }.moveToState(Lifecycle.State.RESUMED)
         assertFalse { commandExecuteCompletable.hasObservers() }
@@ -122,11 +126,11 @@ class CharacterListingFragmentTest {
     @Test
     fun `When go through Fragment lifecycle it should bind view model properties followed by unbind them`() {
         val itemsSubject = createDefault(generateItems()).apply {
-            every { mockViewModel.items } returns this
+            every { mockViewModel.output.items } returns this
         }
 
         val showLoadingSubject = createDefault(true).apply {
-            every { mockViewModel.showLoading } returns this
+            every { mockViewModel.output.showLoading } returns this
         }
 
         val mockLoadItemsCommand = mockk<RxCommand<Any>>(relaxed = true)
@@ -134,10 +138,10 @@ class CharacterListingFragmentTest {
         val loadItemsCommandExecuteCompletable = CompletableSubject.create().apply {
             every { mockLoadItemsCommand.execute(any()) } returns this
         }
-        every { mockViewModel.loadItemsCommand } returns mockLoadItemsCommand
+        every { mockViewModel.input.loadItemsCommand } returns mockLoadItemsCommand
 
         val newItemsSubject = createDefault(generateItems()).apply {
-            every { mockViewModel.newItems } returns this
+            every { mockViewModel.output.newItems } returns this
         }
 
         val fragmentScenario =

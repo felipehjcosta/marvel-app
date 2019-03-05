@@ -17,11 +17,11 @@ import org.junit.Before
 import org.junit.Test
 import java.io.IOException
 
-class CharacterListViewModelTest {
+class CharacterListViewModelInputOutputTest {
 
     private var dataModel = mockk<ListingDataModel>()
 
-    private val viewModel = CharacterListViewModel(dataModel)
+    private val viewModel = CharacterListViewModelInputOutput(dataModel)
 
     @Before
     fun setUp() {
@@ -43,9 +43,9 @@ class CharacterListViewModelTest {
 
         val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
 
-        viewModel.items.subscribe(itemsObserver)
+        viewModel.output.items.subscribe(itemsObserver)
 
-        val disposable = viewModel.loadItemsCommand.execute().subscribe()
+        val disposable = viewModel.input.loadItemsCommand.execute().subscribe()
 
         itemsObserver.assertValue { it[0].name == characterName }
 
@@ -63,9 +63,9 @@ class CharacterListViewModelTest {
 
         val itemsObserver = TestObserver.create<Boolean>()
 
-        viewModel.showLoading.subscribe(itemsObserver)
+        viewModel.output.showLoading.subscribe(itemsObserver)
 
-        val disposable = viewModel.loadItemsCommand.execute().subscribe()
+        val disposable = viewModel.input.loadItemsCommand.execute().subscribe()
 
         itemsObserver.assertValues(true, false)
 
@@ -81,9 +81,9 @@ class CharacterListViewModelTest {
 
         val itemsObserver = TestObserver.create<Boolean>()
 
-        viewModel.showLoadItemsError.subscribe(itemsObserver)
+        viewModel.output.showLoadItemsError.subscribe(itemsObserver)
 
-        val disposable = viewModel.loadItemsCommand.execute().subscribe()
+        val disposable = viewModel.input.loadItemsCommand.execute().subscribe()
 
         itemsObserver.assertValues(true)
 
@@ -101,9 +101,9 @@ class CharacterListViewModelTest {
 
         val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
 
-        viewModel.newItems.subscribe(itemsObserver)
+        viewModel.output.newItems.subscribe(itemsObserver)
 
-        val disposable = viewModel.loadMoreItemsCommand.execute().subscribe()
+        val disposable = viewModel.input.loadMoreItemsCommand.execute().subscribe()
 
         itemsObserver.assertValue { it[0].name == characterName }
 
@@ -120,9 +120,9 @@ class CharacterListViewModelTest {
 
         val showLoadMoreObserver = TestObserver.create<Boolean>()
 
-        viewModel.showLoadingMore.subscribe(showLoadMoreObserver)
+        viewModel.output.showLoadingMore.subscribe(showLoadMoreObserver)
 
-        val disposable = viewModel.loadMoreItemsCommand.execute().subscribe()
+        val disposable = viewModel.input.loadMoreItemsCommand.execute().subscribe()
 
         disposable.dispose()
 
@@ -145,15 +145,15 @@ class CharacterListViewModelTest {
 
         val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
 
-        viewModel.items.subscribe(itemsObserver)
+        viewModel.output.items.subscribe(itemsObserver)
 
         val newItemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
-        viewModel.newItems.subscribe(newItemsObserver)
+        viewModel.output.newItems.subscribe(newItemsObserver)
 
         val disposables = CompositeDisposable()
 
-        disposables += viewModel.loadItemsCommand.execute().subscribe()
-        disposables += viewModel.loadMoreItemsCommand.execute().subscribe()
+        disposables += viewModel.input.loadItemsCommand.execute().subscribe()
+        disposables += viewModel.input.loadMoreItemsCommand.execute().subscribe()
 
         itemsObserver.assertValueAt(0) { it[0].name == characterName1 }
         newItemsObserver.assertValueAt(0) { it[0].name == characterName2 }
@@ -177,15 +177,15 @@ class CharacterListViewModelTest {
 
         val itemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
 
-        viewModel.items.subscribe(itemsObserver)
+        viewModel.output.items.subscribe(itemsObserver)
 
         val newItemsObserver = TestObserver.create<List<CharacterItemViewModel>>()
-        viewModel.newItems.subscribe(newItemsObserver)
+        viewModel.output.newItems.subscribe(newItemsObserver)
 
         val disposables = CompositeDisposable()
 
-        disposables += viewModel.loadItemsCommand.execute().subscribe()
-        disposables += viewModel.loadMoreItemsCommand.execute().subscribe()
+        disposables += viewModel.input.loadItemsCommand.execute().subscribe()
+        disposables += viewModel.input.loadMoreItemsCommand.execute().subscribe()
 
         verify(exactly = 2) { dataModel.loadItems(any(), any()) }
 

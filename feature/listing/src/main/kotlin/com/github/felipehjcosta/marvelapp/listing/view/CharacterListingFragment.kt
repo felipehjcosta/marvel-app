@@ -19,6 +19,7 @@ import com.github.felipehjcosta.marvelapp.listing.R
 import com.github.felipehjcosta.marvelapp.listing.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModel
+import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModelInputOutput
 import com.github.felipehjcosta.recyclerviewdsl.onRecyclerView
 import com.jakewharton.rxbinding3.recyclerview.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding3.recyclerview.scrollEvents
@@ -78,10 +79,10 @@ class CharacterListingFragment : Fragment() {
     ) {
         compositeDisposable = CompositeDisposable()
 
-        compositeDisposable += viewModel.items
+        compositeDisposable += viewModel.output.items
             .subscribe(this::displayList)
 
-        compositeDisposable += viewModel.showLoading
+        compositeDisposable += viewModel.output.showLoading
             .map {
                 if (it)
                     recyclerView to contentLoadingProgressBar
@@ -90,15 +91,15 @@ class CharacterListingFragment : Fragment() {
             }
             .subscribe { crossFade(it.first, it.second) }
 
-        compositeDisposable += viewModel.showLoading.subscribe { swipeRefresh.isRefreshing = it }
+        compositeDisposable += viewModel.output.showLoading.subscribe { swipeRefresh.isRefreshing = it }
 
         compositeDisposable +=  swipeRefresh.refreshes()
-            .flatMapCompletable { viewModel.loadItemsCommand.execute() }
+            .flatMapCompletable { viewModel.input.loadItemsCommand.execute() }
             .subscribe()
 
-        compositeDisposable += viewModel.loadItemsCommand.execute().subscribe()
+        compositeDisposable += viewModel.input.loadItemsCommand.execute().subscribe()
 
-        compositeDisposable += viewModel.newItems
+        compositeDisposable += viewModel.output.newItems
             .subscribe {
                 onRecyclerView(recyclerView) {
                     bind(R.layout.listing_fragment_item) {
@@ -107,7 +108,7 @@ class CharacterListingFragment : Fragment() {
                 }
             }
 
-        val loadMoreCommand = viewModel.loadMoreItemsCommand
+        val loadMoreCommand = viewModel.input.loadMoreItemsCommand
 
         compositeDisposable += combineLatest(recyclerView.scrollEvents(), just(linearLayoutManger),
             BiFunction { event: RecyclerViewScrollEvent, layoutManager: LinearLayoutManager ->
@@ -120,7 +121,7 @@ class CharacterListingFragment : Fragment() {
                 }
             })
             .debounce(DEBOUNCE_SCROLL_TIMEOUT, MILLISECONDS, mainThread())
-            .withLatestFrom(viewModel.showLoadingMore.startWith(false),
+            .withLatestFrom(viewModel.output.showLoadingMore.startWith(false),
                 BiFunction { shouldLoadNewItems: Boolean, showLoadingMore: Boolean ->
                     if (showLoadingMore) false else shouldLoadNewItems
                 })

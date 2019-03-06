@@ -14,13 +14,13 @@ import org.junit.Before
 import org.junit.Test
 import java.util.concurrent.TimeUnit
 
-internal class CharacterDetailViewModelTest {
+internal class CharacterDetailViewModelInputOutputTest {
 
     private val characterId = 1
 
     private val dataModel = mockk<DetailDataModel>()
 
-    private val viewModel = CharacterDetailViewModel(characterId, dataModel)
+    private val viewModel = CharacterDetailViewModelInputOutput(characterId, dataModel)
 
     @Before
     fun setUp() {
@@ -56,15 +56,15 @@ internal class CharacterDetailViewModelTest {
 
         every { dataModel.character(characterId) } returns just(character)
 
-        val nameObservable = subscribeTo { viewModel.name }
-        val descriptionObservable = subscribeTo { viewModel.description }
-        val thumbnailUrlObservable = subscribeTo { viewModel.thumbnailUrl }
-        val comicsCountObservable = subscribeTo { viewModel.comicsCount }
-        val eventsCountObservable = subscribeTo { viewModel.eventsCount }
-        val seriesCountObservable = subscribeTo { viewModel.seriesCount }
-        val storiesCountObservable = subscribeTo { viewModel.storiesCount }
+        val nameObservable = subscribeTo { viewModel.output.name }
+        val descriptionObservable = subscribeTo { viewModel.output.description }
+        val thumbnailUrlObservable = subscribeTo { viewModel.output.thumbnailUrl }
+        val comicsCountObservable = subscribeTo { viewModel.output.comicsCount }
+        val eventsCountObservable = subscribeTo { viewModel.output.eventsCount }
+        val seriesCountObservable = subscribeTo { viewModel.output.seriesCount }
+        val storiesCountObservable = subscribeTo { viewModel.output.storiesCount }
 
-        viewModel.characterCommand.execute().subscribe()
+        viewModel.input.characterCommand.execute().subscribe()
 
         nameObservable.await(500L, TimeUnit.MILLISECONDS)
         nameObservable.assertValue(expectedName)

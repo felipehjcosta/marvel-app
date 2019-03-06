@@ -3,6 +3,7 @@ package com.github.felipehjcosta.marvelapp.detail.view
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.IdRes
+import com.felipecosta.rxaction.RxCommand
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.detail.R
 import com.github.felipehjcosta.marvelapp.detail.presentation.CharacterDetailViewModel
@@ -39,7 +40,10 @@ class DetailActivityTest {
     private val seriesCount = 1
     private val storiesCount = 1
 
-    private val mockViewModel = mockk<CharacterDetailViewModel>(relaxed = true)
+    private val mockViewModel = mockk<CharacterDetailViewModel>(relaxed = true).apply {
+        every { input } returns mockk(relaxed = true)
+        every { output } returns mockk(relaxed = true)
+    }
 
     private val mockImageLoader = mockk<ImageLoader>(relaxed = true)
 
@@ -58,12 +62,16 @@ class DetailActivityTest {
     @Test
     fun givenSubscribedToDetailViewModelWhenResumeItShouldDisplayCharacterInformation() {
 
-        every { mockViewModel.name } returns just(name)
-        every { mockViewModel.description } returns just(description)
-        every { mockViewModel.comicsCount } returns just(comicsCount)
-        every { mockViewModel.eventsCount } returns just(eventsCount)
-        every { mockViewModel.seriesCount } returns just(seriesCount)
-        every { mockViewModel.storiesCount } returns just(storiesCount)
+        val mockCharacterCommand = mockk<RxCommand<Any>>(relaxed = true)
+
+        every { mockViewModel.input.characterCommand } returns mockCharacterCommand
+
+        every { mockViewModel.output.name } returns just(name)
+        every { mockViewModel.output.description } returns just(description)
+        every { mockViewModel.output.comicsCount } returns just(comicsCount)
+        every { mockViewModel.output.eventsCount } returns just(eventsCount)
+        every { mockViewModel.output.seriesCount } returns just(seriesCount)
+        every { mockViewModel.output.storiesCount } returns just(storiesCount)
 
         detailActivityController.resume().visible()
 
@@ -103,28 +111,28 @@ class DetailActivityTest {
                 .text
         )
 
-        verify { mockViewModel.characterCommand }
+        verify { mockCharacterCommand.execute(any()) }
     }
 
     @Test
     fun givenResumedWhenPauseItShouldDisposeDetailViewModelSubscriptions() {
         val nameSubject = createDefault(name).apply {
-            every { mockViewModel.name } returns this
+            every { mockViewModel.output.name } returns this
         }
         val descriptionSubject = createDefault(description).apply {
-            every { mockViewModel.description } returns this
+            every { mockViewModel.output.description } returns this
         }
         val comicsCountSubject = createDefault(comicsCount).apply {
-            every { mockViewModel.comicsCount } returns this
+            every { mockViewModel.output.comicsCount } returns this
         }
         val eventsCountSubject = createDefault(eventsCount).apply {
-            every { mockViewModel.eventsCount } returns this
+            every { mockViewModel.output.eventsCount } returns this
         }
         val seriesCountSubject = createDefault(seriesCount).apply {
-            every { mockViewModel.seriesCount } returns this
+            every { mockViewModel.output.seriesCount } returns this
         }
         val storiesCountSubject = createDefault(storiesCount).apply {
-            every { mockViewModel.storiesCount } returns this
+            every { mockViewModel.output.storiesCount } returns this
         }
 
         detailActivityController.resume().visible()

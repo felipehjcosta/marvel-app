@@ -50,29 +50,29 @@ class DetailActivity : AppCompatActivity() {
 
     private fun bind() {
         compositeDisposable = CompositeDisposable()
-        compositeDisposable += viewModel.name.subscribe { toolbarLayout.title = it }
-        compositeDisposable += viewModel.description.subscribe { description.text = it }
-        compositeDisposable += viewModel.thumbnailUrl.subscribe {
+        compositeDisposable += viewModel.output.name.subscribe { toolbarLayout.title = it }
+        compositeDisposable += viewModel.output.description.subscribe { description.text = it }
+        compositeDisposable += viewModel.output.thumbnailUrl.subscribe {
             imageLoader.loadImage(
                 it,
                 backdrop
             )
         }
 
-        compositeDisposable += viewModel.comicsCount.subscribe {
+        compositeDisposable += viewModel.output.comicsCount.subscribe {
             statisticComics.text = it.toString()
         }
-        compositeDisposable += viewModel.eventsCount.subscribe {
+        compositeDisposable += viewModel.output.eventsCount.subscribe {
             statisticEvents.text = it.toString()
         }
-        compositeDisposable += viewModel.seriesCount.subscribe {
+        compositeDisposable += viewModel.output.seriesCount.subscribe {
             statisticSeries.text = it.toString()
         }
-        compositeDisposable += viewModel.storiesCount.subscribe {
+        compositeDisposable += viewModel.output.storiesCount.subscribe {
             statisticStories.text = it.toString()
         }
 
-        compositeDisposable += viewModel.characterCommand.execute().subscribe()
+        compositeDisposable += viewModel.input.characterCommand.execute().subscribe()
     }
 
     override fun onPause() {

@@ -63,6 +63,10 @@ subprojects {
                 androidTestUtil AndroidTestUtilDependencies.values
             }
         }
+
+        CIBuild = System.getenv("CI") == "true"
+        // allows for -Dpre-dex=false to be set
+        preDexEnabled = "true".equals(System.getProperty("pre-dex", "true"))
     }
 
     gradle.projectsEvaluated {
@@ -77,6 +81,11 @@ subprojects {
                 compileOptions {
                     sourceCompatibility JavaVersion.VERSION_1_8
                     targetCompatibility JavaVersion.VERSION_1_8
+                }
+
+                dexOptions {
+                    // Skip pre-dexing when running on CI or when disabled via -Dpre-dex=false.
+                    preDexLibraries = preDexEnabled && !CIBuild
                 }
             }
         }

@@ -53,10 +53,6 @@ android {
         exclude("META-INF/proguard/androidx-annotations.pro")
     }
 
-    adbOptions {
-        timeOutInMs = 5 * 60 * 1000
-    }
-
 }
 
 dependencies {

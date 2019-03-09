@@ -44,10 +44,6 @@ android {
 
     tasks.getByName("lint").enabled = false
 
-    adbOptions {
-        timeOutInMs = 5 * 60 * 1000
-    }
-
     packagingOptions {
         exclude("META-INF/proguard/androidx-annotations.pro")
     }

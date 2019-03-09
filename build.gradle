@@ -87,6 +87,10 @@ subprojects {
                     // Skip pre-dexing when running on CI or when disabled via -Dpre-dex=false.
                     preDexLibraries = preDexEnabled && !CIBuild
                 }
+
+                adbOptions {
+                    timeOutInMs = 5 * 60 * 1000
+                }
             }
         }
     }

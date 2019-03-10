@@ -62,7 +62,7 @@ jobs:
     - *save_gradle_cache
     - run:
         name: Run Tests
-        command: ./gradlew testDebugUnitTest -Dorg.gradle.parallel=false
+        command: ./gradlew testDebugUnitTest --console=plain -Dorg.gradle.parallel=false
     - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
         path: app/build/reports
         destination: reports

@@ -93,7 +93,7 @@ jobs:
     - *save_gradle_cache
     - run:
         name: "Assemble Release"
-        command: ./gradlew assembleRelease --console=plain --console=plain -Dorg.gradle.parallel=false
+        command: ./gradlew assembleRelease --console=plain -Dorg.gradle.parallel=false
 
 workflows:
   version: 2

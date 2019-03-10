@@ -62,7 +62,7 @@ jobs:
     - *android_dependencies
     - *save_gradle_cache
     - run:
-        name: Run Lint
+        name: "Can I drop Jetifier?"
         command: ./gradlew -Pandroid.enableJetifier=false canIDropJetifier --console=plain -Dorg.gradle.parallel=false
 
   test:

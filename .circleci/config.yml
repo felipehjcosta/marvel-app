@@ -52,6 +52,19 @@ jobs:
     - run:
         name: Run Lint
         command: ./gradlew detekt lintDebug --console=plain -Dorg.gradle.parallel=false
+
+  can_i_drop_jetifier:
+    <<: *android_config
+    steps:
+    - checkout
+    - *generate_cache_key
+    - *restore_gradle_cache
+    - *android_dependencies
+    - *save_gradle_cache
+    - run:
+        name: Run Lint
+        command: ./gradlew -Pandroid.enableJetifier=false canIDropJetifier --console=plain -Dorg.gradle.parallel=false
+
   test:
     <<: *android_config
     steps:
@@ -75,4 +88,5 @@ workflows:
   code_quality:
     jobs:
     - lint
+    - can_i_drop_jetifier
     - test

@@ -97,7 +97,7 @@ jobs:
 
 workflows:
   version: 2
-  code_quality:
+  test_build:
     jobs:
     - lint
     - can_i_drop_jetifier

@@ -102,3 +102,8 @@ workflows:
     - lint
     - can_i_drop_jetifier
     - test
+    - build:
+        requires:
+        - lint
+        - can_i_drop_jetifier
+        - test

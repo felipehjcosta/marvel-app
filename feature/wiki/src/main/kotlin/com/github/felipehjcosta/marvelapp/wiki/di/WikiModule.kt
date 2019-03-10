@@ -11,8 +11,12 @@ import dagger.Module
 abstract class WikiModule {
 
     @Binds
-    abstract fun providesHighlightedCharactersViewModel(viewModel: HighlightedCharactersViewModelInputOutput): HighlightedCharactersViewModel
+    abstract fun providesHighlightedCharactersViewModel(
+        viewModel: HighlightedCharactersViewModelInputOutput
+    ): HighlightedCharactersViewModel
 
     @Binds
-    abstract fun providesOthersCharactersViewModel(viewModel: OthersCharactersViewModelInputOutput): OthersCharactersViewModel
+    abstract fun providesOthersCharactersViewModel(
+        viewModel: OthersCharactersViewModelInputOutput
+    ): OthersCharactersViewModel
 }

@@ -14,6 +14,8 @@ abstract class ListingModule {
     abstract fun provideListingDataModel(listingContentDataModel: ListingContentDataModel): ListingDataModel
 
     @Binds
-    abstract fun provideViewModel(characterListViewModelInputOutput: CharacterListViewModelInputOutput): CharacterListViewModel
+    abstract fun provideViewModel(
+        characterListViewModelInputOutput: CharacterListViewModelInputOutput
+    ): CharacterListViewModel
 
 }

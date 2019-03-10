@@ -13,5 +13,7 @@ interface DetailBindingsModule {
     fun provideDetailDataModel(detailContentDataModel: DetailContentDataModel): DetailDataModel
 
     @Binds
-    fun provideViewModel(characterDetailViewModelInputOutput: CharacterDetailViewModelInputOutput): CharacterDetailViewModel
+    fun provideViewModel(
+        characterDetailViewModelInputOutput: CharacterDetailViewModelInputOutput
+    ): CharacterDetailViewModel
 }

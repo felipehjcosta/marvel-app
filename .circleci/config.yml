@@ -183,7 +183,7 @@ workflows:
     - lint
     - can_i_drop_jetifier
     - test
-    - test_instrumented
+    - test_instrumented:
         requires:
         - build_debug
     - build:

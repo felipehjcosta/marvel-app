@@ -5,6 +5,20 @@ reference:
   workspace: &workspace
                ~/code
 
+  attach_debug_workspace: &attach_debug_workspace
+    attach_workspace:
+      at: *workspace
+
+  persist_debug_workspace: &persist_debug_workspace
+    persist_to_workspace:
+      root: *workspace
+      paths:
+      - apk/build/intermediates
+      - apk/build/outputs/androidTest-results
+      - apk/build/outputs/apk
+      - apk/build/outputs/code-coverage
+      - apk/build/test-results
+
   ## Docker image configurations
   android_config: &android_config
     working_directory: *workspace
@@ -13,6 +27,13 @@ reference:
     environment:
       TERM: dumb
       JVM_OPTS: -Xmx3200m
+
+  gcloud_config: &gcloud_config
+    working_directory: *workspace
+    docker:
+    - image: google/cloud-sdk:latest
+    environment:
+      TERM: dumb
 
   ## Cache
   generate_cache_key: &generate_cache_key
@@ -40,6 +61,29 @@ reference:
     run:
       name: Download Android Dependencies
       command: ./gradlew androidDependencies
+
+  # Google Services
+
+  export_gservices_key: &export_gservices_key
+    run:
+      name: Export Google Services key environment variable
+      command: echo 'export GOOGLE_SERVICES_KEY="$GOOGLE_SERVICES_KEY"' >> $BASH_ENV
+  decode_gservices_key: &decode_gservices_key
+    run:
+      name: Decode Google Services key
+      command: echo $GOOGLE_SERVICES_KEY | base64 -di > mobile/google-services.json
+
+  # Google Cloud Service
+
+  export_gcloud_key: &export_gcloud_key
+    run:
+      name: Export Google Cloud Service key environment variable
+      command: echo 'export GCLOUD_SERVICE_KEY="$GCLOUD_SERVICE_KEY"' >> $BASH_ENV
+  decode_gcloud_key: &decode_gcloud_key
+    run:
+      name: Decode Google Cloud credentials
+      command: echo $GCLOUD_SERVICE_KEY | base64 -di > ${HOME}/client-secret.json
+
 
 jobs:
   lint:
@@ -84,6 +128,41 @@ jobs:
         path: app/build/test-results
     # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
 
+  build_debug:
+    <<: *android_config
+    steps:
+    - checkout
+    - *restore_gradle_cache
+    - run:
+        name: Download dependencies
+        command: ./gradlew androidDependencies
+    - *save_gradle_cache
+    - *export_gservices_key
+    - *decode_gservices_key
+    - run:
+        name: Gradle build (debug)
+        command: ./gradlew assembleDebug assembleAndroidTest --console=plain -Dorg.gradle.parallel=false
+    - *persist_debug_workspace
+    - store_artifacts:
+        path: apk/build/outputs/apk/
+        destination: /apk/
+
+  test_instrumented:
+    <<: *gcloud_config
+    steps:
+    - *attach_debug_workspace
+    - *export_gcloud_key
+    - *decode_gcloud_key
+    - run:
+        name: Set Google Cloud target project
+        command: gcloud config set project marvel-app-d5ae2
+    - run:
+        name: Authenticate with Google Cloud
+        command: gcloud auth activate-service-account firebase-adminsdk-p9qvk@newspaper-84169.iam.gserviceaccount.com --key-file ${HOME}/client-secret.json
+    - run:
+        name: Run instrumented test on Firebase Test Lab
+        command: gcloud firebase test android run --type instrumentation --app apk/build/outputs/apk/debug/apk-debug.apk --test apk/build/outputs/apk/androidTest/debug/apk-debug-androidTest.apk --device model=sailfish,version=21,locale=en_US,orientation=portrait --directories-to-pull=/sdcard/tmp --timeout 20m
+
   build:
     <<: *android_config
     steps:
@@ -100,9 +179,13 @@ workflows:
   version: 2
   test_build:
     jobs:
+    - build_debug
     - lint
     - can_i_drop_jetifier
     - test
+    - test_instrumented
+        requires:
+        - build_debug
     - build:
         requires:
         - lint

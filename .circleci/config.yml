@@ -139,6 +139,7 @@ jobs:
     - run:
         name: Gradle build (debug)
         command: ./gradlew assembleDebug assembleAndroidTest --console=plain -Dorg.gradle.parallel=false
+        no_output_timeout: 15m
     - *persist_debug_workspace
     - store_artifacts:
         path: apk/build/outputs/apk/

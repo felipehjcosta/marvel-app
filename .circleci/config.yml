@@ -138,7 +138,7 @@ jobs:
     - *save_gradle_cache
     - run:
         name: Gradle build (debug)
-        command: ./gradlew assembleDebug assembleAndroidTest --console=plain -Dorg.gradle.parallel=false
+        command: ./gradlew assembleDebug assembleAndroidTest --console=plain -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false -Dkotlin.incremental=false
         no_output_timeout: 15m
     - *persist_debug_workspace
     - store_artifacts:

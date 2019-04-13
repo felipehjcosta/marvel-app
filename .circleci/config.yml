@@ -177,7 +177,6 @@ workflows:
   version: 2
   test_build:
     jobs:
-    - build_debug
     - lint
     - can_i_drop_jetifier
     - test

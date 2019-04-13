@@ -16,7 +16,7 @@ import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-open class DemoApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
+open class MarvelAppApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
     @Inject
     lateinit var dispatchingActivityAndroidInjector: DispatchingAndroidInjector<Activity>

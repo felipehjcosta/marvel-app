@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.github.felipehjcosta.marvelapp.base.DemoApplication
+import com.github.felipehjcosta.marvelapp.base.MarvelAppApplication
 import com.github.felipehjcosta.marvelapp.base.di.ApplicationComponent
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -20,8 +20,8 @@ object AppInjector {
     private val fragmentMap =
         mutableMapOf<Class<out Fragment>, (ApplicationComponent) -> AndroidInjector.Builder<out Fragment>>()
 
-    internal fun init(demoApplication: DemoApplication) {
-        demoApplication.registerActivityLifecycleCallbacks(object :
+    internal fun init(marvelAppApplication: MarvelAppApplication) {
+        marvelAppApplication.registerActivityLifecycleCallbacks(object :
             Application.ActivityLifecycleCallbacks by EmptyActivityLifecycleCallbacks() {
             override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
                 handleActivity(activity)

@@ -6,7 +6,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.github.felipehjcosta.marvelapp.wiki.MockDemoApplication
+import com.github.felipehjcosta.marvelapp.wiki.MockMarvelAppApplication
 import com.github.felipehjcosta.marvelapp.wiki.R
 import com.github.felipehjcosta.marvelapp.wiki.utils.readAsset
 import com.github.felipehjcosta.marvelapp.wiki.utils.withRecyclerView
@@ -30,7 +30,7 @@ class WikiUITest {
     lateinit var mockWebServer: MockWebServer
 
     init {
-        val mockDemoApplication = ApplicationProvider.getApplicationContext<MockDemoApplication>()
+        val mockDemoApplication = ApplicationProvider.getApplicationContext<MockMarvelAppApplication>()
 
         mockDemoApplication.testApplicationComponent.inject(this)
     }

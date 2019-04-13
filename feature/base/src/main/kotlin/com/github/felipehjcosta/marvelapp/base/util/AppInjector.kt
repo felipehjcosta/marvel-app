@@ -13,11 +13,13 @@ import dagger.android.support.AndroidSupportInjection
 
 object AppInjector {
 
-    private val activityMap =
+    private val activityMap by lazy {
         mutableMapOf<Class<out Activity>, (ApplicationComponent) -> AndroidInjector.Builder<out Activity>>()
+    }
 
-    private val fragmentMap =
+    private val fragmentMap by lazy {
         mutableMapOf<Class<out Fragment>, (ApplicationComponent) -> AndroidInjector.Builder<out Fragment>>()
+    }
 
     internal fun init(application: Application) {
         application.registerActivityLifecycleCallbacks(object :

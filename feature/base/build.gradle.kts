@@ -1,6 +1,7 @@
 plugins {
     id("com.android.feature")
     kotlin("android")
+    kotlin("android.extensions")
     kotlin("kapt")
     id("kotlinx-serialization")
     id("com.vanniktech.dependency.graph.generator")

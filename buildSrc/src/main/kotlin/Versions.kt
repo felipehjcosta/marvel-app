@@ -32,7 +32,7 @@ object Versions {
     const val rxJavaAndroidLibrary = "2.1.0"
     const val rxJavaRelayLibrary = "2.1.0"
     const val rxJavaBindingLibrary = "3.0.0-alpha2"
-    const val rxActionLibrary = "1.1.0"
+    const val rxActionLibrary = "1.2.0"
 
     const val okhttpLibrary = "3.12.0"
     const val retrofitLibrary = "2.5.0"

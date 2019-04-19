@@ -62,17 +62,6 @@ reference:
       name: Download Android Dependencies
       command: ./gradlew androidDependencies
 
-  # Google Services
-
-  export_gservices_key: &export_gservices_key
-    run:
-      name: Export Google Services key environment variable
-      command: echo 'export GOOGLE_SERVICES_KEY="$GOOGLE_SERVICES_KEY"' >> $BASH_ENV
-  decode_gservices_key: &decode_gservices_key
-    run:
-      name: Decode Google Services key
-      command: echo $GOOGLE_SERVICES_KEY | base64 -di > mobile/google-services.json
-
   # Google Cloud Service
 
   export_gcloud_key: &export_gcloud_key
@@ -146,9 +135,17 @@ jobs:
         destination: /apk/
 
   test_instrumented:
-    <<: *gcloud_config
+    <<: *android_config
     steps:
-    - *attach_debug_workspace
+    - checkout
+    - *generate_cache_key
+    - *restore_gradle_cache
+    - *android_dependencies
+    - *save_gradle_cache
+    - run:
+        name: Gradle build (debug)
+        command: ./gradlew assembleDebug assembleAndroidTest --console=plain -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false -Dkotlin.incremental=false
+        no_output_timeout: 15m
     - *export_gcloud_key
     - *decode_gcloud_key
     - run:
@@ -180,6 +177,7 @@ workflows:
     - lint
     - can_i_drop_jetifier
     - test
+    - test_instrumented
     - build:
         requires:
         - lint

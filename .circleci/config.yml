@@ -134,6 +134,18 @@ jobs:
         path: apk/build/outputs/apk/
         destination: /apk/
 
+  build_release:
+    <<: *android_config
+    steps:
+      - checkout
+      - *generate_cache_key
+      - *restore_gradle_cache
+      - *android_dependencies
+      - *save_gradle_cache
+      - run:
+          name: "Assemble Release"
+          command: ./gradlew assembleRelease --console=plain -Dorg.gradle.parallel=false
+
   test_instrumented:
     <<: *android_config
     steps:
@@ -158,18 +170,6 @@ jobs:
         name: Run instrumented test on Firebase Test Lab
         command: gcloud firebase test android run --type instrumentation --app apk/build/outputs/apk/debug/apk-debug.apk --test apk/build/outputs/apk/androidTest/debug/apk-debug-androidTest.apk --device model=sailfish,version=21,locale=en_US,orientation=portrait --directories-to-pull=/sdcard/tmp --timeout 20m
 
-  build:
-    <<: *android_config
-    steps:
-    - checkout
-    - *generate_cache_key
-    - *restore_gradle_cache
-    - *android_dependencies
-    - *save_gradle_cache
-    - run:
-        name: "Assemble Release"
-        command: ./gradlew assembleRelease --console=plain -Dorg.gradle.parallel=false
-
 workflows:
   version: 2
   test_build:
@@ -177,8 +177,12 @@ workflows:
     - lint
     - can_i_drop_jetifier
     - test
-    - test_instrumented
-    - build:
+    - build_debug:
+        requires:
+          - lint
+          - can_i_drop_jetifier
+          - test
+    - build_release:
         requires:
         - lint
         - can_i_drop_jetifier

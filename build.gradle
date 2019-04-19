@@ -94,7 +94,7 @@ subprojects {
 
                 dexOptions {
                     // Skip pre-dexing when running on CI or when disabled via -Dpre-dex=false.
-                    preDexLibraries = preDexEnabled && !CIBuild
+                    preDexLibraries = preDexEnabled || CIBuild
                 }
 
                 adbOptions {

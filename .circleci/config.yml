@@ -149,6 +149,7 @@ jobs:
   build_instrumented:
     <<: *android_config
     steps:
+      - checkout
       - *attach_debug_workspace
       - *generate_cache_key
       - *restore_gradle_cache

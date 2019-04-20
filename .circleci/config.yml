@@ -146,6 +146,22 @@ jobs:
           name: "Assemble Release"
           command: ./gradlew assembleRelease --console=plain -Dorg.gradle.parallel=false
 
+  build_instrumented:
+    <<: *android_config
+    steps:
+      - *attach_debug_workspace
+      - *generate_cache_key
+      - *restore_gradle_cache
+      - *android_dependencies
+      - *save_gradle_cache
+      - run:
+          name: Gradle assemble Android Test
+          command: ./gradlew assembleAndroidTest --console=plain -Dorg.gradle.parallel=false
+          no_output_timeout: 15m
+      - store_artifacts:
+          path: apk/build/outputs/apk/
+          destination: /apk/
+
   test_instrumented:
     <<: *android_config
     steps:
@@ -187,3 +203,6 @@ workflows:
         - lint
         - can_i_drop_jetifier
         - test
+    - build_instrumented:
+        requires:
+        - build_debug

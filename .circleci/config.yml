@@ -127,7 +127,7 @@ jobs:
     - *save_gradle_cache
     - run:
         name: Gradle build (debug)
-        command: ./gradlew assembleDebug --console=plain -Dorg.gradle.parallel=false
+        command: ./gradlew assembleDebug assembleAndroidTest --console=plain -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false
         no_output_timeout: 15m
     - *persist_debug_workspace
     - store_artifacts:
@@ -157,7 +157,7 @@ jobs:
       - *save_gradle_cache
       - run:
           name: Gradle assemble Android Test
-          command: ./gradlew assembleAndroidTest --console=plain -Dorg.gradle.parallel=false
+          command: ./gradlew assembleAndroidTest --console=plain -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false
           no_output_timeout: 15m
       - store_artifacts:
           path: apk/build/outputs/apk/
@@ -204,6 +204,3 @@ workflows:
         - lint
         - can_i_drop_jetifier
         - test
-    - build_instrumented:
-        requires:
-        - build_debug

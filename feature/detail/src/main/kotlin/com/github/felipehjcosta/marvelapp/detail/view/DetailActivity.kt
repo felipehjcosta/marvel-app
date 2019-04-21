@@ -11,7 +11,6 @@ import com.github.felipehjcosta.marvelapp.detail.presentation.CharacterDetailVie
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_detail.toolbar
 import javax.inject.Inject
-import kotlinx.android.synthetic.main.activity_detail.favorite_button as favoriteFab
 import kotlinx.android.synthetic.main.activity_detail.image_backdrop as backdrop
 import kotlinx.android.synthetic.main.activity_detail.toolbar_layout as toolbarLayout
 import kotlinx.android.synthetic.main.content_details.text_description as description

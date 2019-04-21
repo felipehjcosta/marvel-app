@@ -75,7 +75,6 @@ dependencies {
     feature(project(":feature:detail"))
     feature(project(":feature:listing"))
     feature(project(":feature:wiki"))
-    api(project(":library:checkableheart"))
     implementation(project(":library:network"))
     implementation(project(":library:cache"))
 

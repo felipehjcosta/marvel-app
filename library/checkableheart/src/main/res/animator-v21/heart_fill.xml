@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<objectAnimator android:propertyName="pathData"
-    android:valueFrom="@string/heart_clip_hidden"
-    android:valueTo="@string/heart_clip_shown"
-    android:valueType="pathType"
-    android:duration="@integer/heart_fill_time"
-    android:interpolator="@android:interpolator/fast_out_slow_in"
-    xmlns:android="http://schemas.android.com/apk/res/android" />

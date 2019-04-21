@@ -86,7 +86,7 @@ jobs:
     - *save_gradle_cache
     - run:
         name: Run Lint
-        command: ./gradlew detekt lintDebug --console=plain -Dorg.gradle.parallel=false
+        command: ./gradlew detekt lintDebug --console=plain --stacktrace
 
   can_i_drop_jetifier:
     <<: *android_config
@@ -98,7 +98,7 @@ jobs:
     - *save_gradle_cache
     - run:
         name: "Can I drop Jetifier?"
-        command: ./gradlew -Pandroid.enableJetifier=false canIDropJetifier --console=plain -Dorg.gradle.parallel=false
+        command: ./gradlew -Pandroid.enableJetifier=false canIDropJetifier --console=plain --stacktrace
 
   test:
     <<: *android_config
@@ -110,7 +110,7 @@ jobs:
     - *save_gradle_cache
     - run:
         name: Run Tests
-        command: ./gradlew testDebugUnitTest --console=plain -Dorg.gradle.parallel=false
+        command: ./gradlew testDebugUnitTest --console=plain --stacktrace
     - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
         path: app/build/reports
         destination: reports
@@ -128,7 +128,7 @@ jobs:
     - *save_gradle_cache
     - run:
         name: Gradle build (debug)
-        command: ./gradlew assembleDebug assembleAndroidTest --console=plain -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false
+        command: ./gradlew assembleDebug assembleAndroidTest --console=plain --stacktrace
         no_output_timeout: 15m
     - *persist_debug_workspace
     - store_artifacts:
@@ -145,7 +145,7 @@ jobs:
       - *save_gradle_cache
       - run:
           name: "Assemble Release"
-          command: ./gradlew assembleRelease --console=plain -Dorg.gradle.parallel=false
+          command: ./gradlew assembleRelease --console=plain --console=plain --stacktrace
 
   build_instrumented:
     <<: *android_config
@@ -158,7 +158,7 @@ jobs:
       - *save_gradle_cache
       - run:
           name: Gradle assemble Android Test
-          command: ./gradlew assembleAndroidTest --console=plain -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false
+          command: ./gradlew assembleAndroidTest --console=plain --stacktrace
           no_output_timeout: 15m
       - store_artifacts:
           path: apk/build/outputs/apk/
@@ -174,7 +174,7 @@ jobs:
     - *save_gradle_cache
     - run:
         name: Gradle build (debug)
-        command: ./gradlew assembleDebug assembleAndroidTest --console=plain -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false -Dkotlin.incremental=false
+        command: ./gradlew assembleDebug assembleAndroidTest --console=plain --stacktrace
         no_output_timeout: 15m
     - *export_gcloud_key
     - *decode_gcloud_key

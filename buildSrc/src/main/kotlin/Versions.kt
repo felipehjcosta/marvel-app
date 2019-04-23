@@ -48,7 +48,7 @@ object Versions {
 
     const val junitLibrary = "4.12"
     const val mockkLibrary = "1.9.1"
-    const val robolectricLibrary = "4.1"
+    const val robolectricLibrary = "4.2.1"
     const val androidxJunitLibrary = "1.1.0"
     const val androidxTruthLibrary = "1.1.0"
     const val androidxRunnerLibrary = "1.1.1"

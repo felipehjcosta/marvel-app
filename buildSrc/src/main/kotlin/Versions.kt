@@ -38,7 +38,7 @@ object Versions {
     const val retrofitLibrary = "2.5.0"
     const val kotlinSerializationConverterLibrary = "0.2.0"
 
-    const val daggerLibrary = "2.23"
+    const val daggerLibrary = "2.22.1"
     const val javaxAnnotationLibrary = "1.0"
 
     const val imageLoaderLibrary = "1.9.5"

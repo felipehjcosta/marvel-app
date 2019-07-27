@@ -82,17 +82,10 @@ object AppInjector {
         fragmentMap[clazz] = block
     }
 
-    internal fun decorateActivityAndroidInjector(
-        androidInjector: AndroidInjector<Activity>,
-        component: ApplicationComponent
-    ): AndroidInjector<Activity> {
-        return InstantAppsActivityInjector(component, activityMap, androidInjector)
-    }
-
-    internal fun decorateFragmentAndroidInjector(
-        androidInjector: AndroidInjector<Fragment>,
-        component: ApplicationComponent
-    ): AndroidInjector<Fragment> {
-        return InstantAppsFragmentInjector(component, fragmentMap, androidInjector)
+    internal fun decorateAndroidInjector(
+            androidInjector: AndroidInjector<Any>,
+            component: ApplicationComponent
+    ): AndroidInjector<Any> {
+        return InstantAppsAndroidInjector(component, activityMap, fragmentMap, androidInjector)
     }
 }

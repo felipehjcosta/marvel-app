@@ -1,28 +1,22 @@
 package com.github.felipehjcosta.marvelapp.base
 
-import android.app.Activity
 import android.app.Application
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import com.github.felipehjcosta.marvelapp.base.di.ApplicationComponent
 import com.github.felipehjcosta.marvelapp.base.di.DaggerApplicationComponent
 import com.github.felipehjcosta.marvelapp.base.network.BASE_URL
 import com.github.felipehjcosta.marvelapp.base.util.AppInjector
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-open class MarvelAppApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
+open class MarvelAppApplication : Application(), HasAndroidInjector {
 
     @Inject
-    lateinit var dispatchingActivityAndroidInjector: DispatchingAndroidInjector<Activity>
-
-    @Inject
-    lateinit var dispatchingFragmentAndroidInjector: DispatchingAndroidInjector<Fragment>
+    lateinit var androidInjector : DispatchingAndroidInjector<Any>
 
     private lateinit var component: ApplicationComponent
 
@@ -44,9 +38,7 @@ open class MarvelAppApplication : Application(), HasActivityInjector, HasSupport
         return DaggerApplicationComponent.builder().application(this).baseUrl(BASE_URL).build()
     }
 
-    override fun activityInjector(): AndroidInjector<Activity> =
-            AppInjector.decorateActivityAndroidInjector(dispatchingActivityAndroidInjector, component)
+    override fun androidInjector(): AndroidInjector<Any> =
+            AppInjector.decorateAndroidInjector(androidInjector, component)
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> =
-            AppInjector.decorateFragmentAndroidInjector(dispatchingFragmentAndroidInjector, component)
 }

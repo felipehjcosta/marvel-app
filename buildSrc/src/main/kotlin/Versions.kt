@@ -24,7 +24,6 @@ object Versions {
     const val androidxSupportAnnotationLibrary = "1.0.0"
     const val androidxConstraintLayoutLibrary = "1.1.2"
     const val androidxKtxLibrary = "1.0.0"
-    const val androidxFragmentTesting = "1.1.0-alpha04"
 
     const val roomLibrary = "2.0.0-rc01"
 
@@ -47,14 +46,15 @@ object Versions {
     const val recyclerViewDslLibrary = "0.8.0"
 
     const val junitLibrary = "4.12"
-    const val mockkLibrary = "1.9.1"
-    const val robolectricLibrary = "4.2.1"
-    const val androidxJunitLibrary = "1.1.0"
-    const val androidxTruthLibrary = "1.1.0"
-    const val androidxRunnerLibrary = "1.1.1"
-    const val androidxRulesLibrary = "1.1.1"
-    const val androidxEspressoCoreLibrary = "3.1.1"
-    const val androidxEspressoContribLibrary = "3.1.1"
+    const val mockkLibrary = "1.9.3"
+    const val robolectricLibrary = "4.3"
+    const val androidxJunitLibrary = "1.1.1"
+    const val androidxTruthLibrary = "1.2.0"
+    const val androidxRunnerLibrary = "1.2.0"
+    const val androidxRulesLibrary = "1.2.0"
+    const val androidxEspressoCoreLibrary = "3.2.0"
+    const val androidxEspressoContribLibrary = "3.2.0"
+    const val androidxFragmentTesting = "1.2.0-alpha01"
     const val rx2IdlerLibrary = "0.9.0"
     const val testButlerLibrary = "1.3.1"
 }

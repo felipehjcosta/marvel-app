@@ -43,7 +43,7 @@ reference:
       command: ./checksum.sh /tmp/checksum.txt
 
   gradle_key: &gradle_key
-                gradle-{{ checksum "/tmp/checksum.txt" }}
+                gradle-v1-{{ checksum "/tmp/checksum.txt" }}
 
   restore_gradle_cache: &restore_gradle_cache
     restore_cache:

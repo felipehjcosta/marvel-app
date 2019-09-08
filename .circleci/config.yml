@@ -26,7 +26,7 @@ reference:
     - image: circleci/android:api-28
     environment:
       TERM: dumb
-      GRADLE_OPTS: -Xmx4g -Dorg.gradle.daemon=false -Dkotlin.compiler.execution.strategy=in-process -Dorg.gradle.workers.max=2
+      GRADLE_OPTS: -Xmx4g -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false -Dkotlin.compiler.execution.strategy=in-process -Dorg.gradle.workers.max=2
       JVM_OPTS: -Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
 
   gcloud_config: &gcloud_config

@@ -145,7 +145,7 @@ jobs:
       - *save_gradle_cache
       - run:
           name: "Assemble Release"
-          command: ./gradlew assembleRelease --console=plain --console=plain --stacktrace
+          command: ./gradlew assembleRelease --console=plain --stacktrace
 
   build_instrumented:
     <<: *android_config

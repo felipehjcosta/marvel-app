@@ -1,5 +1,5 @@
 internal object Kotlin {
-    const val version = "1.3.41"
+    const val version = "1.3.50"
 }
 
 object Versions {

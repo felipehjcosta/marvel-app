@@ -55,6 +55,6 @@ object Versions {
     const val androidxRulesLibrary = "1.1.1"
     const val androidxEspressoCoreLibrary = "3.1.1"
     const val androidxEspressoContribLibrary = "3.1.1"
-    const val rx2IdlerLibrary = "0.9.0"
+    const val rx2IdlerLibrary = "0.10.0"
     const val testButlerLibrary = "1.3.1"
 }

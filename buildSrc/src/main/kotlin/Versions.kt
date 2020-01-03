@@ -18,17 +18,17 @@ object Versions {
     const val versionName = "1.0"
 
     const val androidxSupportV4Library = "1.0.0"
-    const val androidxAppCompatLibrary = "1.0.0"
+    const val androidxAppCompatLibrary = "1.1.0"
     const val androidxMaterialLibrary = "1.0.0-rc01"
     const val androidxRecyclerViewLibrary = "1.0.0"
-    const val androidxSupportAnnotationLibrary = "1.0.0"
+    const val androidxSupportAnnotationLibrary = "1.1.0"
     const val androidxConstraintLayoutLibrary = "1.1.2"
     const val androidxKtxLibrary = "1.0.0"
     const val androidxFragmentTesting = "1.1.0-alpha04"
 
-    const val roomLibrary = "2.0.0-rc01"
+    const val roomLibrary = "2.0.0"
 
-    const val rxJavaLibrary = "2.2.11"
+    const val rxJavaLibrary = "2.2.13"
     const val rxJavaAndroidLibrary = "2.1.0"
     const val rxJavaRelayLibrary = "2.1.0"
     const val rxJavaBindingLibrary = "3.0.0-alpha2"

@@ -22,7 +22,7 @@ object Versions {
     const val androidxMaterialLibrary = "1.0.0-rc01"
     const val androidxRecyclerViewLibrary = "1.0.0"
     const val androidxSupportAnnotationLibrary = "1.1.0"
-    const val androidxConstraintLayoutLibrary = "1.1.2"
+    const val androidxConstraintLayoutLibrary = "1.1.3"
     const val androidxKtxLibrary = "1.0.0"
     const val androidxFragmentTesting = "1.2.0-rc04"
 

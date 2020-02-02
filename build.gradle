@@ -98,6 +98,10 @@ subprojects {
                 adbOptions {
                     timeOutInMs = 5 * 60 * 1000
                 }
+
+                packagingOptions {
+                    exclude 'META-INF/library_release.kotlin_module'
+                }
             }
         }
     }

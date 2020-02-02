@@ -43,7 +43,7 @@ object Versions {
 
     const val imageLoaderLibrary = "1.9.5"
 
-    const val galleryLayoutManagerLibrary = "1.1.0"
+    const val galleryLayoutManagerLibrary = "1.2.0"
     const val recyclerViewDslLibrary = "0.8.0"
 
     const val junitLibrary = "4.12"

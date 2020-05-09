@@ -44,7 +44,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Run Instrumentation Tests
-          uses: reactivecircus/android-emulator-runner@v2
-          with:
-            api-level: 29
-            script: ./gradlew connectedCheck --console=plain --stacktrace
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedCheck --console=plain --stacktrace

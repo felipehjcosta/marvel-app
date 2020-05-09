@@ -32,3 +32,19 @@ jobs:
           java-version: 1.8
       - name: Run tests
         run: ./gradlew testDebugUnitTest --console=plain --stacktrace
+
+  instrumentation-test:
+    needs: [lint, test]
+    runs-on: macos-10.15
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Run Instrumentation Tests
+          uses: reactivecircus/android-emulator-runner@v2
+          with:
+            api-level: 29
+            script: ./gradlew connectedCheck --console=plain --stacktrace

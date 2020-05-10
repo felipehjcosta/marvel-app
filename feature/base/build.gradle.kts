@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.feature")
+    id("com.android.application")
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
@@ -14,11 +14,11 @@ android {
     compileSdkVersion(Versions.compileSdkVersion)
     buildToolsVersion(Versions.buildToolsVersion)
 
+    dynamicFeatures = mutableSetOf(":feature:detail", ":feature:listing", ":feature:wiki")
+
     defaultConfig {
         minSdkVersion(Versions.minSdkVersion)
         targetSdkVersion(Versions.targetSdkVersion)
-
-        baseFeature = true
 
         vectorDrawables.useSupportLibrary = true
 
@@ -71,10 +71,6 @@ kapt {
 }
 
 dependencies {
-    application(project(":apk"))
-    feature(project(":feature:detail"))
-    feature(project(":feature:listing"))
-    feature(project(":feature:wiki"))
     implementation(project(":library:network"))
     implementation(project(":library:cache"))
 

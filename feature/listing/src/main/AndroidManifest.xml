@@ -1,6 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.github.felipehjcosta.marvelapp.listing">
+
+    <dist:module dist:instant="true" />
+    <dist:module dist:onDemand="false" />
 
     <application tools:ignore="AllowBackup,MissingApplicationIcon">
 

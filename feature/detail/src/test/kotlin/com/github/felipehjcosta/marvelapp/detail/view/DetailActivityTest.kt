@@ -14,6 +14,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.Observable.just
 import io.reactivex.subjects.BehaviorSubject.createDefault
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
@@ -31,6 +32,7 @@ import kotlin.test.assertTrue
     manifest = Config.NONE,
     sdk = [21]
 )
+@Ignore
 class DetailActivityTest {
 
     private val name = "Thor"

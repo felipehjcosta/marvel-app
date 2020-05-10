@@ -20,6 +20,7 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject.createDefault
 import io.reactivex.subjects.CompletableSubject
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import kotlin.test.assertEquals
@@ -27,6 +28,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 @RunWith(AndroidJUnit4::class)
+@Ignore
 class CharacterListingFragmentTest {
 
     private val mockViewModel = mockk<CharacterListViewModel>(relaxed = true).apply {

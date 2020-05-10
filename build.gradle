@@ -11,19 +11,19 @@ buildscript {
         classpath BuildPlugins.kotlinGradlePlugin
         classpath BuildPlugins.kotlinSerializiationPlugin
         classpath BuildPlugins.dependencyGraphGeneratorPlugin
-        classpath BuildPlugins.androidJunitJacocoPlugin
+//        classpath BuildPlugins.androidJunitJacocoPlugin
         classpath BuildPlugins.detektGradlePlugin
         classpath BuildPlugins.canidropjetifierPlugin
     }
 }
 
-apply plugin: "com.vanniktech.android.junit.jacoco"
+//apply plugin: "com.vanniktech.android.junit.jacoco"
 apply plugin: "com.github.plnice.canidropjetifier"
 
-junitJacoco {
-    jacocoVersion = "0.8.2"
-    includeNoLocationClasses = true
-}
+//junitJacoco {
+//    jacocoVersion = "0.8.2"
+//    includeNoLocationClasses = true
+//}
 
 allprojects {
     repositories {

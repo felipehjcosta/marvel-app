@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.feature")
+    id("com.android.dynamic-feature")
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
@@ -56,7 +56,6 @@ android {
 }
 
 dependencies {
-    application(project(":apk"))
     implementation(project(":feature:base"))
 
     DaggerCompilerDependencies.values.forEach { kapt(it) }

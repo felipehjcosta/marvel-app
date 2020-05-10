@@ -2,7 +2,7 @@
 
 This repository contains an Android application example made with the Kotlin and RxJava.
 
-[![CircleCI](https://circleci.com/gh/felipehjcosta/marvel-app.svg?style=svg)](https://circleci.com/gh/felipehjcosta/marvel-app)
+![Android CI](https://github.com/felipehjcosta/marvel-app/workflows/Android%20CI/badge.svg)
 [![codecov](https://codecov.io/gh/felipehjcosta/marvel-app/branch/master/graph/badge.svg)](https://codecov.io/gh/felipehjcosta/marvel-app)
 [![codebeat badge](https://codebeat.co/badges/34651f37-6eee-421a-bab3-ae65b4079f04)](https://codebeat.co/projects/github-com-felipehjcosta-marvel-app-master)
 

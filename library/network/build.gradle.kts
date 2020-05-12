@@ -24,7 +24,7 @@ android {
         }
         create("debugMini") {
             initWith(getByName("debug"))
-            matchingFallbacks = listOf("debug")
+            matchingFallbacks = mutableListOf("debug")
         }
         getByName("release") {
             isMinifyEnabled = false

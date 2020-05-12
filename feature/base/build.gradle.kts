@@ -35,7 +35,7 @@ android {
             isMinifyEnabled = true
             isDebuggable = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro", "proguard-rules-debug.pro")
-            matchingFallbacks = listOf("debug")
+            matchingFallbacks = mutableListOf("debug")
         }
         getByName("release") {
             isMinifyEnabled = true

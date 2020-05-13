@@ -12,7 +12,6 @@ val MARVEL_PUBLIC_KEY: String by project
 
 android {
     compileSdkVersion(Versions.compileSdkVersion)
-    buildToolsVersion(Versions.buildToolsVersion)
 
     dynamicFeatures = mutableSetOf(":feature:detail", ":feature:listing", ":feature:wiki")
 

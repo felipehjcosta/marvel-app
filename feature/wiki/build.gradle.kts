@@ -14,7 +14,7 @@ android {
         versionCode = Versions.versionCode
         versionName = Versions.versionName
 
-        testInstrumentationRunner = "com.github.felipehjcosta.marvelapp.wiki.runner.CustomTestRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     }
 

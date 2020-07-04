@@ -154,26 +154,10 @@ object DebugDependencies {
 object TestDependencies {
     const val junit = "junit:junit:${Versions.junitLibrary}"
     const val mockk = "io.mockk:mockk:${Versions.mockkLibrary}"
-    const val robolectric = "org.robolectric:robolectric:${Versions.robolectricLibrary}"
-    const val androidxJunit = "androidx.test.ext:junit:${Versions.androidxJunitLibrary}"
-    const val androidxTruth = "androidx.test.ext:truth:${Versions.androidxTruthLibrary}"
-    const val androidxRunner = "androidx.test:runner:${Versions.androidxRunnerLibrary}"
-    const val androidxRules = "androidx.test:rules:${Versions.androidxRulesLibrary}"
-    const val androidxEspressoCore =
-        "androidx.test.espresso:espresso-core:${Versions.androidxEspressoCoreLibrary}"
-    const val androidxEspressoContrib =
-        "androidx.test.espresso:espresso-contrib:${Versions.androidxEspressoContribLibrary}"
 
     val values = listOf(
         junit,
-        mockk,
-        robolectric,
-        androidxJunit,
-        androidxTruth,
-        androidxRunner,
-        androidxRules,
-        androidxEspressoCore,
-        androidxEspressoContrib
+        mockk
     )
 }
 
@@ -189,8 +173,9 @@ object AndroidTestDependencies {
     const val androidxEspressoContrib =
         "androidx.test.espresso:espresso-contrib:${Versions.androidxEspressoContribLibrary}"
     const val rx2Idler = "com.squareup.rx.idler:rx2-idler:${Versions.rx2IdlerLibrary}"
-    const val testButler =
-        "com.linkedin.testbutler:test-butler-library:${Versions.testButlerLibrary}"
+
+//    const val testButler =
+//        "com.linkedin.testbutler:test-butler-library:${Versions.testButlerLibrary}"
 
     val values = listOf(
         androidxJunit,
@@ -200,8 +185,9 @@ object AndroidTestDependencies {
         androidxEspressoCore,
         androidxEspressoIntents,
         androidxEspressoContrib,
-        rx2Idler,
-        testButler
+        rx2Idler
+//            androidxOrchestrator
+//        testButler
     )
 }
 
@@ -209,7 +195,10 @@ object AndroidTestUtilDependencies {
     const val testButlerApp =
         "com.linkedin.testbutler:test-butler-app:${Versions.testButlerLibrary}@apk"
 
-    val values = listOf(testButlerApp)
+    const val androidxOrchestrator =
+            "androidx.test:orchestrator:${Versions.androidxOrchestratorLibrary}"
+
+    val values = listOf(androidxOrchestrator)
 }
 
 object ImageLoaderDependencies {

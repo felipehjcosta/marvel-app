@@ -1,8 +1,5 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("android.extensions")
-    kotlin("kapt")
+    id("application-module-plugin")
     id("kotlinx-serialization")
     id("com.vanniktech.dependency.graph.generator")
 }
@@ -11,57 +8,11 @@ val MARVEL_PRIVATE_KEY: String by project
 val MARVEL_PUBLIC_KEY: String by project
 
 android {
-    compileSdkVersion(Versions.compileSdkVersion)
-
     dynamicFeatures = mutableSetOf(":feature:detail", ":feature:listing", ":feature:wiki")
 
     defaultConfig {
-        minSdkVersion(Versions.minSdkVersion)
-        targetSdkVersion(Versions.targetSdkVersion)
-
-        vectorDrawables.useSupportLibrary = true
-
         buildConfigField("String", "MARVEL_PRIVATE_KEY", "\"" + MARVEL_PRIVATE_KEY + "\"")
         buildConfigField("String", "MARVEL_PUBLIC_KEY", "\"" + MARVEL_PUBLIC_KEY + "\"")
-    }
-
-    buildTypes {
-        getByName("debug") {
-            isTestCoverageEnabled = true
-        }
-        create("debugMini") {
-            initWith(getByName("debug"))
-            isMinifyEnabled = true
-            isDebuggable = true
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro", "proguard-rules-debug.pro")
-            matchingFallbacks = mutableListOf("debug")
-        }
-        getByName("release") {
-            isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro", "proguard-rules-release.pro")
-        }
-    }
-
-    lintOptions {
-        // set to true to turn off analysis progress reporting by lint
-        isQuiet = false
-        // if true, stop the gradle build if errors are found
-        isAbortOnError = true
-        // if true, only report errors
-        isIgnoreWarnings = false
-    }
-
-    sourceSets {
-        getByName("main").java.srcDirs("src/main/kotlin")
-        getByName("test").java.srcDirs("src/test/kotlin")
-        getByName("androidTest").java.srcDirs("src/androidTest/kotlin")
-    }
-
-    testOptions.unitTests.isIncludeAndroidResources = true
-
-    packagingOptions {
-        exclude("META-INF/app_debug.kotlin_module")
-        exclude("META-INF/proguard/androidx-annotations.pro")
     }
 }
 

@@ -11,6 +11,11 @@ gradlePlugin {
             id = "feature-module-plugin"
             implementationClass = "com.github.felipehjcosta.gradle.plugins.FeatureModulePlugin"
         }
+
+        register("application-module-plugin") {
+            id = "application-module-plugin"
+            implementationClass = "com.github.felipehjcosta.gradle.plugins.ApplicationModulePlugin"
+        }
     }
 }
 

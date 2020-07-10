@@ -11,7 +11,9 @@ import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.navigator.AppNavigator
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
+import com.github.felipehjcosta.marvelapp.base.view.viewBinding
 import com.github.felipehjcosta.marvelapp.wiki.R
+import com.github.felipehjcosta.marvelapp.wiki.databinding.FragmentWikiBinding
 import com.github.felipehjcosta.marvelapp.wiki.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.wiki.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.wiki.presentation.HighlightedCharactersViewModel
@@ -20,12 +22,11 @@ import com.github.felipehjcosta.recyclerviewdsl.onRecyclerView
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 import com.github.felipehjcosta.marvelapp.base.R as RBase
-import kotlinx.android.synthetic.main.fragment_wiki.highlighted_characters_container as highlightedCharactersContainer
-import kotlinx.android.synthetic.main.fragment_wiki.highlighted_characters_recycler_view as highlightedCharactersRecyclerView
-import kotlinx.android.synthetic.main.fragment_wiki.others_characters_recycler_view as othersCharactersRecyclerView
 
 
 class WikiFragment : Fragment() {
+
+    private val binding by viewBinding(FragmentWikiBinding::bind)
 
     @Inject
     lateinit var highlightedCharactersViewModel: HighlightedCharactersViewModel
@@ -61,7 +62,7 @@ class WikiFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         highlightedCharactersLayoutManager = GalleryLayoutManager().apply {
-            attach(highlightedCharactersRecyclerView)
+            attach(binding.highlightedCharactersRecyclerView)
         }
 
         bind()
@@ -89,30 +90,30 @@ class WikiFragment : Fragment() {
 
     private fun bindHighlightedCharactersSection() {
         compositeDisposable += highlightedCharactersViewModel.output.items
-            .doOnNext { characters ->
-                WikiGalleryCallbacksHandler(
-                    imageLoader,
-                    characters,
-                    highlightedCharactersContainer
-                ).apply {
-                    highlightedCharactersLayoutManager.itemTransformer = this
-                    highlightedCharactersLayoutManager.onItemSelectedListener = this
+                .doOnNext { characters ->
+                    WikiGalleryCallbacksHandler(
+                            imageLoader,
+                            characters,
+                            binding.highlightedCharactersContainer
+                    ).apply {
+                        highlightedCharactersLayoutManager.itemTransformer = this
+                        highlightedCharactersLayoutManager.onItemSelectedListener = this
+                    }
                 }
-            }
-            .subscribe { displayHighlightedCharacters(it) }
+                .subscribe { displayHighlightedCharacters(it) }
 
         compositeDisposable += highlightedCharactersViewModel.output.showLoading
-            .filter { it == true }
-            .doOnNext {
-                LoadingWikiGalleryCallbacksHandler().apply {
-                    highlightedCharactersLayoutManager.itemTransformer = this
+                .filter { it == true }
+                .doOnNext {
+                    LoadingWikiGalleryCallbacksHandler().apply {
+                        highlightedCharactersLayoutManager.itemTransformer = this
+                    }
                 }
-            }
-            .subscribe { displayLoadingHighlightedCharacters() }
+                .subscribe { displayLoadingHighlightedCharacters() }
     }
 
     private fun displayLoadingHighlightedCharacters() {
-        onRecyclerView(highlightedCharactersRecyclerView) {
+        onRecyclerView(binding.highlightedCharactersRecyclerView) {
             bind(R.layout.loading_highlighted_characters_item) {
                 withItems(arrayOfNulls<Any?>(LOADING_CHARACTERS_COUNT).toList()) {}
             }
@@ -120,12 +121,12 @@ class WikiFragment : Fragment() {
     }
 
     private fun displayHighlightedCharacters(list: List<CharacterItemViewModel>) {
-        onRecyclerView(highlightedCharactersRecyclerView) {
+        onRecyclerView(binding.highlightedCharactersRecyclerView) {
             bind(R.layout.highlighted_characters_fragment_item) {
                 withItems(list) {
                     on<FrameLayout>(R.id.container) {
                         it.view?.foreground =
-                            context?.getDrawable(R.drawable.highlighted_characters_foreground)
+                                context?.getDrawable(R.drawable.highlighted_characters_foreground)
                     }
                     on<TextView>(R.id.title) {
                         it.view?.text = it.item?.name
@@ -153,17 +154,17 @@ class WikiFragment : Fragment() {
         compositeDisposable += highlightedCharactersViewModel.input.loadItemsCommand.execute().subscribe()
 
         compositeDisposable += othersCharactersViewModel.output.items
-            .subscribe { displayOthersCharacters(it) }
+                .subscribe { displayOthersCharacters(it) }
 
         compositeDisposable += othersCharactersViewModel.output.showLoading
-            .filter { it == true }
-            .subscribe { displayLoadingOthersCharacters() }
+                .filter { it == true }
+                .subscribe { displayLoadingOthersCharacters() }
 
         compositeDisposable += othersCharactersViewModel.input.loadItemsCommand.execute().subscribe()
     }
 
     private fun displayLoadingOthersCharacters() {
-        onRecyclerView(othersCharactersRecyclerView) {
+        onRecyclerView(binding.othersCharactersRecyclerView) {
             withGridLayout { spanCount = GRID_SPAN_COUNT }
 
             bind(R.layout.loading_others_characters_item) {
@@ -173,7 +174,7 @@ class WikiFragment : Fragment() {
     }
 
     private fun displayOthersCharacters(list: List<CharacterItemViewModel>) {
-        onRecyclerView(othersCharactersRecyclerView) {
+        onRecyclerView(binding.othersCharactersRecyclerView) {
             withGridLayout { spanCount = GRID_SPAN_COUNT }
 
             bind(R.layout.others_characters_fragment_item) {
@@ -187,7 +188,7 @@ class WikiFragment : Fragment() {
                         val imageView = it.view
                         if (imageUrl != null && imageView != null) {
                             val cornerRadius = imageView.resources
-                                .getDimensionPixelSize(RBase.dimen.image_default_color_radius)
+                                    .getDimensionPixelSize(RBase.dimen.image_default_color_radius)
                             imageLoader.loadRoundedImage(imageUrl, imageView, cornerRadius)
                         }
                     }

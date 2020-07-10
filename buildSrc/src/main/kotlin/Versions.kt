@@ -24,6 +24,7 @@ object Versions {
     const val androidxSupportAnnotationLibrary = "1.1.0"
     const val androidxConstraintLayoutLibrary = "1.1.3"
     const val androidxKtxLibrary = "1.0.0"
+    const val lifecycleLibrary = "2.2.0"
     const val androidxFragmentTesting = "1.2.0-rc04"
 
     const val roomLibrary = "2.0.0"

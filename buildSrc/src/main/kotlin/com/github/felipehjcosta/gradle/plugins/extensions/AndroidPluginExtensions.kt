@@ -29,6 +29,8 @@ private fun BaseExtension.androidBasicConfiguration(otherConfigurations: BaseExt
 
     }
 
+    buildFeatures.viewBinding = true
+
     lintOptions {
         // set to true to turn off analysis progress reporting by lint
         isQuiet = false

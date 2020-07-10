@@ -42,8 +42,12 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_details" />
+    <include
+        android:id="@+id/content_details"
+        layout="@layout/content_details" />
 
-    <include layout="@layout/detail_character_statistic" />
+    <include
+        android:id="@+id/detail_character_statistic"
+        layout="@layout/detail_character_statistic" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

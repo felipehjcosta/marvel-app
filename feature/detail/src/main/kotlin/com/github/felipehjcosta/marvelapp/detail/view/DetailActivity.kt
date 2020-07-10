@@ -5,22 +5,18 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
+import com.github.felipehjcosta.marvelapp.base.view.viewBinding
 import com.github.felipehjcosta.marvelapp.detail.R
+import com.github.felipehjcosta.marvelapp.detail.databinding.ActivityDetailBinding
 import com.github.felipehjcosta.marvelapp.detail.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.detail.presentation.CharacterDetailViewModel
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_detail.toolbar
 import javax.inject.Inject
-import kotlinx.android.synthetic.main.activity_detail.image_backdrop as backdrop
-import kotlinx.android.synthetic.main.activity_detail.toolbar_layout as toolbarLayout
-import kotlinx.android.synthetic.main.content_details.text_description as description
-import kotlinx.android.synthetic.main.detail_character_statistic.statistic_comics as statisticComics
-import kotlinx.android.synthetic.main.detail_character_statistic.statistic_events as statisticEvents
-import kotlinx.android.synthetic.main.detail_character_statistic.statistic_series as statisticSeries
-import kotlinx.android.synthetic.main.detail_character_statistic.statistic_stories as statisticStories
 
 
 class DetailActivity : AppCompatActivity() {
+
+    private val binding by viewBinding(ActivityDetailBinding::inflate)
 
     @Inject
     lateinit var viewModel: CharacterDetailViewModel
@@ -37,8 +33,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        setContentView(R.layout.activity_detail)
-        setSupportActionBar(toolbar)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
@@ -49,26 +45,26 @@ class DetailActivity : AppCompatActivity() {
 
     private fun bind() {
         compositeDisposable = CompositeDisposable()
-        compositeDisposable += viewModel.output.name.subscribe { toolbarLayout.title = it }
-        compositeDisposable += viewModel.output.description.subscribe { description.text = it }
+        compositeDisposable += viewModel.output.name.subscribe { binding.toolbarLayout.title = it }
+        compositeDisposable += viewModel.output.description.subscribe { binding.contentDetails.description.text = it }
         compositeDisposable += viewModel.output.thumbnailUrl.subscribe {
             imageLoader.loadImage(
-                it,
-                backdrop
+                    it,
+                    binding.imageBackdrop
             )
         }
 
         compositeDisposable += viewModel.output.comicsCount.subscribe {
-            statisticComics.text = it.toString()
+            binding.detailCharacterStatistic.statisticComics.text = it.toString()
         }
         compositeDisposable += viewModel.output.eventsCount.subscribe {
-            statisticEvents.text = it.toString()
+            binding.detailCharacterStatistic.statisticEvents.text = it.toString()
         }
         compositeDisposable += viewModel.output.seriesCount.subscribe {
-            statisticSeries.text = it.toString()
+            binding.detailCharacterStatistic.statisticSeries.text = it.toString()
         }
         compositeDisposable += viewModel.output.storiesCount.subscribe {
-            statisticStories.text = it.toString()
+            binding.detailCharacterStatistic.statisticStories.text = it.toString()
         }
 
         compositeDisposable += viewModel.input.characterCommand.execute().subscribe()

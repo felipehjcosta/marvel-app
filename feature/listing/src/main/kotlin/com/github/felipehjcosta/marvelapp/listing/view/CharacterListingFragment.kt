@@ -15,11 +15,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.felipehjcosta.marvelapp.base.imageloader.ImageLoader
 import com.github.felipehjcosta.marvelapp.base.navigator.AppNavigator
 import com.github.felipehjcosta.marvelapp.base.rx.plusAssign
+import com.github.felipehjcosta.marvelapp.base.view.viewBinding
 import com.github.felipehjcosta.marvelapp.listing.R
+import com.github.felipehjcosta.marvelapp.listing.databinding.ListingFragmentBinding
 import com.github.felipehjcosta.marvelapp.listing.di.setupDependencyInjection
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterItemViewModel
 import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModel
-import com.github.felipehjcosta.marvelapp.listing.presentation.CharacterListViewModelInputOutput
 import com.github.felipehjcosta.recyclerviewdsl.onRecyclerView
 import com.jakewharton.rxbinding3.recyclerview.RecyclerViewScrollEvent
 import com.jakewharton.rxbinding3.recyclerview.scrollEvents
@@ -32,13 +33,10 @@ import io.reactivex.functions.BiFunction
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
 import com.github.felipehjcosta.marvelapp.base.R as RBase
-import com.github.felipehjcosta.marvelapp.listing.R.drawable.ic_arrow_back_white_24dp as navigationIconResId
-import kotlinx.android.synthetic.main.listing_fragment.loading_view as loadingView
-import kotlinx.android.synthetic.main.listing_fragment.recycler_view as recyclerView
-import kotlinx.android.synthetic.main.listing_fragment.swipe_refresh_view as swipeRefreshView
-
 
 class CharacterListingFragment : Fragment() {
+
+    private val binding by viewBinding(ListingFragmentBinding::bind)
 
     @Inject
     lateinit var viewModel: CharacterListViewModel
@@ -57,8 +55,9 @@ class CharacterListingFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.listing_fragment, container, false)
     }
@@ -67,67 +66,67 @@ class CharacterListingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val linearLayoutManger = LinearLayoutManager(context)
-        recyclerView.layoutManager = linearLayoutManger
+        binding.recyclerView.layoutManager = linearLayoutManger
 
-        bind(linearLayoutManger, loadingView, swipeRefreshView)
+        bind(linearLayoutManger, binding.loadingView, binding.swipeRefreshView)
     }
 
     private fun bind(
-        linearLayoutManger: LinearLayoutManager,
-        contentLoadingProgressBar: ContentLoadingProgressBar,
-        swipeRefresh: SwipeRefreshLayout
+            linearLayoutManger: LinearLayoutManager,
+            contentLoadingProgressBar: ContentLoadingProgressBar,
+            swipeRefresh: SwipeRefreshLayout
     ) {
         compositeDisposable = CompositeDisposable()
 
         compositeDisposable += viewModel.output.items
-            .subscribe(this::displayList)
+                .subscribe(this::displayList)
 
         compositeDisposable += viewModel.output.showLoading
-            .map {
-                if (it)
-                    recyclerView to contentLoadingProgressBar
-                else
-                    contentLoadingProgressBar to recyclerView
-            }
-            .subscribe { crossFade(it.first, it.second) }
+                .map {
+                    if (it)
+                        binding.recyclerView to contentLoadingProgressBar
+                    else
+                        contentLoadingProgressBar to binding.recyclerView
+                }
+                .subscribe { crossFade(it.first, it.second) }
 
         compositeDisposable += viewModel.output.showLoading.subscribe { swipeRefresh.isRefreshing = it }
 
-        compositeDisposable +=  swipeRefresh.refreshes()
-            .flatMapCompletable { viewModel.input.loadItemsCommand.execute() }
-            .subscribe()
+        compositeDisposable += swipeRefresh.refreshes()
+                .flatMapCompletable { viewModel.input.loadItemsCommand.execute() }
+                .subscribe()
 
         compositeDisposable += viewModel.input.loadItemsCommand.execute().subscribe()
 
         compositeDisposable += viewModel.output.newItems
-            .subscribe {
-                onRecyclerView(recyclerView) {
-                    bind(R.layout.listing_fragment_item) {
-                        addExtraItems(it)
+                .subscribe {
+                    onRecyclerView(binding.recyclerView) {
+                        bind(R.layout.listing_fragment_item) {
+                            addExtraItems(it)
+                        }
                     }
                 }
-            }
 
         val loadMoreCommand = viewModel.input.loadMoreItemsCommand
 
-        compositeDisposable += combineLatest(recyclerView.scrollEvents(), just(linearLayoutManger),
-            BiFunction { event: RecyclerViewScrollEvent, layoutManager: LinearLayoutManager ->
-                if (event.dy > 0) {
-                    val totalItemCount = layoutManager.itemCount
-                    val firstVisibleItem = layoutManager.findLastVisibleItemPosition()
-                    (totalItemCount) < (firstVisibleItem + VISIBLE_THRESHOLD)
-                } else {
-                    false
-                }
-            })
-            .debounce(DEBOUNCE_SCROLL_TIMEOUT, MILLISECONDS, mainThread())
-            .withLatestFrom(viewModel.output.showLoadingMore.startWith(false),
-                BiFunction { shouldLoadNewItems: Boolean, showLoadingMore: Boolean ->
-                    if (showLoadingMore) false else shouldLoadNewItems
+        compositeDisposable += combineLatest(binding.recyclerView.scrollEvents(), just(linearLayoutManger),
+                BiFunction { event: RecyclerViewScrollEvent, layoutManager: LinearLayoutManager ->
+                    if (event.dy > 0) {
+                        val totalItemCount = layoutManager.itemCount
+                        val firstVisibleItem = layoutManager.findLastVisibleItemPosition()
+                        (totalItemCount) < (firstVisibleItem + VISIBLE_THRESHOLD)
+                    } else {
+                        false
+                    }
                 })
-            .filter { it == true }
-            .flatMapCompletable { loadMoreCommand.execute() }
-            .subscribe()
+                .debounce(DEBOUNCE_SCROLL_TIMEOUT, MILLISECONDS, mainThread())
+                .withLatestFrom(viewModel.output.showLoadingMore.startWith(false),
+                        BiFunction { shouldLoadNewItems: Boolean, showLoadingMore: Boolean ->
+                            if (showLoadingMore) false else shouldLoadNewItems
+                        })
+                .filter { it == true }
+                .flatMapCompletable { loadMoreCommand.execute() }
+                .subscribe()
     }
 
     override fun onDestroyView() {
@@ -140,7 +139,7 @@ class CharacterListingFragment : Fragment() {
     }
 
     private fun displayList(items: List<CharacterItemViewModel>) {
-        onRecyclerView(recyclerView) {
+        onRecyclerView(binding.recyclerView) {
             bind(R.layout.listing_fragment_item) {
                 withItems(items) {
 
@@ -154,9 +153,9 @@ class CharacterListingFragment : Fragment() {
                         if (imageUrl != null && imageView != null) {
                             val radius = RBase.dimen.image_default_color_radius
                             val cornerRadius = imageView.resources
-                                .getDimensionPixelSize(radius)
+                                    .getDimensionPixelSize(radius)
                             imageLoader
-                                .loadRoundedImage(imageUrl, imageView, cornerRadius)
+                                    .loadRoundedImage(imageUrl, imageView, cornerRadius)
                         }
                     }
 
@@ -183,25 +182,25 @@ class CharacterListingFragment : Fragment() {
         // listener set on the view.
 
         val shortAnimationDuration = resources
-            .getInteger(android.R.integer.config_shortAnimTime)
-            .toLong()
+                .getInteger(android.R.integer.config_shortAnimTime)
+                .toLong()
 
         toView.animate()
-            .alpha(1f)
-            .setDuration(shortAnimationDuration)
-            .setListener(null)
+                .alpha(1f)
+                .setDuration(shortAnimationDuration)
+                .setListener(null)
 
         // Animate the loading view to 0% opacity. After the animation ends,
         // set its visibility to GONE as an optimization step (it won't
         // participate in layout passes, etc.)
         fromView.animate()
-            .alpha(0f)
-            .setDuration(shortAnimationDuration)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    fromView.visibility = View.GONE
-                }
-            })
+                .alpha(0f)
+                .setDuration(shortAnimationDuration)
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        fromView.visibility = View.GONE
+                    }
+                })
     }
 
     companion object {

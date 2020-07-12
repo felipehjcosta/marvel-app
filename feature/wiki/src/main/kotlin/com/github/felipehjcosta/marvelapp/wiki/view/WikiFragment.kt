@@ -24,7 +24,7 @@ import javax.inject.Inject
 import com.github.felipehjcosta.marvelapp.base.R as RBase
 
 
-class WikiFragment : Fragment() {
+class WikiFragment : Fragment(R.layout.fragment_wiki) {
 
     private val binding by viewBinding(FragmentWikiBinding::bind)
 
@@ -48,14 +48,6 @@ class WikiFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setupDependencyInjection()
         setHasOptionsMenu(true)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_wiki, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

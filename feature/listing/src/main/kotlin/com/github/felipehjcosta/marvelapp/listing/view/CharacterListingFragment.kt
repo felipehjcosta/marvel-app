@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
 import com.github.felipehjcosta.marvelapp.base.R as RBase
 
-class CharacterListingFragment : Fragment() {
+class CharacterListingFragment : Fragment(R.layout.listing_fragment) {
 
     private val binding by viewBinding(ListingFragmentBinding::bind)
 
@@ -52,14 +52,6 @@ class CharacterListingFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupDependencyInjection()
-    }
-
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.listing_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -12,6 +12,11 @@ gradlePlugin {
             implementationClass = "com.github.felipehjcosta.gradle.plugins.FeatureModulePlugin"
         }
 
+        register("library-module-plugin") {
+            id = "library-module-plugin"
+            implementationClass = "com.github.felipehjcosta.gradle.plugins.LibraryModulePlugin"
+        }
+
         register("application-module-plugin") {
             id = "application-module-plugin"
             implementationClass = "com.github.felipehjcosta.gradle.plugins.ApplicationModulePlugin"

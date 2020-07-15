@@ -13,9 +13,6 @@ class FeatureModulePlugin : Plugin<Project> {
             applyAndroidDynamicFeaturePlugins()
             applyAndroidBasicConfiguration {
                 buildTypes {
-                    getByName("debug") {
-                        isTestCoverageEnabled = true
-                    }
                     create("debugMini") {
                         initWith(getByName("debug"))
                         matchingFallbacks = mutableListOf("debug")

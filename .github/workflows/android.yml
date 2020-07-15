@@ -31,7 +31,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Run tests
-        run: ./gradlew testDebugUnitTest --console=plain --stacktrace
+        run: ./gradlew -PcoverageEnabled testDebugUnitTest --console=plain --stacktrace
 
   instrumentation-test:
     needs: [lint, test]

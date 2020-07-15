@@ -6,7 +6,7 @@ import org.gradle.api.Project
 
 internal fun Project.applyAndroidBasicConfiguration(otherConfigurations: BaseExtension.() -> Unit = {}) {
     android.run {
-        androidBasicConfiguration(otherConfigurations)
+        androidBasicConfiguration(this@applyAndroidBasicConfiguration, otherConfigurations)
     }
 }
 
@@ -14,7 +14,7 @@ private val Project.android: BaseExtension
     get() = extensions.findByName("android") as? BaseExtension
             ?: error("Not an Android module $name")
 
-private fun BaseExtension.androidBasicConfiguration(otherConfigurations: BaseExtension.() -> Unit = {}) {
+private fun BaseExtension.androidBasicConfiguration(project: Project,otherConfigurations: BaseExtension.() -> Unit = {}) {
     compileSdkVersion(Versions.compileSdkVersion)
 
     defaultConfig {
@@ -51,6 +51,12 @@ private fun BaseExtension.androidBasicConfiguration(otherConfigurations: BaseExt
     packagingOptions {
         exclude("META-INF/app_debug.kotlin_module")
         exclude("META-INF/proguard/androidx-annotations.pro")
+    }
+
+    buildTypes {
+        getByName("debug") {
+            isTestCoverageEnabled = project.hasProperty("coverageEnabled")
+        }
     }
 
     otherConfigurations(this)

@@ -13,9 +13,6 @@ class ApplicationModulePlugin : Plugin<Project> {
             applyAndroidApplicationPlugins()
             applyAndroidBasicConfiguration {
                 buildTypes {
-                    getByName("debug") {
-                        isTestCoverageEnabled = true
-                    }
                     create("debugMini") {
                         initWith(getByName("debug"))
                         isMinifyEnabled = true

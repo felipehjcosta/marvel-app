@@ -12,9 +12,6 @@ class LibraryModulePlugin : Plugin<Project> {
             applyAndroidLibraryPlugins()
             applyAndroidBasicConfiguration {
                 buildTypes {
-                    getByName("debug") {
-                        isTestCoverageEnabled = true
-                    }
                     create("debugMini") {
                         initWith(getByName("debug"))
                         isMinifyEnabled = true

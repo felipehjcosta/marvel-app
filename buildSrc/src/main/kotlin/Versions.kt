@@ -3,7 +3,7 @@ internal object Kotlin {
 }
 
 object Versions {
-    const val androidGradlePlugin = "4.1.0-beta02"
+    const val androidGradlePlugin = "4.1.0-beta03"
     const val dependencyGraphGeneratorPlugin = "0.2.0"
     const val androidJunitJacocoPlugin = "0.15.0"
     const val detektGradlePlugin = "1.0.1"

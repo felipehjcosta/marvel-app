@@ -17,7 +17,7 @@ class LibraryModulePlugin : Plugin<Project> {
                         isMinifyEnabled = true
                         isDebuggable = true
                         proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro", "proguard-rules-debug.pro")
-                        matchingFallbacks = mutableListOf("debug")
+                        setMatchingFallbacks("debug")
                     }
                     getByName("release") {
                         isMinifyEnabled = true

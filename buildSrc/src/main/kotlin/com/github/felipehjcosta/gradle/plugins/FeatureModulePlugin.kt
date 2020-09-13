@@ -15,7 +15,7 @@ class FeatureModulePlugin : Plugin<Project> {
                 buildTypes {
                     create("debugMini") {
                         initWith(getByName("debug"))
-                        matchingFallbacks = mutableListOf("debug")
+                        setMatchingFallbacks("debug")
                     }
                     getByName("release") {
                         isMinifyEnabled = false

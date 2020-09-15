@@ -27,7 +27,7 @@ object Versions {
     const val lifecycleLibrary = "2.2.0"
     const val androidxFragmentTesting = "1.2.0-rc04"
 
-    const val roomLibrary = "2.0.0"
+    const val roomLibrary = "2.2.5"
 
     const val rxJavaLibrary = "2.2.13"
     const val rxJavaAndroidLibrary = "2.1.0"

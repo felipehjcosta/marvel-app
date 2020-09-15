@@ -1,12 +1,11 @@
 package com.github.felipehjcosta.marvelapp.base.character.data.pojo
 
-import kotlinx.serialization.Optional
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 class Summary(
-    @Optional @SerialName("resourceURI") var resourceURI: String = "",
-    @Optional @SerialName("name") var name: String = "",
-    @Optional @SerialName("type") var type: String = ""
+    @SerialName("resourceURI") var resourceURI: String = "",
+    @SerialName("name") var name: String = "",
+    @SerialName("type") var type: String = ""
 )

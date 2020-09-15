@@ -1,16 +1,15 @@
 package com.github.felipehjcosta.marvelapp.base.character.data.pojo
 
-import kotlinx.serialization.Optional
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 class CharacterDataWrapper(
-    @Optional @SerialName("code") var code: Int = 0,
-    @Optional @SerialName("status") var status: String = "",
-    @Optional @SerialName("copyright") var copyright: String = "",
-    @Optional @SerialName("attributionText") var attributionText: String = "",
-    @Optional @SerialName("attributionHTML") var attributionHTML: String = "",
-    @Optional @SerialName("data") var characterDataContainer: CharacterDataContainer = CharacterDataContainer(),
-    @Optional @SerialName("etag") var etag: String = ""
+    @SerialName("code") var code: Int = 0,
+    @SerialName("status") var status: String = "",
+    @SerialName("copyright") var copyright: String = "",
+    @SerialName("attributionText") var attributionText: String = "",
+    @SerialName("attributionHTML") var attributionHTML: String = "",
+    @SerialName("data") var characterDataContainer: CharacterDataContainer = CharacterDataContainer(),
+    @SerialName("etag") var etag: String = ""
 )

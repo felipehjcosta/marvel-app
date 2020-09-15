@@ -33,5 +33,5 @@ dependencies {
     compileOnly(gradleApi())
 
     implementation("com.android.tools.build:gradle:4.2.0-alpha10")
-    implementation(kotlin("gradle-plugin", "1.3.61"))
+    implementation(kotlin("gradle-plugin", "1.4.10"))
 }

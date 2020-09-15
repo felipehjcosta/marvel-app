@@ -2,6 +2,10 @@ plugins {
     id("library-module-plugin")
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation(AndroidxDependencies.appCompat)
     implementation(AndroidxDependencies.design)

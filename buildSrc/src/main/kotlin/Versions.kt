@@ -1,5 +1,5 @@
 internal object Kotlin {
-    const val version = "1.3.61"
+    const val version = "1.4.10"
 }
 
 object Versions {
@@ -37,7 +37,7 @@ object Versions {
 
     const val okhttpLibrary = "3.12.0"
     const val retrofitLibrary = "2.5.0"
-    const val kotlinSerializationConverterLibrary = "0.2.0"
+    const val kotlinSerializationConverterLibrary = "0.7.0"
 
     const val daggerLibrary = "2.26"
     const val javaxAnnotationLibrary = "1.0"
